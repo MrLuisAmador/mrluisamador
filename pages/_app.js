@@ -1,22 +1,7 @@
-import '../styles/globals.scss'
+import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
-  return (
-  <>
-    <main className="main">
-      <Component {...pageProps} />
-    </main>
-
-    <footer className="footer">
-      <a
-        href="https://www.mrluisamador.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Powered by Luis Amador
-      </a>
-    </footer>
-  </>
-  )
+  return <Component {...pageProps} />
 }
 
 export default MyApp
