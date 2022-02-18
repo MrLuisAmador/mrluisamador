@@ -1,0 +1,25 @@
+:root {
+    // Colors:
+    --white: #fff;
+    --black: #000;
+    --dark-grey: #444;
+    --light-grey: #f7f7f7;
+
+    // Colors:
+    --main-bg-color: var(--white);
+    --blendin-text-color: var(--light-grey);
+
+    // font sizes:
+    --small-text: 1.4rem;
+    --normal-text: 1.6rem;
+    --medium-text: 1.8rem;
+    --desktop-title-text: 3.2rem;
+    --mobile-title-text: 2.0rem;
+
+    // font-family:
+    --text-font: "Playfair Display", serif;
+    --title-font: 'Alice', serif; 
+
+    --footer-bg: var(--dark-grey);
+
+}

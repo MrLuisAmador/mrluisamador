@@ -1,0 +1,97 @@
+html {
+    font-size: 62.5%; // used for rem
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: var(--normal-text); // used for rem
+    font-family: var(--text-font);
+    font-weight: 300;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--title-font);
+    font-weight: 500;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+}
+
+section {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+// nav.open {
+//     width: 350px;
+// }
+
+// nav.close {
+//     width: 70px;
+// }
+
+#__next {
+  width: calc(100% - 70px);
+  margin-right: 70px;
+  overflow: hidden;
+
+  @media ( min-width: 1080px ) {
+    width: calc(100% - 350px);
+    margin-right: 350px;
+  }
+}
+
+.bodyContainer {
+    background: green;
+  }
+  
+  .navContainer {
+    background-color: var(--footer-bg);
+    width: 70px;
+    position: fixed;
+    height: 100vh;
+    right: 0;
+    z-index: 1;
+  
+    @media ( min-width: 1080px ) {
+        width: 350px;
+    }
+  }
+  
+  #gatsby-focus-wrapper {
+    width: calc(100% - 70px);
+    margin-right: 70px;
+    overflow: hidden;
+  
+    @media ( min-width: 1080px ) {
+        width: calc(100% - 350px);
+        margin-right: 350px;
+    }
+  }
+  
+  .headerContainer {
+    background-color: #cf4646;
+  }
+  
+  .mainContainer {
+    background: grey;
+  }

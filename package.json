@@ -9,9 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/utils": "^4.11.2",
+    "@mui/material": "^5.0.0-rc.0",
+    "isotope-layout": "^3.0.6",
     "next": "11.1.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-anchor-link-smooth-scroll": "^1.0.12",
+    "react-dom": "17.0.2",
+    "react-isotope": "^1.0.7",
+    "sass": "^1.39.0"
   },
   "devDependencies": {
     "eslint": "7.32.0",

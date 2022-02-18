@@ -1,0 +1,36 @@
+.body-container {
+    background: green;
+  }
+  
+  .nav-container {
+    background-color: var(--footer-bg);
+    width: 70px;
+    position: fixed;
+    height: 100vh;
+    right: 0;
+    z-index: 1;
+  
+    @media ( min-width: 1080px ) {
+        width: 350px;
+    }
+  }
+  
+  #gatsby-focus-wrapper {
+    width: calc(100% - 70px);
+    margin-right: 70px;
+    overflow: hidden;
+  
+    @media ( min-width: 1080px ) {
+        width: calc(100% - 350px);
+        margin-right: 350px;
+    }
+  }
+  
+  .header-container {
+    background-color: #cf4646;
+  }
+  
+  .main-container {
+    background: #e2e2e2 !important;
+  }
+  

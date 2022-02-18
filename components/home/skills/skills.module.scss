@@ -1,0 +1,43 @@
+/*--------------------------------------------------------------
+The Skills styling
+--------------------------------------------------------------*/
+.skills {
+	background-color: #eee;
+	color: #313131;
+
+	&:after {
+		clear: both;
+		content: "";
+		display: table;
+	}
+}
+
+.blogTitle {
+	text-align: center;
+}
+
+.skillsWrapper {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
+
+	@media (max-width: 768px) {
+		max-width: 80%;
+	}
+}
+
+.skillsInnerWrap {
+	flex-basis: 50%;
+	padding: 0 4rem;
+
+	@media (max-width: 768px) {
+		flex-basis: 100%;
+		padding: 0;
+	}
+}
+
+.skillsContent {
+	p {
+		line-height: 1.6;
+	}
+}

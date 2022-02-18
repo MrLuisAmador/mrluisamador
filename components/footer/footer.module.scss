@@ -1,0 +1,13 @@
+.footerContainer {
+    background-color: var(--footer-bg);
+    padding: 30px 15px;
+}
+
+.copyright {
+    color: var(--blendin-text-color);
+    font-size: var(--small-text);
+
+    a {
+        color: var(--blendin-text-color);
+    }
+}
