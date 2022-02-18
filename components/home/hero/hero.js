@@ -11,7 +11,7 @@ const Hero = () => (
         <span className={styles.typedCursor}>|</span>
       </h2>
 
-      <AnchorLink className={styles.headerCta} href="#contact-me">Let's Talk!</AnchorLink>
+      <AnchorLink className={styles.headerCta} href="#contact-me">Let&apos;s Talk!</AnchorLink>
     </div>
   </header>
 )
