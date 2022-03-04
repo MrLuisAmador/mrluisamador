@@ -3,8 +3,10 @@ import styles from "./blog-widget.module.scss";
 
 const BlogWidget = () => {
   return (
-        <section id="blog" className={styles.blog + " scrollto"}>
-          <h1 className={styles.blogTitle}>Latest Blog</h1>
+    <section id="blog" className={styles.blog + " scrollto"}>
+      <h1 style={{textAlign: "center"}}>BLOG COMING SOON</h1>
+
+      {/* <h1 className={styles.blogTitle}>Latest Blog</h1>
 
           <div className={styles.blogOuterWrap}>
             <div className={styles.blogInnerWrap}>
@@ -24,8 +26,8 @@ const BlogWidget = () => {
             </div>
           </div>
 
-          <Link href="/blog"><a className={styles.blogBtn}>More Blogs</a></Link>
-        </section>
+          <Link href="/blog"><a className={styles.blogBtn}>More Blogs</a></Link> */}
+    </section>
   )
 }
 
