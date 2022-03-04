@@ -163,12 +163,4 @@ const PROJECT_LIST = [
     }
 ]
 
-export function getFeaturedProjects() {
-    return PROJECT_LIST.filter((list) => list.isFeatured);
-}
-  
-export function getAllProjects() {
-    return PROJECT_LIST;
-}
-
 export default PROJECT_LIST;
