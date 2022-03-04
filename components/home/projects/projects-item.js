@@ -9,7 +9,6 @@ return (
             { lists.map( list => (
                 <div className={ `${styles.gridItem} filter-item ${list.filter}` } key={list.id}>
                     <a className={styles.gridItemLink} target="_blank" rel="noopener noreferrer" href={list.url} aria-label={list.label}>
-
                         <div className={styles.projectBox}>
                             <div className={styles.projectBoxImg}>
                             <Image
@@ -21,9 +20,8 @@ return (
                                 alt={list.label}
                             />
                             </div>
-
                             <ul className={styles.projectBoxContent}>
-                                <li className={styles.contentItem + styles.projectBoxTax}>Platform:</li>
+                                <li className={styles.contentItem + styles.projectBoxTax}>Platform: &nbsp;</li>
                                 <li className={styles.contentItem + styles.projectBoxTax}>{list.platform}</li>
                             </ul>
                         </div>

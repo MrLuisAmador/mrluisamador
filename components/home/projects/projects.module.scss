@@ -31,11 +31,11 @@
 }
 
 .projectBox {
-
+	
 }
 
 .projectBoxImg {
-
+	display: block;
 }
 
 .projectBoxTax {
@@ -58,7 +58,7 @@
 	}
 
 	ul {
-		margin: 0;
+		margin: -3px 0 0 0;
 	}
 }
 
@@ -66,8 +66,7 @@
 	list-style: none;
 	display: flex;
 	background-color: #fff;
-	padding: 2rem 0;
-
+	padding: 2rem 1rem;
 	color: #313131;
 	font-weight: bold;
 }
@@ -79,6 +78,7 @@
 .gridItemLink {
 	text-decoration: none;
 	color: #313131;
+	display: block;
 }
 
 .filterBtn {
