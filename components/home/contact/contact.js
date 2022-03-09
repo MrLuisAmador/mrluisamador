@@ -1,6 +1,21 @@
 import styles from "./contact.module.scss";
 
 const Contact = () => {
+    async function handleOnSubmit(e) {
+        e.preventDefault();
+        const formData = {}
+
+        Array.from(e.currentTarget.elements).forEach(field => {
+            if ( !field.name ) return;
+            formData[field.name] = field.value;
+        });
+
+        fetch('/api/mail',{
+            method: 'post',
+            body: JSON.stringify(formData)
+        });
+    }
+
     return (
         <section id="contact-me" className={styles.contactMe + " scrollto"}>
             <div className={styles.contact}>
@@ -13,11 +28,8 @@ const Contact = () => {
                 <form
                   name={styles.contactMe}
                   method="post"
-                  action="/success"
-                  data-netlify="true"
-                  data-netlify-honeypot="bot-field"
+                  onSubmit={handleOnSubmit}
                 >
-                    <input type="hidden" name="bot-field"/>
 
                     <div className={styles.nameFieldContainer}>
                         <input
@@ -70,7 +82,8 @@ const Contact = () => {
                         <textarea
                           minLength="20"
                           required="required"
-                          id="area" name="area"
+                          id="area" 
+                          name="message"
                           cols="40"
                           rows="10"
                           className={styles.formControlWrapTextArea}
