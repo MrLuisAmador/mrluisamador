@@ -4,10 +4,14 @@ import Skills from "../components/home/skills/skills";
 import Projects from "../components/home/projects/projects";
 import BlogWidget from "../components/home/blog/blog-widget";
 import Contact from "../components/home/contact/contact";
-
+import Head from 'next/head'
 
 const Home = () => (
     <>
+        <Head>
+            <title>Luis Amador Portfolio</title>
+            <meta name="description" content="Luis Amador Web Developer Portfolio Website And Blog" />
+        </Head>
         <Hero />
         <About />
         <Skills />
