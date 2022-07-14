@@ -1,18 +1,5 @@
-let policy = {
-    userAgent: "*"
-}
-
-if ( process.env.ENVIRONMENT !== "production" ) {
-    policy.disallow = "/";
-}
-
 module.exports = {
-    siteUrl: process.env.URL,
+    siteUrl: "https://www.mrluisamador.com/",
     generateRobotsTxt: true,
-    robotsTxtOptions: {
-        policies: [
-            policy
-        ]
-    },
     outDir: "./out"
 }
