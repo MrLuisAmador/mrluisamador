@@ -1,7 +1,8 @@
 import styles from "./contact.module.scss";
 
 const Contact = () => {
-    async function handleOnSubmit() {
+    async function handleOnSubmit(e) {
+        e.preventDefault();
         const formData = {}
 
         Array.from(e.currentTarget.elements).forEach(field => {
