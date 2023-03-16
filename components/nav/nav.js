@@ -2,15 +2,15 @@ import React from "react";
 import Link from 'next/link';
 import Image from 'next/image';
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import HomeIcon from '@material-ui/icons/Home';
-import PersonIcon from '@material-ui/icons/Person';
-import InfoIcon from '@material-ui/icons/Info';
-import TimelineIcon from '@material-ui/icons/Timeline';
-import WorkIcon from '@material-ui/icons/Work';
-import ContactMailIcon from '@material-ui/icons/ContactMail';
-import CodeIcon from '@material-ui/icons/Code';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+import InfoIcon from '@mui/icons-material/Info';
+import TimelineIcon from '@mui/icons-material/Timeline';
+import WorkIcon from '@mui/icons-material/Work';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import CodeIcon from '@mui/icons-material/Code';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 import HeadShot from '/public/images/mugshot.png'
 import styles from  './nav.module.scss';
@@ -42,29 +42,23 @@ class Nav extends React.Component {
          <div className={styles.navContent}>
             <div className={styles.navContentBox}>
                <h3 className={styles.headingName}>
-                  <Link href="/">
-                     <a className={styles.fontColor}>
+                  <Link className={styles.fontColor} href="/">
                         <span className={styles.mobileHeadingName}>LA</span>
                         <span className={styles.desktopHeadingName}>Luis Amador</span>
-                     </a>
                   </Link>
                </h3>
 
                <div className={styles.headShot}>
                   <Link href="/">
-                      <a>
-                          <Image src={HeadShot} alt="Head Shot" width={310} height={310} />
-                      </a>
+                     <Image src={HeadShot} alt="Head Shot" width={310} height={310} />
                   </Link>
                </div>
 
                <ul className={styles.navLists}>
                  <li className={styles.navList}>
                    <Link href="/" aria-label="Home">
-                     <a>
-                         <span className={styles.mobileMenuName}><HomeIcon fontSize="large" /></span>
-                         <span className={styles.desktopMenuName}>Home</span>
-                     </a>
+                     <span className={styles.mobileMenuName}><HomeIcon fontSize="large" /></span>
+                     <span className={styles.desktopMenuName}>Home</span>
                    </Link>
                  </li>
 

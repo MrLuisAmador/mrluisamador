@@ -1,3 +1,6 @@
+import '@/styles/global.scss'
+import type { AppProps } from 'next/app'
+
 import Layout from "../components/layout/layout";
 import Head from 'next/head'
 
@@ -6,9 +9,9 @@ import '../styles/variables.scss';
 import '../styles/global.scss';
 import Script from "next/script";
 
-function MyApp({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
-  <Layout>
+    <Layout>
     <Script
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=UA-70247510-1`}
@@ -39,5 +42,3 @@ function MyApp({ Component, pageProps }) {
   </Layout>
   )
 }
-
-export default MyApp

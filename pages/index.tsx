@@ -6,20 +6,19 @@ import BlogWidget from "../components/home/blog/blog-widget";
 import Contact from "../components/home/contact/contact";
 import Head from 'next/head'
 
-const Home = () => (
+export default function Home() {
+  return (
     <>
-        <Head>
-            <title>Luis Amador Portfolio</title>
-            <meta name="description" content="Luis Amador Web Developer Portfolio Website And Blog" />
-        </Head>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <BlogWidget />
-        <Contact />
+      <Head>
+          <title>Luis Amador Portfolio</title>
+          <meta name="description" content="Luis Amador Web Developer Portfolio Website And Blog" />
+      </Head>
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <BlogWidget />
+      <Contact />
     </>
-)
-
-export default Home;
-
+  )
+}
