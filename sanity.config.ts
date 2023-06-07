@@ -1,11 +1,11 @@
 import {deskTool} from 'sanity/desk'
-import {schemaTypes} from './schemas'
+import {schemaTypes} from './sanity/schemas'
 import {visionTool} from '@sanity/vision'
 
 export const config = {
   projectId: 'kuor2i8g',
   dataset: 'production',
-  title: 'portfolio',
+  title: 'Admin',
   basePath: '/admin',
 
   plugins: [deskTool(), visionTool()],

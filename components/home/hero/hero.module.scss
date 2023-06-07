@@ -169,19 +169,12 @@ The hero styling
 	font-size: 43px;
 
 	@media (min-width: 480px) {
-		padding-top: 0;
 		font-size: 79px;
 	}
 
 	@media (min-width: 980px) {
 		font-size: 92px;
-		padding-top: 0;
 	}
-
-	@media (max-height: 340px) {
-		padding-top: 0;
-	}
-
 }
 
 .headerSubtitle {

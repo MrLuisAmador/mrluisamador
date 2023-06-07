@@ -1,0 +1,10 @@
+.bodyContainer {
+    width: calc(100% - 70px);
+    margin-right: 70px;
+    overflow: hidden;
+  
+    @media ( min-width: 1080px ) {
+      width: calc(100% - 350px);
+      margin-right: 350px;
+    }
+}

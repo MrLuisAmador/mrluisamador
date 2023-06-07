@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react";
 import AllProjectsItem from "./projects-item";
 import PROJECT_LIST from "./projects-list"; // data
