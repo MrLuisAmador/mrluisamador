@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getBlogs } from '@/sanity/schemas/sanity-utils'
+import { getBlogs } from '@/sanity/lib/sanity-utils'
 
 export default async function Blogs() {
   const blogs = await getBlogs()
