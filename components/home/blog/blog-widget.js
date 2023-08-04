@@ -1,34 +1,27 @@
-import Link from 'next/link';
-import styles from "./blog-widget.module.scss";
+import Link from 'next/link'
+import { getBlogs } from '../../../sanity/lib/sanity-utils'
 
-const BlogWidget = () => {
+import styles from "./blog-widget.module.scss"
+
+export default async function BlogWidget() {
+  const blogs = await getBlogs()
+
   return (
     <section id="blog" className={styles.blog + " scrollto"}>
-      <h1 style={{textAlign: "center"}}>BLOG COMING SOON</h1>
+      <h1 className={styles.blogTitle}>Latest Blog</h1>
 
-      {/* <h1 className={styles.blogTitle}>Latest Blog</h1>
+      <section className={styles.blogOuterWrap}>
+        {blogs.map((blog) => (
+           <article key={blog._id} className={styles.blogInnerWrap}>
+             <h1>{blog.title}</h1>
 
-          <div className={styles.blogOuterWrap}>
-            <div className={styles.blogInnerWrap}>
-              <h1>JavaScript Compared to PHP Series</h1>
+             <p>{blog.description} […]</p>
 
-              <p>What are the two language purposes? After several years of web development. I’ve decided to compare JavaScript and PHP head to head. I will try to outline its comparison on a side by side outline, in an effort to truly understand how each work, and how they differ from each other. Both these languages can be […]</p>
+             <Link className={styles.readMoreLink} href={`/blog/${blog.slug}`}>Read More...</Link>
+           </article>
 
-              <Link className={styles.readMoreLink} href="#"><a>Read More...</a></Link>
-            </div>
-
-            <div className={styles.blogInnerWrap}>
-              <h1>Add a slideshow to your Magento 2</h1>
-
-              <p>When it comes to picking a good theme as a starting point, the Ultimo theme seems to be the one we go with the most. It does come with some advanced admin modules and it’s extremely customizable. Making it the number one selling Magento theme on themeforest.net. Ultimo is equipped with administrative module which gives […]</p>
-
-              <Link href="#"><a className={styles.readMoreLink}>Read More...</a></Link>
-            </div>
-          </div>
-
-          <Link href="/blog"><a className={styles.blogBtn}>More Blogs</a></Link> */}
+        )).slice(0,1)}
+         </section>
     </section>
   )
 }
-
-export default BlogWidget

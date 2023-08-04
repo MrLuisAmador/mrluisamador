@@ -17,6 +17,7 @@ export default async function Blogs() {
         {blogs.map((blog) => (
             <li key={blog._id}>
               <h1><Link href={`/blog/${blog.slug}`}>{blog.title}</Link></h1>
+              <p>{blog.description}</p>
             </li>
         ))}
       </ul>
