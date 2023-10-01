@@ -10,9 +10,6 @@ type Props = {
 const Blog = async ({params: {slug}}: Props) => {
   
   const blog =  await getBlog(slug)
-
-  // console.log(blog)
-
     return (
       <>
        <h1>{blog.title}</h1>

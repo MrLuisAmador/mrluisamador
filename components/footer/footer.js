@@ -1,9 +1,7 @@
-import styles from "./footer.module.scss";
-
 const Footer = () => (
-    <footer className={styles.footerContainer}>
-        <div className={styles.copyright}>
-          © <span className={styles.yearDate}>{new Date().getFullYear()}</span>
+    <footer className="bg-dark-grey px-3.5 py-8 text-white">
+        <div className="text-sm">
+          © <span className="">{new Date().getFullYear()}</span>
           <span> All Rights Reserved.</span>
           <a href="mailto:mrluisamador@gmail.com"> Luis Amador</a>
         </div>

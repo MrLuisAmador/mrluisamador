@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   optimizeFonts: false,
   experimental: {
-    appDir: true,
+    serverActions: true,
   },
   images: {
     remotePatterns: [
@@ -13,7 +13,7 @@ const nextConfig = {
         port: ''
       }
     ],
-    domains: ['cdn.sanity.io'],
+    domains: ['cdn.sanity.io', 'avatars.githubusercontent.com'],
   }
 }
 
