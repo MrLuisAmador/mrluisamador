@@ -34,9 +34,7 @@ const Contact = () => {
             <div className="w-4/5 lg:w-2/5">
                 <h1 className="text-4xl mb-10 text-center">Want to work together?</h1>
 
-                <p className="mb-14 text-lg">
-                    I'm currently accepting new projects and would love to hear about yours. Please take a few minutes to tell me about it.
-                </p>
+                <p className="mb-14 text-lg">I'm currently accepting new projects and would love to hear about yours. Please take a few minutes to tell me about it.</p>
 
                 <form
                     id="mail"
