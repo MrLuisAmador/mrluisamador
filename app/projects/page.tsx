@@ -7,7 +7,7 @@ import PROJECT_LIST from "./projects-list"; // data
 function Projects() {
   const [state, setState] = useState(PROJECT_LIST);
 
-  const handleBtn = (e: React.ChangeEvent<HTMLInputElement>) =>  {
+  const handleBtn = (e: any) =>  {
     let word = e.target.value;
 
     if (word === 'All') {
