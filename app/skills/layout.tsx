@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import Nav from "../../components/nav/nav.js"
 import Footer from "../../components/footer/footer"
 import { Metadata } from 'next'
@@ -30,6 +31,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${alice.variable} ${playfair_display.variable}`}>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id='G-0M12YC86QL'`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+        window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-0M12YC86QL');
+        `}
+      </Script>
       <body>
         <div className="w-[calc(100%-70px) mr-[70px] lg:w-[calc(100%-350px)] lg:mr-[350px]">
           <Nav />
