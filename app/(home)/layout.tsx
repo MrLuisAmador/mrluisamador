@@ -2,7 +2,7 @@ import Script from 'next/script'
 import Nav from "../../components/nav/nav.js"
 import Footer from "../../components/footer/footer"
 import { Metadata } from 'next'
-const GTM_ID = process.env.GOOGLETAGKEY!
+const GTM_ID = process.env.GOOGLETAGKEY
 
 import { Alice, Playfair_Display } from 'next/font/google';
 import '../../styles/global.scss';
