@@ -20,7 +20,7 @@ const playfair_display = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'About | Luis Amador Portfolio',
+  title: 'Projects | Luis Amador Portfolio',
   description: 'Luis Amador Web Developer Portfolio Website And Blog'
 }
 
