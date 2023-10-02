@@ -2,7 +2,6 @@ import Script from 'next/script'
 import Nav from "../../components/nav/nav.js"
 import Footer from "../../components/footer/footer"
 import { Metadata } from 'next'
-const GTM_ID = process.env.GOOGLETAGKEY
 
 import { Alice, Playfair_Display } from 'next/font/google';
 import '../../styles/global.scss';
@@ -33,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${alice.variable} ${playfair_display.variable}`}>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GTM_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id='G-0M12YC86QL'`}
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
@@ -42,7 +41,7 @@ export default function RootLayout({
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
 
-          gtag('config', ${GTM_ID});
+          gtag('config', 'G-0M12YC86QL');
         `}
       </Script>
       <body>
