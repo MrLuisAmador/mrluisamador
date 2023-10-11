@@ -91,7 +91,7 @@ export default function Nav() {
                      </li>
 
                      <li className="lg:mr-2.5 mb-2.5 lg:mb-0  text-center">
-                        <Link className="block" target="_blank" rel="noopener noreferrer" href="https://twitter.com/mrluisamador" aria-label="Twitter">
+                        <Link className="block" target="_blank" rel="noopener noreferrer" href="https://twitter.com/LinuxLue" aria-label="Twitter">
                            <TwitterIcon className="transition-colors hover:text-twitter-blue" id="twitter" fontSize="large" />
                         </Link>
                      </li>
