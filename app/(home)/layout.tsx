@@ -44,6 +44,12 @@ export default function RootLayout({
           gtag('config', 'G-0M12YC86QL');
         `}
       </Script>
+      <Script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197`}
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
+      />
       <body>
         <div className="w-[calc(100%-70px) mr-[70px] lg:w-[calc(100%-350px)] lg:mr-[350px]">
           <Nav />

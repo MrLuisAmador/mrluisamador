@@ -18,10 +18,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: 'https://www.mrluisamador.com/projects',
       lastModified: new Date(),
     },
-    // {
-    //   url: 'https://www.mrluisamador.com/blogs',
-    //   lastModified: new Date(),
-    // },
+    {
+      url: 'https://www.mrluisamador.com/blog',
+      lastModified: new Date(),
+    },
     {
       url: 'https://www.mrluisamador.com/contact',
       lastModified: new Date(),

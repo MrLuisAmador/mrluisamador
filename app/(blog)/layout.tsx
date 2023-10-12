@@ -25,6 +25,12 @@ export default function RootLayout({
           gtag('config', 'G-0M12YC86QL');
         `}
       </Script>
+      <Script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197`}
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
+      />
       <body>{children}</body>
     </html>
   )
