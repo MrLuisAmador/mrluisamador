@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   description: 'Luis Amador Web Developer Portfolio Website And Blog'
 }
 
-export default function RootLayout({
+export default function HomeLayout({
   children,
 }: {
   children: React.ReactNode
@@ -44,19 +44,13 @@ export default function RootLayout({
           gtag('config', 'G-0M12YC86QL');
         `}
       </Script>
-      <head>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197"
-        crossOrigin="anonymous"></script>
-      </head>
       <body>
         <div className="w-[calc(100%-70px) mr-[70px] lg:w-[calc(100%-350px)] lg:mr-[350px]">
-          <Nav />
-          <div>
-              <main>
-                {children}
-              </main>
-              <Footer />
-          </div>
+            <Nav />
+            <main>
+              {children}
+            </main>
+            <Footer />
         </div>
       </body>
     </html>

@@ -1,6 +1,6 @@
 import Script from 'next/script'
 import Nav from "../../components/nav/nav.js"
-import Footer from "../../components/footer/footer"
+import Footer from "../../components/footer/footer.js"
 import { Metadata } from 'next'
 
 import { Alice, Playfair_Display } from 'next/font/google';
@@ -20,11 +20,11 @@ const playfair_display = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'Skills | Luis Amador Portfolio',
+  title: 'Blog | Luis Amador Portfolio',
   description: 'Luis Amador Web Developer Portfolio Website And Blog'
 }
 
-export default function SkillsLayout({
+export default function BlogLayout({
   children,
 }: {
   children: React.ReactNode

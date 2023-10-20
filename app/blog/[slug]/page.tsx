@@ -1,6 +1,6 @@
 import { getBlog } from '@/sanity/lib/sanity-utils'
 import {PortableText} from '@portabletext/react'
-import {RichTextsComponents} from '../../../../components/sanity/RichTextsComponents'
+import {RichTextsComponents} from '../../../components/sanity/RichTextsComponents'
 
 
 type Props = {
