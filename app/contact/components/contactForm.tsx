@@ -1,8 +1,10 @@
 "use client"
 
 import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation'
 
 const Contact = () => {
+    const router = useRouter()
     const [message, setMessage] = useState<string>('');
     const [status, setStatus] = useState<string>('');
 
@@ -27,6 +29,8 @@ const Contact = () => {
             setMessage(res.message);
             setStatus(res.status);
         });
+
+        router.push('/')
     };
 
     return (
@@ -43,6 +47,7 @@ const Contact = () => {
                     onSubmit={onContactFormSubmit}
                 >
                     <label className="">
+                        <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">Name</span>
                         <input
                            className="w-full bg-[#053c50] text-xl mb-2.5 pl-2.5 border-none rounded h-12"
                            required={true}

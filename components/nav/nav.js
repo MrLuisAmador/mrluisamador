@@ -34,7 +34,7 @@ export default function Nav() {
 
                <div className="">
                   <Link className="block" href="/">
-                     <Image className="block" src={HeadShot} alt="Head Shot" width={310} height={310} />
+                     <Image priority className="block" src={HeadShot} alt="Head Shot" width={310} height={310} />
                   </Link>
                </div>
 
