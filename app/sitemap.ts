@@ -26,5 +26,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: 'https://www.mrluisamador.com/contact',
       lastModified: new Date(),
     },
+    {
+      url: 'https://www.mrluisamador.com/thankyou',
+      lastModified: new Date(),
+    },
   ];
 }

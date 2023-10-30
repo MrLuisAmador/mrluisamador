@@ -1,7 +1,6 @@
 import mail from '@sendgrid/mail';
 import { NextResponse } from 'next/server';
 
-// Create an api key in sendgrid and store someplace safe
 mail.setApiKey(process.env.SENDGRID_API_KEY || '');
 
 type ResponseData = {
@@ -12,13 +11,14 @@ type ResponseData = {
 export async function POST(request: Request) {
   let response: ResponseData = {};
   const body = await request.json();
-  // I know the formData I sent in my request has name, email, and message fields so I'm just manually grabbing them to format a message
+  
   const message = `
     Name: ${body.name}\r\n
     Email: ${body.email}\r\n
     Subject: ${body.subject}\r\n
     Message: ${body.message}
   `;
+  
   const data = {
     to: 'mrluisamador@gmail.com',
     from: 'webmaster@mrluisamador.com',
@@ -27,7 +27,6 @@ export async function POST(request: Request) {
     html: message.replace(/\r\n/g, '<br>')
   };
 
-  // Send the data and create a response object. I'm using status and message to display a success or fail notification in the UI
   await mail
     .send(data)
     .then(() => {

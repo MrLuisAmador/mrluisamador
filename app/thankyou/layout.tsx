@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   description: 'Luis Amador Web Developer Portfolio Website And Blog'
 }
 
-export default function ContactLayout({
+export default function ThankYouLayout({
   children,
 }: {
   children: React.ReactNode
