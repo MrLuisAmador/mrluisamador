@@ -6,7 +6,10 @@ export type Blog = {
     title: string
     description: string
     slug: string
-    image: string
+    descriptionImage: string
+    mainImage: string
+    author: string
+    name: any
     url: string
     body: PortableTextBlock[]
 }

@@ -39,6 +39,14 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'descriptionImage',
+      title: 'Description image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: 'categories',
       title: 'Categories',
       type: 'array',

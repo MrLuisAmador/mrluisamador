@@ -67,12 +67,12 @@ export default function Nav() {
                      </Link>
                   </li>
 
-                  {/* <li className="mb-3.5">
+                  <li className="mb-3.5">
                      <Link className="block" href="/blog" aria-label="Blog">
                            <span className="lg:hidden"><TimelineIcon fontSize="large" /></span>
                            <span className="hidden lg:block">Blog</span>
                      </Link>
-                  </li> */}
+                  </li>
 
                   <li className="">
                      <Link className="block" href="/contact" aria-label="Contact Me">
