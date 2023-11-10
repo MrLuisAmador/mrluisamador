@@ -30,7 +30,7 @@ export default function BlogLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${alice.variable} ${playfair_display.variable}`}>
+    <html lang="en" className={`${alice.variable} ${playfair_display.variable} h-full`}>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id='G-0M12YC86QL'`}
         strategy="afterInteractive"
@@ -44,10 +44,10 @@ export default function BlogLayout({
           gtag('config', 'G-0M12YC86QL');
         `}
       </Script>
-      <body>
-        <div className="w-[calc(100%-70px) mr-[70px] lg:w-[calc(100%-350px)] lg:mr-[350px]">
+      <body className="h-full">
+        <div className="w-[calc(100%-70px) mr-[70px] lg:w-[calc(100%-350px)] lg:mr-[350px] h-full">
             <Nav />
-            <main className="bg-light-grey">
+            <main className="bg-light-grey min-h-full">
               {children}
             </main>
             <Footer />

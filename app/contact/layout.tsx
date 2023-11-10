@@ -47,7 +47,7 @@ export default function ContactLayout({
       <body>
         <div className="w-[calc(100%-70px) mr-[70px] lg:w-[calc(100%-350px)] lg:mr-[350px]">
             <Nav />
-            <main>
+            <main className="min-h-full">
               {children}
             </main>
             <Footer />
