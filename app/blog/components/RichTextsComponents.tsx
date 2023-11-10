@@ -54,11 +54,12 @@ export const RichTextsComponents = {
     },
     marks: {
         link: ({value, children}: any) => {
-            const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
+            // const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
             return (
-              <a className="underline decoration-solid" href={value?.href} target={target} rel={target === '_blank' && 'noindex nofollow'}>
-                {children}
-              </a>
+            //   <a className="underline decoration-solid" href={value?.href} target={target} rel={target === '_blank' && 'noindex nofollow'}>
+            //     {children}
+            //   </a>
+               <a className="underline decoration-solid" href={value?.href} target="_blank">{children}</a>
             )
           },
     }         
