@@ -4,7 +4,6 @@ import {RichTextsComponents} from '../components/RichTextsComponents'
 import Image from 'next/image';
 import urlFor from '@/sanity/lib/urlFor';
 
-
 type Props = {
   params: { slug: string }
 }
