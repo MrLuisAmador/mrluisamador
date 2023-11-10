@@ -51,6 +51,16 @@ export const RichTextsComponents = {
                 <li className="pb-4">{children}</li>
             )
         }
-    },             
+    },
+    marks: {
+        link: ({value, children}: any) => {
+            const target = (value?.href || '').startsWith('http') ? '_blank' : undefined
+            return (
+              <a className="underline decoration-solid" href={value?.href} target={target} rel={target === '_blank' && 'noindex nofollow'}>
+                {children}
+              </a>
+            )
+          },
+    }         
 }
   
