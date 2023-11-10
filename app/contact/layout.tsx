@@ -47,7 +47,7 @@ export default function ContactLayout({
       <body className="h-full">
         <div className="w-[calc(100%-70px) mr-[70px] lg:w-[calc(100%-350px)] lg:mr-[350px] h-full">
             <Nav />
-            <main className="min-h-full">
+            <main className="min-h-full bg-contact-blue">
               {children}
             </main>
             <Footer />
