@@ -21,7 +21,7 @@ const playfair_display = Playfair_Display({
 
 export const metadata: Metadata = {
   title: 'Blog | Luis Amador Portfolio',
-  description: 'Luis Amador Web Developer Portfolio Website And Blog'
+  description: 'Portfolio Website And Blog'
 }
 
 export default function BlogLayout({
