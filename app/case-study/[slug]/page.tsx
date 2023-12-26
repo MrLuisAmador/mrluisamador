@@ -1,4 +1,4 @@
-import { getBlog } from '@/sanity/lib/sanity-utils'
+import { getCaseStudy } from '@/sanity/lib/sanity-utils'
 import {PortableText} from '@portabletext/react'
 import {RichTextsComponents} from '../../../sanity/lib/RichTextsComponents'
 import Image from 'next/image';
@@ -10,13 +10,13 @@ type Props = {
 
 const Blog = async ({params: {slug}}: Props) => {
   
-  const blog =  await getBlog(slug)
+  const caseStudy =  await getCaseStudy(slug)
     return (
       <article className="py-16">
-        <h1 className="text-center text-4xl mb-12">{blog.title}</h1>
+        <h1 className="text-center text-4xl mb-12">{caseStudy.title}</h1>
         <div className="px-5 py-16 mx-auto max-w-4xl xl:shadow xl:shadow-black xl:rounded bg-white">
-          <Image className="pb-16" alt={blog.title} src={urlFor(blog.mainImage).url()} width={896} height={800} />
-          <PortableText value={blog.body} components={RichTextsComponents} />
+          <Image className="pb-16" alt={caseStudy.title} src={urlFor(caseStudy.descriptionImage).url()} width={896} height={800} />
+          <PortableText value={caseStudy.body} components={RichTextsComponents} />
         </div>
       </article>
     )

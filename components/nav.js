@@ -17,12 +17,6 @@ import HeadShot from '/public/images/mugshot.png'
 export default function Nav() {
    return (
       <nav className="lg:px-[20px] overflow-y-scroll z-[1] right-0 h-full fixed w-[70px] lg:w-[350px] bg-dark-grey">
-         {/*<div onClick={this.toggle.bind(this)} id="menuToggle" className="button-container menu"> */}
-         {/*   <span></span>*/}
-         {/*   <span></span>*/}
-         {/*   <span></span>*/}
-         {/*</div>*/}
-
          <div className="flex items-center text-white">
             <div className="w-full">
                <h3 className="text-center text-3xl mt-12 mb-7">
@@ -64,6 +58,13 @@ export default function Nav() {
                      <Link className="block" href="/projects" aria-label="Projects">
                            <span className="lg:hidden"><WorkIcon fontSize="large" /></span>
                            <span className="hidden lg:block">Projects</span>
+                     </Link>
+                  </li>
+
+                  <li className="mb-3.5">
+                     <Link className="block" href="/case-study" aria-label="Blog">
+                           <span className="lg:hidden"><TimelineIcon fontSize="large" /></span>
+                           <span className="hidden lg:block">Case Study</span>
                      </Link>
                   </li>
 

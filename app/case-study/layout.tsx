@@ -20,11 +20,11 @@ const playfair_display = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'Projects | Luis Amador Portfolio',
+  title: 'Case Study | Luis Amador Portfolio',
   description: 'Portfolio Website And Blog'
 }
 
-export default function ProjectsLayout({
+export default function caseStudyLayout({
   children,
 }: {
   children: React.ReactNode

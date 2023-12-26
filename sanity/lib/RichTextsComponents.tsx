@@ -1,5 +1,5 @@
 import Image from  'next/image'
-import urlFor from '../../../sanity/lib/urlFor'
+import urlFor from './urlFor'
 
 export const RichTextsComponents = {
     types: {

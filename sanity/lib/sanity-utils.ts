@@ -43,3 +43,42 @@ export async function getBlog( slug: string ): Promise<Blog> {
     );
 }
 
+export async function getCaseStudies(): Promise<Blog[]> {
+    const client = createClient({
+        projectId,
+        dataset,
+        apiVersion: "2023-03-04",
+        useCdn: false
+    });
+    
+    return client.fetch(
+        groq`
+            *[_type == 'caseStudy'] {
+                ...,
+                "slug": slug.current,
+                author->,
+                categories[]->
+            } | order(_createdAt, desc)
+        `,
+    );
+}
+
+export async function getCaseStudy( slug: string ): Promise<Blog> {
+    const client = createClient({
+        projectId,
+        dataset,
+        apiVersion: "2023-03-04",
+        useCdn: false
+    });
+
+    return client.fetch(
+        groq`*[_type == "caseStudy" && slug.current == $slug][0]{
+            ...,
+            "slug": slug.current,
+            author->,
+            categories[]->
+        }`,
+        {slug}
+    );
+}
+
