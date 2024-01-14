@@ -1,8 +1,14 @@
 import { getCaseStudy } from '@/sanity/lib/sanity-utils'
 import {PortableText} from '@portabletext/react'
-import {RichTextsComponents} from '../../../sanity/lib/RichTextsComponents'
+import {RichTextsComponents} from '../../../../sanity/lib/RichTextsComponents'
 import Image from 'next/image';
 import urlFor from '@/sanity/lib/urlFor';
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Case Study | Luis Amador Portfolio',
+  description: 'Portfolio Website And Blog'
+}
 
 type Props = {
   params: { slug: string }

@@ -1,3 +1,10 @@
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+    title: 'Skills | Luis Amador Portfolio',
+    description: 'Portfolio Website And Blog'
+}
+
 const Skills = () => (
     <section id="skills" className="h-full bg-skills-grey py-16 px-5 text-text-grey">
         <h1 className="text-5xl text-center mb-10">My Expertise</h1>

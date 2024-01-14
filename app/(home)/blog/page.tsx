@@ -1,7 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image';
+import { Metadata } from 'next'
 import { getBlogs } from '@/sanity/lib/sanity-utils'
 import urlFor from '@/sanity/lib/urlFor';
+
+export const metadata: Metadata = {
+  title: 'Blog | Luis Amador Portfolio',
+  description: 'Portfolio Website And Blog'
+}
 
 export default async function Blogs() {
   const blogs = await getBlogs()

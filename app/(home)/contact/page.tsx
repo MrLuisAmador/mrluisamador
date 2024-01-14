@@ -1,5 +1,11 @@
 import { headers } from 'next/headers'
 import { redirect } from "next/navigation";
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Contact | Luis Amador Portfolio',
+  description: 'Portfolio Website And Blog'
+}
 
 const Contact = () => {
   async function create(formData: FormData) {
@@ -31,7 +37,7 @@ const Contact = () => {
   }
 
 return (
-    <section id="contact-me" className="h-full flex justify-center text-white py-16">
+    <section id="contact-me" className="h-full flex justify-center text-white py-16 bg-contact-blue">
         <div className="w-4/5 lg:w-2/5">
             <h1 className="text-4xl mb-10 text-center">Want to work together?</h1>
             <p className="mb-14 text-lg">I&apos;m currently accepting new projects and would love to hear about yours. Please take a few minutes to tell me about it.</p>

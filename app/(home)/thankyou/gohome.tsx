@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 
-const ThankYou = () => {
+const GoHome = () => {
     const router = useRouter()
    
     setTimeout(() => {
@@ -22,4 +22,4 @@ const ThankYou = () => {
     )
 }
 
-export default ThankYou
+export default GoHome
