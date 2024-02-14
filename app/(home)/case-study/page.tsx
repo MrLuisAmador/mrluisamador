@@ -15,13 +15,13 @@ export default async function caseStudy() {
                 <li key={cases._id} className="shadow shadow-black rounded bg-white">
                     <article className="grid grid-cols-1 md:grid-cols-2 gap-4 py-5 px-4">
                         <div className="">
-                            <Image className="pb-4" alt={cases.title} src={urlFor(cases.mainImage).url()} width={800} height={400} />
+                            <Image className="" alt={cases.title} src={urlFor(cases.mainImage).url()} width={800} height={400} />
                         </div>
 
-                        <div>
-                            <h2 className="text-center pb-4 font-bold text-xl"><Link href={`/blog/${cases.slug}`}>{cases.title}</Link></h2>
-                            <p className="pb-4">{cases.description}</p>
-                            <div className="text-center">
+                        <div className="md:order-first">
+                            <h2 className="max-md:text-center pb-4 font-bold text-xl"><Link href={`/blog/${cases.slug}`}>{cases.title}</Link></h2>
+                            <p className="pb-4 max-md:text-center md:min-h-[198px]">{cases.description}</p>
+                            <div className="max-md:text-center">
                                 <Link className="border border-solid border-black text-black py-2.5 px-4 inline-block rounded text-xl hover:bg-black/[.15] transition-colors" href={`/case-study/${cases.slug}`}>Read More...</Link>
                             </div>
                         </div>

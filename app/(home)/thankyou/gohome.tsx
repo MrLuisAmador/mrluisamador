@@ -1,14 +1,17 @@
 "use client"
 
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 const GoHome = () => {
     const router = useRouter()
-   
-    setTimeout(() => {
-        router.push('/')
-      }, 10000);
 
+    useEffect(() => {
+        setTimeout(() => {
+            router.push('/')
+        }, 10000);
+      }, []);
+   
     return (
     <section id="about-me" className="h-screen px-5 flex justify-center items-center py-16 text-text-grey">
         <div className="md:w-4/5">

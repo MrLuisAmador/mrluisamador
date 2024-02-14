@@ -12,4 +12,5 @@ export type Blog = {
     name: any
     url: string
     body: PortableTextBlock[]
+    technology: PortableTextBlock[]
 }

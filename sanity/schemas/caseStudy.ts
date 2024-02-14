@@ -58,10 +58,15 @@ export default defineType({
       type: 'datetime',
     }),
     defineField({
+      name: 'technology',
+      title: 'Technologies',
+      type: 'blockContent',
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
-    }),
+    })
   ],
 
   preview: {

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const ThankYou = () => {
     return (
-   <GoHome />
+        <GoHome />
     )
 }
 
