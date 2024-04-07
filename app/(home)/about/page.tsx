@@ -25,7 +25,7 @@ const About = () => (
 
       <div className="mb-7">
         <h2 className="text-2xl mb-5">
-          Here's a list of the technologies I use on a consent daily
+          Here&apos;s a list of the technologies I use on a consent daily
         </h2>
 
         <div className="mb-5">
