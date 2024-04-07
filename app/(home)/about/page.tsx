@@ -11,15 +11,15 @@ const About = () => (
       <div className="text-center">
         <h1 className="text-4xl mb-16">About Me</h1>
         <p className="text-lg mb-12">
-          Hello and welcome! I’m Luis Amador. I’ve been developing for the web for almost a decade.
-          I believe in setting higher standards by lending the field in SEO, performance, security,
-          development and maintenance for websites. Those lists of attributes are a major player to
-          a successful website. I am constantly chasing the newest technologies and best modern
-          practices while sticking to solid fundamentals. This is what makes me stand out. I’m
-          always growing my skills and knowledge while I also clearing out the technologies that
-          come and go. I’m not only a web developer, I’m a father first. I have a passion for
-          business, economics, financing and pretty much anything educational. I love to always
-          learn and teach others where I can.
+          Hello and welcome! I&apos;m Luis Amador. I&apos;ve been developing for the web for almost
+          a decade. I believe in setting higher standards by lending the field in SEO, performance,
+          security, development and maintenance for websites. Those lists of attributes are a major
+          player to a successful website. I am constantly chasing the newest technologies and best
+          modern practices while sticking to solid fundamentals. This is what makes me stand out.
+          I&apos;m always growing my skills and knowledge while I also clearing out the technologies
+          that come and go. I&apos;m not only a web developer, I&apos;m a father first. I have a
+          passion for business, economics, financing and pretty much anything educational. I love to
+          always learn and teach others where I can.
         </p>
       </div>
 
