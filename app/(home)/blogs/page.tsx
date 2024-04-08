@@ -36,7 +36,7 @@ export default async function Blogs() {
               <div className="text-center">
                 <Link
                   className="border border-solid border-black text-black py-2.5 px-4 inline-block rounded text-xl hover:bg-black/[.15] transition-colors"
-                  href={`/blog/${blog.slug}`}
+                  href={`/blogs/${blog.slug}`}
                 >
                   Read More...
                 </Link>

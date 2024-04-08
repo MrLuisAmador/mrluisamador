@@ -1,5 +1,5 @@
-import { MetadataRoute } from 'next';
- 
+import {MetadataRoute} from 'next'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
-      url: 'https://www.mrluisamador.com/skills',
+      url: 'https://www.mrluisamador.com/services',
       lastModified: new Date(),
     },
     {
@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
-      url: 'https://www.mrluisamador.com/blog',
+      url: 'https://www.mrluisamador.com/blogs',
       lastModified: new Date(),
     },
     {
@@ -30,5 +30,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: 'https://www.mrluisamador.com/thankyou',
       lastModified: new Date(),
     },
-  ];
+  ]
 }

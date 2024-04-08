@@ -66,14 +66,14 @@ export default function Nav() {
               </Link>
             </li>
 
-            <li className="mb-3.5">
+            {/* <li className="mb-3.5">
               <Link className="block" href="/case-study" aria-label="Blog">
                 <span className="lg:hidden">
                   <CommandLineIcon className="w-10 h-10 inline" />
                 </span>
                 <span className="hidden lg:block">Case Study</span>
               </Link>
-            </li>
+            </li> */}
 
             <li className="mb-3.5">
               <Link className="block" href="/blogs" aria-label="Blog">
