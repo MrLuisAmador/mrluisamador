@@ -6,11 +6,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'cdn.sanity.io',
-        port: ''
-      }
+        port: '',
+      },
     ],
-    domains: ['cdn.sanity.io', 'avatars.githubusercontent.com'],
-  }
+  },
 }
 
 module.exports = nextConfig

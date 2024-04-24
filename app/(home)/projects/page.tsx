@@ -9,7 +9,17 @@ export const metadata: Metadata = {
 }
 
 function Projects() {
-  return <Shuffle />
+  return (
+    <section id="projects" className="h-full text-white bg-projects-orange py-16">
+      <div className="mb-12">
+        <h2 className="text-5xl text-center mb-10">Projects</h2>
+
+        <h3 className="text-lg mb-8 text-center">List of Projects.</h3>
+      </div>
+
+      <Shuffle />
+    </section>
+  )
 }
 
 export default Projects
