@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-function AllProjectsItem({lists}) {
+function AllProjectsItem({lists}: any) {
   return (
     <>
-      {lists.map((list) => (
+      {lists.map((list: any) => (
         <div
           className={`basis-6/12 md:basis-1/4 bg-white shadow-[0_0_1px_0_rgba(0,0,0,0.3)] text-text-grey ${list.filter}`}
           key={list.id}
