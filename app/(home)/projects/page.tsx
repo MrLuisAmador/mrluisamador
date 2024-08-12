@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 }
 
 async function Projects() {
-  const initialProjects = await getWixClient()
+  const initialProjects: any = await getWixClient()
   return (
     <section id="projects" className="h-full text-white bg-projects-orange py-16">
       <div className="mb-12">
