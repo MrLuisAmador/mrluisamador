@@ -11,7 +11,7 @@ import {
   CommandLineIcon,
 } from '@heroicons/react/20/solid'
 
-import HeadShot from '../public/images/mugshot.png'
+import HeadShot from '../../public/images/mugshot.png'
 
 export default function Nav() {
   return (

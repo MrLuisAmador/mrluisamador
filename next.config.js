@@ -2,11 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    domains: ['static.wixstatic.com'],
+    formats: ['image/webp'],
     remotePatterns: [
       {
-        protocol: 'https',
+        // protocol: 'https',
         hostname: 'cdn.sanity.io',
-        port: '',
       },
     ],
   },

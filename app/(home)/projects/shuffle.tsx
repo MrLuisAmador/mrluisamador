@@ -1,25 +1,28 @@
 'use client'
 
-import {useState} from 'react'
 import AllProjectsItem from './projects-item'
-import PROJECT_LIST from './projects-list' // data
+import {useState} from 'react'
 
-function Shuffle() {
-  const [state, setState] = useState(PROJECT_LIST)
+interface Project {
+  data: {
+    filter: string
+  }
+}
 
-  const handleBtn = (e: any) => {
-    let word = e.target.value
+interface ShuffleProps {
+  initialProjects: Project[]
+}
+
+function Shuffle({initialProjects}: ShuffleProps) {
+  const [state, setState] = useState<Project[]>(initialProjects)
+
+  const handleBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const word = e.currentTarget.value
 
     if (word === 'All') {
-      setState(PROJECT_LIST)
-    } else if (word === 'Magento') {
-      const filtered = PROJECT_LIST.filter((item) => item.filter === 'Magento')
-      setState(filtered)
-    } else if (word === 'WordPress') {
-      const filtered = PROJECT_LIST.filter((item) => item.filter === 'WordPress')
-      setState(filtered)
-    } else if (word === 'Misc') {
-      const filtered = PROJECT_LIST.filter((item) => item.filter === 'Misc')
+      setState(initialProjects)
+    } else {
+      const filtered = initialProjects.filter((item) => item.data.filter === word)
       setState(filtered)
     }
   }
@@ -34,7 +37,6 @@ function Shuffle() {
         >
           All
         </button>
-
         <button
           className="mr-1 md:mr-1.5 mb-2.5 py-2.5 px-4 text-xs md:text-sm border hover:bg-white/[.15] transition-colors"
           value="Magento"
@@ -42,7 +44,6 @@ function Shuffle() {
         >
           Magento
         </button>
-
         <button
           className="mr-1 md:mr-1.5 mb-2.5 py-2.5 px-4 text-xs md:text-sm border hover:bg-white/[.15] transition-colors"
           value="WordPress"
@@ -50,7 +51,6 @@ function Shuffle() {
         >
           WordPress
         </button>
-
         <button
           className="mb-2.5 py-2.5 px-4 text-xs md:text-sm border rounded-e-lg hover:bg-white/[.15] transition-colors"
           value="Misc"
@@ -59,7 +59,6 @@ function Shuffle() {
           Misc
         </button>
       </div>
-
       <div id="filter-container" className="flex flex-wrap">
         <AllProjectsItem lists={state} />
       </div>
