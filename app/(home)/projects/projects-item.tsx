@@ -17,11 +17,7 @@ function AllProjectsItem({lists}: any) {
             aria-label={list.data.title}
           >
             <div className="">
-              <WixMediaImage
-                media={list.data.image}
-                alt={list.data.title}
-                // disableZoom={true}
-              />
+              <WixMediaImage media={list.data.image} alt={list.data.title} disableZoom={false} />
               <h4 className="text-grey text-sm px-2.5 py-5 lg:text-base">
                 <span className="">Platform: &nbsp;</span>
                 <span className="">{list.data.title}</span>
