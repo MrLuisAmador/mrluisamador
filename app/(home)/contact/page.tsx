@@ -15,9 +15,7 @@ const Contact = () => {
     const urlPath = urlHeader.get('referer')
 
     let data: any = {
-      name: formData.get('name'),
       email: formData.get('email'),
-      subject: formData.get('subject'),
       message: formData.get('message'),
     }
 
@@ -47,6 +45,19 @@ const Contact = () => {
         </p>
 
         <form action={create} id="mail" className="mail">
+          <label className="">
+            <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">Email</span>
+            <input
+              required={true}
+              type="email"
+              name="email"
+              size={40}
+              className="w-full bg-[#053c50] text-xl mb-2.5 pl-2.5 border-none rounded h-12"
+              id="email"
+              placeholder="Email"
+              autoComplete="off"
+            />
+          </label>
           <label className="">
             <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">
               What service do you need done?

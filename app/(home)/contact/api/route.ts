@@ -13,6 +13,7 @@ export async function POST(request: Request) {
   const body = await request.json()
 
   const message = `
+    Email: ${body.email}\r\n
     Message: ${body.message}
   `
 
