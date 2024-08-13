@@ -6,7 +6,7 @@ const nextConfig = {
     formats: ['image/webp'],
     remotePatterns: [
       {
-        // protocol: 'https',
+        protocol: 'https',
         hostname: 'cdn.sanity.io',
       },
     ],
