@@ -28,16 +28,16 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" className={`${alice.variable} ${playfair_display.variable}`}>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id='G-0M12YC86QL'`}
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=G-M2KRSHY4X8'`}
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
-        window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-
-          gtag('config', 'G-0M12YC86QL');
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-M2KRSHY4X8');
         `}
       </Script>
       <body>
