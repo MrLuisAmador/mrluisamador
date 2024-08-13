@@ -29,6 +29,11 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
     <html lang="en" className={`${alice.variable} ${playfair_display.variable}`}>
       <Script
         async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197`}
+        strategy="afterInteractive"
+      />
+      <Script
+        async
         src={`https://www.googletagmanager.com/gtag/js?id=G-M2KRSHY4X8'`}
         strategy="afterInteractive"
       />
