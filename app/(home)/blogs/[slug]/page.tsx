@@ -21,15 +21,15 @@ const Blog = async ({params: {slug}}: Props) => {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: 'Headless Wix CMS REST API with Nextjs Server Components',
-    datePublished: '2024-01-05T08:00:00+08:00',
-    description:
-      "My project page on my portfolio website is intended to showcase all the past clients' websites that I built over the years.",
+    headline: blog.title,
+    datePublished: blog.publishedAt,
+    description: blog.description,
     author: [
       {
         '@type': 'Person',
-        name: 'Luis Amador',
-        url: 'https://www.mrluisamador.com',
+        name: blog.author.name,
+        url: `https://www.mrluisamador.com/blogs/${blog.slug}`,
+        image: urlFor(blog.mainImage).url(),
       },
     ],
   }
