@@ -27,7 +27,7 @@ const Blog = async ({params: {slug}}: Props) => {
     author: [
       {
         '@type': 'Person',
-        name: blog.author.name,
+        name: 'Luis Amador',
         url: `https://www.mrluisamador.com/blogs/${blog.slug}`,
         image: urlFor(blog.mainImage).url(),
       },
