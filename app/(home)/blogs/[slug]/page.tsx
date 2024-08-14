@@ -17,8 +17,30 @@ type Props = {
 
 const Blog = async ({params: {slug}}: Props) => {
   const blog = await getBlog(slug)
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: 'Headless Wix CMS REST API with Nextjs Server Components',
+    datePublished: '2024-01-05T08:00:00+08:00',
+    description:
+      "My project page on my portfolio website is intended to showcase all the past clients' websites that I built over the years.",
+    author: [
+      {
+        '@type': 'Person',
+        name: 'Luis Amador',
+        url: 'https://www.mrluisamador.com',
+      },
+    ],
+  }
+
   return (
     <article className="py-16">
+      {/* Add JSON-LD to your page */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
+      />
       <Link className="mx-2 mb-4 xl:mx-6 xl:mb-6 inline-block" href="/blogs">
         Back to Blogs
       </Link>
