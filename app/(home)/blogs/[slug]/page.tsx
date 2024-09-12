@@ -57,7 +57,7 @@ const Blog = async ({params: {slug}}: Props) => {
       ></ins>
       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       {/* <!-- In feed ads --> */}
-      <script
+      {/* <script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197"
         crossOrigin="anonymous"
@@ -70,9 +70,9 @@ const Blog = async ({params: {slug}}: Props) => {
         data-ad-client="ca-pub-2988961562271197"
         data-ad-slot="5724302338"
       ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> */}
       {/* <!-- In feed ads --> */}
-      <script
+      {/* <script
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197"
         crossOrigin="anonymous"
@@ -85,7 +85,7 @@ const Blog = async ({params: {slug}}: Props) => {
         data-ad-client="ca-pub-2988961562271197"
         data-ad-slot="7549014731"
       ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> */}
       <Link className="mx-2 mb-4 xl:mx-6 xl:mb-6 inline-block" href="/blogs">
         Back to Blogs
       </Link>
