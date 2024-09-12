@@ -41,51 +41,7 @@ const Blog = async ({params: {slug}}: Props) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
       />
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197"
-        crossOrigin="anonymous"
-      ></script>
-      {/* <!-- In feed ads --> */}
-      <ins
-        className="adsbygoogle"
-        style={{display: 'block'}}
-        data-ad-client="ca-pub-2988961562271197"
-        data-ad-slot="6682160780"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-      {/* <!-- In feed ads --> */}
-      {/* <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197"
-        crossOrigin="anonymous"
-      ></script>
-      <ins
-        className="adsbygoogle"
-        style={{display: 'block'}}
-        data-ad-format="fluid"
-        data-ad-layout-key="+3d+ql+42-68+4l"
-        data-ad-client="ca-pub-2988961562271197"
-        data-ad-slot="5724302338"
-      ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> */}
-      {/* <!-- In feed ads --> */}
-      {/* <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197"
-        crossOrigin="anonymous"
-      ></script>
-      <ins
-        className="adsbygoogle"
-        style={{display: 'block', textAlign: 'center'}}
-        data-ad-layout="in-article"
-        data-ad-format="fluid"
-        data-ad-client="ca-pub-2988961562271197"
-        data-ad-slot="7549014731"
-      ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> */}
+
       <Link className="mx-2 mb-4 xl:mx-6 xl:mb-6 inline-block" href="/blogs">
         Back to Blogs
       </Link>
