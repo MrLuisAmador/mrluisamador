@@ -1,5 +1,4 @@
-import {headers} from 'next/headers'
-import {redirect} from 'next/navigation'
+import {create} from './actions'
 import {Metadata} from 'next'
 
 export const metadata: Metadata = {
@@ -8,33 +7,6 @@ export const metadata: Metadata = {
 }
 
 const Contact = () => {
-  async function create(formData: FormData) {
-    'use server'
-
-    const urlHeader = headers()
-    const urlPath = urlHeader.get('referer')
-
-    let data: any = {
-      email: formData.get('email'),
-      message: formData.get('message'),
-    }
-
-    await fetch(urlPath + '/api', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Form submission response:', data)
-      })
-      .catch((error) => {
-        console.error('Form submission error:', error)
-        return
-      })
-
-    redirect('/thankyou')
-  }
-
   return (
     <section className="h-screen items-center flex justify-center text-white py-16 bg-contact-blue px-5">
       <div className="md:w-3/6">

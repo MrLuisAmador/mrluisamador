@@ -4,7 +4,7 @@ import Footer from '../components/footer'
 import {Metadata} from 'next'
 
 import {Alice, Playfair_Display} from 'next/font/google'
-import '../../styles/global.scss'
+import '../../styles/global.css'
 
 const alice = Alice({
   weight: '400',
