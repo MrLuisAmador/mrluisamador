@@ -24,6 +24,10 @@ export const metadata: Metadata = {
     template: '%s | Web Developer Portfolio',
     default: 'Luis Amador',
   },
+  keywords: ['Next.js', 'React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Portfolio'],
+  alternates: {
+    canonical: 'https://mrluisamador.com/',
+  },
 }
 
 export default function HomeLayout({children}: {children: React.ReactNode}) {

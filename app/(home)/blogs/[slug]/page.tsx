@@ -3,16 +3,44 @@ import {PortableText} from '@portabletext/react'
 import {RichTextsComponents} from '../../../../sanity/lib/RichTextsComponents'
 import Image from 'next/image'
 import urlFor from '@/sanity/lib/urlFor'
-import {Metadata} from 'next'
 import Link from 'next/link'
-
-export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Portfolio Website And Blog',
-}
 
 type Props = {
   params: {slug: string}
+}
+
+export async function generateMetadata({params: {slug}}: Props) {
+  const page = await getBlog(slug)
+
+  return {
+    title: page.title,
+    description: page.description,
+    openGraph: {
+      images: [
+        {
+          url: urlFor(page.mainImage).url(),
+          width: 800,
+          height: 600,
+          alt: page.title,
+        },
+      ],
+      type: 'article',
+      publishedTime: page.author._updatedAt,
+      authors: page.author.name,
+    },
+    twitter: {
+      images: [
+        {
+          url: urlFor(page.mainImage).url(),
+          width: 800,
+          height: 600,
+          alt: page.title,
+        },
+      ],
+      creator: page.author.name,
+      card: 'app',
+    },
+  }
 }
 
 const Blog = async ({params: {slug}}: Props) => {
