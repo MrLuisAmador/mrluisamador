@@ -2,7 +2,7 @@ import {create} from './actions'
 import {Metadata} from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contact | Luis Amador Portfolio',
+  title: 'Contact',
   description: 'Portfolio Website And Blog',
 }
 

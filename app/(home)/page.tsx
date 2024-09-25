@@ -1,5 +1,11 @@
 import Link from 'next/link'
 import {Aem, Nextjs, Wix} from './svg'
+import {Metadata} from 'next'
+
+export const metadata: Metadata = {
+  title: 'Home | Web Developer Portfolio',
+  description: 'Luis Amador portfolio to showcase his services and skills.',
+}
 
 export default function Home() {
   return (

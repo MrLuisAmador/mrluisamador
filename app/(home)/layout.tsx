@@ -20,8 +20,10 @@ const playfair_display = Playfair_Display({
 })
 
 export const metadata: Metadata = {
-  title: 'Luis Amador - Web Developer',
-  description: 'Luis Amador website to showcase his skills and services he offers to businesses',
+  title: {
+    template: '%s | Web Developer Portfolio',
+    default: 'Luis Amador',
+  },
 }
 
 export default function HomeLayout({children}: {children: React.ReactNode}) {

@@ -6,7 +6,7 @@ import urlFor from '@/sanity/lib/urlFor'
 import {Metadata} from 'next'
 
 export const metadata: Metadata = {
-  title: 'Case Study | Luis Amador Portfolio',
+  title: 'Case Study',
   description: 'Portfolio Website And Blog',
 }
 

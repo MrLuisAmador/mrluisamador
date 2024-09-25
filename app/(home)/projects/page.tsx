@@ -3,7 +3,7 @@ import {getWixClient} from '../../../wix/useWixClientServer'
 import Shuffle from './shuffle'
 
 export const metadata: Metadata = {
-  title: 'Projects - Luis Amador Web Developer',
+  title: 'Projects',
   description: 'Portfolio Website And Blog',
 }
 

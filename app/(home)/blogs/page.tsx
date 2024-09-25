@@ -5,7 +5,7 @@ import {getBlogs} from '@/sanity/lib/sanity-utils'
 import urlFor from '@/sanity/lib/urlFor'
 
 export const metadata: Metadata = {
-  title: 'Blog | Luis Amador Portfolio',
+  title: 'Blog',
   description: 'Portfolio Website And Blog',
 }
 
