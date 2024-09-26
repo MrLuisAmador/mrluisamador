@@ -11,6 +11,7 @@ type Props = {
 
 export async function generateMetadata({params: {slug}}: Props) {
   const page = await getBlog(slug)
+  console.log(page.name)
 
   return {
     title: page.title,
@@ -38,7 +39,6 @@ export async function generateMetadata({params: {slug}}: Props) {
         },
       ],
       creator: page.author.name,
-      card: 'app',
     },
   }
 }
