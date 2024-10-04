@@ -1,8 +1,4 @@
-import {getCaseStudy} from '@/sanity/lib/sanity-utils'
-import {PortableText} from '@portabletext/react'
-import {RichTextsComponents} from '../../../../sanity/lib/RichTextsComponents'
 import Image from 'next/image'
-import urlFor from '@/sanity/lib/urlFor'
 import {Metadata} from 'next'
 
 export const metadata: Metadata = {

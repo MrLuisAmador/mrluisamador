@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import {getCaseStudies} from '@/sanity/lib/sanity-utils'
-import urlFor from '@/sanity/lib/urlFor'
 import {Metadata} from 'next'
 
 export const metadata: Metadata = {
