@@ -83,29 +83,29 @@ const Blog = async ({params: {slug}}: Props) => {
 
   const post = blog![0]
 
-  // const jsonLd = {
-  //   '@context': 'https://schema.org',
-  //   '@type': 'Article',
-  //   headline: blog.title,
-  //   datePublished: blog.publishedAt,
-  //   description: blog.description,
-  //   author: [
-  //     {
-  //       '@type': 'Person',
-  //       name: 'Luis Amador',
-  //       url: `https://www.mrluisamador.com/blogs/${blog.slug}`,
-  //       image: urlFor(blog.mainImage).url(),
-  //     },
-  //   ],
-  // }
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.data.title,
+    datePublished: post.publishedAt,
+    description: post.data.description,
+    author: [
+      {
+        '@type': 'Person',
+        name: 'Luis Amador',
+        url: `https://www.mrluisamador.com/blogs/${blog.slug}`,
+        image: `metaURL`,
+      },
+    ],
+  }
 
   return (
     <article className="py-16">
       {/* Add JSON-LD to your page */}
-      {/* <script
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
-      /> */}
+      />
 
       <Link className="mx-2 mb-4 xl:mx-6 xl:mb-6 inline-block" href="/blogs">
         Back to Blogs
