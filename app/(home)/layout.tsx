@@ -21,7 +21,7 @@ const playfair_display = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Web Developer Portfolio',
+    template: '%s | Luis Amador Portfolio',
     default: 'Luis Amador',
   },
   keywords: ['Next.js', 'React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Portfolio'],

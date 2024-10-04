@@ -8,7 +8,12 @@ export const metadata: Metadata = {
 }
 
 async function Projects() {
-  const initialProjects: any = await getWixClient()
+  const queryWixProjects: any = await getWixClient()
+  const {items: projects} = await queryWixProjects.items
+    .queryDataItems({dataCollectionId: 'projectGallery'})
+    .ascending('orderId')
+    .find()
+
   return (
     <section id="projects" className="h-full text-white bg-projects-orange py-16">
       <div className="mb-12">
@@ -17,7 +22,7 @@ async function Projects() {
         <h3 className="text-lg mb-8 text-center">List of Projects.</h3>
       </div>
 
-      <Shuffle initialProjects={initialProjects} />
+      <Shuffle initialProjects={projects} />
     </section>
   )
 }
