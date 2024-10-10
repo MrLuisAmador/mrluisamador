@@ -52,7 +52,7 @@ export default async function Blogs() {
                 />
               </div>
               <h2 className="text-center pb-4 font-bold text-xl">
-                <Link href={`/blogs/${blog.data.url}`}>{blog.data.title}</Link>
+                <Link href={`/blogs/${blog.data.slug}`}>{blog.data.title}</Link>
               </h2>
               <p className="pb-4">{blog.data.description}</p>
               <div className="text-center">
