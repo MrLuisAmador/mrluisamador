@@ -9,8 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.3",
-    "@heroicons/react": "^2.1.5",
     "@sendgrid/mail": "^8.1.3",
     "@types/cookie": "^0.6.0",
     "@wix/data": "^1.0.150",
@@ -20,7 +18,6 @@
     "next": "^14.2.13",
     "react": "^18",
     "react-dom": "^18",
-    "react-portable-text": "^0.6.0",
     "ricos-viewer": "^9.18.4",
     "sass": "^1.79.4",
     "wix-rich-content-plugin-audio": "9",

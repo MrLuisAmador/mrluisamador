@@ -2,18 +2,13 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import {
-  UserIcon,
-  InformationCircleIcon,
-  BriefcaseIcon,
-  WrenchIcon,
-  EnvelopeIcon,
-  CommandLineIcon,
-} from '@heroicons/react/20/solid'
+import { usePathname } from 'next/navigation'
 
 import HeadShot from '../../public/images/mugshot.png'
 
 export default function Nav() {
+  const pathname = usePathname()
+
   return (
     <nav className="lg:px-[20px] overflow-y-scroll z-[1] right-0 h-full fixed w-[70px] lg:w-[350px] bg-dark-grey">
       <div className="flex items-center text-white">
@@ -39,57 +34,38 @@ export default function Nav() {
           </div>
 
           <ul className="mt-4 mb-4 text-center border-t-[1px] border-t-[#ddd] border-b-[1px] border-b-[#ddd] pt-5 pb-5 lg:pt-0 lg:border-none">
+          <li className="mb-3.5">
+              <Link className="block" href="/" aria-label="Home">
+                <span className={`block ${pathname === '/' ? 'underline' : ''}`}>Home</span>
+              </Link>
+            </li>
             <li className="mb-3.5">
-              <Link className="block" href="/about" aria-label="About Me">
-                <span className="lg:hidden">
-                  <UserIcon className="w-10 h-10 inline" />
-                </span>
-                <span className="hidden lg:block">About Me</span>
+              <Link className="block" href="/about" aria-label="About">
+                <span className={`block ${pathname === '/about' ? 'underline' : ''}`}>About</span>
               </Link>
             </li>
 
             <li className="mb-3.5">
               <Link className="block" href="/services" aria-label="Skills">
-                <span className="lg:hidden">
-                  <InformationCircleIcon className="w-10 h-10 inline" />
-                </span>
-                <span className="hidden lg:block">Services</span>
+                <span className={`block ${pathname === '/services' ? 'underline' : ''}`}>Services</span>
               </Link>
             </li>
 
             <li className="mb-3.5">
               <Link className="block" href="/projects" aria-label="Projects">
-                <span className="lg:hidden">
-                  <WrenchIcon className="w-10 h-10 inline" />
-                </span>
-                <span className="hidden lg:block">Projects</span>
+                <span className={`block ${pathname === '/projects' ? 'underline' : ''}`}>Projects</span>
               </Link>
             </li>
 
-            {/* <li className="mb-3.5">
-              <Link className="block" href="/case-study" aria-label="Blog">
-                <span className="lg:hidden">
-                  <CommandLineIcon className="w-10 h-10 inline" />
-                </span>
-                <span className="hidden lg:block">Case Study</span>
-              </Link>
-            </li> */}
-
             <li className="mb-3.5">
               <Link className="block" href="/blogs" aria-label="Blog">
-                <span className="lg:hidden">
-                  <BriefcaseIcon className="w-10 h-10 inline" />
-                </span>
-                <span className="hidden lg:block">Blogs</span>
+                <span className={`block ${pathname === '/blogs' ? 'underline' : ''}`}>Blogs</span>
               </Link>
             </li>
 
             <li className="">
-              <Link className="block" href="/contact" aria-label="Contact Me">
-                <span className="lg:hidden">
-                  <EnvelopeIcon className="w-10 h-10 inline" />
-                </span>
-                <span className="hidden lg:block">Contact Me</span>
+              <Link className="block" href="/contact" aria-label="Contact">
+                <span className={`block ${pathname === '/contact' ? 'underline' : ''}`}>Contact</span>
               </Link>
             </li>
           </ul>
