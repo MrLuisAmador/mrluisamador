@@ -6,7 +6,7 @@ import Image from 'next/image'
 import {media} from '@wix/sdk'
 
 export const metadata: Metadata = {
-  title: 'Wix',
+  title: 'Blogs',
   description: 'Portfolio Website And Blog',
 }
 
