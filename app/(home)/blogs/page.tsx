@@ -2,7 +2,6 @@ import Link from 'next/link'
 import {Metadata} from 'next'
 import {getWixClient} from '@/wix/useWixClientServer'
 import Image from 'next/image'
-// import {formatDate} from '@/wix/date-formatter'
 import {media} from '@wix/sdk'
 
 export const metadata: Metadata = {
@@ -27,8 +26,6 @@ export default async function Blogs() {
     })
     .descending('order')
     .find()
-
-  // console.log(blogs)
 
   return (
     <section className="h-full py-20 px-5">

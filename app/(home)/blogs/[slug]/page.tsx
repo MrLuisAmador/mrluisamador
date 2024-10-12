@@ -34,13 +34,6 @@ export async function generateMetadata({params: {slug}}: Props) {
   const metaDate = post.data._updatedDate.$date
   const metaTile = post.data.title
 
-  // console.log(post)
-  // console.log(post.data)
-  // console.log(post.data.authors)
-  // console.log(post.data.categories)
-  // console.log(media.getImageUrl(post.data.image).url)
-  // console.log(media.getImageUrl(post.data.image).altText)
-
   return {
     title: metaTile,
     description: post.data.description,
