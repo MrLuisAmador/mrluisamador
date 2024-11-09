@@ -6,10 +6,16 @@ import {toDraft} from 'ricos-content/libs/toDraft'
 import {media} from '@wix/sdk'
 
 type Props = {
-  params: {slug: string}
+  params: Promise<{slug: string}>
 }
 
-export async function generateMetadata({params: {slug}}: Props) {
+export async function generateMetadata(props: Props) {
+  const params = await props.params;
+
+  const {
+    slug
+  } = params;
+
   const queryWixBlogs: any = await getWixClient()
 
   const {items: blog} = await queryWixBlogs.items
@@ -64,7 +70,13 @@ export async function generateMetadata({params: {slug}}: Props) {
   }
 }
 
-const Blog = async ({params: {slug}}: Props) => {
+const Blog = async (props: Props) => {
+  const params = await props.params;
+
+  const {
+    slug
+  } = params;
+
   const queryWixBlogs: any = await getWixClient()
 
   const {items: blog} = await queryWixBlogs.items
