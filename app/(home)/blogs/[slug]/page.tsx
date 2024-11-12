@@ -7,12 +7,13 @@ import urlFor from '@/sanity/lib/urlFor'
 import {Metadata} from 'next'
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
-export async function generateMetadata({params}: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params
   const post = await getBlog(params.slug)
 
   const metaURL = urlFor(post.mainImage).url()
@@ -51,7 +52,8 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
   }
 }
 
-export default async function Blog({params}: Props) {
+export default async function Blog(props: Props) {
+  const params = await props.params
   const blog = await getBlog(params.slug)
 
   return (
