@@ -1,23 +1,27 @@
+import Link from 'next/link'
 import {getBlog} from '@/sanity/lib/sanity-utils'
 import {PortableText} from '@portabletext/react'
 import {RichTextsComponents} from '../../../../sanity/lib/RichTextsComponents'
 import Image from 'next/image'
 import urlFor from '@/sanity/lib/urlFor'
+import {Metadata} from 'next'
 
 type Props = {
-  params: {slug: string}
+  params: {
+    slug: string
+  }
 }
 
-export async function generateMetadata({params: {slug}}: Props) {
-  const post = await getBlog(slug)
+export async function generateMetadata({params}: Props): Promise<Metadata> {
+  const post = await getBlog(params.slug)
 
   const metaURL = urlFor(post.mainImage).url()
   const metaAuthor = post.author.name
   const metaDate = post._updatedAt
-  const metaTile = post.title
+  const metaTitle = post.title
 
   return {
-    title: metaTile,
+    title: metaTitle,
     description: post.description,
     openGraph: {
       images: [
@@ -25,20 +29,21 @@ export async function generateMetadata({params: {slug}}: Props) {
           url: metaURL,
           width: 800,
           height: 600,
-          alt: metaTile,
+          alt: metaTitle,
         },
       ],
       type: 'article',
       publishedTime: metaDate,
-      authors: metaAuthor,
+      authors: [metaAuthor],
     },
     twitter: {
+      card: 'summary_large_image',
       images: [
         {
           url: metaURL,
           width: 800,
           height: 600,
-          alt: metaTile,
+          alt: metaTitle,
         },
       ],
       creator: metaAuthor,
@@ -46,10 +51,14 @@ export async function generateMetadata({params: {slug}}: Props) {
   }
 }
 
-const Blog = async ({params: {slug}}: Props) => {
-  const blog = await getBlog(slug)
+export default async function Blog({params}: Props) {
+  const blog = await getBlog(params.slug)
+
   return (
     <article className="py-16">
+      <Link className="mx-2 mb-4 xl:mx-6 xl:mb-6 inline-block" href="/blogs">
+        Back to Blogs
+      </Link>
       <h1 className="text-center text-4xl mb-12">{blog.title}</h1>
       <div className="px-5 py-16 mx-auto max-w-4xl xl:shadow xl:shadow-black xl:rounded bg-white">
         <Image
@@ -64,5 +73,3 @@ const Blog = async ({params: {slug}}: Props) => {
     </article>
   )
 }
-
-export default Blog
