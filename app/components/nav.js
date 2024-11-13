@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import {usePathname} from 'next/navigation'
 
 import HeadShot from '../../public/images/mugshot.png'
 
@@ -34,38 +34,44 @@ export default function Nav() {
           </div>
 
           <ul className="mt-4 mb-4 text-center border-t-[1px] border-t-[#ddd] border-b-[1px] border-b-[#ddd] pt-5 pb-5 lg:pt-0 lg:border-none">
-          <li className="mb-3.5">
-              <Link className="block" href="/" aria-label="Home">
+            <li className="mb-3.5">
+              <Link className="block hover:underline" href="/" aria-label="Home">
                 <span className={`block ${pathname === '/' ? 'underline' : ''}`}>Home</span>
               </Link>
             </li>
             <li className="mb-3.5">
-              <Link className="block" href="/about" aria-label="About">
+              <Link className="block hover:underline" href="/about" aria-label="About">
                 <span className={`block ${pathname === '/about' ? 'underline' : ''}`}>About</span>
               </Link>
             </li>
 
             <li className="mb-3.5">
-              <Link className="block" href="/services" aria-label="Skills">
-                <span className={`block ${pathname === '/services' ? 'underline' : ''}`}>Services</span>
+              <Link className="block hover:underline" href="/services" aria-label="Skills">
+                <span className={`block ${pathname === '/services' ? 'underline' : ''}`}>
+                  Services
+                </span>
               </Link>
             </li>
 
             <li className="mb-3.5">
-              <Link className="block" href="/projects" aria-label="Projects">
-                <span className={`block ${pathname === '/projects' ? 'underline' : ''}`}>Projects</span>
+              <Link className="block hover:underline" href="/projects" aria-label="Projects">
+                <span className={`block ${pathname === '/projects' ? 'underline' : ''}`}>
+                  Projects
+                </span>
               </Link>
             </li>
 
             <li className="mb-3.5">
-              <Link className="block" href="/blogs" aria-label="Blog">
+              <Link className="block hover:underline" href="/blogs" aria-label="Blog">
                 <span className={`block ${pathname === '/blogs' ? 'underline' : ''}`}>Blogs</span>
               </Link>
             </li>
 
             <li className="">
-              <Link className="block" href="/contact" aria-label="Contact">
-                <span className={`block ${pathname === '/contact' ? 'underline' : ''}`}>Contact</span>
+              <Link className="block hover:underline" href="/contact" aria-label="Contact">
+                <span className={`block ${pathname === '/contact' ? 'underline' : ''}`}>
+                  Contact
+                </span>
               </Link>
             </li>
           </ul>
