@@ -17,7 +17,8 @@ export async function getBlogs(): Promise<Blog[]> {
             *[_type == 'post'] {
                 ...,
                 "slug": slug.current,
-
+                 author->,
+                categories[]->
             } | order(_id, desc)
         `
   )
@@ -35,6 +36,8 @@ export async function getBlog(slug: string): Promise<Blog> {
     groq`*[_type == "post" && slug.current == $slug][0]{
             ...,
             "slug": slug.current,
+            author->,
+            categories[]->
         }`,
     {slug}
   )
