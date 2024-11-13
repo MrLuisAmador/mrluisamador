@@ -1,6 +1,7 @@
 import {PortableTextBlock} from 'sanity'
 
 export type Author = {
+  name: string
   _updatedAt: string
 }
 
