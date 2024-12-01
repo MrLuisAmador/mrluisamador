@@ -35,7 +35,6 @@ const About = () => (
             <li>CSS | Sass | Less | Tailwindcss</li>
             <li>JavaScript | TypeScript</li>
             <li>Node.js</li>
-            <li>PHP</li>
             <li>SQL</li>
             <li>Markdown</li>
             <li>Bash</li>
@@ -51,7 +50,6 @@ const About = () => (
             <li>AEM</li>
             <li>Adobe Commerce</li>
             <li>Shopify</li>
-            <li>WordPress</li>
           </ul>
         </div>
 
@@ -71,7 +69,7 @@ const About = () => (
             <li>Docker</li>
             <li>GitHub | Bitbucket | GitLab</li>
             <li>Linux</li>
-            <li>LEMP | LAMP Stack</li>
+            <li>CI/CD</li>
           </ul>
         </div>
 

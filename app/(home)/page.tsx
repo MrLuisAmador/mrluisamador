@@ -15,14 +15,14 @@ export default function Home() {
           <h1 className="text-white text-5xl md:text-7xl lg:text-8xl mb-3">Luis Amador</h1>
 
           <h2 className="text-white text-4xl lg:text-5xl mb-10">
-            <span className="block text-center">Web Developer</span>
+            <span className="block text-center">why you should hire me</span>
           </h2>
 
           <Link
             className="border border-solid border-white text-white py-2.5 px-4 w-full max-w-[80%] md:max-w-[30%] inline-block rounded text-xl hover:bg-white/[.15] transition-colors"
-            href="contact"
+            href="about-me"
           >
-            Hire Me!
+            Who am I ?
           </Link>
         </div>
       </section>
