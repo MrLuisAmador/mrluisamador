@@ -52,6 +52,10 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
         `}
       </Script>
       <body>
+        <Script
+          strategy="beforeInteractive"
+          src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
+        />
         <div className="w-[calc(100%-70px) mr-[70px] lg:w-[calc(100%-350px)] lg:mr-[350px]">
           <Nav />
           <main>{children}</main>

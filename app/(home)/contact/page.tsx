@@ -1,12 +1,43 @@
+'use client'
+
 import {create} from './actions'
 import {Metadata} from 'next'
+import {useRef, useEffect} from 'react'
 
-export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Portfolio Website And Blog',
+declare global {
+  interface Window {
+    grecaptcha: {
+      ready: (cb: () => void) => void
+      execute: (siteKey: string, options: {action: string}) => Promise<string>
+    }
+  }
 }
 
+// export const metadata: Metadata = {
+//   title: 'Contact',
+//   description: 'Portfolio Website And Blog',
+// }
+
 const Contact = () => {
+  const formRef = useRef<HTMLFormElement>(null)
+
+  const handleSubmit = async (formData: FormData) => {
+    try {
+      // Execute reCAPTCHA
+      const token = await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!, {
+        action: 'submit',
+      })
+
+      // Add token to form data
+      formData.append('recaptchaToken', token)
+
+      // Call server action
+      await create(formData)
+    } catch (error) {
+      console.error('reCAPTCHA or form submission error:', error)
+    }
+  }
+
   return (
     <section className="h-screen items-center flex justify-center text-white py-16 bg-contact-blue px-5">
       <div className="md:w-3/6">
@@ -16,7 +47,7 @@ const Contact = () => {
           few minutes and tell me how I can help.
         </p>
 
-        <form action={create} id="mail" className="mail">
+        <form ref={formRef} action={handleSubmit} id="mail" className="mail">
           <label className="">
             <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">Email</span>
             <input

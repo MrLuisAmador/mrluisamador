@@ -52,6 +52,9 @@ importers:
         specifier: '6'
         version: 6.1.13(react-dom@19.0.0-rc-66855b96-20241106(react@19.0.0-rc-66855b96-20241106))(react@19.0.0-rc-66855b96-20241106)
     devDependencies:
+      '@types/grecaptcha':
+        specifier: ^3.0.9
+        version: 3.0.9
       '@types/node':
         specifier: ^18.19.50
         version: 18.19.64
@@ -1652,6 +1655,9 @@ packages:
 
   '@types/glob@7.2.0':
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
+
+  '@types/grecaptcha@3.0.9':
+    resolution: {integrity: sha512-fFxMtjAvXXMYTzDFK5NpcVB7WHnrHVLl00QzEGpuFxSAC789io6M+vjcn+g5FTEamIJtJr/IHkCDsqvJxeWDyw==}
 
   '@types/hast@2.3.10':
     resolution: {integrity: sha512-McWspRw8xx8J9HurkVBfYj0xKoE25tOFlHGdx4MJ5xORQrMGZNqJhVQWaIbm6Oyla5kYOXtDiopzKRJzEOkwJw==}
@@ -6941,6 +6947,8 @@ snapshots:
     dependencies:
       '@types/minimatch': 5.1.2
       '@types/node': 18.19.64
+
+  '@types/grecaptcha@3.0.9': {}
 
   '@types/hast@2.3.10':
     dependencies:
