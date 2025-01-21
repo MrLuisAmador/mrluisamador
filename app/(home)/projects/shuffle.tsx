@@ -4,9 +4,7 @@ import AllProjectsItem from './projects-item'
 import {useState} from 'react'
 
 interface Project {
-  data: {
-    filter: string
-  }
+  filter: string
 }
 
 interface ShuffleProps {
@@ -22,7 +20,7 @@ function Shuffle({initialProjects}: ShuffleProps) {
     if (word === 'All') {
       setState(initialProjects)
     } else {
-      const filtered = initialProjects.filter((item) => item.data.filter === word)
+      const filtered = initialProjects.filter((item) => item.filter === word)
       setState(filtered)
     }
   }

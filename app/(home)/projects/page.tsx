@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 async function Projects() {
   const queryWixProjects: any = await getWixClient()
   const {items: projects} = await queryWixProjects.items
-    .queryDataItems({dataCollectionId: 'projectGallery'})
+    .query('projectGallery')
     .ascending('orderId')
     .find()
 
