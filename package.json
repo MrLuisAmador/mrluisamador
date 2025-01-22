@@ -15,12 +15,15 @@
     "@sanity/vision": "^3.70.0",
     "@sendgrid/mail": "^8.1.4",
     "@wix/data": "^1.0.188",
+    "@wix/ricos": "^10.116.0",
     "@wix/sdk": "^1.15.9",
     "next": "15.0.3",
     "next-sanity": "^9.8.39",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "ricos-viewer": "^9.18.4",
     "sanity": "^3.70.0",
+    "sass": "^1.83.4",
     "styled-components": "^6.1.14"
   },
   "prettier": {
