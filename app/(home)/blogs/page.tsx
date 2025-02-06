@@ -1,36 +1,42 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import {Metadata} from 'next'
-import {getBlogs} from '@/sanity/lib/sanity-utils'
-import urlFor from '@/sanity/lib/urlFor'
+import {getWixClient} from '@/wix/useWixClientServer'
+import Image from 'next/image'
+import {media} from '@wix/sdk'
 
 export const metadata: Metadata = {
-  title: 'Blog',
+  title: 'Blogs',
   description: 'Portfolio Website And Blog',
 }
 
 export default async function Blogs() {
-  const blogs = await getBlogs()
+  const myWixBlogs: any = await getWixClient()
+
+  const {items: blogs} = await myWixBlogs.items.query('blogPost').descending('order').find()
 
   return (
     <section className="h-full py-20 px-5">
       <h1 className="text-5xl text-center mb-20">Blogs</h1>
 
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {blogs.map((blog) => (
+        {blogs.map((blog: any) => (
           <li key={blog._id} className="shadow shadow-black rounded bg-white">
+            {/* <p>Name {blog.data.refAuthors.title}</p> */}
+            {/* <p>Name {blog.data.refCategories.title}</p> */}
+            {/* <p className="">{formatDate(new Date(blog.data!._createdDate?.$date))}</p> */}
+            {/* <p className="">{formatDate(new Date(blog.data!._updatedDate?.$date))}</p> */}
             <article className="py-5 px-4">
               <div className="">
                 <Image
+                  src={media.getImageUrl(blog.image).url}
+                  width="896"
+                  height="800"
+                  alt={`media.getImageUrl(blog.data.image).altText`}
                   className="pb-4"
-                  alt={blog.title}
-                  src={urlFor(blog.mainImage).url()}
-                  width={600}
-                  height={400}
                 />
               </div>
               <h2 className="text-center pb-4 font-bold text-xl">
-                <Link href={`/blog/${blog.slug}`}>{blog.title}</Link>
+                <Link href={`/blogs/${blog.slug}`}>{blog.title}</Link>
               </h2>
               <p className="pb-4">{blog.description}</p>
               <div className="text-center">

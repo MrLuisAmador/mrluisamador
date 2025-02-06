@@ -9,22 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@portabletext/react": "^3.2.0",
-    "@sanity/icons": "^3.5.7",
-    "@sanity/image-url": "^1.1.0",
-    "@sanity/vision": "^3.70.0",
     "@sendgrid/mail": "^8.1.4",
     "@wix/data": "^1.0.188",
     "@wix/ricos": "^10.116.0",
     "@wix/sdk": "^1.15.9",
     "next": "15.0.3",
-    "next-sanity": "^9.8.39",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "ricos-viewer": "^9.18.4",
-    "sanity": "^3.70.0",
-    "sass": "^1.83.4",
-    "styled-components": "^6.1.14"
+    "sass": "^1.83.4"
   },
   "prettier": {
     "semi": false,
@@ -38,6 +31,7 @@
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "autoprefixer": "^10.4.20",
+    "cypress": "^14.0.2",
     "eslint": "^9.18.0",
     "eslint-config-next": "15.0.3",
     "postcss": "^8.5.1",

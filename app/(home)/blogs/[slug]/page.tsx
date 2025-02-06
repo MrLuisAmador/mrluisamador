@@ -1,28 +1,31 @@
 import Link from 'next/link'
-import {getBlog} from '@/sanity/lib/sanity-utils'
-import {PortableText} from '@portabletext/react'
-import {RichTextsComponents} from '../../../../sanity/lib/RichTextsComponents'
 import Image from 'next/image'
-import urlFor from '@/sanity/lib/urlFor'
-import {Metadata} from 'next'
+import {getWixClient} from '@/wix/useWixClientServer'
+import RichContentViewer from '@/wix/RichContentViewer'
+import {media} from '@wix/sdk'
 
 type Props = {
-  params: Promise<{
-    slug: string
-  }>
+  params: Promise<{slug: string}>
 }
 
-export async function generateMetadata(props: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props) {
   const params = await props.params
-  const post = await getBlog(params.slug)
 
-  const metaURL = urlFor(post.mainImage).url()
-  const metaAuthor = post.author.name
-  const metaDate = post._updatedAt
-  const metaTitle = post.title
+  const {slug} = params
+
+  const queryWixBlogs: any = await getWixClient()
+
+  const {items: blog} = await queryWixBlogs.items.query('blogPost').eq('slug', slug).find()
+
+  const post = blog![0]
+
+  const metaURL = media.getImageUrl(post.image).url
+  const metaAuthor = post.refAuthors.title
+  const metaDate = post._updatedDate.$date
+  const metaTile = post.title
 
   return {
-    title: metaTitle,
+    title: metaTile,
     description: post.description,
     openGraph: {
       images: [
@@ -30,21 +33,20 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
           url: metaURL,
           width: 800,
           height: 600,
-          alt: metaTitle,
+          alt: metaTile,
         },
       ],
       type: 'article',
       publishedTime: metaDate,
-      authors: [metaAuthor],
+      authors: metaAuthor,
     },
     twitter: {
-      card: 'summary_large_image',
       images: [
         {
           url: metaURL,
           width: 800,
           height: 600,
-          alt: metaTitle,
+          alt: metaTile,
         },
       ],
       creator: metaAuthor,
@@ -52,26 +54,58 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 }
 
-export default async function Blog(props: Props) {
+const Blog = async (props: Props) => {
   const params = await props.params
-  const blog = await getBlog(params.slug)
+
+  const {slug} = params
+
+  const queryWixBlogs: any = await getWixClient()
+
+  const {items: blog} = await queryWixBlogs.items.query('blogPost').eq('slug', slug).find()
+
+  const post = blog![0]
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    datePublished: post.publishedAt,
+    description: post.description,
+    author: [
+      {
+        '@type': 'Person',
+        name: 'Luis Amador',
+        url: `https://www.mrluisamador.com/blogs/${blog.slug}`,
+        image: `metaURL`,
+      },
+    ],
+  }
 
   return (
     <article className="py-16">
+      {/* Add JSON-LD to your page */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
+      />
+
       <Link className="mx-2 mb-4 xl:mx-6 xl:mb-6 inline-block" href="/blogs">
         Back to Blogs
       </Link>
-      <h1 className="text-center text-4xl mb-12">{blog.title}</h1>
-      <div className="px-5 py-16 mx-auto max-w-4xl xl:shadow xl:shadow-black xl:rounded bg-white">
+      <h1 className="text-center text-4xl xl:mb-12">{post.title}</h1>
+
+      <div className="px-5 pt-14 xl:py-16 mx-auto max-w-4xl xl:shadow xl:shadow-black xl:rounded bg-white">
         <Image
-          className="pb-16 underline"
-          alt={blog.title}
-          src={urlFor(blog.mainImage).url()}
-          width={896}
-          height={800}
+          src={media.getImageUrl(post.image).url}
+          width="896"
+          height="800"
+          alt={`media.getImageUrl(post.image).altText`}
+          className="pb-16"
         />
-        <PortableText value={blog.body} components={RichTextsComponents} />
+        <RichContentViewer content={post.content} />
       </div>
     </article>
   )
 }
+
+export default Blog
