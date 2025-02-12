@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 
     const msg = {
       to,
-      from: process.env.SENDGRID_FROM_EMAIL || 'webmaster@mrluisamador.com',
+      from: process.env.SENDGRID_FROM_EMAIL || '',
       subject,
       text,
     }
