@@ -50,7 +50,6 @@ export default function SendEmail() {
         body: JSON.stringify({
           to: 'mrluisamador@gmail.com',
           from: 'webmaster@mrluisamador.com',
-          replyTo: email,
           subject: 'What service do you need done?',
           text: formattedMessage,
           recaptchaToken: token,
