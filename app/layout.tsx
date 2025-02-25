@@ -1,10 +1,10 @@
 import Script from 'next/script'
-import Nav from '../components/nav'
-import Footer from '../components/footer'
+import Nav from './components/nav'
+import Footer from './components/footer'
 import {Metadata} from 'next'
 
 import {Alice, Playfair_Display} from 'next/font/google'
-import '../../styles/global.css'
+import '../styles/global.css'
 
 const alice = Alice({
   weight: '400',

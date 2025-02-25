@@ -57,7 +57,7 @@ const About = () => (
           <h3 className="text-xl">Databases:</h3>
           <ul>
             <li>MySQL</li>
-            <li>PostgreDB</li>
+            <li>Postgress | SupaBase</li>
             <li>MongoDB</li>
           </ul>
         </div>
@@ -93,7 +93,7 @@ const About = () => (
         <div className="mb-5">
           <h3 className="text-xl">Misc:</h3>
           <ul>
-            <li>Vim | PhpStorm | VSCode</li>
+            <li>Vim | Jetbrains | VSCode</li>
             <li>PhotoShop | Adobe XD | Figma | Sketch</li>
           </ul>
         </div>

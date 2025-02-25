@@ -1,5 +1,6 @@
 'use client'
 import {useState, useEffect} from 'react'
+import {useRouter} from 'next/navigation'
 
 declare global {
   interface Window {
@@ -11,6 +12,7 @@ declare global {
 }
 
 export default function SendEmail() {
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
@@ -59,9 +61,9 @@ export default function SendEmail() {
       const data = await res.json()
 
       if (res.ok) {
-        setStatus('✅ Email sent successfully!')
         setEmail('')
         setMessage('')
+        router.push('/thankyou')
       } else {
         setStatus('❌ Failed to send email')
       }
