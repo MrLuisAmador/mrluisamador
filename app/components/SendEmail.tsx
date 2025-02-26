@@ -1,6 +1,7 @@
 'use client'
-import {useState, useEffect} from 'react'
-import {useRouter} from 'next/navigation'
+
+import {create} from '../(home)/contact/actions'
+import {useRef} from 'react'
 
 declare global {
   interface Window {
@@ -11,72 +12,28 @@ declare global {
   }
 }
 
-export default function SendEmail() {
-  const router = useRouter()
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [status, setStatus] = useState('')
+const SendEmail = () => {
+  const formRef = useRef<HTMLFormElement>(null)
 
-  useEffect(() => {
-    // Load reCAPTCHA script
-    const script = document.createElement('script')
-    script.src = `https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`
-    script.async = true
-    document.head.appendChild(script)
-
-    return () => {
-      document.head.removeChild(script)
-    }
-  }, [])
-
-  async function sendEmail() {
-    setLoading(true)
-    setStatus('')
-
+  const handleSubmit = async (formData: FormData) => {
     try {
-      // Get reCAPTCHA token
+      // Execute reCAPTCHA
       const token = await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!, {
         action: 'submit',
       })
 
-      // Format message with email included
-      const formattedMessage = `
-        Email: ${email}\r\n
-        Message: ${message}
-      `
+      // Add token to form data
+      formData.append('recaptchaToken', token)
 
-      const res = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          to: 'mrluisamador@gmail.com',
-          from: 'webmaster@mrluisamador.com',
-          subject: 'What service do you need done?',
-          text: formattedMessage,
-          recaptchaToken: token,
-        }),
-      })
-
-      const data = await res.json()
-
-      if (res.ok) {
-        setEmail('')
-        setMessage('')
-        router.push('/thankyou')
-      } else {
-        setStatus('❌ Failed to send email')
-      }
+      // Call server action
+      await create(formData)
     } catch (error) {
-      console.error('Error:', error)
-      setStatus('❌ Failed to send email')
-    } finally {
-      setLoading(false)
+      console.error('reCAPTCHA or form submission error:', error)
     }
   }
 
   return (
-    <form id="mail" className="mail">
+    <form ref={formRef} action={handleSubmit} id="mail" className="mail">
       <label className="">
         <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">Email</span>
         <input
@@ -88,8 +45,6 @@ export default function SendEmail() {
           id="email"
           placeholder="Email"
           autoComplete="off"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
         />
       </label>
       <label className="">
@@ -107,22 +62,19 @@ export default function SendEmail() {
           placeholder="What service do you need done?"
           autoComplete="off"
           aria-label="Enter your comment"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
         ></textarea>
       </label>
       <label className="">
         <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">Submit</span>
         <input
-          onClick={sendEmail}
-          disabled={loading}
           id="submit"
           type="submit"
-          value={loading ? 'Sending...' : 'Send It!'}
+          value="Send It!"
           className="border border-solid border-white text-white py-2.5 px-4 w-full max-w-[50%] inline-block rounded text-xl hover:bg-white/[.15] transition-colors cursor-pointer"
         />
       </label>
-      {status && <p className="mt-2">{status}</p>}
     </form>
   )
 }
+
+export default SendEmail
