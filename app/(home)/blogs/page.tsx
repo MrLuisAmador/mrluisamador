@@ -51,12 +51,6 @@ export default async function Blogs() {
           </li>
         ))}
       </ul>
-
-      <script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197"
-        crossOrigin="anonymous"
-      ></script>
       <ins
         className="adsbygoogle"
         style={{display: 'block'}}
