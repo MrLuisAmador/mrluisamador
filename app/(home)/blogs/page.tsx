@@ -3,6 +3,7 @@ import {Metadata} from 'next'
 import {getWixClient} from '@/wix/useWixClientServer'
 import Image from 'next/image'
 import {media} from '@wix/sdk'
+import Adunit from './Adunit'
 
 export const metadata: Metadata = {
   title: 'Blogs',
@@ -51,15 +52,7 @@ export default async function Blogs() {
           </li>
         ))}
       </ul>
-      <ins
-        className="adsbygoogle"
-        style={{display: 'block'}}
-        data-ad-client="ca-pub-2988961562271197"
-        data-ad-slot="6232399682"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      ></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      <Adunit />
     </section>
   )
 }
