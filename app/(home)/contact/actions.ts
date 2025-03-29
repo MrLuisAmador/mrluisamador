@@ -15,7 +15,7 @@ async function verifyRecaptcha(token: string) {
   return data.success && data.score >= 0.5
 }
 
-export async function create(formData: FormData) {
+export async function sendGridAction(formData: FormData) {
   const token = formData.get('recaptchaToken') as string
   const isHuman = await verifyRecaptcha(token)
 

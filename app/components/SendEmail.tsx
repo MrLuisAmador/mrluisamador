@@ -1,6 +1,6 @@
 'use client'
 
-import {create} from '../(home)/contact/actions'
+import {sendGridAction} from '../(home)/contact/actions'
 import {useRef} from 'react'
 
 declare global {
@@ -15,7 +15,7 @@ declare global {
 const SendEmail = () => {
   const formRef = useRef<HTMLFormElement>(null)
 
-  const handleSubmit = async (formData: FormData) => {
+  const sendGridSubmit = async (formData: FormData) => {
     try {
       // Execute reCAPTCHA
       const token = await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!, {
@@ -26,14 +26,14 @@ const SendEmail = () => {
       formData.append('recaptchaToken', token)
 
       // Call server action
-      await create(formData)
+      await sendGridAction(formData)
     } catch (error) {
       console.error('reCAPTCHA or form submission error:', error)
     }
   }
 
   return (
-    <form ref={formRef} action={handleSubmit} id="mail" className="mail">
+    <form ref={formRef} action={sendGridSubmit} id="mail" className="mail">
       <label className="">
         <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">Email</span>
         <input
