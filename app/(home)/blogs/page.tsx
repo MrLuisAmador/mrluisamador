@@ -58,8 +58,8 @@ export default async function Blogs() {
         crossOrigin="anonymous"
       ></script>
       <ins
-        class="adsbygoogle"
-        style="display:block"
+        className="adsbygoogle"
+        style={{display: 'block'}}
         data-ad-client="ca-pub-2988961562271197"
         data-ad-slot="6232399682"
         data-ad-format="auto"
