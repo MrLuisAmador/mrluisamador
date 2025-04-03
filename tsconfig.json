@@ -28,8 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     "app/components/mail.ts",
-    ".next/types/**/*.ts",
-    "app/(home)/test-projects/page.js"
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
