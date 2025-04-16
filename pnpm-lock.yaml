@@ -4,6 +4,10 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@types/react': 19.1.2
+  '@types/react-dom': 19.1.2
+
 importers:
 
   .:
@@ -16,22 +20,22 @@ importers:
         version: 1.0.213
       '@wix/ricos':
         specifier: ^10.123.3
-        version: 10.123.3(@babel/core@7.26.0)(@babel/runtime@7.27.0)(@babel/template@7.27.0)(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(encoding@0.1.13)(lodash@4.17.21)(prosemirror-model@1.25.0)(prosemirror-tables@1.6.4)(puppeteer-core@14.4.1(encoding@0.1.13))(puppeteer@14.4.1(encoding@0.1.13))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 10.123.3(@babel/core@7.26.0)(@babel/runtime@7.27.0)(@babel/template@7.27.0)(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(encoding@0.1.13)(lodash@4.17.21)(prosemirror-model@1.25.0)(prosemirror-tables@1.6.4)(puppeteer-core@14.4.1(encoding@0.1.13))(puppeteer@14.4.1(encoding@0.1.13))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@wix/sdk':
         specifier: ^1.15.16
         version: 1.15.16
       next:
-        specifier: 15.2.4
-        version: 15.2.4(@babel/core@7.26.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.86.1)
+        specifier: 15.3.0
+        version: 15.3.0(@babel/core@7.26.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.86.1)
       react:
-        specifier: ^19.1.0
+        specifier: 19.1.0
         version: 19.1.0
       react-dom:
-        specifier: ^19.1.0
+        specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
       ricos-viewer:
         specifier: ^9.18.4
-        version: 9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       sass:
         specifier: ^1.86.1
         version: 1.86.1
@@ -46,11 +50,11 @@ importers:
         specifier: ^22.13.14
         version: 22.13.14
       '@types/react':
-        specifier: ^19.0.12
-        version: 19.0.12
+        specifier: 19.1.2
+        version: 19.1.2
       '@types/react-dom':
-        specifier: ^19.0.4
-        version: 19.0.4(@types/react@19.0.12)
+        specifier: 19.1.2
+        version: 19.1.2(@types/react@19.1.2)
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.5.3)
@@ -61,8 +65,8 @@ importers:
         specifier: ^9.23.0
         version: 9.23.0(jiti@1.21.7)
       eslint-config-next:
-        specifier: 15.2.4
-        version: 15.2.4(eslint@9.23.0(jiti@1.21.7))(typescript@5.8.2)
+        specifier: 15.3.0
+        version: 15.3.0(eslint@9.23.0(jiti@1.21.7))(typescript@5.8.2)
       postcss:
         specifier: ^8.5.3
         version: 8.5.3
@@ -300,107 +304,112 @@ packages:
       prop-types: ^15.0.0
       react: '>=0.14.0'
 
-  '@img/sharp-darwin-arm64@0.33.5':
-    resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
+  '@img/sharp-darwin-arm64@0.34.1':
+    resolution: {integrity: sha512-pn44xgBtgpEbZsu+lWf2KNb6OAf70X68k+yk69Ic2Xz11zHR/w24/U49XT7AeRwJ0Px+mhALhU5LPci1Aymk7A==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm64]
     os: [darwin]
 
-  '@img/sharp-darwin-x64@0.33.5':
-    resolution: {integrity: sha512-fyHac4jIc1ANYGRDxtiqelIbdWkIuQaI84Mv45KvGRRxSAa7o7d1ZKAOBaYbnepLC1WqxfpimdeWfvqqSGwR2Q==}
+  '@img/sharp-darwin-x64@0.34.1':
+    resolution: {integrity: sha512-VfuYgG2r8BpYiOUN+BfYeFo69nP/MIwAtSJ7/Zpxc5QF3KS22z8Pvg3FkrSFJBPNQ7mmcUcYQFBmEQp7eu1F8Q==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [darwin]
 
-  '@img/sharp-libvips-darwin-arm64@1.0.4':
-    resolution: {integrity: sha512-XblONe153h0O2zuFfTAbQYAX2JhYmDHeWikp1LM9Hul9gVPjFY427k6dFEcOL72O01QxQsWi761svJ/ev9xEDg==}
+  '@img/sharp-libvips-darwin-arm64@1.1.0':
+    resolution: {integrity: sha512-HZ/JUmPwrJSoM4DIQPv/BfNh9yrOA8tlBbqbLz4JZ5uew2+o22Ik+tHQJcih7QJuSa0zo5coHTfD5J8inqj9DA==}
     cpu: [arm64]
     os: [darwin]
 
-  '@img/sharp-libvips-darwin-x64@1.0.4':
-    resolution: {integrity: sha512-xnGR8YuZYfJGmWPvmlunFaWJsb9T/AO2ykoP3Fz/0X5XV2aoYBPkX6xqCQvUTKKiLddarLaxpzNe+b1hjeWHAQ==}
+  '@img/sharp-libvips-darwin-x64@1.1.0':
+    resolution: {integrity: sha512-Xzc2ToEmHN+hfvsl9wja0RlnXEgpKNmftriQp6XzY/RaSfwD9th+MSh0WQKzUreLKKINb3afirxW7A0fz2YWuQ==}
     cpu: [x64]
     os: [darwin]
 
-  '@img/sharp-libvips-linux-arm64@1.0.4':
-    resolution: {integrity: sha512-9B+taZ8DlyyqzZQnoeIvDVR/2F4EbMepXMc/NdVbkzsJbzkUjhXv/70GQJ7tdLA4YJgNP25zukcxpX2/SueNrA==}
+  '@img/sharp-libvips-linux-arm64@1.1.0':
+    resolution: {integrity: sha512-IVfGJa7gjChDET1dK9SekxFFdflarnUB8PwW8aGwEoF3oAsSDuNUTYS+SKDOyOJxQyDC1aPFMuRYLoDInyV9Ew==}
     cpu: [arm64]
     os: [linux]
 
-  '@img/sharp-libvips-linux-arm@1.0.5':
-    resolution: {integrity: sha512-gvcC4ACAOPRNATg/ov8/MnbxFDJqf/pDePbBnuBDcjsI8PssmjoKMAz4LtLaVi+OnSb5FK/yIOamqDwGmXW32g==}
+  '@img/sharp-libvips-linux-arm@1.1.0':
+    resolution: {integrity: sha512-s8BAd0lwUIvYCJyRdFqvsj+BJIpDBSxs6ivrOPm/R7piTs5UIwY5OjXrP2bqXC9/moGsyRa37eYWYCOGVXxVrA==}
     cpu: [arm]
     os: [linux]
 
-  '@img/sharp-libvips-linux-s390x@1.0.4':
-    resolution: {integrity: sha512-u7Wz6ntiSSgGSGcjZ55im6uvTrOxSIS8/dgoVMoiGE9I6JAfU50yH5BoDlYA1tcuGS7g/QNtetJnxA6QEsCVTA==}
+  '@img/sharp-libvips-linux-ppc64@1.1.0':
+    resolution: {integrity: sha512-tiXxFZFbhnkWE2LA8oQj7KYR+bWBkiV2nilRldT7bqoEZ4HiDOcePr9wVDAZPi/Id5fT1oY9iGnDq20cwUz8lQ==}
+    cpu: [ppc64]
+    os: [linux]
+
+  '@img/sharp-libvips-linux-s390x@1.1.0':
+    resolution: {integrity: sha512-xukSwvhguw7COyzvmjydRb3x/09+21HykyapcZchiCUkTThEQEOMtBj9UhkaBRLuBrgLFzQ2wbxdeCCJW/jgJA==}
     cpu: [s390x]
     os: [linux]
 
-  '@img/sharp-libvips-linux-x64@1.0.4':
-    resolution: {integrity: sha512-MmWmQ3iPFZr0Iev+BAgVMb3ZyC4KeFc3jFxnNbEPas60e1cIfevbtuyf9nDGIzOaW9PdnDciJm+wFFaTlj5xYw==}
+  '@img/sharp-libvips-linux-x64@1.1.0':
+    resolution: {integrity: sha512-yRj2+reB8iMg9W5sULM3S74jVS7zqSzHG3Ol/twnAAkAhnGQnpjj6e4ayUz7V+FpKypwgs82xbRdYtchTTUB+Q==}
     cpu: [x64]
     os: [linux]
 
-  '@img/sharp-libvips-linuxmusl-arm64@1.0.4':
-    resolution: {integrity: sha512-9Ti+BbTYDcsbp4wfYib8Ctm1ilkugkA/uscUn6UXK1ldpC1JjiXbLfFZtRlBhjPZ5o1NCLiDbg8fhUPKStHoTA==}
+  '@img/sharp-libvips-linuxmusl-arm64@1.1.0':
+    resolution: {integrity: sha512-jYZdG+whg0MDK+q2COKbYidaqW/WTz0cc1E+tMAusiDygrM4ypmSCjOJPmFTvHHJ8j/6cAGyeDWZOsK06tP33w==}
     cpu: [arm64]
     os: [linux]
 
-  '@img/sharp-libvips-linuxmusl-x64@1.0.4':
-    resolution: {integrity: sha512-viYN1KX9m+/hGkJtvYYp+CCLgnJXwiQB39damAO7WMdKWlIhmYTfHjwSbQeUK/20vY154mwezd9HflVFM1wVSw==}
+  '@img/sharp-libvips-linuxmusl-x64@1.1.0':
+    resolution: {integrity: sha512-wK7SBdwrAiycjXdkPnGCPLjYb9lD4l6Ze2gSdAGVZrEL05AOUJESWU2lhlC+Ffn5/G+VKuSm6zzbQSzFX/P65A==}
     cpu: [x64]
     os: [linux]
 
-  '@img/sharp-linux-arm64@0.33.5':
-    resolution: {integrity: sha512-JMVv+AMRyGOHtO1RFBiJy/MBsgz0x4AWrT6QoEVVTyh1E39TrCUpTRI7mx9VksGX4awWASxqCYLCV4wBZHAYxA==}
+  '@img/sharp-linux-arm64@0.34.1':
+    resolution: {integrity: sha512-kX2c+vbvaXC6vly1RDf/IWNXxrlxLNpBVWkdpRq5Ka7OOKj6nr66etKy2IENf6FtOgklkg9ZdGpEu9kwdlcwOQ==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm64]
     os: [linux]
 
-  '@img/sharp-linux-arm@0.33.5':
-    resolution: {integrity: sha512-JTS1eldqZbJxjvKaAkxhZmBqPRGmxgu+qFKSInv8moZ2AmT5Yib3EQ1c6gp493HvrvV8QgdOXdyaIBrhvFhBMQ==}
+  '@img/sharp-linux-arm@0.34.1':
+    resolution: {integrity: sha512-anKiszvACti2sGy9CirTlNyk7BjjZPiML1jt2ZkTdcvpLU1YH6CXwRAZCA2UmRXnhiIftXQ7+Oh62Ji25W72jA==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm]
     os: [linux]
 
-  '@img/sharp-linux-s390x@0.33.5':
-    resolution: {integrity: sha512-y/5PCd+mP4CA/sPDKl2961b+C9d+vPAveS33s6Z3zfASk2j5upL6fXVPZi7ztePZ5CuH+1kW8JtvxgbuXHRa4Q==}
+  '@img/sharp-linux-s390x@0.34.1':
+    resolution: {integrity: sha512-7s0KX2tI9mZI2buRipKIw2X1ufdTeaRgwmRabt5bi9chYfhur+/C1OXg3TKg/eag1W+6CCWLVmSauV1owmRPxA==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [s390x]
     os: [linux]
 
-  '@img/sharp-linux-x64@0.33.5':
-    resolution: {integrity: sha512-opC+Ok5pRNAzuvq1AG0ar+1owsu842/Ab+4qvU879ippJBHvyY5n2mxF1izXqkPYlGuP/M556uh53jRLJmzTWA==}
+  '@img/sharp-linux-x64@0.34.1':
+    resolution: {integrity: sha512-wExv7SH9nmoBW3Wr2gvQopX1k8q2g5V5Iag8Zk6AVENsjwd+3adjwxtp3Dcu2QhOXr8W9NusBU6XcQUohBZ5MA==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [linux]
 
-  '@img/sharp-linuxmusl-arm64@0.33.5':
-    resolution: {integrity: sha512-XrHMZwGQGvJg2V/oRSUfSAfjfPxO+4DkiRh6p2AFjLQztWUuY/o8Mq0eMQVIY7HJ1CDQUJlxGGZRw1a5bqmd1g==}
+  '@img/sharp-linuxmusl-arm64@0.34.1':
+    resolution: {integrity: sha512-DfvyxzHxw4WGdPiTF0SOHnm11Xv4aQexvqhRDAoD00MzHekAj9a/jADXeXYCDFH/DzYruwHbXU7uz+H+nWmSOQ==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [arm64]
     os: [linux]
 
-  '@img/sharp-linuxmusl-x64@0.33.5':
-    resolution: {integrity: sha512-WT+d/cgqKkkKySYmqoZ8y3pxx7lx9vVejxW/W4DOFMYVSkErR+w7mf2u8m/y4+xHe7yY9DAXQMWQhpnMuFfScw==}
+  '@img/sharp-linuxmusl-x64@0.34.1':
+    resolution: {integrity: sha512-pax/kTR407vNb9qaSIiWVnQplPcGU8LRIJpDT5o8PdAx5aAA7AS3X9PS8Isw1/WfqgQorPotjrZL3Pqh6C5EBg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [linux]
 
-  '@img/sharp-wasm32@0.33.5':
-    resolution: {integrity: sha512-ykUW4LVGaMcU9lu9thv85CbRMAwfeadCJHRsg2GmeRa/cJxsVY9Rbd57JcMxBkKHag5U/x7TSBpScF4U8ElVzg==}
+  '@img/sharp-wasm32@0.34.1':
+    resolution: {integrity: sha512-YDybQnYrLQfEpzGOQe7OKcyLUCML4YOXl428gOOzBgN6Gw0rv8dpsJ7PqTHxBnXnwXr8S1mYFSLSa727tpz0xg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [wasm32]
 
-  '@img/sharp-win32-ia32@0.33.5':
-    resolution: {integrity: sha512-T36PblLaTwuVJ/zw/LaH0PdZkRz5rd3SmMHX8GSmR7vtNSP5Z6bQkExdSK7xGWyxLw4sUknBuugTelgw2faBbQ==}
+  '@img/sharp-win32-ia32@0.34.1':
+    resolution: {integrity: sha512-WKf/NAZITnonBf3U1LfdjoMgNO5JYRSlhovhRhMxXVdvWYveM4kM3L8m35onYIdh75cOMCo1BexgVQcCDzyoWw==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [ia32]
     os: [win32]
 
-  '@img/sharp-win32-x64@0.33.5':
-    resolution: {integrity: sha512-MpY/o8/8kj+EcnxwvrP4aTJSWw/aZ7JIGR4aBeZkZw5B7/Jn+tY9/VNwtcoGmdT7GfggGIU4kygOMSbYnOrAbg==}
+  '@img/sharp-win32-x64@0.34.1':
+    resolution: {integrity: sha512-hw1iIAHpNE8q3uMIRCgGOeDoz9KtFNarFLQclLxr/LK1VBkj8nby18RjFvr6aP7USRYAjTZW6yisnBWMX571Tw==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [win32]
@@ -444,56 +453,56 @@ packages:
   '@napi-rs/wasm-runtime@0.2.7':
     resolution: {integrity: sha512-5yximcFK5FNompXfJFoWanu5l8v1hNGqNHh9du1xETp9HWk/B/PzvchX55WYOPaIeNglG8++68AAiauBAtbnzw==}
 
-  '@next/env@15.2.4':
-    resolution: {integrity: sha512-+SFtMgoiYP3WoSswuNmxJOCwi06TdWE733D+WPjpXIe4LXGULwEaofiiAy6kbS0+XjM5xF5n3lKuBwN2SnqD9g==}
+  '@next/env@15.3.0':
+    resolution: {integrity: sha512-6mDmHX24nWlHOlbwUiAOmMyY7KELimmi+ed8qWcJYjqXeC+G6JzPZ3QosOAfjNwgMIzwhXBiRiCgdh8axTTdTA==}
 
-  '@next/eslint-plugin-next@15.2.4':
-    resolution: {integrity: sha512-O8ScvKtnxkp8kL9TpJTTKnMqlkZnS+QxwoQnJwPGBxjBbzd6OVVPEJ5/pMNrktSyXQD/chEfzfFzYLM6JANOOQ==}
+  '@next/eslint-plugin-next@15.3.0':
+    resolution: {integrity: sha512-511UUcpWw5GWTyKfzW58U2F/bYJyjLE9e3SlnGK/zSXq7RqLlqFO8B9bitJjumLpj317fycC96KZ2RZsjGNfBw==}
 
-  '@next/swc-darwin-arm64@15.2.4':
-    resolution: {integrity: sha512-1AnMfs655ipJEDC/FHkSr0r3lXBgpqKo4K1kiwfUf3iE68rDFXZ1TtHdMvf7D0hMItgDZ7Vuq3JgNMbt/+3bYw==}
+  '@next/swc-darwin-arm64@15.3.0':
+    resolution: {integrity: sha512-PDQcByT0ZfF2q7QR9d+PNj3wlNN4K6Q8JoHMwFyk252gWo4gKt7BF8Y2+KBgDjTFBETXZ/TkBEUY7NIIY7A/Kw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@15.2.4':
-    resolution: {integrity: sha512-3qK2zb5EwCwxnO2HeO+TRqCubeI/NgCe+kL5dTJlPldV/uwCnUgC7VbEzgmxbfrkbjehL4H9BPztWOEtsoMwew==}
+  '@next/swc-darwin-x64@15.3.0':
+    resolution: {integrity: sha512-m+eO21yg80En8HJ5c49AOQpFDq+nP51nu88ZOMCorvw3g//8g1JSUsEiPSiFpJo1KCTQ+jm9H0hwXK49H/RmXg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@15.2.4':
-    resolution: {integrity: sha512-HFN6GKUcrTWvem8AZN7tT95zPb0GUGv9v0d0iyuTb303vbXkkbHDp/DxufB04jNVD+IN9yHy7y/6Mqq0h0YVaQ==}
+  '@next/swc-linux-arm64-gnu@15.3.0':
+    resolution: {integrity: sha512-H0Kk04ZNzb6Aq/G6e0un4B3HekPnyy6D+eUBYPJv9Abx8KDYgNMWzKt4Qhj57HXV3sTTjsfc1Trc1SxuhQB+Tg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@15.2.4':
-    resolution: {integrity: sha512-Oioa0SORWLwi35/kVB8aCk5Uq+5/ZIumMK1kJV+jSdazFm2NzPDztsefzdmzzpx5oGCJ6FkUC7vkaUseNTStNA==}
+  '@next/swc-linux-arm64-musl@15.3.0':
+    resolution: {integrity: sha512-k8GVkdMrh/+J9uIv/GpnHakzgDQhrprJ/FbGQvwWmstaeFG06nnAoZCJV+wO/bb603iKV1BXt4gHG+s2buJqZA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-x64-gnu@15.2.4':
-    resolution: {integrity: sha512-yb5WTRaHdkgOqFOZiu6rHV1fAEK0flVpaIN2HB6kxHVSy/dIajWbThS7qON3W9/SNOH2JWkVCyulgGYekMePuw==}
+  '@next/swc-linux-x64-gnu@15.3.0':
+    resolution: {integrity: sha512-ZMQ9yzDEts/vkpFLRAqfYO1wSpIJGlQNK9gZ09PgyjBJUmg8F/bb8fw2EXKgEaHbCc4gmqMpDfh+T07qUphp9A==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@15.2.4':
-    resolution: {integrity: sha512-Dcdv/ix6srhkM25fgXiyOieFUkz+fOYkHlydWCtB0xMST6X9XYI3yPDKBZt1xuhOytONsIFJFB08xXYsxUwJLw==}
+  '@next/swc-linux-x64-musl@15.3.0':
+    resolution: {integrity: sha512-RFwq5VKYTw9TMr4T3e5HRP6T4RiAzfDJ6XsxH8j/ZeYq2aLsBqCkFzwMI0FmnSsLaUbOb46Uov0VvN3UciHX5A==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-win32-arm64-msvc@15.2.4':
-    resolution: {integrity: sha512-dW0i7eukvDxtIhCYkMrZNQfNicPDExt2jPb9AZPpL7cfyUo7QSNl1DjsHjmmKp6qNAqUESyT8YFl/Aw91cNJJg==}
+  '@next/swc-win32-arm64-msvc@15.3.0':
+    resolution: {integrity: sha512-a7kUbqa/k09xPjfCl0RSVAvEjAkYBYxUzSVAzk2ptXiNEL+4bDBo9wNC43G/osLA/EOGzG4CuNRFnQyIHfkRgQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@15.2.4':
-    resolution: {integrity: sha512-SbnWkJmkS7Xl3kre8SdMF6F/XDh1DTFEhp0jRTj/uB8iPKoU2bb2NDfcu+iifv1+mxQEd1g2vvSxcZbXSKyWiQ==}
+  '@next/swc-win32-x64-msvc@15.3.0':
+    resolution: {integrity: sha512-vHUQS4YVGJPmpjn7r5lEZuMhK5UQBNBRSB+iGDvJjaNk649pTIcRluDWNb9siunyLLiu/LDPHfvxBtNamyuLTw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -809,19 +818,13 @@ packages:
   '@types/prop-types@15.7.14':
     resolution: {integrity: sha512-gNMvNH49DJ7OJYv+KAKn0Xp45p8PLl6zo2YnvDIbTd4J6MER2BmWN49TG7n9LvkyihINxeKW8+3bfS2yDC9dzQ==}
 
-  '@types/react-dom@16.8.0':
-    resolution: {integrity: sha512-Jp4ufcEEjVJEB0OHq2MCZcE1u3KYUKO6WnSuiU/tZeYeiZxUoQavfa/TZeiIT+1XoN6l0lQVNM30VINZFDeolQ==}
-
-  '@types/react-dom@19.0.4':
-    resolution: {integrity: sha512-4fSQ8vWFkg+TGhePfUzVmat3eC14TXYSsiiDSLI0dVLsrm9gZFABjPy/Qu6TKgl1tq1Bu1yDsuQgY3A3DOjCcg==}
+  '@types/react-dom@19.1.2':
+    resolution: {integrity: sha512-XGJkWF41Qq305SKWEILa1O8vzhb3aOo3ogBlSmiqNko/WmRb6QIaweuZCXjKygVDXpzXb5wyxKTSOsmkuqj+Qw==}
     peerDependencies:
-      '@types/react': ^19.0.0
+      '@types/react': 19.1.2
 
-  '@types/react@16.8.2':
-    resolution: {integrity: sha512-6mcKsqlqkN9xADrwiUz2gm9Wg4iGnlVGciwBRYFQSMWG6MQjhOZ/AVnxn+6v8nslFgfYTV8fNdE6XwKu6va5PA==}
-
-  '@types/react@19.0.12':
-    resolution: {integrity: sha512-V6Ar115dBDrjbtXSrS+/Oruobc+qVbbUxDFC1RSbRqLt5SYvxxyIDrSC85RWml54g+jfNeEMZhEj7wW07ONQhA==}
+  '@types/react@19.1.2':
+    resolution: {integrity: sha512-oxLPMytKchWGbnQM9O7D67uPa9paTNxO7jVoNMXgkkErULBPhPARCfkKL9ytcIJJRGjbsVwW4ugJzyFFvm/Tiw==}
 
   '@types/responselike@1.0.3':
     resolution: {integrity: sha512-H/+L+UkTV33uf49PH5pCAUBVPNj2nDBXTN+qS1dOwyyg24l3CcicicCA7ca+HMvJBZcFgl5r8e+RR6elsb4Lyw==}
@@ -1068,8 +1071,8 @@ packages:
   '@wix/design-system@1.175.0':
     resolution: {integrity: sha512-LR3vtI2BbPeW40fWaIki41QIWQpCgM811bE+1KCQtiQKDN3b8Vkh9j/rBXL1KGNwWYkuqa2AY0ZRRk4sFlotxg==}
     peerDependencies:
-      '@types/react': ^16.14.0 || ^17.0.0 || ^18.0.0
-      '@types/react-dom': ^16.0.0 || ^17.0.0 || ^18.0.0
+      '@types/react': 19.1.2
+      '@types/react-dom': 19.1.2
       '@wix/ambassador': ^4.0.485
       '@wix/ambassador-wix-atlas-service-web': ^1.0.150
       puppeteer: ^5.5.0 || ^14.0.0
@@ -1714,9 +1717,6 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  csstype@2.6.21:
-    resolution: {integrity: sha512-Z1PhmomIfypOpoMjRQB70jfvy/wxT50qW08YXO5lMIJkrdq4yOTR+AW7FqutScmB9NkLwxo+jU+kZLbofZZq/w==}
-
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
@@ -1953,7 +1953,7 @@ packages:
     resolution: {integrity: sha512-Vqz+JCZl96TBXoaHKeam1R90xxOWjTfpK9UFmXWP90CjCe/07bMmerZW3582JXsfQkmp5pC4sI3dhPSdr9WF9Q==}
     peerDependencies:
       '@types/draft-js': ^0.10.0
-      '@types/react': ^16.0.0
+      '@types/react': 19.1.2
       draft-js: ^0.11.0
       draft-js-plugins-editor: ^3.0.0
       react: ^16.0.0
@@ -2082,8 +2082,8 @@ packages:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
 
-  eslint-config-next@15.2.4:
-    resolution: {integrity: sha512-v4gYjd4eYIme8qzaJItpR5MMBXJ0/YV07u7eb50kEnlEmX7yhOjdUdzz70v4fiINYRjLf8X8TbogF0k7wlz6sA==}
+  eslint-config-next@15.3.0:
+    resolution: {integrity: sha512-+Z3M1W9MnJjX3W4vI9CHfKlEyhTWOUHvc5dB89FyRnzPsUkJlLWZOi8+1pInuVcSztSM4MwBFB0hIHf4Rbwu4g==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0 || ^9.0.0
       typescript: '>=3.3.1'
@@ -3426,8 +3426,8 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  next@15.2.4:
-    resolution: {integrity: sha512-VwL+LAaPSxEkd3lU2xWbgEOtrM8oedmyhBqaVNmgKB+GvZlCy9rgaEc+y2on0wv+l0oSFqLtYD6dcC1eAedUaQ==}
+  next@15.3.0:
+    resolution: {integrity: sha512-k0MgP6BsK8cZ73wRjMazl2y2UcXj49ZXLDEgx6BikWuby/CN+nh81qFFI16edgd7xYpe/jj2OZEIwCoqnzz0bQ==}
     engines: {node: ^18.18.0 || ^19.8.0 || >= 20.0.0}
     hasBin: true
     peerDependencies:
@@ -4084,7 +4084,7 @@ packages:
   react-dock@0.6.0:
     resolution: {integrity: sha512-jEOhv1s+pqRQ4JxgUw4XUotnprOehZ23mqchf3whxYXnvNgTQOXCxh6bpcqW8P6OybIk2bYO18r3qimZ3ypCbg==}
     peerDependencies:
-      '@types/react': ^16.3.0 || ^17.0.0 || ^18.0.0
+      '@types/react': 19.1.2
       react: ^16.3.0 || ^17.0.0 || ^18.0.0
 
   react-dom-instance@2.0.0:
@@ -4147,7 +4147,7 @@ packages:
   react-json-tree@0.17.0:
     resolution: {integrity: sha512-hcWjibI/fAvsKnfYk+lka5OrE1Lvb1jH5pSnFhIU5T8cCCxB85r6h/NOzDPggSSgErjmx4rl3+2EkeclIKBOhg==}
     peerDependencies:
-      '@types/react': ^16.3.0 || ^17.0.0 || ^18.0.0
+      '@types/react': 19.1.2
       react: ^16.3.0 || ^17.0.0 || ^18.0.0
 
   react-lifecycles-compat@3.0.4:
@@ -4513,8 +4513,8 @@ packages:
   shallowequal@1.1.0:
     resolution: {integrity: sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==}
 
-  sharp@0.33.5:
-    resolution: {integrity: sha512-haPVm1EkS9pgvHrQ/F3Xy+hgcuMV0Wm9vfIBSiwZ05k+xgb0PkBQpGsAA/oWdDobNaZTH5ppvHtzCFbnSEwHVw==}
+  sharp@0.34.1:
+    resolution: {integrity: sha512-1j0w61+eVxu7DawFJtnfYcvSv6qPFvfTaqzTQ2BLknVhHTwGS8sc63ZBF4rzkWMBVKybo4S5OBtDdZahh2A1xg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
 
   shebang-command@1.2.0:
@@ -5675,79 +5675,82 @@ snapshots:
       react: 19.1.0
       warning: 4.0.3
 
-  '@img/sharp-darwin-arm64@0.33.5':
+  '@img/sharp-darwin-arm64@0.34.1':
     optionalDependencies:
-      '@img/sharp-libvips-darwin-arm64': 1.0.4
+      '@img/sharp-libvips-darwin-arm64': 1.1.0
     optional: true
 
-  '@img/sharp-darwin-x64@0.33.5':
+  '@img/sharp-darwin-x64@0.34.1':
     optionalDependencies:
-      '@img/sharp-libvips-darwin-x64': 1.0.4
+      '@img/sharp-libvips-darwin-x64': 1.1.0
     optional: true
 
-  '@img/sharp-libvips-darwin-arm64@1.0.4':
+  '@img/sharp-libvips-darwin-arm64@1.1.0':
     optional: true
 
-  '@img/sharp-libvips-darwin-x64@1.0.4':
+  '@img/sharp-libvips-darwin-x64@1.1.0':
     optional: true
 
-  '@img/sharp-libvips-linux-arm64@1.0.4':
+  '@img/sharp-libvips-linux-arm64@1.1.0':
     optional: true
 
-  '@img/sharp-libvips-linux-arm@1.0.5':
+  '@img/sharp-libvips-linux-arm@1.1.0':
     optional: true
 
-  '@img/sharp-libvips-linux-s390x@1.0.4':
+  '@img/sharp-libvips-linux-ppc64@1.1.0':
     optional: true
 
-  '@img/sharp-libvips-linux-x64@1.0.4':
+  '@img/sharp-libvips-linux-s390x@1.1.0':
     optional: true
 
-  '@img/sharp-libvips-linuxmusl-arm64@1.0.4':
+  '@img/sharp-libvips-linux-x64@1.1.0':
     optional: true
 
-  '@img/sharp-libvips-linuxmusl-x64@1.0.4':
+  '@img/sharp-libvips-linuxmusl-arm64@1.1.0':
     optional: true
 
-  '@img/sharp-linux-arm64@0.33.5':
+  '@img/sharp-libvips-linuxmusl-x64@1.1.0':
+    optional: true
+
+  '@img/sharp-linux-arm64@0.34.1':
     optionalDependencies:
-      '@img/sharp-libvips-linux-arm64': 1.0.4
+      '@img/sharp-libvips-linux-arm64': 1.1.0
     optional: true
 
-  '@img/sharp-linux-arm@0.33.5':
+  '@img/sharp-linux-arm@0.34.1':
     optionalDependencies:
-      '@img/sharp-libvips-linux-arm': 1.0.5
+      '@img/sharp-libvips-linux-arm': 1.1.0
     optional: true
 
-  '@img/sharp-linux-s390x@0.33.5':
+  '@img/sharp-linux-s390x@0.34.1':
     optionalDependencies:
-      '@img/sharp-libvips-linux-s390x': 1.0.4
+      '@img/sharp-libvips-linux-s390x': 1.1.0
     optional: true
 
-  '@img/sharp-linux-x64@0.33.5':
+  '@img/sharp-linux-x64@0.34.1':
     optionalDependencies:
-      '@img/sharp-libvips-linux-x64': 1.0.4
+      '@img/sharp-libvips-linux-x64': 1.1.0
     optional: true
 
-  '@img/sharp-linuxmusl-arm64@0.33.5':
+  '@img/sharp-linuxmusl-arm64@0.34.1':
     optionalDependencies:
-      '@img/sharp-libvips-linuxmusl-arm64': 1.0.4
+      '@img/sharp-libvips-linuxmusl-arm64': 1.1.0
     optional: true
 
-  '@img/sharp-linuxmusl-x64@0.33.5':
+  '@img/sharp-linuxmusl-x64@0.34.1':
     optionalDependencies:
-      '@img/sharp-libvips-linuxmusl-x64': 1.0.4
+      '@img/sharp-libvips-linuxmusl-x64': 1.1.0
     optional: true
 
-  '@img/sharp-wasm32@0.33.5':
+  '@img/sharp-wasm32@0.34.1':
     dependencies:
       '@emnapi/runtime': 1.4.0
     optional: true
 
-  '@img/sharp-win32-ia32@0.33.5':
+  '@img/sharp-win32-ia32@0.34.1':
     optional: true
 
-  '@img/sharp-win32-x64@0.33.5':
+  '@img/sharp-win32-x64@0.34.1':
     optional: true
 
   '@isaacs/cliui@8.0.2':
@@ -5803,34 +5806,34 @@ snapshots:
       '@tybys/wasm-util': 0.9.0
     optional: true
 
-  '@next/env@15.2.4': {}
+  '@next/env@15.3.0': {}
 
-  '@next/eslint-plugin-next@15.2.4':
+  '@next/eslint-plugin-next@15.3.0':
     dependencies:
       fast-glob: 3.3.1
 
-  '@next/swc-darwin-arm64@15.2.4':
+  '@next/swc-darwin-arm64@15.3.0':
     optional: true
 
-  '@next/swc-darwin-x64@15.2.4':
+  '@next/swc-darwin-x64@15.3.0':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@15.2.4':
+  '@next/swc-linux-arm64-gnu@15.3.0':
     optional: true
 
-  '@next/swc-linux-arm64-musl@15.2.4':
+  '@next/swc-linux-arm64-musl@15.3.0':
     optional: true
 
-  '@next/swc-linux-x64-gnu@15.2.4':
+  '@next/swc-linux-x64-gnu@15.3.0':
     optional: true
 
-  '@next/swc-linux-x64-musl@15.2.4':
+  '@next/swc-linux-x64-musl@15.3.0':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@15.2.4':
+  '@next/swc-win32-arm64-msvc@15.3.0':
     optional: true
 
-  '@next/swc-win32-x64-msvc@15.2.4':
+  '@next/swc-win32-x64-msvc@15.3.0':
     optional: true
 
   '@nodelib/fs.scandir@2.1.5':
@@ -6094,7 +6097,7 @@ snapshots:
 
   '@types/draft-js@0.10.45':
     dependencies:
-      '@types/react': 19.0.12
+      '@types/react': 19.1.2
       immutable: 3.7.6
 
   '@types/estree@1.0.7': {}
@@ -6107,7 +6110,7 @@ snapshots:
 
   '@types/hoist-non-react-statics@3.3.6':
     dependencies:
-      '@types/react': 19.0.12
+      '@types/react': 19.1.2
       hoist-non-react-statics: 3.3.2
 
   '@types/istanbul-lib-coverage@2.0.6': {}
@@ -6153,20 +6156,11 @@ snapshots:
 
   '@types/prop-types@15.7.14': {}
 
-  '@types/react-dom@16.8.0':
+  '@types/react-dom@19.1.2(@types/react@19.1.2)':
     dependencies:
-      '@types/react': 19.0.12
+      '@types/react': 19.1.2
 
-  '@types/react-dom@19.0.4(@types/react@19.0.12)':
-    dependencies:
-      '@types/react': 19.0.12
-
-  '@types/react@16.8.2':
-    dependencies:
-      '@types/prop-types': 15.7.14
-      csstype: 2.6.21
-
-  '@types/react@19.0.12':
+  '@types/react@19.1.2':
     dependencies:
       csstype: 3.1.3
 
@@ -6477,7 +6471,7 @@ snapshots:
 
   '@wix/design-system-tokens@1.89.0': {}
 
-  '@wix/design-system@1.175.0(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(encoding@0.1.13)(immutable@4.3.7)(puppeteer-core@14.4.1(encoding@0.1.13))(puppeteer@14.4.1(encoding@0.1.13))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@wix/design-system@1.175.0(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(encoding@0.1.13)(immutable@4.3.7)(puppeteer-core@14.4.1(encoding@0.1.13))(puppeteer@14.4.1(encoding@0.1.13))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@babel/runtime': 7.27.0
       '@floating-ui/react': 0.27.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -6531,8 +6525,8 @@ snapshots:
       tslib: 2.8.1
       wix-design-systems-locale-utils: 1.164.0
     optionalDependencies:
-      '@types/react': 19.0.12
-      '@types/react-dom': 19.0.4(@types/react@19.0.12)
+      '@types/react': 19.1.2
+      '@types/react-dom': 19.1.2(@types/react@19.1.2)
       puppeteer: 14.4.1(encoding@0.1.13)
       puppeteer-core: 14.4.1(encoding@0.1.13)
     transitivePeerDependencies:
@@ -6603,7 +6597,7 @@ snapshots:
     dependencies:
       '@wix/auto_sdk_redirects_redirects': 1.0.2
 
-  '@wix/ricos@10.123.3(@babel/core@7.26.0)(@babel/runtime@7.27.0)(@babel/template@7.27.0)(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(encoding@0.1.13)(lodash@4.17.21)(prosemirror-model@1.25.0)(prosemirror-tables@1.6.4)(puppeteer-core@14.4.1(encoding@0.1.13))(puppeteer@14.4.1(encoding@0.1.13))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@wix/ricos@10.123.3(@babel/core@7.26.0)(@babel/runtime@7.27.0)(@babel/template@7.27.0)(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(encoding@0.1.13)(lodash@4.17.21)(prosemirror-model@1.25.0)(prosemirror-tables@1.6.4)(puppeteer-core@14.4.1(encoding@0.1.13))(puppeteer@14.4.1(encoding@0.1.13))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@babel/runtime': 7.27.0
       '@dnd-kit/core': 6.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -6618,7 +6612,7 @@ snapshots:
       '@tiptap/pm': 2.8.0
       '@tiptap/react': 2.8.0(@tiptap/core@2.8.0(@tiptap/pm@2.8.0))(@tiptap/pm@2.8.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@tiptap/suggestion': 2.8.0(@tiptap/core@2.8.0(@tiptap/pm@2.8.0))(@tiptap/pm@2.8.0)
-      '@wix/design-system': 1.175.0(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(encoding@0.1.13)(immutable@4.3.7)(puppeteer-core@14.4.1(encoding@0.1.13))(puppeteer@14.4.1(encoding@0.1.13))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@wix/design-system': 1.175.0(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(encoding@0.1.13)(immutable@4.3.7)(puppeteer-core@14.4.1(encoding@0.1.13))(puppeteer@14.4.1(encoding@0.1.13))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@wix/image': 1.370.0
       '@wix/members': 1.0.212
       '@wix/sdk': 1.15.16
@@ -6658,7 +6652,7 @@ snapshots:
       pro-gallery: 5.0.117
       pro-gallery-lib: 5.0.115
       prop-types: 15.8.1
-      prosemirror-dev-tools: 4.1.0(@babel/core@7.26.0)(@babel/template@7.27.0)(@types/react@19.0.12)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      prosemirror-dev-tools: 4.1.0(@babel/core@7.26.0)(@babel/template@7.27.0)(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.10.3
       prosemirror-utils: 0.9.6(prosemirror-model@1.25.0)(prosemirror-state@1.4.3)(prosemirror-tables@1.6.4)
@@ -6666,13 +6660,13 @@ snapshots:
       react: 19.1.0
       react-click-outsider: 1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-colorful: 5.6.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      react-dock: 0.6.0(@types/react@19.0.12)(react@19.1.0)
+      react-dock: 0.6.0(@types/react@19.1.2)(react@19.1.0)
       react-dom: 19.1.0(react@19.1.0)
       react-flip-move: 3.0.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-hotkeys: 2.0.0(react@19.1.0)
       react-i18next: 11.16.4(i18next@19.9.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-infinite-scroller: 1.2.6(react@19.1.0)
-      react-json-tree: 0.17.0(@types/react@19.0.12)(react@19.1.0)
+      react-json-tree: 0.17.0(@types/react@19.1.2)(react@19.1.0)
       react-measure: 2.3.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-modal: 3.4.5(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-player: 1.15.3(react@19.1.0)
@@ -7363,8 +7357,6 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  csstype@2.6.21: {}
-
   csstype@3.1.3: {}
 
   cuss@1.21.0: {}
@@ -7632,10 +7624,10 @@ snapshots:
       draft-js-utils: 1.4.1(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(immutable@4.3.7)
       immutable: 4.3.7
 
-  draft-js-list-plugin@1.0.2(@types/draft-js@0.10.45)(@types/react@19.0.12)(draft-js-plugins-editor@3.0.0(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0):
+  draft-js-list-plugin@1.0.2(@types/draft-js@0.10.45)(@types/react@19.1.2)(draft-js-plugins-editor@3.0.0(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0):
     dependencies:
       '@types/draft-js': 0.10.45
-      '@types/react': 19.0.12
+      '@types/react': 19.1.2
       draft-js: 0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       draft-js-plugins-editor: 3.0.0(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
@@ -7826,9 +7818,9 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-config-next@15.2.4(eslint@9.23.0(jiti@1.21.7))(typescript@5.8.2):
+  eslint-config-next@15.3.0(eslint@9.23.0(jiti@1.21.7))(typescript@5.8.2):
     dependencies:
-      '@next/eslint-plugin-next': 15.2.4
+      '@next/eslint-plugin-next': 15.3.0
       '@rushstack/eslint-patch': 1.11.0
       '@typescript-eslint/eslint-plugin': 8.29.0(@typescript-eslint/parser@8.29.0(eslint@9.23.0(jiti@1.21.7))(typescript@5.8.2))(eslint@9.23.0(jiti@1.21.7))(typescript@5.8.2)
       '@typescript-eslint/parser': 8.29.0(eslint@9.23.0(jiti@1.21.7))(typescript@5.8.2)
@@ -9255,9 +9247,9 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  next@15.2.4(@babel/core@7.26.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.86.1):
+  next@15.3.0(@babel/core@7.26.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.86.1):
     dependencies:
-      '@next/env': 15.2.4
+      '@next/env': 15.3.0
       '@swc/counter': 0.1.3
       '@swc/helpers': 0.5.15
       busboy: 1.6.0
@@ -9267,16 +9259,16 @@ snapshots:
       react-dom: 19.1.0(react@19.1.0)
       styled-jsx: 5.1.6(@babel/core@7.26.0)(react@19.1.0)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 15.2.4
-      '@next/swc-darwin-x64': 15.2.4
-      '@next/swc-linux-arm64-gnu': 15.2.4
-      '@next/swc-linux-arm64-musl': 15.2.4
-      '@next/swc-linux-x64-gnu': 15.2.4
-      '@next/swc-linux-x64-musl': 15.2.4
-      '@next/swc-win32-arm64-msvc': 15.2.4
-      '@next/swc-win32-x64-msvc': 15.2.4
+      '@next/swc-darwin-arm64': 15.3.0
+      '@next/swc-darwin-x64': 15.3.0
+      '@next/swc-linux-arm64-gnu': 15.3.0
+      '@next/swc-linux-arm64-musl': 15.3.0
+      '@next/swc-linux-x64-gnu': 15.3.0
+      '@next/swc-linux-x64-musl': 15.3.0
+      '@next/swc-win32-arm64-msvc': 15.3.0
+      '@next/swc-win32-x64-msvc': 15.3.0
       sass: 1.86.1
-      sharp: 0.33.5
+      sharp: 0.34.1
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
@@ -9723,7 +9715,7 @@ snapshots:
       prosemirror-state: 1.4.3
       prosemirror-transform: 1.10.3
 
-  prosemirror-dev-tools@4.1.0(@babel/core@7.26.0)(@babel/template@7.27.0)(@types/react@19.0.12)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  prosemirror-dev-tools@4.1.0(@babel/core@7.26.0)(@babel/template@7.27.0)(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.0
       '@compiled/react': 0.11.4(react@19.1.0)
@@ -9734,9 +9726,9 @@ snapshots:
       prosemirror-model: 1.25.0
       prosemirror-state: 1.4.3
       react: 19.1.0
-      react-dock: 0.6.0(@types/react@19.0.12)(react@19.1.0)
+      react-dock: 0.6.0(@types/react@19.1.2)(react@19.1.0)
       react-dom: 19.1.0(react@19.1.0)
-      react-json-tree: 0.17.0(@types/react@19.0.12)(react@19.1.0)
+      react-json-tree: 0.17.0(@types/react@19.1.2)(react@19.1.0)
     transitivePeerDependencies:
       - '@babel/core'
       - '@babel/template'
@@ -10011,8 +10003,8 @@ snapshots:
 
   react-click-outsider@1.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      '@types/react': 16.8.2
-      '@types/react-dom': 16.8.0
+      '@types/react': 19.1.2
+      '@types/react-dom': 19.1.2(@types/react@19.1.2)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
@@ -10049,12 +10041,12 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  react-dock@0.6.0(@types/react@19.0.12)(react@19.1.0):
+  react-dock@0.6.0(@types/react@19.1.2)(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.0
       '@types/lodash': 4.17.16
       '@types/prop-types': 15.7.14
-      '@types/react': 19.0.12
+      '@types/react': 19.1.2
       lodash.debounce: 4.0.8
       prop-types: 15.8.1
       react: 19.1.0
@@ -10111,12 +10103,12 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-json-tree@0.17.0(@types/react@19.0.12)(react@19.1.0):
+  react-json-tree@0.17.0(@types/react@19.1.2)(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.0
       '@types/lodash': 4.17.16
       '@types/prop-types': 15.7.14
-      '@types/react': 19.0.12
+      '@types/react': 19.1.2
       prop-types: 15.8.1
       react: 19.1.0
       react-base16-styling: 0.9.1
@@ -10468,12 +10460,12 @@ snapshots:
 
   rfdc@1.4.1: {}
 
-  ricos-common@9.18.4(@babel/runtime@7.27.0)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  ricos-common@9.18.4(@babel/runtime@7.27.0)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       ricos-styles: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)
       ts-is-present: 1.2.2
       wix-rich-content-common: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      wix-rich-content-editor: 9.18.4(@babel/runtime@7.27.0)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      wix-rich-content-editor: 9.18.4(@babel/runtime@7.27.0)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       wix-rich-content-preview: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       wix-rich-content-viewer: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     transitivePeerDependencies:
@@ -10536,16 +10528,16 @@ snapshots:
       - classnames
       - lodash
 
-  ricos-viewer@9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  ricos-viewer@9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.0
       classnames: 2.5.1
       lodash: 4.17.21
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-      ricos-common: 9.18.4(@babel/runtime@7.27.0)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      ricos-common: 9.18.4(@babel/runtime@7.27.0)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       wix-rich-content-common: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      wix-rich-content-fullscreen: 9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      wix-rich-content-fullscreen: 9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       wix-rich-content-link-preview-popover: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       wix-rich-content-text-selection-toolbar: 9.18.4(classnames@2.5.1)(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       wix-rich-content-viewer: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -10653,31 +10645,32 @@ snapshots:
 
   shallowequal@1.1.0: {}
 
-  sharp@0.33.5:
+  sharp@0.34.1:
     dependencies:
       color: 4.2.3
       detect-libc: 2.0.3
       semver: 7.7.1
     optionalDependencies:
-      '@img/sharp-darwin-arm64': 0.33.5
-      '@img/sharp-darwin-x64': 0.33.5
-      '@img/sharp-libvips-darwin-arm64': 1.0.4
-      '@img/sharp-libvips-darwin-x64': 1.0.4
-      '@img/sharp-libvips-linux-arm': 1.0.5
-      '@img/sharp-libvips-linux-arm64': 1.0.4
-      '@img/sharp-libvips-linux-s390x': 1.0.4
-      '@img/sharp-libvips-linux-x64': 1.0.4
-      '@img/sharp-libvips-linuxmusl-arm64': 1.0.4
-      '@img/sharp-libvips-linuxmusl-x64': 1.0.4
-      '@img/sharp-linux-arm': 0.33.5
-      '@img/sharp-linux-arm64': 0.33.5
-      '@img/sharp-linux-s390x': 0.33.5
-      '@img/sharp-linux-x64': 0.33.5
-      '@img/sharp-linuxmusl-arm64': 0.33.5
-      '@img/sharp-linuxmusl-x64': 0.33.5
-      '@img/sharp-wasm32': 0.33.5
-      '@img/sharp-win32-ia32': 0.33.5
-      '@img/sharp-win32-x64': 0.33.5
+      '@img/sharp-darwin-arm64': 0.34.1
+      '@img/sharp-darwin-x64': 0.34.1
+      '@img/sharp-libvips-darwin-arm64': 1.1.0
+      '@img/sharp-libvips-darwin-x64': 1.1.0
+      '@img/sharp-libvips-linux-arm': 1.1.0
+      '@img/sharp-libvips-linux-arm64': 1.1.0
+      '@img/sharp-libvips-linux-ppc64': 1.1.0
+      '@img/sharp-libvips-linux-s390x': 1.1.0
+      '@img/sharp-libvips-linux-x64': 1.1.0
+      '@img/sharp-libvips-linuxmusl-arm64': 1.1.0
+      '@img/sharp-libvips-linuxmusl-x64': 1.1.0
+      '@img/sharp-linux-arm': 0.34.1
+      '@img/sharp-linux-arm64': 0.34.1
+      '@img/sharp-linux-s390x': 0.34.1
+      '@img/sharp-linux-x64': 0.34.1
+      '@img/sharp-linuxmusl-arm64': 0.34.1
+      '@img/sharp-linuxmusl-x64': 0.34.1
+      '@img/sharp-wasm32': 0.34.1
+      '@img/sharp-win32-ia32': 0.34.1
+      '@img/sharp-win32-x64': 0.34.1
     optional: true
 
   shebang-command@1.2.0:
@@ -11560,12 +11553,12 @@ snapshots:
       - react-dom
       - supports-color
 
-  wix-rich-content-editor@9.18.4(@babel/runtime@7.27.0)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  wix-rich-content-editor@9.18.4(@babel/runtime@7.27.0)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.0
       classnames: 2.5.1
       draft-js-drag-n-drop-plugin: 2.0.4(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      draft-js-list-plugin: 1.0.2(@types/draft-js@0.10.45)(@types/react@19.0.12)(draft-js-plugins-editor@3.0.0(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+      draft-js-list-plugin: 1.0.2(@types/draft-js@0.10.45)(@types/react@19.1.2)(draft-js-plugins-editor@3.0.0(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
       draft-js-plugins-editor: 3.0.0(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       forked-draft-js-focus-plugin: 3.0.1(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       lodash: 4.17.21
@@ -11584,7 +11577,7 @@ snapshots:
       - draft-js
       - supports-color
 
-  wix-rich-content-fullscreen@9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  wix-rich-content-fullscreen@9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.27.0
       classnames: 2.5.1
@@ -11594,7 +11587,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       wix-rich-content-common: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      wix-rich-content-plugin-gallery: 9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      wix-rich-content-plugin-gallery: 9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     transitivePeerDependencies:
       - '@popperjs/core'
       - '@types/draft-js'
@@ -11628,7 +11621,7 @@ snapshots:
       - react-dom
       - supports-color
 
-  wix-rich-content-plugin-gallery@9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  wix-rich-content-plugin-gallery@9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       image-client-api: 1.2218.0
       pro-gallery: 4.1.49(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -11639,7 +11632,7 @@ snapshots:
       wix-rich-content-common: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       wix-rich-content-editor-common: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       wix-rich-content-plugin-commons: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      wix-rich-content-toolbars-ui: 9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      wix-rich-content-toolbars-ui: 9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       wix-rich-content-ui-components: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     transitivePeerDependencies:
       - '@babel/runtime'
@@ -11674,7 +11667,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  wix-rich-content-toolbars-ui@9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  wix-rich-content-toolbars-ui@9.18.4(@babel/runtime@7.27.0)(@popperjs/core@2.11.2)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       classnames: 2.5.1
       react: 19.1.0
@@ -11684,7 +11677,7 @@ snapshots:
       ricos-schema: 9.18.4
       ricos-types: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)
       wix-rich-content-common: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      wix-rich-content-editor: 9.18.4(@babel/runtime@7.27.0)(@types/draft-js@0.10.45)(@types/react@19.0.12)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      wix-rich-content-editor: 9.18.4(@babel/runtime@7.27.0)(@types/draft-js@0.10.45)(@types/react@19.1.2)(classnames@2.5.1)(draft-js@0.11.7(encoding@0.1.13)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       wix-rich-content-editor-common: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       wix-rich-content-ui-components: 9.18.4(@babel/runtime@7.27.0)(classnames@2.5.1)(lodash@4.17.21)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     transitivePeerDependencies:
