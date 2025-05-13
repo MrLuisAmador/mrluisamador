@@ -75,8 +75,8 @@ const Blog = async (props: Props) => {
       {
         '@type': 'Person',
         name: 'Luis Amador',
-        url: `https://www.mrluisamador.com/blogs/${blog.slug}`,
-        image: `metaURL`,
+        url: `https://www.mrluisamador.com/blogs/${post.slug}`,
+        image: media.getImageUrl(post.image).url,
       },
     ],
   }
