@@ -1,6 +1,6 @@
 'use client'
 
-import {sendGridAction} from '../(home)/contact/actions'
+import {sendGridAction} from '../contact/actions'
 import {useRef} from 'react'
 
 declare global {

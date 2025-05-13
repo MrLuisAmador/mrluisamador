@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import {Aem, Nextjs, Wix} from './svg'
+import {Aem, Nextjs, Wix} from './components/svg'
 import {Metadata} from 'next'
 
 export const metadata: Metadata = {
@@ -27,8 +27,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="grid">
-        <div className="col-span-6  bg-white px-4 py-2 md:px-16 md:py-5 self-center md:self-end">
+      <section className="grid grid-cols-1 md:grid-cols-2 pt-5 md:pt-0">
+        <div className="bg-white px-4 py-2 md:px-16 md:py-5 self-center md:self-end">
           <div>
             <Wix />
           </div>
@@ -39,7 +39,7 @@ export default function Home() {
             </span>
           </p>
         </div>
-        <div className="col-span-6  bg-white px-4 py-2 md:px-16 md:py-5">
+        <div className="bg-white px-4 py-2 md:px-16 md:py-5">
           <div>
             <Nextjs />
           </div>
@@ -47,18 +47,6 @@ export default function Home() {
             <span className="block text-center">Do you want a Web App?</span>
             <span className="block text-center">
               Nextjs is used when you need to build a sophisticated Web App
-            </span>
-          </p>
-        </div>
-        <div className="col-span-12  bg-[#241405]">
-          <div className="flex justify-center">
-            <Aem />
-          </div>
-
-          <p className="pb-10">
-            <span className="block text-center text-white">Adobe Experience Manager</span>
-            <span className="block text-center text-white">
-              Currently employed full-time as an AEM Developer
             </span>
           </p>
         </div>

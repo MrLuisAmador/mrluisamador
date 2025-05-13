@@ -1,4 +1,4 @@
-import SendEmail from '../../components/SendEmail'
+import SendEmail from '../components/SendEmail'
 import {Metadata} from 'next'
 
 export const metadata: Metadata = {

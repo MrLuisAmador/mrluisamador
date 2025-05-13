@@ -3,7 +3,6 @@ import {Metadata} from 'next'
 import {getWixClient} from '@/wix/useWixClientServer'
 import Image from 'next/image'
 import {media} from '@wix/sdk'
-import Adunit from './Adunit'
 
 export const metadata: Metadata = {
   title: 'Blogs',
@@ -52,7 +51,6 @@ export default async function Blogs() {
           </li>
         ))}
       </ul>
-      <Adunit />
     </section>
   )
 }

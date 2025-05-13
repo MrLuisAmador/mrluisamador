@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import {WixMediaImage} from '../../../wix/WixMediaImage'
+import {WixMediaImage} from '../../wix/WixMediaImage'
 
 function AllProjectsItem({lists}: any) {
   return (

@@ -1,5 +1,5 @@
 import {Metadata} from 'next'
-import {getWixClient} from '../../../wix/useWixClientServer'
+import {getWixClient} from '../../wix/useWixClientServer'
 import Shuffle from './shuffle'
 
 export const metadata: Metadata = {
