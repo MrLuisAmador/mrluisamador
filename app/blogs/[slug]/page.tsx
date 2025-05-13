@@ -13,7 +13,7 @@ export async function generateMetadata(props: Props) {
 
   const {slug} = params
 
-  const queryWixBlogs: any = await getWixClient()
+  const queryWixBlogs = await getWixClient()
 
   const {items: blog} = await queryWixBlogs.items.query('blogPost').eq('slug', slug).find()
 
@@ -21,7 +21,7 @@ export async function generateMetadata(props: Props) {
 
   const metaURL = media.getImageUrl(post.image).url
   const metaAuthor = post.refAuthors.title
-  const metaDate = post._updatedDate.$date
+  const metaDate = post._updatedDate?.toISOString()
   const metaTile = post.title
 
   return {
@@ -59,7 +59,7 @@ const Blog = async (props: Props) => {
 
   const {slug} = params
 
-  const queryWixBlogs: any = await getWixClient()
+  const queryWixBlogs = await getWixClient()
 
   const {items: blog} = await queryWixBlogs.items.query('blogPost').eq('slug', slug).find()
 

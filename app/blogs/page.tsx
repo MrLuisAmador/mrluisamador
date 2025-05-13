@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Blogs() {
-  const myWixBlogs: any = await getWixClient()
+  const myWixBlogs = await getWixClient()
 
   const {items: blogs} = await myWixBlogs.items.query('blogPost').descending('order').find()
 
