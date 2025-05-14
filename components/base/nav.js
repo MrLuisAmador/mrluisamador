@@ -4,8 +4,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import {usePathname} from 'next/navigation'
 
-import HeadShot from '../../public/images/mugshot.png'
-
 export default function Nav() {
   const pathname = usePathname()
 
@@ -25,7 +23,7 @@ export default function Nav() {
               <Image
                 priority
                 className="block"
-                src={HeadShot}
+                src="/images/mugshot.png"
                 alt="Head Shot"
                 width={310}
                 height={310}

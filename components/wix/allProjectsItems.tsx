@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import {WixMediaImage} from '../../wix/WixMediaImage'
+import {WixMediaImage} from './WixMediaImage'
 
-function AllProjectsItem({lists}: any) {
+function AllProjectsItems({lists}: any) {
   return (
     <>
       {lists.map((list: any) => (
@@ -30,4 +30,4 @@ function AllProjectsItem({lists}: any) {
   )
 }
 
-export default AllProjectsItem
+export default AllProjectsItems

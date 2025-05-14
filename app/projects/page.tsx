@@ -1,6 +1,6 @@
 import {Metadata} from 'next'
-import {getWixClient} from '../../wix/useWixClientServer'
-import Shuffle from './shuffle'
+import {getWixClient} from '../../lib/wix/useWixClientServer'
+import Shuffle from '../../components/wix/shuffle'
 
 export const metadata: Metadata = {
   title: 'Projects',

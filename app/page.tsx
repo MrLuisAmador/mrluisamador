@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import {Aem, Nextjs, Wix} from './components/svg'
+import {Nextjs, Wix} from '@/components/base/svg'
 import {Metadata} from 'next'
 
 export const metadata: Metadata = {

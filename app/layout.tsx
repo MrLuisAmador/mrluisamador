@@ -1,6 +1,6 @@
 import Script from 'next/script'
-import Nav from './components/nav'
-import Footer from './components/footer'
+import Nav from '@/components/base/nav'
+import Footer from '@/components/base/footer'
 import {Metadata} from 'next'
 
 import {Alice, Playfair_Display} from 'next/font/google'

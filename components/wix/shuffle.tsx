@@ -1,6 +1,6 @@
 'use client'
 
-import AllProjectsItem from './projects-item'
+import AllProjectsItems from '@/components/wix/allProjectsItems'
 import {useState} from 'react'
 
 interface Project {
@@ -45,7 +45,7 @@ function Shuffle({initialProjects}: ShuffleProps) {
         ))}
       </div>
       <div id="filter-container" className="flex flex-wrap">
-        <AllProjectsItem lists={state} />
+        <AllProjectsItems lists={state} />
       </div>
     </>
   )

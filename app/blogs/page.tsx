@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import {Metadata} from 'next'
-import {getWixClient} from '@/wix/useWixClientServer'
+import {getWixClient} from '@/lib/wix/useWixClientServer'
 import Image from 'next/image'
 import {media} from '@wix/sdk'
 

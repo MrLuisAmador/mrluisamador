@@ -1,19 +1,8 @@
 'use server'
 
 import mail from '@sendgrid/mail'
+import {verifyRecaptcha} from '@/lib/google/verifyRecaptcha'
 import {redirect} from 'next/navigation'
-
-async function verifyRecaptcha(token: string) {
-  const verifyUrl = 'https://www.google.com/recaptcha/api/siteverify'
-  const response = await fetch(verifyUrl, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-    body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
-  })
-
-  const data = await response.json()
-  return data.success && data.score >= 0.5
-}
 
 export async function sendGridAction(formData: FormData) {
   const token = formData.get('recaptchaToken') as string

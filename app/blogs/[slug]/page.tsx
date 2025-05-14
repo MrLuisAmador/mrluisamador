@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import {getWixClient} from '@/wix/useWixClientServer'
-import RichContentViewer from '@/wix/RichContentViewer'
+import {getWixClient} from '@/lib/wix/useWixClientServer'
+import RichContentViewer from '@/components/wix/RichContentViewer'
 import {media} from '@wix/sdk'
 
 type Props = {
