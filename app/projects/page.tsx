@@ -1,6 +1,6 @@
 import {Metadata} from 'next'
-import {getWixClient} from '../../lib/wix/useWixClientServer'
-import Shuffle from '../../components/wix/shuffle'
+import {getWixClient} from '@/lib/wix/useWixClientServer'
+import ProjectFilter from '@/components/wix/projectFilter'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -22,7 +22,7 @@ async function Projects() {
         <h3 className="text-lg mb-8 text-center">List of Projects.</h3>
       </div>
 
-      <Shuffle initialProjects={projects} />
+      <ProjectFilter projects={projects} />
     </section>
   )
 }

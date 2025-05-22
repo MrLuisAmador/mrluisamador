@@ -8,20 +8,20 @@ interface Project {
 }
 
 interface ShuffleProps {
-  initialProjects: Project[]
+  projects: Project[]
 }
 
-function Shuffle({initialProjects}: ShuffleProps) {
-  const [state, setState] = useState<Project[]>(initialProjects)
-  const filters = ['All', ...new Set(initialProjects.map((project) => project.filter))]
+function ProjectFilter({projects}: ShuffleProps) {
+  const [state, setState] = useState<Project[]>(projects)
+  const filters = ['All', ...new Set(projects.map((project) => project.filter))]
 
   const handleBtn = (e: React.MouseEvent<HTMLButtonElement>) => {
     const word = e.currentTarget.value
 
     if (word === 'All') {
-      setState(initialProjects)
+      setState(projects)
     } else {
-      const filtered = initialProjects.filter((item) => item.filter === word)
+      const filtered = projects.filter((item) => item.filter === word)
       setState(filtered)
     }
   }
@@ -51,4 +51,4 @@ function Shuffle({initialProjects}: ShuffleProps) {
   )
 }
 
-export default Shuffle
+export default ProjectFilter
