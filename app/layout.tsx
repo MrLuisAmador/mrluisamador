@@ -26,8 +26,9 @@ export const metadata: Metadata = {
     default: 'Luis Amador',
   },
   keywords: ['Next.js', 'React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Portfolio'],
+  metadataBase: new URL('https://www.mrluisamador.com/'),
   alternates: {
-    canonical: 'https://mrluisamador.com/',
+    canonical: '/',
   },
 }
 
