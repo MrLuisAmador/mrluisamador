@@ -3,7 +3,7 @@ import {Nextjs, Wix} from '@/components/base/svg'
 import {Metadata} from 'next'
 
 export const metadata: Metadata = {
-  title: 'Home | Web Developer Portfolio',
+  title: 'Home | Luis Amador Portfolio',
   description: 'Luis Amador portfolio to showcase his services and skills.',
 }
 
