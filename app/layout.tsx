@@ -1,6 +1,7 @@
 import Script from 'next/script'
 import Nav from '@/components/base/nav'
 import Footer from '@/components/base/footer'
+import {GoogleTagManager} from '@next/third-parties/google'
 import {Metadata} from 'next'
 
 import {Alice, Playfair_Display} from 'next/font/google'
@@ -33,24 +34,12 @@ export const metadata: Metadata = {
 export default function HomeLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" className={`${alice.variable} ${playfair_display.variable}`}>
+      <GoogleTagManager gtmId="GTM-WMZTF2CW" />
       <Script
         async
         src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197`}
         strategy="afterInteractive"
       />
-      <Script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=G-M2KRSHY4X8'`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
-         window.dataLayer = window.dataLayer || [];
-         function gtag(){dataLayer.push(arguments);}
-         gtag('js', new Date());
-         gtag('config', 'G-M2KRSHY4X8');
-        `}
-      </Script>
       <body>
         <Script
           strategy="beforeInteractive"
