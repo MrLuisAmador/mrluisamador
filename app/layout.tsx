@@ -2,6 +2,7 @@ import Script from 'next/script'
 import Nav from '@/components/base/nav'
 import Footer from '@/components/base/footer'
 import {GoogleTagManager} from '@next/third-parties/google'
+import {Analytics} from '@vercel/analytics/next'
 import {Metadata} from 'next'
 
 import {Alice, Playfair_Display} from 'next/font/google'
@@ -51,6 +52,7 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
           <main>{children}</main>
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   )

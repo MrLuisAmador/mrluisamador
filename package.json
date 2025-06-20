@@ -11,6 +11,7 @@
   "dependencies": {
     "@next/third-parties": "^15.3.4",
     "@sendgrid/mail": "^8.1.4",
+    "@vercel/analytics": "^1.5.0",
     "@wix/data": "^1.0.213",
     "@wix/ricos": "^10.123.3",
     "@wix/sdk": "^1.15.16",
