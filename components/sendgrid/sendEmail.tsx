@@ -2,8 +2,7 @@
 
 import {sendGridAction} from '@/actions/sendGridAction'
 import {ContactFormSchema} from '@/lib/zod/contact-form-schema'
-import {useRef, useActionState} from 'react'
-import {z} from 'zod'
+import {useActionState} from 'react'
 
 declare global {
   interface Window {

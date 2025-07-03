@@ -37,11 +37,6 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
   return (
     <html lang="en" className={`${alice.variable} ${playfair_display.variable}`}>
       <GoogleTagManager gtmId="GTM-WMZTF2CW" />
-      <Script
-        async
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197`}
-        strategy="afterInteractive"
-      />
       <body>
         <Script
           strategy="beforeInteractive"

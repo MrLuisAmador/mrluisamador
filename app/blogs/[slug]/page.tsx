@@ -3,6 +3,7 @@ import Image from 'next/image'
 import {getWixClient} from '@/lib/wix/useWixClientServer'
 import RichContentViewer from '@/components/wix/RichContentViewer'
 import {media} from '@wix/sdk'
+import GoogleAd from '@/components/google/google-adsense'
 
 type Props = {
   params: Promise<{slug: string}>
@@ -102,6 +103,9 @@ const Blog = async (props: Props) => {
           alt={`media.getImageUrl(post.image).altText`}
           className="pb-16"
         />
+        <div className="my-8">
+          <GoogleAd adSlot="6232399682" />
+        </div>
         <RichContentViewer content={post.content} />
       </div>
     </article>

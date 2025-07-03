@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import {Nextjs, Wix} from '@/components/base/svg'
 import {Metadata} from 'next'
+import {Button} from '@/components/ui/button'
 
 export const metadata: Metadata = {
   title: 'Home | Luis Amador Portfolio',
@@ -17,7 +18,6 @@ export default function Home() {
           <h2 className="text-white text-4xl lg:text-5xl mb-10">
             <span className="block text-center">why you should hire me</span>
           </h2>
-
           <Link
             className="border border-solid border-white text-white py-2.5 px-4 w-full max-w-[80%] md:max-w-[30%] inline-block rounded text-xl hover:bg-white/[.15] transition-colors"
             href="about"
