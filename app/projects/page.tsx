@@ -6,6 +6,9 @@ import {Project} from '@/lib/types/wix'
 export const metadata: Metadata = {
   title: 'Projects',
   description: 'Portfolio Website And Blog',
+  alternates: {
+    canonical: '/projects',
+  },
 }
 
 async function Projects() {

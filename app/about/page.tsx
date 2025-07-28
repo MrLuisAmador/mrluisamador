@@ -3,6 +3,9 @@ import {Metadata} from 'next'
 export const metadata: Metadata = {
   title: 'About',
   description: 'Luis Amador website to showcase his skills and services he offers to businesses',
+  alternates: {
+    canonical: '/about',
+  },
 }
 
 export default function About() {

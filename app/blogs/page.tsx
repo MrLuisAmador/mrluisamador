@@ -7,6 +7,9 @@ import {media} from '@wix/sdk'
 export const metadata: Metadata = {
   title: 'Blogs',
   description: 'Portfolio Website And Blog',
+  alternates: {
+    canonical: '/blogs',
+  },
 }
 
 export default async function Blogs() {

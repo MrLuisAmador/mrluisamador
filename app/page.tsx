@@ -5,6 +5,9 @@ import {Metadata} from 'next'
 export const metadata: Metadata = {
   title: 'Home | Luis Amador Portfolio',
   description: 'Luis Amador portfolio to showcase his services and skills.',
+  alternates: {
+    canonical: '/',
+  },
 }
 
 export default function Home() {

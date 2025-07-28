@@ -4,6 +4,9 @@ import {Services} from '@/components/base/services'
 export const metadata: Metadata = {
   title: 'Services',
   description: 'Luis Amador website to showcase his skills and services he offers to businesses',
+  alternates: {
+    canonical: '/services',
+  },
 }
 
 const ServicePage = () => (
