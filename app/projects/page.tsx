@@ -1,6 +1,7 @@
 import {Metadata} from 'next'
 import {getWixClient} from '@/lib/wix/useWixClientServer'
 import ProjectFilter from '@/components/wix/projectFilter'
+import {Project} from '@/lib/types/wix'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -9,10 +10,10 @@ export const metadata: Metadata = {
 
 async function Projects() {
   const queryWixProjects = await getWixClient()
-  const {items: projects} = await queryWixProjects.items
-    .query('projectGallery')
-    .ascending('orderId')
-    .find()
+  const {items} = await queryWixProjects.items.query('projectGallery').ascending('orderId').find()
+
+  // Cast the items to Project[] type since we know the structure matches
+  const projects = items as Project[]
 
   return (
     <section id="projects" className="h-full text-white bg-projects-orange py-16">
