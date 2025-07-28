@@ -1,6 +1,6 @@
 'use client'
 
-import {sendGridAction} from '@/actions/sendGridAction'
+import {nodemailerAction} from '@/actions/nodemailerAction'
 import {ContactFormSchema} from '@/lib/zod/contact-form-schema'
 import {useActionState} from 'react'
 
@@ -65,7 +65,7 @@ const SendEmail = () => {
         }
 
         // Call server action
-        await sendGridAction(formData)
+        await nodemailerAction(formData)
 
         // Return success state
         return {

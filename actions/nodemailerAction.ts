@@ -1,11 +1,11 @@
 'use server'
 
-import mail from '@sendgrid/mail'
 import {verifyRecaptcha} from '@/lib/google/verifyRecaptcha'
 import {redirect} from 'next/navigation'
 import {ContactFormSchema} from '@/lib/zod/contact-form-schema'
+import {createTransporter, emailTemplates} from '@/lib/nodemailer/config'
 
-export async function sendGridAction(formData: FormData) {
+export async function nodemailerAction(formData: FormData) {
   const formDataObj = Object.fromEntries(formData.entries())
   const parsedData = ContactFormSchema.safeParse(formDataObj)
 
@@ -36,28 +36,15 @@ export async function sendGridAction(formData: FormData) {
     message: formData.get('message') as string,
   }
 
-  mail.setApiKey(process.env.SENDGRID_API_KEY || '')
+  // Create transporter
+  const transporter = createTransporter()
 
-  if (!process.env.SENDGRID_API_KEY) {
-    console.error('SENDGRID_API_KEY is not set')
-    return
-  }
-
-  const message = `
-    <h1>Contact Form Submission</h1>
-    <p><strong>Email:</strong> ${body.email}</p>
-    <p><strong>Message:</strong></p>
-    <p>${body.message}</p>
-  `
-  const data = {
-    to: 'mrluisamador@gmail.com',
-    from: 'webmaster@mrluisamador.com',
-    subject: 'What service do you need done?',
-    html: message,
-  }
+  // Email content using template
+  const mailOptions = emailTemplates.contactForm(body)
 
   try {
-    await mail.send(data)
+    // Send email
+    await transporter.sendMail(mailOptions)
     console.log('Email sent successfully')
   } catch (error) {
     console.error('Error sending email:', error)
