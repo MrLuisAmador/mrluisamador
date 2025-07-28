@@ -16,7 +16,6 @@ export default function GoogleAd({
 }: GoogleAdProps) {
   useEffect(() => {
     try {
-      // @ts-ignore
       ;(window.adsbygoogle = window.adsbygoogle || []).push({})
     } catch (error) {
       console.error('AdSense error:', error)

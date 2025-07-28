@@ -56,6 +56,7 @@ const SendEmail = () => {
           // Add token to form data
           formData.append('recaptchaToken', token)
         } catch (error) {
+          console.error('reCAPTCHA error:', error)
           return {
             success: false,
             errors: {

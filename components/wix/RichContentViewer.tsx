@@ -8,9 +8,14 @@ import {
   pluginDivider,
   pluginCodeBlock,
   pluginTable,
+  RichContent,
 } from '@wix/ricos'
 
-const RichContentViewer = ({content}: {content: any}) => {
+interface RichContentViewerProps {
+  content: RichContent
+}
+
+const RichContentViewer = ({content}: RichContentViewerProps) => {
   const plugins = [
     ...quickStartViewerPlugins(),
     pluginGallery(),

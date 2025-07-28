@@ -19,7 +19,7 @@ export default async function Blogs() {
       <h1 className="text-5xl text-center mb-20">Blogs</h1>
 
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {blogs.map((blog: any) => (
+        {blogs.map((blog) => (
           <li key={blog._id} className="shadow shadow-black rounded bg-white">
             {/* <p>Name {blog.data.refAuthors.title}</p> */}
             {/* <p>Name {blog.data.refCategories.title}</p> */}

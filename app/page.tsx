@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import {Nextjs, Wix} from '@/components/base/svg'
 import {Metadata} from 'next'
-import {Button} from '@/components/ui/button'
 
 export const metadata: Metadata = {
   title: 'Home | Luis Amador Portfolio',

@@ -2,10 +2,7 @@
 
 import AllProjectsItems from '@/components/wix/allProjectsItems'
 import {useState} from 'react'
-
-interface Project {
-  filter: string
-}
+import {Project} from '@/lib/types/wix'
 
 interface ShuffleProps {
   projects: Project[]
