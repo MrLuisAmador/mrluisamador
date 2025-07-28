@@ -347,3 +347,10 @@ export type WixBlogQueryResult = WixQueryResult<WixBlogPost>
 
 // Wix Project Query Result
 export type WixProjectQueryResult = WixQueryResult<Project>
+
+// Global AdSense types
+declare global {
+  interface Window {
+    adsbygoogle: Array<() => void>
+  }
+}
