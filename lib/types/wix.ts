@@ -351,6 +351,6 @@ export type WixProjectQueryResult = WixQueryResult<Project>
 // Global AdSense types
 declare global {
   interface Window {
-    adsbygoogle: Array<() => void>
+    adsbygoogle: Array<Record<string, never>>
   }
 }
