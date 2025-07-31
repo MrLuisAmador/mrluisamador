@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    formats: ['image/webp'],
+    formats: ['image/webp', 'image/avif'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -13,6 +13,10 @@ const nextConfig = {
         hostname: 'static.wixstatic.com',
       },
     ],
+  },
+  experimental: {
+    // Enable the latest experimental features
+    optimizePackageImports: ['lucide-react'],
   },
 }
 

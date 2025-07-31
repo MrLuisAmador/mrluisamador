@@ -10,7 +10,32 @@ export const metadata: Metadata = {
   },
 }
 
+const ServiceCard = ({icon: Icon, title, description}: {icon: React.ComponentType; title: string; description: string}) => (
+  <div className="bg-white px-4 py-2 md:px-16 md:py-5 self-center md:self-end">
+    <div>
+      <Icon />
+    </div>
+    <p className="pb-5 pt-5 md:pt-12">
+      <span className="block text-center">{title}</span>
+      <span className="block text-center">{description}</span>
+    </p>
+  </div>
+)
+
 export default function Home() {
+  const services = [
+    {
+      icon: Wix,
+      title: 'Do you want an afforable Website?',
+      description: 'Wix is a modern and better appoarch to rapid websites',
+    },
+    {
+      icon: Nextjs,
+      title: 'Do you want a Web App?',
+      description: 'Nextjs is used when you need to build a sophisticated Web App',
+    },
+  ]
+
   return (
     <>
       <section className="min-h-[380px] bg-theme-red flex text-center items-center">
@@ -30,28 +55,9 @@ export default function Home() {
       </section>
 
       <section className="grid grid-cols-1 md:grid-cols-2 pt-5 md:pt-0">
-        <div className="bg-white px-4 py-2 md:px-16 md:py-5 self-center md:self-end">
-          <div>
-            <Wix />
-          </div>
-          <p className="pb-5 pt-5 md:pt-12">
-            <span className="block text-center">Do you want an afforable Website?</span>
-            <span className="block text-center">
-              Wix is a modern and better appoarch to rapid websites
-            </span>
-          </p>
-        </div>
-        <div className="bg-white px-4 py-2 md:px-16 md:py-5">
-          <div>
-            <Nextjs />
-          </div>
-          <p className="py-5">
-            <span className="block text-center">Do you want a Web App?</span>
-            <span className="block text-center">
-              Nextjs is used when you need to build a sophisticated Web App
-            </span>
-          </p>
-        </div>
+        {services.map((service, index) => (
+          <ServiceCard key={index} {...service} />
+        ))}
       </section>
     </>
   )
