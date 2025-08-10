@@ -83,7 +83,7 @@ const SendEmail = () => {
         }
       }
     },
-    initialState,
+    initialState
   )
 
   return (

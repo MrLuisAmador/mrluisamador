@@ -10,7 +10,15 @@ export const metadata: Metadata = {
   },
 }
 
-const ServiceCard = ({icon: Icon, title, description}: {icon: React.ComponentType; title: string; description: string}) => (
+const ServiceCard = ({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: React.ComponentType
+  title: string
+  description: string
+}) => (
   <div className="bg-white px-4 py-2 md:px-16 md:py-5 self-center md:self-end">
     <div>
       <Icon />

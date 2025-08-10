@@ -1,54 +1,51 @@
 # Luis Amador Portfolio
 
-A modern portfolio website built with Next.js 15 and React 19, showcasing web development services and projects.
+A modern, professional portfolio website built with Next.js 15 and React 19, showcasing web development services, projects, and blog content. This portfolio demonstrates expertise in both modern web development and Wix platform solutions.
 
-## 🚀 Latest Updates
+## 🚀 Features
 
-This project has been updated to use the latest versions of React and Next.js:
-
-- **Next.js**: 15.3.4 (latest stable)
-- **React**: 19.1.0 (latest stable)
-- **React DOM**: 19.1.0 (latest stable)
-- **TypeScript**: 5.8.2
-
-## ✨ New Features & Improvements
-
-### React 19 Features
-
-- **Enhanced Performance**: Improved rendering performance with better batching
-- **New Hooks**: Support for the latest React hooks and patterns
-- **Better TypeScript Support**: Improved type inference and error handling
-- **Optimized Components**: Memoized components for better performance
-
-### Next.js 15 Features
-
-- **App Router**: Full support for the latest App Router features
-- **Turbopack**: Faster development builds with Turbopack
-- **Image Optimization**: Enhanced image formats (WebP, AVIF)
-- **View Transitions**: Experimental view transitions for better UX
-- **Package Optimization**: Automatic optimization of package imports
-
-### Performance Optimizations
-
-- **Component Memoization**: Strategic use of `React.memo` for performance
-- **Code Splitting**: Automatic code splitting for better loading times
-- **Image Optimization**: Next.js Image component with modern formats
-- **Font Optimization**: Google Fonts with display swap for better performance
+- **Modern Tech Stack**: Built with Next.js 15 and React 19 for optimal performance
+- **Portfolio Showcase**: Dynamic project gallery powered by Wix CMS
+- **Blog System**: Content management through Wix with rich text editing
+- **Contact Form**: Secure contact form with reCAPTCHA protection
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+- **SEO Optimized**: Built-in SEO features and performance optimization
+- **Authentication**: User management with Better Auth
+- **Email Integration**: Contact form processing with Nodemailer
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 15.3.4
+### Frontend
+
+- **Framework**: Next.js 15.3.4 (App Router)
 - **UI Library**: React 19.1.0
-- **Styling**: Tailwind CSS
-- **TypeScript**: 5.8.2
-- **Authentication**: Better Auth
-- **Database**: PostgreSQL
-- **Email**: Nodemailer
-- **CMS**: Wix (for content management)
+- **Styling**: Tailwind CSS with custom design system
+- **TypeScript**: 5.8.2 for type safety
+- **Icons**: Lucide React for modern iconography
+
+### Backend & Services
+
+- **Authentication**: Better Auth for secure user management
+- **Database**: PostgreSQL with Neon integration
+- **CMS**: Wix for content management and project showcase
+- **Email**: Nodemailer for contact form processing
+- **Validation**: Zod schemas for form validation
+- **Security**: Google reCAPTCHA integration
+
+### Development Tools
+
+- **Package Manager**: pnpm for fast, efficient dependency management
+- **Linting**: ESLint with Next.js and Prettier configurations
+- **Build Tool**: Turbopack for faster development builds
+- **Styling**: PostCSS with Tailwind CSS and SASS support
 
 ## 📦 Installation
 
 ```bash
+# Clone the repository
+git clone <your-repo-url>
+cd mrluisamador
+
 # Install dependencies
 pnpm install
 
@@ -70,79 +67,91 @@ Create a `.env.local` file with the following variables:
 
 ```env
 # Database
-DATABASE_URL=your_database_url
+DATABASE_URL=your_database_connection_string
 
 # Authentication
-AUTH_SECRET=your_auth_secret
+AUTH_SECRET=your_auth_secret_key
 
-# Email
-EMAIL_SERVER_HOST=your_email_host
-EMAIL_SERVER_PORT=587
-EMAIL_SERVER_USER=your_email_user
-EMAIL_SERVER_PASS=your_email_password
+# Email Configuration
+SMTP_HOST=your_smtp_host
+SMTP_PORT=your_smtp_port
+EMAIL_USER=your_email_username
+EMAIL_PASSWORD=your_email_password
+SMTP_FROM=your_from_email
 
 # Google reCAPTCHA
 NEXT_PUBLIC_RECAPTCHA_SITE_KEY=your_recaptcha_site_key
 RECAPTCHA_SECRET_KEY=your_recaptcha_secret_key
 
-# Wix
-WIX_CLIENT_ID=your_wix_client_id
+# Wix Integration
+NEXT_PUBLIC_WIX_CLIENT_ID=your_wix_client_id
 WIX_CLIENT_SECRET=your_wix_client_secret
 ```
+
+**Note**: Never commit your `.env.local` file to version control. The `.gitignore` file is configured to exclude environment files.
 
 ## 🏗️ Project Structure
 
 ```
 mrluisamador/
 ├── app/                    # Next.js App Router
-│   ├── layout.tsx         # Root layout
-│   ├── page.tsx           # Home page
-│   └── ...                # Other pages
+│   ├── layout.tsx         # Root layout with navigation
+│   ├── page.tsx           # Homepage with service overview
+│   ├── about/             # About page with skills showcase
+│   ├── services/          # Detailed services page
+│   ├── projects/          # Project portfolio (Wix-powered)
+│   ├── blogs/             # Blog system with dynamic routing
+│   ├── contact/           # Contact form page
+│   └── api/               # API routes for authentication
 ├── components/            # React components
-│   ├── base/             # Base components
-│   ├── ui/               # UI components
-│   └── ...               # Other components
-├── lib/                  # Utility functions
-├── styles/               # Global styles
-└── public/               # Static assets
+│   ├── base/             # Core components (nav, footer, services)
+│   ├── ui/               # Reusable UI components
+│   ├── wix/              # Wix-specific components
+│   ├── email/            # Email form components
+│   └── better-auth/      # Authentication components
+├── lib/                  # Utility functions and configurations
+│   ├── auth/             # Authentication utilities
+│   ├── wix/              # Wix client and utilities
+│   ├── nodemailer/       # Email configuration
+│   └── zod/              # Form validation schemas
+├── styles/               # Global styles and Tailwind config
+├── public/               # Static assets and images
+└── better-auth_migrations/ # Database migrations
 ```
 
-## 🎨 Styling
+## 🎨 Design System
 
-This project uses Tailwind CSS for styling with custom CSS variables for fonts and colors. The design system includes:
+This project features a comprehensive design system built with Tailwind CSS:
 
-- **Typography**: Alice and Playfair Display fonts
-- **Colors**: Custom color palette with theme support
-- **Responsive Design**: Mobile-first approach
+- **Typography**: Custom font combinations for optimal readability
+- **Color Palette**: Carefully selected colors for brand consistency
+- **Component Library**: Reusable UI components with consistent styling
+- **Responsive Grid**: Mobile-first responsive design system
 - **Animations**: Smooth transitions and hover effects
 
-## 🔒 Security
+## 🔒 Security Features
 
-- **Content Security Policy**: Strict CSP headers
-- **Authentication**: Secure authentication with Better Auth
-- **Input Validation**: Zod schemas for form validation
+- **Content Security Policy**: Strict CSP headers for XSS protection
+- **Authentication**: Secure user authentication with Better Auth
+- **Input Validation**: Comprehensive form validation with Zod
+- **reCAPTCHA**: Bot protection for contact forms
 - **HTTPS**: Secure connections in production
+- **Environment Variables**: Secure configuration management
 
-## 📱 Performance
+## 📱 Performance Optimization
 
-- **Core Web Vitals**: Optimized for all metrics
-- **Lighthouse Score**: 90+ across all categories
-- **Bundle Size**: Optimized with tree shaking
-- **Caching**: Strategic caching for better performance
+- **Core Web Vitals**: Optimized for all performance metrics
+- **Image Optimization**: Next.js Image component with modern formats
+- **Code Splitting**: Automatic code splitting for optimal loading
+- **Bundle Optimization**: Tree shaking and dependency optimization
+- **Caching Strategy**: Strategic caching for better performance
+- **Turbopack**: Faster development builds
 
-## 🚀 Deployment
-
-This project is optimized for deployment on Vercel:
-
-1. Connect your GitHub repository to Vercel
-2. Set up environment variables
-3. Deploy automatically on push to main branch
-
-## 📝 Notes
+## 📝 Development Notes
 
 ### Peer Dependency Warnings
 
-Some packages (particularly Wix-related) show peer dependency warnings for React 19. These are expected and don't affect functionality:
+Some Wix-related packages show peer dependency warnings for React 19. These are expected and don't affect functionality:
 
 - `@wix/ricos` and related packages
 - `ricos-viewer`
@@ -150,24 +159,41 @@ Some packages (particularly Wix-related) show peer dependency warnings for React
 
 These packages will be updated to support React 19 in future releases.
 
-### Development
+### Development Commands
 
-- Use `pnpm dev --turbopack` for faster development builds
-- Enable view transitions in development for testing
-- Monitor bundle size with `pnpm build`
+```bash
+# Development with Turbopack (faster builds)
+pnpm dev
+
+# Lint code
+pnpm lint
+
+# Format code
+pnpm format
+
+# Check formatting
+pnpm format:check
+
+# Build for production
+pnpm build
+```
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Make your changes
 4. Test thoroughly
-5. Submit a pull request
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
 
 ## 📄 License
 
-This project is private and proprietary.
+This project is private and proprietary. All rights reserved.
 
 ---
 
-Built with ❤️ by Luis Amador
+**Built with ❤️ by Luis Amador**
+
+_Web Developer & Wix Specialist_

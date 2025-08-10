@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   description: 'Luis Amador portfolio to showcase his services and skills.',
   keywords: ['Next.js', 'React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Portfolio'],
   metadataBase: new URL('https://www.mrluisamador.com/'),
-  authors: [{ name: 'Luis Amador' }],
+  authors: [{name: 'Luis Amador'}],
   creator: 'Luis Amador',
   publisher: 'Luis Amador',
   formatDetection: {
