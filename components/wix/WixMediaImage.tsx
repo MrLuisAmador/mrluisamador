@@ -1,5 +1,6 @@
 import {media as wixMedia} from '@wix/sdk'
 import Image, {ImageProps} from 'next/image'
+import {cn} from '@/lib/utils'
 
 function getImageUrlForMedia(media: string, width: number, height: number) {
   if (media.startsWith('wix:image')) {
@@ -28,22 +29,24 @@ export function WixMediaImage({
   disableZoom?: boolean
   objectFit?: 'cover' | 'contain'
 }) {
-  const imageUrl = media ? getImageUrlForMedia(media || '', width, height) : ''
+  const imageUrl = media ? getImageUrlForMedia(media, width, height) : ''
 
-  const styleProps: Partial<ImageProps> = {
-    ...(objectFit ? {style: {objectFit}, fill: true, sizes} : {width, height}),
-  }
+  const styleProps: Partial<ImageProps> = objectFit
+    ? {style: {objectFit}, fill: true, sizes}
+    : {width, height}
 
   return (
-    <div className={`flex items-center justify-center h-full`}>
+    <div className="flex items-center justify-center h-full">
       <div className="overflow-hidden relative group w-full h-full">
         <Image
           {...styleProps}
           src={imageUrl}
           alt={alt}
-          className={`object-cover w-full ${
-            !disableZoom ? 'group-hover:scale-110' : ''
-          } transition duration-300 ease-in-out ${className}`}
+          className={cn(
+            'object-cover w-full transition duration-300 ease-in-out',
+            !disableZoom && 'group-hover:scale-110',
+            className
+          )}
         />
       </div>
     </div>

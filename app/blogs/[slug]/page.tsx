@@ -4,6 +4,7 @@ import {getWixClient} from '@/lib/wix/useWixClientServer'
 import RichContentViewer from '@/components/wix/RichContentViewer'
 import {media} from '@wix/sdk'
 import GoogleAd from '@/components/google/google-adsense'
+import CommentSection from '@/components/comments/CommentSection'
 
 type Props = {
   params: Promise<{slug: string}>
@@ -110,6 +111,11 @@ const Blog = async (props: Props) => {
           <GoogleAd adSlot="6232399682" />
         </div>
         <RichContentViewer content={post.content} />
+      </div>
+      
+      {/* Comments Section */}
+      <div className="px-5 mx-auto max-w-4xl">
+        <CommentSection blogSlug={slug} />
       </div>
     </article>
   )
