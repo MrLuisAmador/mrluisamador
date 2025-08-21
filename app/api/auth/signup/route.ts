@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { auth } from '@/lib/auth'
+import {NextRequest, NextResponse} from 'next/server'
+import {auth} from '@/lib/auth'
 import bcrypt from 'bcryptjs'
-import { Pool } from 'pg'
+import {Pool} from 'pg'
 
 const pool = new Pool({
   connectionString: process.env.NEON_DB_CONNECTION_STRING,
@@ -9,20 +9,17 @@ const pool = new Pool({
 
 export async function POST(request: NextRequest) {
   try {
-    const { name, email, password } = await request.json()
+    const {name, email, password} = await request.json()
 
     // Validation
     if (!name || !email || !password) {
-      return NextResponse.json(
-        { error: 'Name, email, and password are required' },
-        { status: 400 }
-      )
+      return NextResponse.json({error: 'Name, email, and password are required'}, {status: 400})
     }
 
     if (password.length < 6) {
       return NextResponse.json(
-        { error: 'Password must be at least 6 characters long' },
-        { status: 400 }
+        {error: 'Password must be at least 6 characters long'},
+        {status: 400}
       )
     }
 
@@ -30,16 +27,10 @@ export async function POST(request: NextRequest) {
 
     try {
       // Check if user already exists
-      const existingUser = await client.query(
-        'SELECT id FROM "user" WHERE email = $1',
-        [email]
-      )
+      const existingUser = await client.query('SELECT id FROM "user" WHERE email = $1', [email])
 
       if (existingUser.rows.length > 0) {
-        return NextResponse.json(
-          { error: 'User with this email already exists' },
-          { status: 409 }
-        )
+        return NextResponse.json({error: 'User with this email already exists'}, {status: 409})
       }
 
       // Hash password
@@ -76,24 +67,21 @@ export async function POST(request: NextRequest) {
       )
 
       return NextResponse.json(
-        { 
+        {
           message: 'User created successfully',
           user: {
             id: result.rows[0].id,
             name: result.rows[0].name,
             email: result.rows[0].email,
-          }
+          },
         },
-        { status: 201 }
+        {status: 201}
       )
     } finally {
       client.release()
     }
   } catch (error) {
     console.error('Signup error:', error)
-    return NextResponse.json(
-      { error: 'Failed to create user' },
-      { status: 500 }
-    )
+    return NextResponse.json({error: 'Failed to create user'}, {status: 500})
   }
 }
