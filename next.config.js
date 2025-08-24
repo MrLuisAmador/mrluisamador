@@ -16,9 +16,8 @@ const nextConfig = {
     ],
   },
   experimental: {
-    // Enable the latest experimental features
     optimizePackageImports: ['lucide-react'],
   },
 }
 
-module.exports = nextConfig
+export default nextConfig
