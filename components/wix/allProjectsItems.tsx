@@ -18,7 +18,7 @@ function AllProjectsItems({lists}: AllProjectsItemsProps) {
             className="block"
             target="_blank"
             rel="noopener noreferrer"
-            href={list.url}
+            href={list.url as string}
             aria-label={list.title}
           >
             <div className="">

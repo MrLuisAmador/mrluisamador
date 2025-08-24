@@ -55,7 +55,7 @@ export default function Home() {
           </h2>
           <Link
             className="border border-solid border-white text-white py-2.5 px-4 w-full max-w-[80%] md:max-w-[30%] inline-block rounded text-xl hover:bg-white/[.15] transition-colors"
-            href="about"
+            href="/about"
           >
             Who am I ?
           </Link>

@@ -6,7 +6,7 @@ const pool = new Pool({
   connectionString: process.env.NEON_DB_CONNECTION_STRING,
 })
 
-export async function DELETE(request: NextRequest, {params}: {params: {id: string}}) {
+export async function DELETE(request: NextRequest, {params}: {params: Promise<{id: string}>}) {
   try {
     const session = await auth.api.getSession({headers: request.headers})
 
@@ -14,10 +14,11 @@ export async function DELETE(request: NextRequest, {params}: {params: {id: strin
       return NextResponse.json({error: 'Authentication required'}, {status: 401})
     }
 
+    const {id} = await params
     const client = await pool.connect()
 
     try {
-      const result = await client.query(`DELETE FROM "comment" WHERE id = $1`, [params.id])
+      const result = await client.query(`DELETE FROM "comment" WHERE id = $1`, [id])
 
       if (result.rowCount === 0) {
         return NextResponse.json({error: 'Comment not found'}, {status: 404})

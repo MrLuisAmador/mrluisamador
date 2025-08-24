@@ -1,5 +1,4 @@
 import {NextRequest, NextResponse} from 'next/server'
-import {auth} from '@/lib/auth'
 import {Pool} from 'pg'
 
 const pool = new Pool({
@@ -8,7 +7,6 @@ const pool = new Pool({
 
 export async function GET(request: NextRequest) {
   try {
-    // Get user session from our custom cookie
     const userSession = request.cookies.get('user-session')?.value
 
     if (!userSession) {
@@ -22,21 +20,18 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({error: 'Authentication required'}, {status: 401})
       }
 
-      // Ensure we have a valid user ID - check multiple possible field names
       if (!user.id && !user.userId) {
         return NextResponse.json({error: 'Invalid user session'}, {status: 401})
       }
 
-      // Normalize the user ID field
       if (!user.id && user.userId) {
         user.id = user.userId
       }
-    } catch (parseError) {
+    } catch (error) {
+      console.error('Error parsing user session:', error)
       return NextResponse.json({error: 'Invalid session'}, {status: 401})
     }
 
-    // For now, allow any authenticated user to access admin
-    // In production, you'd want to check for admin role
     const client = await pool.connect()
 
     try {

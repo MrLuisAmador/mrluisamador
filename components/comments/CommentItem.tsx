@@ -27,29 +27,6 @@ export default function CommentItem({
   const canEdit = isOwner
   const canDelete = isOwner
 
-  const handleEdit = async (content: string) => {
-    try {
-      const response = await fetch(`/api/comments/${comment.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({content}),
-        credentials: 'include', // Include cookies for authentication
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to update comment')
-      }
-
-      onCommentUpdated(comment.id, content)
-      setIsEditing(false)
-    } catch (error) {
-      console.error('Error updating comment:', error)
-      alert('Failed to update comment')
-    }
-  }
-
   const handleDelete = async () => {
     if (!confirm('Are you sure you want to delete this comment?')) {
       return
@@ -59,7 +36,7 @@ export default function CommentItem({
     try {
       const response = await fetch(`/api/comments/${comment.id}`, {
         method: 'DELETE',
-        credentials: 'include', // Include cookies for authentication
+        credentials: 'include',
       })
 
       if (!response.ok) {
@@ -129,7 +106,7 @@ export default function CommentItem({
         {isEditing ? (
           <CommentForm
             blogSlug={comment.blogSlug}
-            onCommentAdded={() => {}} // Not used for editing
+            onCommentAdded={() => {}}
             onCancel={() => setIsEditing(false)}
             isReply={false}
           />
@@ -166,7 +143,6 @@ export default function CommentItem({
           </div>
         )}
 
-        {/* Render replies */}
         {comment.replies && comment.replies.length > 0 && (
           <div className="mt-4 space-y-4">
             {comment.replies.map((reply) => (

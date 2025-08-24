@@ -1,5 +1,4 @@
 import {NextRequest, NextResponse} from 'next/server'
-import {auth} from '@/lib/auth'
 import bcrypt from 'bcryptjs'
 import {Pool} from 'pg'
 
@@ -11,7 +10,6 @@ export async function POST(request: NextRequest) {
   try {
     const {email, password} = await request.json()
 
-    // Validation
     if (!email || !password) {
       return NextResponse.json({error: 'Email and password are required'}, {status: 400})
     }
@@ -19,7 +17,6 @@ export async function POST(request: NextRequest) {
     const client = await pool.connect()
 
     try {
-      // Find user and account
       const result = await client.query(
         `SELECT u.id, u.name, u.email, a.password
          FROM "user" u
@@ -34,14 +31,12 @@ export async function POST(request: NextRequest) {
 
       const user = result.rows[0]
 
-      // Verify password
       const isValidPassword = await bcrypt.compare(password, user.password)
 
       if (!isValidPassword) {
         return NextResponse.json({error: 'Invalid email or password'}, {status: 401})
       }
 
-      // Create a simple session using cookies
       const response = NextResponse.json(
         {
           message: 'Signed in successfully',
@@ -54,7 +49,6 @@ export async function POST(request: NextRequest) {
         {status: 200}
       )
 
-      // Set session cookie with user info
       response.cookies.set(
         'user-session',
         JSON.stringify({
@@ -67,7 +61,7 @@ export async function POST(request: NextRequest) {
           httpOnly: true,
           secure: process.env.NODE_ENV === 'production',
           sameSite: 'lax',
-          maxAge: 30 * 24 * 60 * 60, // 30 days
+          maxAge: 30 * 24 * 60 * 60,
           path: '/',
         }
       )
@@ -77,7 +71,7 @@ export async function POST(request: NextRequest) {
       client.release()
     }
   } catch (error) {
-    console.error('Signin error:', error)
+    console.error('Failed to sign in:', error)
     return NextResponse.json({error: 'Failed to sign in'}, {status: 500})
   }
 }

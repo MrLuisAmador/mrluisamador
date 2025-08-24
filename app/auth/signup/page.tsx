@@ -20,7 +20,6 @@ export default function SignUpPage() {
     setError('')
     setSuccess('')
 
-    // Validation
     if (password !== confirmPassword) {
       setError('Passwords do not match')
       setIsLoading(false)
@@ -49,7 +48,6 @@ export default function SignUpPage() {
       if (response.ok) {
         setSuccess('Account created successfully! Now signing you in...')
 
-        // Automatically sign in the user
         try {
           const signinResponse = await fetch('/api/auth/signin', {
             method: 'POST',
@@ -64,24 +62,24 @@ export default function SignUpPage() {
 
           if (signinResponse.ok) {
             setSuccess('Account created and signed in successfully! Redirecting...')
-            // Clear form
             setName('')
             setEmail('')
             setPassword('')
             setConfirmPassword('')
 
-            // Redirect back to the page they came from, or blogs if no referrer
             const referrer = document.referrer
             const isFromBlog = referrer.includes('/blogs/')
 
             if (isFromBlog) {
-              // Extract the blog URL from referrer
               const blogUrl = referrer.split('localhost:3000')[1]
               setTimeout(() => {
-                router.push(blogUrl)
+                if (blogUrl && blogUrl.startsWith('/')) {
+                  router.push(blogUrl as `/blogs/${string}`)
+                } else {
+                  router.push('/blogs')
+                }
               }, 1500)
             } else {
-              // Default to blogs page
               setTimeout(() => {
                 router.push('/blogs')
               }, 1500)
@@ -93,6 +91,7 @@ export default function SignUpPage() {
             }, 2000)
           }
         } catch (error) {
+          console.error('Sign in error:', error)
           setSuccess('Account created! Please sign in manually.')
           setTimeout(() => {
             router.push('/auth/signin')
@@ -102,7 +101,8 @@ export default function SignUpPage() {
         const data = await response.json()
         setError(data.error || 'Sign up failed')
       }
-    } catch (err) {
+    } catch (error) {
+      console.error('Sign up error:', error)
       setError('An error occurred during sign up')
     } finally {
       setIsLoading(false)

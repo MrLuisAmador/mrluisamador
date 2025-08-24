@@ -13,13 +13,25 @@ export const metadata: Metadata = {
 }
 
 async function ProjectsList() {
-  const queryWixProjects = await getWixClient()
-  const {items} = await queryWixProjects.items.query('projectGallery').ascending('orderId').find()
+  try {
+    const queryWixProjects = await getWixClient()
+    const {items} = await queryWixProjects.items.query('projectGallery').ascending('orderId').find()
 
-  // Cast the items to Project[] type since we know the structure matches
-  const projects = items as Project[]
+    // Cast the items to Project[] type since we know the structure matches
+    const projects = items as Project[]
 
-  return <ProjectFilter projects={projects} />
+    return <ProjectFilter projects={projects} />
+  } catch (error) {
+    console.error('Failed to fetch projects:', error)
+    return (
+      <div className="text-center py-10">
+        <p className="text-white mb-4">Unable to load projects at the moment.</p>
+        <p className="text-white/80 text-sm">
+          Please check back later or contact support if the issue persists.
+        </p>
+      </div>
+    )
+  }
 }
 
 function ProjectsListSkeleton() {

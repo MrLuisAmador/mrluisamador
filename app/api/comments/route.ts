@@ -1,5 +1,4 @@
 import {NextRequest, NextResponse} from 'next/server'
-import {auth} from '@/lib/auth'
 import {createComment, getCommentsByBlogSlug} from '@/lib/db/comments'
 import {CreateCommentData} from '@/lib/types/comment'
 
@@ -22,7 +21,6 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    // Get user session from our custom cookie
     const userSession = request.cookies.get('user-session')?.value
 
     if (!userSession) {
@@ -36,16 +34,15 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({error: 'Authentication required'}, {status: 401})
       }
 
-      // Ensure we have a valid user ID - check multiple possible field names
       if (!user.id && !user.userId) {
         return NextResponse.json({error: 'Invalid user session'}, {status: 401})
       }
 
-      // Normalize the user ID field
       if (!user.id && user.userId) {
         user.id = user.userId
       }
-    } catch (parseError) {
+    } catch (error) {
+      console.error('Error parsing user session:', error)
       return NextResponse.json({error: 'Invalid session'}, {status: 401})
     }
 

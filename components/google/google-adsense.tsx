@@ -1,6 +1,6 @@
 'use client'
 
-import {useEffect} from 'react'
+import {useEffect, useRef} from 'react'
 
 interface GoogleAdProps {
   adSlot: string
@@ -13,13 +13,31 @@ export default function GoogleAd({
   adFormat = 'auto',
   fullWidthResponsive = true,
 }: GoogleAdProps) {
+  const adRef = useRef<HTMLModElement>(null)
+  const isInitialized = useRef(false)
+
   useEffect(() => {
+    // Prevent multiple initializations of the same ad
+    if (isInitialized.current) return
+
     // Initialize adsbygoogle array if it doesn't exist
     if (typeof window !== 'undefined') {
       window.adsbygoogle = window.adsbygoogle || []
     }
 
-    // Load AdSense script dynamically to avoid Next.js data-nscript attribute
+    const initializeAd = () => {
+      try {
+        // Check if this specific ad element has already been processed
+        if (adRef.current && !adRef.current.hasAttribute('data-adsbygoogle-status')) {
+          window.adsbygoogle.push({})
+          isInitialized.current = true
+        }
+      } catch (error) {
+        console.error('AdSense error:', error)
+      }
+    }
+
+    // Load AdSense script dynamically
     const loadAdSenseScript = () => {
       if (
         typeof window !== 'undefined' &&
@@ -31,36 +49,31 @@ export default function GoogleAd({
           'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2988961562271197'
         script.crossOrigin = 'anonymous'
 
-        // Add onload handler to initialize ads when script loads
+        // Initialize ad when script loads
         script.onload = () => {
-          try {
-            if (window.adsbygoogle) {
-              window.adsbygoogle.push({})
-            }
-          } catch (error) {
-            console.error('AdSense error:', error)
-          }
+          // Small delay to ensure DOM is ready
+          setTimeout(initializeAd, 100)
         }
 
         document.head.appendChild(script)
       } else {
-        // Script already exists, just initialize ads
-        try {
-          if (window.adsbygoogle) {
-            window.adsbygoogle.push({})
-          }
-        } catch (error) {
-          console.error('AdSense error:', error)
-        }
+        // Script already exists, initialize immediately
+        setTimeout(initializeAd, 100)
       }
     }
 
     // Load the script
     loadAdSenseScript()
-  }, [])
+
+    // Cleanup function to reset initialization state when component unmounts
+    return () => {
+      isInitialized.current = false
+    }
+  }, [adSlot]) // Re-run effect only when adSlot changes
 
   return (
     <ins
+      ref={adRef}
       className="adsbygoogle"
       style={{display: 'block'}}
       data-ad-client="ca-pub-2988961562271197"

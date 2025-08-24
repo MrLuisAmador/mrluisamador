@@ -16,7 +16,8 @@ export async function GET(request: NextRequest) {
       } else {
         return NextResponse.json({error: 'Not authenticated'}, {status: 401})
       }
-    } catch (parseError) {
+    } catch (error) {
+      console.error('Error parsing user session:', error)
       return NextResponse.json({error: 'Invalid session'}, {status: 401})
     }
   } catch (error) {

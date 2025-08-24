@@ -29,16 +29,17 @@ export default function SignInPage() {
       })
 
       if (response.ok) {
-        // Redirect back to the page they came from, or blogs if no referrer
         const referrer = document.referrer
         const isFromBlog = referrer.includes('/blogs/')
 
         if (isFromBlog) {
-          // Extract the blog URL from referrer
           const blogUrl = referrer.split('localhost:3000')[1]
-          router.push(blogUrl)
+          if (blogUrl && blogUrl.startsWith('/')) {
+            router.push(blogUrl as `/blogs/${string}`)
+          } else {
+            router.push('/blogs')
+          }
         } else {
-          // Default to blogs page
           router.push('/blogs')
         }
         router.refresh()
@@ -46,7 +47,8 @@ export default function SignInPage() {
         const data = await response.json()
         setError(data.error || 'Sign in failed')
       }
-    } catch (err) {
+    } catch (error) {
+      console.error('Sign in error:', error)
       setError('An error occurred during sign in')
     } finally {
       setIsLoading(false)

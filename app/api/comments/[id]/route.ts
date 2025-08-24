@@ -1,11 +1,9 @@
 import {NextRequest, NextResponse} from 'next/server'
-import {auth} from '@/lib/auth'
 import {updateComment, deleteComment} from '@/lib/db/comments'
 import {UpdateCommentData} from '@/lib/types/comment'
 
 export async function PUT(request: NextRequest, {params}: {params: Promise<{id: string}>}) {
   try {
-    // Get user session from our custom cookie
     const userSession = request.cookies.get('user-session')?.value
 
     if (!userSession) {
@@ -19,16 +17,15 @@ export async function PUT(request: NextRequest, {params}: {params: Promise<{id: 
         return NextResponse.json({error: 'Authentication required'}, {status: 401})
       }
 
-      // Ensure we have a valid user ID - check multiple possible field names
       if (!user.id && !user.userId) {
         return NextResponse.json({error: 'Invalid user session'}, {status: 401})
       }
 
-      // Normalize the user ID field
       if (!user.id && user.userId) {
         user.id = user.userId
       }
-    } catch (parseError) {
+    } catch (error) {
+      console.error('Error parsing user session:', error)
       return NextResponse.json({error: 'Invalid session'}, {status: 401})
     }
 
@@ -54,7 +51,6 @@ export async function PUT(request: NextRequest, {params}: {params: Promise<{id: 
 
 export async function DELETE(request: NextRequest, {params}: {params: Promise<{id: string}>}) {
   try {
-    // Get user session from our custom cookie
     const userSession = request.cookies.get('user-session')?.value
 
     if (!userSession) {
@@ -69,16 +65,15 @@ export async function DELETE(request: NextRequest, {params}: {params: Promise<{i
         return NextResponse.json({error: 'Authentication required'}, {status: 401})
       }
 
-      // Ensure we have a valid user ID - check multiple possible field names
       if (!user.id && !user.userId) {
         return NextResponse.json({error: 'Invalid user session'}, {status: 401})
       }
 
-      // Normalize the user ID field
       if (!user.id && user.userId) {
         user.id = user.userId
       }
-    } catch (parseError) {
+    } catch (error) {
+      console.error('Error parsing user session:', error)
       return NextResponse.json({error: 'Invalid session'}, {status: 400})
     }
 

@@ -1,5 +1,4 @@
 import {NextRequest, NextResponse} from 'next/server'
-import {auth} from '@/lib/auth'
 import bcrypt from 'bcryptjs'
 import {Pool} from 'pg'
 
@@ -11,7 +10,6 @@ export async function POST(request: NextRequest) {
   try {
     const {name, email, password} = await request.json()
 
-    // Validation
     if (!name || !email || !password) {
       return NextResponse.json({error: 'Name, email, and password are required'}, {status: 400})
     }
@@ -26,32 +24,21 @@ export async function POST(request: NextRequest) {
     const client = await pool.connect()
 
     try {
-      // Check if user already exists
       const existingUser = await client.query('SELECT id FROM "user" WHERE email = $1', [email])
 
       if (existingUser.rows.length > 0) {
         return NextResponse.json({error: 'User with this email already exists'}, {status: 409})
       }
 
-      // Hash password
       const hashedPassword = await bcrypt.hash(password, 12)
 
-      // Create user
       const result = await client.query(
         `INSERT INTO "user" (id, name, email, "emailVerified", "createdAt", "updatedAt")
          VALUES ($1, $2, $3, $4, $5, $6)
          RETURNING id, name, email, "createdAt"`,
-        [
-          crypto.randomUUID(),
-          name,
-          email,
-          false, // Email not verified initially
-          new Date(),
-          new Date(),
-        ]
+        [crypto.randomUUID(), name, email, false, new Date(), new Date()]
       )
 
-      // Create account record
       await client.query(
         `INSERT INTO "account" (id, "accountId", "providerId", "userId", password, "createdAt", "updatedAt")
          VALUES ($1, $2, $3, $4, $5, $6, $7)`,
@@ -81,7 +68,7 @@ export async function POST(request: NextRequest) {
       client.release()
     }
   } catch (error) {
-    console.error('Signup error:', error)
+    console.error('Failed to create user:', error)
     return NextResponse.json({error: 'Failed to create user'}, {status: 500})
   }
 }

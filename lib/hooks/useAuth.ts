@@ -29,6 +29,7 @@ export function useAuth() {
         setUser(null)
       }
     } catch (error) {
+      console.error('Check auth status error:', error)
       setUser(null)
     } finally {
       setIsLoading(false)

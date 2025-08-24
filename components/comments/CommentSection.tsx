@@ -1,8 +1,7 @@
 'use client'
 
-import {Suspense, useState, useOptimistic, useTransition} from 'react'
+import {Suspense, useState, useTransition} from 'react'
 import {useAuth} from '@/lib/hooks/useAuth'
-import {Comment} from '@/lib/types/comment'
 import CommentForm from './CommentForm'
 import CommentsList from './CommentsList'
 import LoginPrompt from './LoginPrompt'
@@ -16,9 +15,8 @@ export default function CommentSection({blogSlug}: CommentSectionProps) {
   const [refreshKey, setRefreshKey] = useState(0)
   const [isPending, startTransition] = useTransition()
 
-  const handleCommentAdded = (newComment: Comment) => {
+  const handleCommentAdded = () => {
     startTransition(() => {
-      // Force re-render of CommentsList by changing key
       setRefreshKey((prev) => prev + 1)
     })
   }
