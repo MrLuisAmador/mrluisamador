@@ -3,7 +3,6 @@ import {Metadata} from 'next'
 import {getWixClient} from '@/lib/wix/useWixClientServer'
 import Image from 'next/image'
 import {media} from '@wix/sdk'
-import CommentSection from '@/components/comments/CommentSection'
 
 export const metadata: Metadata = {
   title: 'Blogs',
