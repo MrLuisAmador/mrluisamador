@@ -10,7 +10,7 @@ export default function LoginPrompt() {
         Sign in to leave a comment and engage with other readers.
       </p>
       <Link
-        href="/auth/signin"
+        href="/signin"
         className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors inline-block"
       >
         Sign In to Comment
