@@ -1,6 +1,6 @@
 'use client'
 
-import {nodemailerAction} from '@/actions/nodemailerAction'
+import {nodemailerAction} from '@/actions/nodemailer/nodemailerAction'
 import {ContactFormSchema} from '@/lib/zod/contact-form-schema'
 import {useActionState} from 'react'
 
@@ -13,7 +13,6 @@ declare global {
   }
 }
 
-// Define the state type
 type FormState = {
   success: boolean
   errors?: {
@@ -25,35 +24,29 @@ type FormState = {
 }
 
 const SendEmail = () => {
-  // Define initial state
   const initialState: FormState = {
     success: false,
     errors: undefined,
   }
 
-  // Use the useActionState hook
   const [state, formAction, isPending] = useActionState(
     async (_prevState: FormState, formData: FormData) => {
       try {
-        // First validate the form data with Zod (client-side)
         const formDataObj = Object.fromEntries(formData.entries())
         const result = ContactFormSchema.safeParse(formDataObj)
 
         if (!result.success) {
-          // Return validation errors
           return {
             success: false,
             errors: result.error.flatten().fieldErrors as FormState['errors'],
           }
         }
 
-        // Execute reCAPTCHA
         let token
         try {
           token = await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!, {
             action: 'submit',
           })
-          // Add token to form data
           formData.append('recaptchaToken', token)
         } catch (error) {
           console.error('reCAPTCHA error:', error)
@@ -65,10 +58,8 @@ const SendEmail = () => {
           }
         }
 
-        // Call server action
         await nodemailerAction(formData)
 
-        // Return success state
         return {
           success: true,
           errors: undefined,
@@ -88,7 +79,6 @@ const SendEmail = () => {
 
   return (
     <form action={formAction} id="mail" className="mail">
-      {/* Email field */}
       <label className="">
         <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">Email</span>
         <input
@@ -111,7 +101,6 @@ const SendEmail = () => {
         )}
       </label>
 
-      {/* Message field */}
       <label className="">
         <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">
           What service do you need done?
@@ -137,7 +126,6 @@ const SendEmail = () => {
         )}
       </label>
 
-      {/* Submit button */}
       <label className="">
         <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">Submit</span>
         <input

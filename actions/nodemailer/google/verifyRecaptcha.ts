@@ -1,3 +1,5 @@
+'use server'
+
 export async function verifyRecaptcha(token: string) {
   const response = await fetch('https://www.google.com/recaptcha/api/siteverify', {
     method: 'POST',

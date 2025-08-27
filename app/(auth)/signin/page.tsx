@@ -63,7 +63,7 @@ export default function SignInPage() {
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
           Or{' '}
-          <Link href="/auth/signup" className="font-medium text-blue-600 hover:text-blue-500">
+          <Link href="/signup" className="font-medium text-blue-600 hover:text-blue-500">
             create a new account
           </Link>
         </p>
@@ -139,7 +139,7 @@ export default function SignInPage() {
 
             <div className="mt-6">
               <Link
-                href="/auth/signup"
+                href="/signup"
                 className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Create Account

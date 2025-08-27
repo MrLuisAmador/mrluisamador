@@ -87,14 +87,14 @@ export default function SignUpPage() {
           } else {
             setSuccess('Account created! Please sign in manually.')
             setTimeout(() => {
-              router.push('/auth/signin')
+              router.push('/signin')
             }, 2000)
           }
         } catch (error) {
           console.error('Sign in error:', error)
           setSuccess('Account created! Please sign in manually.')
           setTimeout(() => {
-            router.push('/auth/signin')
+            router.push('/signin')
           }, 2000)
         }
       } else {
@@ -117,7 +117,7 @@ export default function SignUpPage() {
         </h2>
         <p className="mt-2 text-center text-sm text-gray-600">
           Or{' '}
-          <Link href="/auth/signin" className="font-medium text-blue-600 hover:text-blue-500">
+          <Link href="/signin" className="font-medium text-blue-600 hover:text-blue-500">
             sign in to your existing account
           </Link>
         </p>
@@ -237,7 +237,7 @@ export default function SignUpPage() {
 
             <div className="mt-6">
               <Link
-                href="/auth/signin"
+                href="/signin"
                 className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
                 Sign In
