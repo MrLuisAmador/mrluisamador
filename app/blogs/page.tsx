@@ -94,11 +94,6 @@ export default function Blogs() {
       <Suspense fallback={<BlogsListSkeleton />}>
         <BlogsList />
       </Suspense>
-
-      {/* Comments Section for General Discussion */}
-      <div className="px-5 mx-auto max-w-4xl mt-16">
-        <CommentSection blogSlug="general" />
-      </div>
     </section>
   )
 }
