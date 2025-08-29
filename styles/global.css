@@ -24,6 +24,7 @@
     list-style: none;
     padding-left: 0;
   }
+
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -51,6 +52,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -82,24 +84,5 @@
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
-  }
-}
-
-@layer base {
-  /* Apply border only to specific elements instead of all elements */
-  button,
-  input,
-  textarea,
-  select,
-  fieldset,
-  legend,
-  table,
-  th,
-  td,
-  hr {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
   }
 }
