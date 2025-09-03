@@ -29,11 +29,11 @@ function ProjectFilter({projects}: ShuffleProps) {
         {filters.map((filter, index) => (
           <button
             key={index}
-            className={`mr-1 md:mr-1.5 mb-2.5 py-2.5 px-4 text-xs md:text-sm border ${
+            className={`mr-1 mb-2.5 border px-4 py-2.5 text-xs md:mr-1.5 md:text-sm ${
               index === 0 ? 'rounded-l-lg' : ''
             } ${
               index === filters.length - 1 ? 'rounded-e-lg' : ''
-            } hover:bg-white/[.15] transition-colors`}
+            } transition-colors hover:bg-white/15`}
             value={filter}
             onClick={handleBtn}
           >

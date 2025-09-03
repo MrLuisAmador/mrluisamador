@@ -94,12 +94,12 @@ const Blog = async (props: Props) => {
         dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
       />
 
-      <Link className="mx-2 mb-4 xl:mx-6 xl:mb-6 inline-block" href="/blogs">
+      <Link className="mx-2 mb-4 inline-block xl:mx-6 xl:mb-6" href="/blogs">
         Back to Blogs
       </Link>
       <h1 className="text-center text-4xl xl:mb-12">{post.title}</h1>
 
-      <div className="px-5 pt-14 xl:py-16 mx-auto max-w-4xl xl:shadow xl:shadow-black xl:rounded bg-white">
+      <div className="mx-auto max-w-4xl bg-white px-5 pt-14 xl:rounded xl:py-16 xl:shadow-sm xl:shadow-black">
         <Image
           src={media.getImageUrl(post.image).url}
           width="896"
@@ -114,7 +114,7 @@ const Blog = async (props: Props) => {
       </div>
 
       {/* Comments Section */}
-      <div className="px-5 mx-auto max-w-4xl">
+      <div className="mx-auto max-w-4xl px-5">
         <CommentSection blogSlug={slug} />
       </div>
     </article>

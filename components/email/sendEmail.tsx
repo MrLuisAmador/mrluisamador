@@ -80,12 +80,12 @@ const SendEmail = () => {
   return (
     <form action={formAction} id="mail" className="mail">
       <label className="">
-        <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">Email</span>
+        <span className="absolute -m-px h-px w-px overflow-hidden border-0 p-0">Email</span>
         <input
           type="email"
           name="email"
           size={40}
-          className={`w-full bg-[#053c50] text-xl mb-2.5 pl-2.5 border-none rounded h-12 ${
+          className={`mb-2.5 h-12 w-full rounded border-none bg-[#053c50] pl-2.5 text-xl ${
             state.errors?.email ? 'border-2 border-red-500' : ''
           }`}
           id="email"
@@ -93,7 +93,7 @@ const SendEmail = () => {
           autoComplete="off"
         />
         {state.errors?.email && (
-          <div className="text-red-500 text-sm mb-[10px]">
+          <div className="mb-[10px] text-sm text-red-500">
             {state.errors.email.map((error, i) => (
               <p key={i}>{error}</p>
             ))}
@@ -102,7 +102,7 @@ const SendEmail = () => {
       </label>
 
       <label className="">
-        <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">
+        <span className="absolute -m-px h-px w-px overflow-hidden border-0 p-0">
           What service do you need done?
         </span>
         <textarea
@@ -110,7 +110,7 @@ const SendEmail = () => {
           name="message"
           cols={40}
           rows={10}
-          className={`w-full bg-[#053c50] text-xl mb-2.5 p-2.5 border-none rounded h-12 min-h-[250px] ${
+          className={`mb-2.5 h-12 min-h-[250px] w-full rounded border-none bg-[#053c50] p-2.5 text-xl ${
             state.errors?.message ? 'border-2 border-red-500' : ''
           }`}
           placeholder="What service do you need done?"
@@ -118,7 +118,7 @@ const SendEmail = () => {
           aria-label="Enter your comment"
         ></textarea>
         {state.errors?.message && (
-          <div className="text-red-500 text-sm mb-[20px]">
+          <div className="mb-[20px] text-sm text-red-500">
             {state.errors.message.map((error, i) => (
               <p key={i}>{error}</p>
             ))}
@@ -127,13 +127,13 @@ const SendEmail = () => {
       </label>
 
       <label className="">
-        <span className="absolute border-0 overflow-hidden h-px w-px m-[-1px] p-0">Submit</span>
+        <span className="absolute -m-px h-px w-px overflow-hidden border-0 p-0">Submit</span>
         <input
           id="submit"
           type="submit"
           value={isPending ? 'Sending...' : 'Send It!'}
           disabled={isPending}
-          className="border border-solid border-white text-white py-2.5 px-4 w-full max-w-[50%] inline-block rounded text-xl hover:bg-white/[.15] transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+          className="inline-block w-full max-w-[50%] cursor-pointer rounded border border-solid border-white px-4 py-2.5 text-xl text-white transition-colors hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-50"
         />
       </label>
     </form>

@@ -31,7 +31,7 @@ const SocialLink = ({
   label: string
   hoverClass: string
 }) => (
-  <li className="lg:mr-2.5 mb-2.5 lg:mb-0 text-center">
+  <li className="mb-2.5 text-center lg:mr-2.5 lg:mb-0">
     <Link
       className={`block transition-colors ${hoverClass}`}
       target="_blank"
@@ -63,7 +63,7 @@ export default function Nav() {
       hoverClass: 'hover:text-linkedin-blue',
       icon: (
         <svg
-          className="w-10 h-10 inline"
+          className="inline h-10 w-10"
           fill="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true"
@@ -78,7 +78,7 @@ export default function Nav() {
       hoverClass: 'hover:text-twitter-blue',
       icon: (
         <svg
-          className="w-10 h-10 inline"
+          className="inline h-10 w-10"
           fill="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true"
@@ -93,7 +93,7 @@ export default function Nav() {
       hoverClass: 'hover:text-github-orange',
       icon: (
         <svg
-          className="w-10 h-10 inline"
+          className="inline h-10 w-10"
           fill="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true"
@@ -109,10 +109,10 @@ export default function Nav() {
   ]
 
   return (
-    <nav className="lg:px-[20px] overflow-y-scroll z-[1] right-0 h-full fixed w-[70px] lg:w-[350px] bg-dark-grey">
+    <nav className="bg-dark-grey fixed right-0 z-1 h-full w-[70px] overflow-y-scroll lg:w-[350px] lg:px-[20px]">
       <div className="flex items-center text-white">
         <div className="w-full">
-          <h3 className="text-center text-3xl mt-12">
+          <h3 className="mt-12 text-center text-3xl">
             <Link className="block" href="/">
               <span className="lg:hidden">LA</span>
               <span className="hidden lg:block">Luis Amador</span>
@@ -132,7 +132,7 @@ export default function Nav() {
             </Link>
           </div>
 
-          <ul className="mt-4 mb-4 text-center border-t-[1px] border-t-[#ddd] border-b-[1px] border-b-[#ddd] pt-5 pb-5 lg:pt-0 lg:border-none">
+          <ul className="mt-4 mb-4 border-t border-b border-t-[#ddd] border-b-[#ddd] pt-5 pb-5 text-center lg:border-none lg:pt-0">
             {navItems.map((item) => (
               <NavLink key={item.href} href={item.href} isActive={pathname === item.href}>
                 {item.label}

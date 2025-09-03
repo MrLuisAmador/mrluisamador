@@ -64,14 +64,14 @@ export default function CommentItem({
 
   return (
     <div className="border-l-4 border-gray-200 pl-4">
-      <div className="bg-white rounded-lg p-4 shadow-sm">
-        <div className="flex items-start justify-between mb-3">
+      <div className="rounded-lg bg-white p-4 shadow-xs">
+        <div className="mb-3 flex items-start justify-between">
           <div className="flex items-center space-x-3">
             {comment.user?.image && (
               <img
                 src={comment.user.image}
                 alt={comment.user.name}
-                className="w-8 h-8 rounded-full"
+                className="h-8 w-8 rounded-full"
               />
             )}
             <div>
@@ -85,7 +85,7 @@ export default function CommentItem({
               {canEdit && (
                 <button
                   onClick={() => setIsEditing(!isEditing)}
-                  className="text-sm text-blue-600 hover:text-blue-800 underline"
+                  className="text-sm text-blue-600 underline hover:text-blue-800"
                 >
                   {isEditing ? 'Cancel' : 'Edit'}
                 </button>
@@ -94,7 +94,7 @@ export default function CommentItem({
                 <button
                   onClick={handleDelete}
                   disabled={isDeleting}
-                  className="text-sm text-red-600 hover:text-red-800 underline disabled:opacity-50"
+                  className="text-sm text-red-600 underline hover:text-red-800 disabled:opacity-50"
                 >
                   {isDeleting ? 'Deleting...' : 'Delete'}
                 </button>
@@ -112,9 +112,9 @@ export default function CommentItem({
           />
         ) : (
           <div className="mb-3">
-            <p className="text-gray-800 whitespace-pre-wrap">{comment.content}</p>
+            <p className="whitespace-pre-wrap text-gray-800">{comment.content}</p>
             {comment.updatedAt > comment.createdAt && (
-              <p className="text-xs text-gray-500 mt-1">(edited)</p>
+              <p className="mt-1 text-xs text-gray-500">(edited)</p>
             )}
           </div>
         )}
@@ -122,7 +122,7 @@ export default function CommentItem({
         <div className="flex items-center space-x-4">
           <button
             onClick={() => setIsReplying(!isReplying)}
-            className="text-sm text-gray-600 hover:text-gray-800 underline"
+            className="text-sm text-gray-600 underline hover:text-gray-800"
           >
             {isReplying ? 'Cancel Reply' : 'Reply'}
           </button>
