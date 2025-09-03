@@ -73,8 +73,8 @@ export default function CommentForm({
   return (
     <form onSubmit={handleSubmit} className="mb-6">
       {error && (
-        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-          <p className="text-red-600 text-sm">{error}</p>
+        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3">
+          <p className="text-sm text-red-600">{error}</p>
         </div>
       )}
 
@@ -83,7 +83,7 @@ export default function CommentForm({
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder={isReply ? 'Write your reply...' : 'Share your thoughts...'}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+          className="w-full resize-none rounded-lg border border-gray-300 p-3 focus:border-transparent focus:ring-2 focus:ring-blue-500"
           rows={4}
           disabled={isSubmitting}
         />
@@ -93,7 +93,7 @@ export default function CommentForm({
         <button
           type="submit"
           disabled={isSubmitting || !content.trim()}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isSubmitting ? 'Posting...' : isReply ? 'Reply' : 'Post Comment'}
         </button>
@@ -103,7 +103,7 @@ export default function CommentForm({
             type="button"
             onClick={onCancel}
             disabled={isSubmitting}
-            className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="rounded-lg border border-gray-300 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Cancel
           </button>

@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 
 const Contact = () => {
   return (
-    <section className="h-screen items-center flex justify-center text-white py-16 bg-contact-blue px-5">
+    <section className="bg-contact-blue flex h-screen items-center justify-center px-5 py-16 text-white">
       <div className="md:w-3/6">
-        <h1 className="text-4xl mb-5 text-center">Do you need something done?</h1>
-        <p className="mb-14 text-lg text-center">
+        <h1 className="mb-5 text-center text-4xl">Do you need something done?</h1>
+        <p className="mb-14 text-center text-lg">
           I&apos;m currently accepting new projects and would love to help with yours. Please take a
           few minutes and tell me how I can help.
         </p>

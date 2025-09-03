@@ -15,7 +15,7 @@ export const Services = ({
     <>
       <Link
         href={link}
-        className={`block p-5 md:basis-2/4 md:p-10 transition duration-300 hover:bg-white ${className || ''}`}
+        className={`block p-5 transition duration-300 hover:bg-white md:basis-2/4 md:p-10 ${className || ''}`}
       >
         <h2 className="mb-5 text-4xl">{title}</h2>
 

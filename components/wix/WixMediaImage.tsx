@@ -36,14 +36,14 @@ export function WixMediaImage({
     : {width, height}
 
   return (
-    <div className="flex items-center justify-center h-full">
-      <div className="overflow-hidden relative group w-full h-full">
+    <div className="flex h-full items-center justify-center">
+      <div className="group relative h-full w-full overflow-hidden">
         <Image
           {...styleProps}
           src={imageUrl}
           alt={alt}
           className={cn(
-            'object-cover w-full transition duration-300 ease-in-out',
+            'w-full object-cover transition duration-300 ease-in-out',
             !disableZoom && 'group-hover:scale-110',
             className
           )}

@@ -73,19 +73,19 @@ export default function PendingCommentsList() {
 
   if (isLoading) {
     return (
-      <div className="text-center py-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+      <div className="py-8 text-center">
+        <div className="mx-auto h-8 w-8 animate-spin rounded-full border-b-2 border-blue-600"></div>
       </div>
     )
   }
 
   if (error) {
     return (
-      <div className="text-center py-8">
+      <div className="py-8 text-center">
         <p className="text-red-600">Error: {error}</p>
         <button
           onClick={() => router.refresh()}
-          className="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          className="mt-2 rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
         >
           Retry
         </button>
@@ -95,15 +95,15 @@ export default function PendingCommentsList() {
 
   return (
     <div>
-      <p className="text-sm text-gray-600 mb-4">({pendingComments.length} comments)</p>
+      <p className="mb-4 text-sm text-gray-600">({pendingComments.length} comments)</p>
 
       {pendingComments.length === 0 ? (
-        <p className="text-gray-500 text-center py-8">No pending comments to moderate.</p>
+        <p className="py-8 text-center text-gray-500">No pending comments to moderate.</p>
       ) : (
         <div className="space-y-4">
           {pendingComments.map((comment) => (
-            <div key={comment.id} className="bg-white p-4 rounded-lg border">
-              <div className="flex justify-between items-start mb-3">
+            <div key={comment.id} className="rounded-lg border bg-white p-4">
+              <div className="mb-3 flex items-start justify-between">
                 <div>
                   <p className="font-medium text-gray-900">{comment.user.name}</p>
                   <p className="text-sm text-gray-500">{comment.user.email}</p>
@@ -115,13 +115,13 @@ export default function PendingCommentsList() {
                 <div className="flex space-x-2">
                   <button
                     onClick={() => handleApprove(comment.id)}
-                    className="px-3 py-1 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition-colors"
+                    className="rounded bg-green-600 px-3 py-1 text-sm text-white transition-colors hover:bg-green-700"
                   >
                     Approve
                   </button>
                   <button
                     onClick={() => handleReject(comment.id)}
-                    className="px-3 py-1 bg-red-600 text-white text-sm rounded hover:bg-red-700 transition-colors"
+                    className="rounded bg-red-600 px-3 py-1 text-sm text-white transition-colors hover:bg-red-700"
                   >
                     Reject
                   </button>

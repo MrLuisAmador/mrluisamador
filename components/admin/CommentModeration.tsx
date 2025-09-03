@@ -9,7 +9,7 @@ export default function CommentModeration() {
 
   if (!session) {
     return (
-      <div className="text-center py-8">
+      <div className="py-8 text-center">
         <p className="text-gray-600">Please sign in to access the admin panel.</p>
       </div>
     )
@@ -17,7 +17,7 @@ export default function CommentModeration() {
 
   return (
     <div>
-      <h2 className="text-xl font-semibold mb-4">Pending Comments</h2>
+      <h2 className="mb-4 text-xl font-semibold">Pending Comments</h2>
       <Suspense fallback={<CommentModerationSkeleton />}>
         <PendingCommentsList />
       </Suspense>
@@ -29,22 +29,22 @@ function CommentModerationSkeleton() {
   return (
     <div className="space-y-4">
       {[...Array(3)].map((_, i) => (
-        <div key={i} className="bg-white p-4 rounded-lg border animate-pulse">
-          <div className="flex justify-between items-start mb-3">
+        <div key={i} className="animate-pulse rounded-lg border bg-white p-4">
+          <div className="mb-3 flex items-start justify-between">
             <div className="space-y-2">
-              <div className="h-4 bg-gray-200 rounded w-32"></div>
-              <div className="h-3 bg-gray-200 rounded w-48"></div>
-              <div className="h-3 bg-gray-200 rounded w-24"></div>
-              <div className="h-3 bg-gray-200 rounded w-20"></div>
+              <div className="h-4 w-32 rounded bg-gray-200"></div>
+              <div className="h-3 w-48 rounded bg-gray-200"></div>
+              <div className="h-3 w-24 rounded bg-gray-200"></div>
+              <div className="h-3 w-20 rounded bg-gray-200"></div>
             </div>
             <div className="flex space-x-2">
-              <div className="h-8 w-16 bg-gray-200 rounded"></div>
-              <div className="h-8 w-16 bg-gray-200 rounded"></div>
+              <div className="h-8 w-16 rounded bg-gray-200"></div>
+              <div className="h-8 w-16 rounded bg-gray-200"></div>
             </div>
           </div>
           <div className="space-y-2">
-            <div className="h-4 bg-gray-200 rounded"></div>
-            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+            <div className="h-4 rounded bg-gray-200"></div>
+            <div className="h-4 w-3/4 rounded bg-gray-200"></div>
           </div>
         </div>
       ))}

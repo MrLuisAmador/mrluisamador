@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 export default function AdminCommentsPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Comment Moderation</h1>
+      <div className="mx-auto max-w-6xl px-4">
+        <h1 className="mb-8 text-3xl font-bold text-gray-900">Comment Moderation</h1>
         <CommentModeration />
       </div>
     </div>

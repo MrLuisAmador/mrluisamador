@@ -115,12 +115,12 @@ export default function CommentsList({blogSlug, currentUserId, isPending}: Comme
 
   if (isLoading) {
     return (
-      <div className="mt-8 p-4 bg-gray-50 rounded-lg">
+      <div className="mt-8 rounded-lg bg-gray-50 p-4">
         <div className="animate-pulse">
-          <div className="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
+          <div className="mb-4 h-4 w-1/4 rounded bg-gray-200"></div>
           <div className="space-y-3">
-            <div className="h-4 bg-gray-200 rounded"></div>
-            <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+            <div className="h-4 rounded bg-gray-200"></div>
+            <div className="h-4 w-5/6 rounded bg-gray-200"></div>
           </div>
         </div>
       </div>
@@ -129,11 +129,11 @@ export default function CommentsList({blogSlug, currentUserId, isPending}: Comme
 
   if (error) {
     return (
-      <div className="mt-8 p-4 bg-red-50 border border-red-200 rounded-lg">
+      <div className="mt-8 rounded-lg border border-red-200 bg-red-50 p-4">
         <p className="text-red-600">Error loading comments: {error}</p>
         <button
           onClick={() => window.location.reload()}
-          className="mt-2 text-sm text-red-600 hover:text-red-800 underline"
+          className="mt-2 text-sm text-red-600 underline hover:text-red-800"
         >
           Try again
         </button>
@@ -147,7 +147,7 @@ export default function CommentsList({blogSlug, currentUserId, isPending}: Comme
     >
       <p className="text-sm text-gray-600">({comments.length} comments)</p>
       {comments.length === 0 ? (
-        <p className="text-gray-500 text-center py-8">
+        <p className="py-8 text-center text-gray-500">
           No comments yet. Be the first to share your thoughts!
         </p>
       ) : (

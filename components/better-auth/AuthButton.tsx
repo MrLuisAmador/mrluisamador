@@ -9,7 +9,7 @@ export default function AuthButton() {
   if (isLoading) {
     return (
       <div className="animate-pulse">
-        <div className="h-8 w-20 bg-gray-200 rounded"></div>
+        <div className="h-8 w-20 rounded bg-gray-200"></div>
       </div>
     )
   }
@@ -21,13 +21,13 @@ export default function AuthButton() {
         <div className="flex space-x-2">
           <Link
             href="/admin/comments"
-            className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            className="rounded bg-blue-600 px-3 py-1 text-sm text-white transition-colors hover:bg-blue-700"
           >
             Admin
           </Link>
           <button
             onClick={signOut}
-            className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700 transition-colors"
+            className="rounded bg-red-600 px-3 py-1 text-sm text-white transition-colors hover:bg-red-700"
           >
             Sign Out
           </button>
@@ -39,7 +39,7 @@ export default function AuthButton() {
   return (
     <Link
       href="/signin"
-      className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+      className="rounded bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
     >
       Sign In
     </Link>
