@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <section id="about-me" className="px-5 flex justify-center items-center py-16 text-text-grey">
+    <section id="about-me" className="flex items-center justify-center px-5 py-16 text-text-grey">
       <div className="md:w-4/5">
         <div className="text-center">
-          <h1 className="text-4xl mb-16">About Me</h1>
-          <p className="text-lg mb-12">
+          <h1 className="mb-16 text-4xl">About Me</h1>
+          <p className="mb-12 text-lg">
             Hello and welcome! I'm Luis Amador. I've been developing for the web for almost a
             decade. I believe in setting higher standards by lending the field in SEO, performance,
             security, development and maintenance for websites. Those lists of attributes are a
@@ -28,7 +28,7 @@ export default function About() {
         </div>
 
         <div className="mb-7">
-          <h2 className="text-2xl mb-5">
+          <h2 className="mb-5 text-2xl">
             Here's a list of the technologies I use on a consistent daily basis
           </h2>
 
@@ -104,7 +104,7 @@ export default function About() {
         </div>
 
         <div>
-          <h2 className="text-2xl mb-1">Other Skills and Experiences:</h2>
+          <h2 className="mb-1 text-2xl">Other Skills and Experiences:</h2>
           <ul>
             <li>Computer Repair and Software Support</li>
             <li>Mobile Phone Repairs </li>
