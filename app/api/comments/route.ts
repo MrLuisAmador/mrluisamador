@@ -1,4 +1,5 @@
 import {NextRequest, NextResponse} from 'next/server'
+import {auth} from '@/lib/auth'
 import {createComment, getCommentsByBlogSlug} from '@/lib/db/comments'
 import {CreateCommentData} from '@/lib/types/comment'
 
@@ -21,29 +22,10 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const userSession = request.cookies.get('user-session')?.value
+    const session = await auth.api.getSession({headers: request.headers})
 
-    if (!userSession) {
+    if (!session) {
       return NextResponse.json({error: 'Authentication required'}, {status: 401})
-    }
-
-    let user
-    try {
-      user = JSON.parse(userSession)
-      if (!user.signedIn) {
-        return NextResponse.json({error: 'Authentication required'}, {status: 401})
-      }
-
-      if (!user.id && !user.userId) {
-        return NextResponse.json({error: 'Invalid user session'}, {status: 401})
-      }
-
-      if (!user.id && user.userId) {
-        user.id = user.userId
-      }
-    } catch (error) {
-      console.error('Error parsing user session:', error)
-      return NextResponse.json({error: 'Invalid session'}, {status: 401})
     }
 
     const body: CreateCommentData = await request.json()
@@ -52,7 +34,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({error: 'Content and blog slug are required'}, {status: 400})
     }
 
-    const comment = await createComment(body, user.id)
+    const comment = await createComment(body, session.user.id)
     return NextResponse.json(comment, {status: 201})
   } catch (error) {
     console.error('Error creating comment:', error)

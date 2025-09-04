@@ -1,6 +1,6 @@
 'use client'
 
-import {Suspense, useState, useTransition} from 'react'
+import {Suspense, useState} from 'react'
 import {useAuth} from '@/lib/hooks/useAuth'
 import CommentForm from './CommentForm'
 import CommentsList from './CommentsList'
@@ -13,12 +13,9 @@ interface CommentSectionProps {
 export default function CommentSection({blogSlug}: CommentSectionProps) {
   const {user, isAuthenticated} = useAuth()
   const [refreshKey, setRefreshKey] = useState(0)
-  const [isPending, startTransition] = useTransition()
 
   const handleCommentAdded = () => {
-    startTransition(() => {
-      setRefreshKey((prev) => prev + 1)
-    })
+    setRefreshKey((prev) => prev + 1)
   }
 
   return (
@@ -32,12 +29,7 @@ export default function CommentSection({blogSlug}: CommentSectionProps) {
       )}
 
       <Suspense fallback={<CommentsSkeleton />}>
-        <CommentsList
-          key={refreshKey}
-          blogSlug={blogSlug}
-          currentUserId={user?.id}
-          isPending={isPending}
-        />
+        <CommentsList key={refreshKey} blogSlug={blogSlug} currentUserId={user?.id} />
       </Suspense>
     </div>
   )

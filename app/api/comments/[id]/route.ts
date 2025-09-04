@@ -1,32 +1,14 @@
 import {NextRequest, NextResponse} from 'next/server'
+import {auth} from '@/lib/auth'
 import {updateComment, deleteComment} from '@/lib/db/comments'
 import {UpdateCommentData} from '@/lib/types/comment'
 
 export async function PUT(request: NextRequest, {params}: {params: Promise<{id: string}>}) {
   try {
-    const userSession = request.cookies.get('user-session')?.value
+    const session = await auth.api.getSession({headers: request.headers})
 
-    if (!userSession) {
+    if (!session) {
       return NextResponse.json({error: 'Authentication required'}, {status: 401})
-    }
-
-    let user
-    try {
-      user = JSON.parse(userSession)
-      if (!user.signedIn) {
-        return NextResponse.json({error: 'Authentication required'}, {status: 401})
-      }
-
-      if (!user.id && !user.userId) {
-        return NextResponse.json({error: 'Invalid user session'}, {status: 401})
-      }
-
-      if (!user.id && user.userId) {
-        user.id = user.userId
-      }
-    } catch (error) {
-      console.error('Error parsing user session:', error)
-      return NextResponse.json({error: 'Invalid session'}, {status: 401})
     }
 
     const body: UpdateCommentData = await request.json()
@@ -36,7 +18,7 @@ export async function PUT(request: NextRequest, {params}: {params: Promise<{id: 
     }
 
     const {id} = await params
-    const comment = await updateComment(id, body, user.id)
+    const comment = await updateComment(id, body, session.user.id)
 
     if (!comment) {
       return NextResponse.json({error: 'Comment not found or unauthorized'}, {status: 404})
@@ -51,35 +33,15 @@ export async function PUT(request: NextRequest, {params}: {params: Promise<{id: 
 
 export async function DELETE(request: NextRequest, {params}: {params: Promise<{id: string}>}) {
   try {
-    const userSession = request.cookies.get('user-session')?.value
+    const session = await auth.api.getSession({headers: request.headers})
 
-    if (!userSession) {
+    if (!session) {
       return NextResponse.json({error: 'Authentication required'}, {status: 401})
-    }
-
-    let user
-    try {
-      user = JSON.parse(userSession)
-
-      if (!user.signedIn) {
-        return NextResponse.json({error: 'Authentication required'}, {status: 401})
-      }
-
-      if (!user.id && !user.userId) {
-        return NextResponse.json({error: 'Invalid user session'}, {status: 401})
-      }
-
-      if (!user.id && user.userId) {
-        user.id = user.userId
-      }
-    } catch (error) {
-      console.error('Error parsing user session:', error)
-      return NextResponse.json({error: 'Invalid session'}, {status: 400})
     }
 
     const {id} = await params
 
-    const success = await deleteComment(id, user.id)
+    const success = await deleteComment(id, session.user.id)
 
     if (!success) {
       return NextResponse.json({error: 'Comment not found or unauthorized'}, {status: 404})

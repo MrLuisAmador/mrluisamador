@@ -3,6 +3,98 @@
 import {useState} from 'react'
 import {Comment} from '@/lib/types/comment'
 import CommentForm from './CommentForm'
+import {toast} from 'sonner'
+
+interface EditCommentFormProps {
+  comment: Comment
+  onCommentUpdated: (commentId: string, content: string) => void
+  onCancel: () => void
+}
+
+function EditCommentForm({comment, onCommentUpdated, onCancel}: EditCommentFormProps) {
+  const [content, setContent] = useState(comment.content)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!content.trim()) {
+      setError('Comment cannot be empty')
+      return
+    }
+
+    if (content.trim() === comment.content) {
+      // No changes made, just cancel
+      onCancel()
+      return
+    }
+
+    setIsSubmitting(true)
+    setError(null)
+
+    try {
+      const response = await fetch(`/api/comments/${comment.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          content: content.trim(),
+        }),
+        credentials: 'include',
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || 'Failed to update comment')
+      }
+
+      onCommentUpdated(comment.id, content.trim())
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to update comment')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="mb-3">
+      {error && (
+        <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3">
+          <p className="text-sm text-red-600">{error}</p>
+        </div>
+      )}
+
+      <textarea
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        placeholder="Edit your comment..."
+        className="w-full rounded-lg border border-gray-300 p-3 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
+        rows={4}
+        disabled={isSubmitting}
+      />
+
+      <div className="mt-3 flex justify-end space-x-2">
+        <button
+          type="button"
+          onClick={onCancel}
+          disabled={isSubmitting}
+          className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          disabled={isSubmitting || !content.trim()}
+          className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700 disabled:opacity-50"
+        >
+          {isSubmitting ? 'Updating...' : 'Update Comment'}
+        </button>
+      </div>
+    </form>
+  )
+}
 
 interface CommentItemProps {
   comment: Comment
@@ -28,10 +120,6 @@ export default function CommentItem({
   const canDelete = isOwner
 
   const handleDelete = async () => {
-    if (!confirm('Are you sure you want to delete this comment?')) {
-      return
-    }
-
     setIsDeleting(true)
     try {
       const response = await fetch(`/api/comments/${comment.id}`, {
@@ -43,10 +131,11 @@ export default function CommentItem({
         throw new Error('Failed to delete comment')
       }
 
+      toast.success('Comment deleted successfully')
       onCommentDeleted(comment.id)
     } catch (error) {
       console.error('Error deleting comment:', error)
-      alert('Failed to delete comment')
+      toast.error('Failed to delete comment')
     } finally {
       setIsDeleting(false)
     }
@@ -104,11 +193,13 @@ export default function CommentItem({
         </div>
 
         {isEditing ? (
-          <CommentForm
-            blogSlug={comment.blogSlug}
-            onCommentAdded={() => {}}
+          <EditCommentForm
+            comment={comment}
+            onCommentUpdated={(commentId, content) => {
+              onCommentUpdated(commentId, content)
+              setIsEditing(false)
+            }}
             onCancel={() => setIsEditing(false)}
-            isReply={false}
           />
         ) : (
           <div className="mb-3">

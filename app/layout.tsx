@@ -4,6 +4,7 @@ import Footer from '@/components/base/footer'
 import {GoogleTagManager} from '@next/third-parties/google'
 import {Analytics} from '@vercel/analytics/next'
 import {Metadata, Viewport} from 'next'
+import {Toaster} from '@/components/ui/sonner'
 
 import {Alice, Playfair_Display} from 'next/font/google'
 import '../styles/global.css'
@@ -65,6 +66,7 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
           <Footer />
         </div>
         <Analytics />
+        <Toaster />
       </body>
     </html>
   )

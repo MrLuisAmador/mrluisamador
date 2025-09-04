@@ -1,55 +1,33 @@
 'use client'
 
-import {useState, useEffect} from 'react'
-
-interface User {
-  id: string
-  name: string
-  email: string
-  signedIn: boolean
-}
+import {useSession, signOut as betterAuthSignOut} from '@/lib/auth-client'
+import {useMemo} from 'react'
 
 export function useAuth() {
-  const [user, setUser] = useState<User | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const {data: session, isPending: isLoading} = useSession()
 
-  useEffect(() => {
-    checkAuthStatus()
-  }, [])
-
-  const checkAuthStatus = async () => {
+  const handleSignOut = async () => {
     try {
-      const response = await fetch('/api/auth/me', {
-        credentials: 'include',
-      })
-      if (response.ok) {
-        const userData = await response.json()
-        setUser(userData.user)
-      } else {
-        setUser(null)
-      }
-    } catch (error) {
-      console.error('Check auth status error:', error)
-      setUser(null)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
-  const signOut = async () => {
-    try {
-      await fetch('/api/auth/signout', {method: 'POST', credentials: 'include'})
-      setUser(null)
+      await betterAuthSignOut()
     } catch (error) {
       console.error('Signout error:', error)
     }
   }
 
-  return {
-    user,
-    isLoading,
-    isAuthenticated: !!user?.signedIn,
-    signOut,
-    refresh: checkAuthStatus,
-  }
+  // Memoize the auth state to prevent unnecessary re-renders
+  const authState = useMemo(
+    () => ({
+      user: session?.user || null,
+      isLoading,
+      isAuthenticated: !!session?.user,
+      signOut: handleSignOut,
+      refresh: () => {
+        // Better Auth handles session refresh automatically
+        // This is kept for API compatibility but doesn't need to do anything
+      },
+    }),
+    [session?.user, isLoading]
+  )
+
+  return authState
 }

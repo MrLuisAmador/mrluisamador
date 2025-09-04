@@ -3,6 +3,7 @@
 import {useState} from 'react'
 import {useRouter} from 'next/navigation'
 import Link from 'next/link'
+import {signIn} from '@/lib/auth-client'
 
 export default function SignInPage() {
   const [email, setEmail] = useState('')
@@ -17,18 +18,14 @@ export default function SignInPage() {
     setError('')
 
     try {
-      const response = await fetch('/api/auth/signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
+      const result = await signIn.email({
+        email,
+        password,
       })
 
-      if (response.ok) {
+      if (result.error) {
+        setError(result.error.message || 'Sign in failed')
+      } else {
         const referrer = document.referrer
         const isFromBlog = referrer.includes('/blogs/')
 
@@ -43,9 +40,6 @@ export default function SignInPage() {
           router.push('/blogs')
         }
         router.refresh()
-      } else {
-        const data = await response.json()
-        setError(data.error || 'Sign in failed')
       }
     } catch (error) {
       console.error('Sign in error:', error)

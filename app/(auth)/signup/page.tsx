@@ -3,6 +3,7 @@
 import {useState} from 'react'
 import {useRouter} from 'next/navigation'
 import Link from 'next/link'
+import {signUp, signIn} from '@/lib/auth-client'
 
 export default function SignUpPage() {
   const [name, setName] = useState('')
@@ -33,34 +34,29 @@ export default function SignUpPage() {
     }
 
     try {
-      const response = await fetch('/api/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
+      const result = await signUp.email({
+        name,
+        email,
+        password,
       })
 
-      if (response.ok) {
+      if (result.error) {
+        setError(result.error.message || 'Sign up failed')
+      } else {
         setSuccess('Account created successfully! Now signing you in...')
 
         try {
-          const signinResponse = await fetch('/api/auth/signin', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              email,
-              password,
-            }),
+          const signinResult = await signIn.email({
+            email,
+            password,
           })
 
-          if (signinResponse.ok) {
+          if (signinResult.error) {
+            setSuccess('Account created! Please sign in manually.')
+            setTimeout(() => {
+              router.push('/signin')
+            }, 2000)
+          } else {
             setSuccess('Account created and signed in successfully! Redirecting...')
             setName('')
             setEmail('')
@@ -84,11 +80,6 @@ export default function SignUpPage() {
                 router.push('/blogs')
               }, 1500)
             }
-          } else {
-            setSuccess('Account created! Please sign in manually.')
-            setTimeout(() => {
-              router.push('/signin')
-            }, 2000)
           }
         } catch (error) {
           console.error('Sign in error:', error)
@@ -97,9 +88,6 @@ export default function SignUpPage() {
             router.push('/signin')
           }, 2000)
         }
-      } else {
-        const data = await response.json()
-        setError(data.error || 'Sign up failed')
       }
     } catch (error) {
       console.error('Sign up error:', error)

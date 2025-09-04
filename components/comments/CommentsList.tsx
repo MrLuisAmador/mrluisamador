@@ -7,10 +7,9 @@ import CommentItem from './CommentItem'
 interface CommentsListProps {
   blogSlug: string
   currentUserId?: string
-  isPending?: boolean
 }
 
-export default function CommentsList({blogSlug, currentUserId, isPending}: CommentsListProps) {
+export default function CommentsList({blogSlug, currentUserId}: CommentsListProps) {
   const [comments, setComments] = useState<Comment[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -41,31 +40,28 @@ export default function CommentsList({blogSlug, currentUserId, isPending}: Comme
     setComments((prev) => {
       // If it's a reply, find the parent comment and add it to its replies
       if (newComment.parentId) {
-        return prev.map((comment) => {
-          // Check if this is the direct parent
-          if (comment.id === newComment.parentId) {
-            return {
-              ...comment,
-              replies: [...(comment.replies || []), newComment],
+        // Recursive function to find and update the parent comment
+        const addReplyToComment = (comments: Comment[]): Comment[] => {
+          return comments.map((comment) => {
+            // Check if this is the direct parent
+            if (comment.id === newComment.parentId) {
+              return {
+                ...comment,
+                replies: [...(comment.replies || []), newComment],
+              }
             }
-          }
-          // Check if this comment has replies that contain the parent
-          if (comment.replies && comment.replies.length > 0) {
-            return {
-              ...comment,
-              replies: comment.replies.map((reply) => {
-                if (reply.id === newComment.parentId) {
-                  return {
-                    ...reply,
-                    replies: [...(reply.replies || []), newComment],
-                  }
-                }
-                return reply
-              }),
+            // Recursively check nested replies
+            if (comment.replies && comment.replies.length > 0) {
+              return {
+                ...comment,
+                replies: addReplyToComment(comment.replies),
+              }
             }
-          }
-          return comment
-        })
+            return comment
+          })
+        }
+
+        return addReplyToComment(prev)
       }
       // If it's a top-level comment, add it to the main array
       return [...prev, newComment]
@@ -73,11 +69,31 @@ export default function CommentsList({blogSlug, currentUserId, isPending}: Comme
   }
 
   const handleCommentUpdated = (commentId: string, content: string) => {
-    setComments((prev) =>
-      prev.map((comment) =>
-        comment.id === commentId ? {...comment, content, updatedAt: new Date()} : comment
-      )
-    )
+    setComments((prev) => {
+      // Recursive function to find and update the comment at any nesting level
+      const updateCommentRecursively = (comments: Comment[]): Comment[] => {
+        return comments.map((comment) => {
+          // Check if this is the comment to update
+          if (comment.id === commentId) {
+            return {
+              ...comment,
+              content,
+              updatedAt: new Date(),
+            }
+          }
+          // Recursively check nested replies
+          if (comment.replies && comment.replies.length > 0) {
+            return {
+              ...comment,
+              replies: updateCommentRecursively(comment.replies),
+            }
+          }
+          return comment
+        })
+      }
+
+      return updateCommentRecursively(prev)
+    })
   }
 
   const handleCommentDeleted = (commentId: string) => {
@@ -142,9 +158,7 @@ export default function CommentsList({blogSlug, currentUserId, isPending}: Comme
   }
 
   return (
-    <div
-      className={`mt-8 space-y-6 transition-opacity duration-200 ${isPending ? 'opacity-50' : 'opacity-100'}`}
-    >
+    <div className="mt-8 space-y-6">
       <p className="text-sm text-gray-600">({comments.length} comments)</p>
       {comments.length === 0 ? (
         <p className="py-8 text-center text-gray-500">

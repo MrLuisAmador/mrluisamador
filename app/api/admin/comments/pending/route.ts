@@ -1,4 +1,5 @@
 import {NextRequest, NextResponse} from 'next/server'
+import {auth} from '@/lib/auth'
 import {Pool} from 'pg'
 
 const pool = new Pool({
@@ -7,29 +8,10 @@ const pool = new Pool({
 
 export async function GET(request: NextRequest) {
   try {
-    const userSession = request.cookies.get('user-session')?.value
+    const session = await auth.api.getSession({headers: request.headers})
 
-    if (!userSession) {
+    if (!session) {
       return NextResponse.json({error: 'Authentication required'}, {status: 401})
-    }
-
-    let user
-    try {
-      user = JSON.parse(userSession)
-      if (!user.signedIn) {
-        return NextResponse.json({error: 'Authentication required'}, {status: 401})
-      }
-
-      if (!user.id && !user.userId) {
-        return NextResponse.json({error: 'Invalid user session'}, {status: 401})
-      }
-
-      if (!user.id && user.userId) {
-        user.id = user.userId
-      }
-    } catch (error) {
-      console.error('Error parsing user session:', error)
-      return NextResponse.json({error: 'Invalid session'}, {status: 401})
     }
 
     const client = await pool.connect()
