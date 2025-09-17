@@ -1,5 +1,5 @@
 import {NextRequest, NextResponse} from 'next/server'
-import {auth} from '@/lib/auth'
+import {auth} from '@/lib/better-auth/auth'
 import {createComment, getCommentsByBlogSlug} from '@/lib/db/comments'
 import {CreateCommentData} from '@/lib/types/comment'
 

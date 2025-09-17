@@ -3,7 +3,7 @@
 import {useState} from 'react'
 import {useRouter} from 'next/navigation'
 import Link from 'next/link'
-import {signUp, signIn} from '@/lib/auth-client'
+import {signUp, signIn} from '@/lib/better-auth/auth-client'
 
 export default function SignUpPage() {
   const [name, setName] = useState('')

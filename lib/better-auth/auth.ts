@@ -1,25 +1,18 @@
 import {betterAuth} from 'better-auth'
 import {Pool} from 'pg'
 
-// Initialize the auth module with a PostgreSQL pool
 export const auth = betterAuth({
   database: new Pool({
     connectionString: process.env.NEON_DB_CONNECTION_STRING,
-    // Add connection pool optimizations
-    max: 10, // Reduce max connections
-    min: 2, // Add minimum connections
-    idleTimeoutMillis: 10000, // Reduce idle timeout
-    connectionTimeoutMillis: 5000, // Increase connection timeout
-    // Add SSL configuration for Neon
-    ssl: {
-      rejectUnauthorized: false,
-    },
+    max: 10,
+    min: 2,
+    idleTimeoutMillis: 10000,
+    connectionTimeoutMillis: 5000,
   }),
-  secret: process.env.AUTH_SECRET || 'fallback-secret-for-development',
+  secret: process.env.AUTH_SECRET || '',
   emailAndPassword: {
     enabled: true,
   },
-  // Add session optimizations
   session: {
     expiresIn: 60 * 60 * 24 * 7, // 7 days
     updateAge: 60 * 60 * 24, // 1 day
@@ -28,7 +21,6 @@ export const auth = betterAuth({
       maxAge: 60 * 5, // 5 minutes
     },
   },
-  // Add advanced optimizations
   advanced: {
     generateId: () => crypto.randomUUID(),
     crossSubDomainCookies: {

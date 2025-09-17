@@ -1,6 +1,6 @@
 'use client'
 
-import {useSession, signOut as betterAuthSignOut} from '@/lib/auth-client'
+import {useSession, signOut as betterAuthSignOut} from '@/lib/better-auth/auth-client'
 import {useMemo} from 'react'
 
 export function useAuth() {

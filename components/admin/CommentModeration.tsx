@@ -1,6 +1,6 @@
 'use client'
 
-import {useSession} from '@/lib/auth-client'
+import {useSession} from '@/lib/better-auth/auth-client'
 import {Suspense} from 'react'
 import PendingCommentsList from '../admin/PendingCommentsList'
 

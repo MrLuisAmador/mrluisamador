@@ -1,5 +1,5 @@
 import {NextRequest, NextResponse} from 'next/server'
-import {auth} from '@/lib/auth'
+import {auth} from '@/lib/better-auth/auth'
 import {approveComment} from '@/lib/db/comments'
 
 export async function POST(request: NextRequest, {params}: {params: Promise<{id: string}>}) {

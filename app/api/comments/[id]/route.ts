@@ -1,5 +1,5 @@
 import {NextRequest, NextResponse} from 'next/server'
-import {auth} from '@/lib/auth'
+import {auth} from '@/lib/better-auth/auth'
 import {updateComment, deleteComment} from '@/lib/db/comments'
 import {UpdateCommentData} from '@/lib/types/comment'
 
