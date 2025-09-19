@@ -83,7 +83,7 @@ export default function CommentForm({
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder={isReply ? 'Write your reply...' : 'Share your thoughts...'}
-          className="w-full resize-none rounded-lg border border-gray-300 p-3 focus:border-transparent focus:ring-2 focus:ring-blue-500"
+          className="w-full resize-none rounded-lg border border-gray-300 p-3 focus:border-transparent"
           rows={4}
           disabled={isSubmitting}
         />

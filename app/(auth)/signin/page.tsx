@@ -1,53 +1,57 @@
 'use client'
 
-import {useState} from 'react'
-import {useRouter} from 'next/navigation'
+import {useState, useTransition} from 'react'
+import {useRouter, useSearchParams} from 'next/navigation'
 import Link from 'next/link'
 import {signIn} from '@/lib/better-auth/auth-client'
+import {useForm} from 'react-hook-form'
+import {zodResolver} from '@hookform/resolvers/zod'
+import {z} from 'zod'
+
+const signInSchema = z.object({
+  email: z.string().email('Please enter a valid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
+})
+
+type SignInFormData = z.infer<typeof signInSchema>
 
 export default function SignInPage() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const [isPending, startTransition] = useTransition()
+  const [error, setError] = useState('')
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+  const {
+    register,
+    handleSubmit,
+    formState: {errors, isSubmitting},
+  } = useForm<SignInFormData>({
+    resolver: zodResolver(signInSchema),
+  })
+
+  const onSubmit = async (data: SignInFormData) => {
     setError('')
 
-    try {
-      const result = await signIn.email({
-        email,
-        password,
-      })
+    startTransition(async () => {
+      try {
+        const result = await signIn.email(data)
 
-      if (result.error) {
-        setError(result.error.message || 'Sign in failed')
-      } else {
-        const referrer = document.referrer
-        const isFromBlog = referrer.includes('/blogs/')
-
-        if (isFromBlog) {
-          const blogUrl = referrer.split('localhost:3000')[1]
-          if (blogUrl && blogUrl.startsWith('/')) {
-            router.push(blogUrl as `/blogs/${string}`)
-          } else {
-            router.push('/blogs')
-          }
-        } else {
-          router.push('/blogs')
+        if (result.error) {
+          setError(result.error.message || 'Sign in failed')
+          return
         }
+
+        const redirectTo = searchParams.get('redirect') || '/blogs'
+        router.push(redirectTo)
         router.refresh()
+      } catch (err) {
+        console.error('Sign in error:', err)
+        setError('An unexpected error occurred. Please try again.')
       }
-    } catch (error) {
-      console.error('Sign in error:', error)
-      setError('An error occurred during sign in')
-    } finally {
-      setIsLoading(false)
-    }
+    })
   }
+
+  const isLoading = isPending || isSubmitting
 
   return (
     <div className="flex min-h-screen flex-col justify-center bg-gray-50 py-12 sm:px-6 lg:px-8">
@@ -65,9 +69,9 @@ export default function SignInPage() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white px-4 py-8 shadow-sm sm:rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             {error && (
-              <div className="rounded-md border border-red-200 bg-red-50 p-4">
+              <div className="rounded-md border border-red-200 bg-red-50 p-4" role="alert">
                 <p className="text-sm text-red-600">{error}</p>
               </div>
             )}
@@ -78,16 +82,24 @@ export default function SignInPage() {
               </label>
               <div className="mt-1">
                 <input
+                  {...register('email')}
                   id="email"
-                  name="email"
                   type="email"
                   autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 focus:outline-hidden sm:text-sm"
+                  className={`block w-full appearance-none rounded-md border px-3 py-2 placeholder-gray-400 focus:outline-none sm:text-sm ${
+                    errors.email
+                      ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                      : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+                  }`}
                   placeholder="Enter your email"
+                  aria-invalid={errors.email ? 'true' : 'false'}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
                 />
+                {errors.email && (
+                  <p id="email-error" className="mt-1 text-sm text-red-600">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -97,16 +109,24 @@ export default function SignInPage() {
               </label>
               <div className="mt-1">
                 <input
+                  {...register('password')}
                   id="password"
-                  name="password"
                   type="password"
                   autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 focus:outline-hidden sm:text-sm"
+                  className={`block w-full appearance-none rounded-md border px-3 py-2 placeholder-gray-400 focus:outline-none sm:text-sm ${
+                    errors.password
+                      ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+                      : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+                  }`}
                   placeholder="Enter your password"
+                  aria-invalid={errors.password ? 'true' : 'false'}
+                  aria-describedby={errors.password ? 'password-error' : undefined}
                 />
+                {errors.password && (
+                  <p id="password-error" className="mt-1 text-sm text-red-600">
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -114,7 +134,7 @@ export default function SignInPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
+                className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {isLoading ? 'Signing in...' : 'Sign in'}
               </button>

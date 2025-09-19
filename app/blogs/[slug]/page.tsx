@@ -113,8 +113,7 @@ const Blog = async (props: Props) => {
         <RichContentViewer content={post.content} />
       </div>
 
-      {/* Comments Section */}
-      <div className="mx-auto max-w-4xl px-5">
+      <div className="mx-auto max-w-4xl px-5 md:px-0">
         <CommentSection blogSlug={slug} />
       </div>
     </article>
