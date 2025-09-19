@@ -1,7 +1,7 @@
 'use client'
 
 import {useState, useTransition, useEffect} from 'react'
-import {useRouter, useSearchParams} from 'next/navigation'
+import {useRouter} from 'next/navigation'
 import Link from 'next/link'
 import {signIn} from '@/lib/better-auth/auth-client'
 import {useForm} from 'react-hook-form'
@@ -17,17 +17,19 @@ type SignInFormData = z.infer<typeof signInSchema>
 
 export default function SignInPage() {
   const router = useRouter()
-  const searchParams = useSearchParams()
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState('')
   const [redirectTo, setRedirectTo] = useState('/blogs')
 
   useEffect(() => {
-    const redirect = searchParams.get('redirect')
-    if (redirect) {
-      setRedirectTo(redirect)
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search)
+      const redirect = urlParams.get('redirect')
+      if (redirect) {
+        setRedirectTo(redirect)
+      }
     }
-  }, [searchParams])
+  }, [])
 
   const {
     register,
