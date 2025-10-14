@@ -15,7 +15,7 @@ interface PendingComment {
 }
 
 async function fetchPendingComments(): Promise<PendingComment[]> {
-  const response = await fetch('/api/admin/comments/pending')
+  const response = await fetch('/api/comments/pending')
   if (!response.ok) {
     throw new Error('Failed to fetch pending comments')
   }
@@ -45,7 +45,7 @@ export default function PendingCommentsList() {
 
   const handleApprove = async (commentId: string) => {
     try {
-      const response = await fetch(`/api/admin/comments/${commentId}/approve`, {
+      const response = await fetch(`/api/comments/${commentId}/approve`, {
         method: 'POST',
       })
 
@@ -59,7 +59,7 @@ export default function PendingCommentsList() {
 
   const handleReject = async (commentId: string) => {
     try {
-      const response = await fetch(`/api/admin/comments/${commentId}/reject`, {
+      const response = await fetch(`/api/comments/${commentId}/reject`, {
         method: 'DELETE',
       })
 

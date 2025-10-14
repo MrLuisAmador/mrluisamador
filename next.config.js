@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+import {withPayload} from '@payloadcms/next/withPayload'
 const nextConfig = {
   reactStrictMode: true,
   typedRoutes: false,
@@ -16,8 +17,9 @@ const nextConfig = {
     ],
   },
   experimental: {
+    reactCompiler: true,
     optimizePackageImports: ['lucide-react'],
   },
 }
 
-export default nextConfig
+export default withPayload(nextConfig)

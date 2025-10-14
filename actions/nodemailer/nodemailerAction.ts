@@ -1,6 +1,6 @@
 'use server'
 
-import {verifyRecaptcha} from '@/actions/google/verifyRecaptcha'
+import {verifyRecaptcha} from '@/lib/google/verifyRecaptcha'
 import {redirect} from 'next/navigation'
 import {ContactFormSchema} from '@/lib/zod/contact-form-schema'
 import {createTransporter, emailTemplates} from '@/lib/nodemailer/config'

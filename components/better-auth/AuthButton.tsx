@@ -20,7 +20,7 @@ export default function AuthButton() {
         <span className="text-sm text-gray-700">Welcome, {user.name}</span>
         <div className="flex space-x-2">
           <Link
-            href="/admin/comments"
+            href="/comments"
             className="rounded bg-blue-600 px-3 py-1 text-sm text-white transition-colors hover:bg-blue-700"
           >
             Admin

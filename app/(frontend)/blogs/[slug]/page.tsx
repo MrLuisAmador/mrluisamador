@@ -94,8 +94,11 @@ const Blog = async (props: Props) => {
         dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
       />
 
-      <Link className="mx-2 mb-4 inline-block xl:mx-6 xl:mb-6" href="/blogs">
-        Back to Blogs
+      <Link
+        className="mx-2 mb-4 inline-block hover:cursor-pointer hover:text-blue-600 xl:mx-6 xl:mb-6"
+        href="/blogs"
+      >
+        ← Back to the Blogs
       </Link>
       <h1 className="text-center text-4xl xl:mb-12">{post.title}</h1>
 

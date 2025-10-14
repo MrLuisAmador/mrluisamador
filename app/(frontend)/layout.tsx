@@ -7,7 +7,7 @@ import {Metadata, Viewport} from 'next'
 import {Toaster} from '@/components/ui/sonner'
 
 import {Alice, Playfair_Display} from 'next/font/google'
-import '../styles/global.css'
+import '../../styles/global.css'
 
 const alice = Alice({
   weight: '400',

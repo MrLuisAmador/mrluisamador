@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import {usePathname} from 'next/navigation'
+import {Button} from '../ui/button'
 
 const NavLink = ({
   href,
@@ -14,8 +15,10 @@ const NavLink = ({
   isActive: boolean
 }) => (
   <li className="mb-3.5">
-    <Link className="block hover:underline" href={href} aria-label={children as string}>
-      <span className={`block ${isActive ? 'underline' : ''}`}>{children}</span>
+    <Link href={href} aria-label={children as string}>
+      <Button variant="link" className={`${isActive ? 'underline' : ''}`}>
+        {children}
+      </Button>
     </Link>
   </li>
 )
