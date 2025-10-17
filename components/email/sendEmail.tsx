@@ -60,6 +60,15 @@ const SendEmail = () => {
 
         await nodemailerAction(formData)
 
+        if (typeof window !== 'undefined' && 'dataLayer' in window) {
+          const dataLayer = (window as {dataLayer: unknown[]}).dataLayer
+          dataLayer.push({
+            event: 'form_submit',
+            form_name: 'contact_form',
+            page_location: window.location.href,
+          })
+        }
+
         return {
           success: true,
           errors: undefined,

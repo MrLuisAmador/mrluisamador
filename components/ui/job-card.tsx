@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export const Services = ({
+export const JobCard = ({
   title,
   description,
   link,

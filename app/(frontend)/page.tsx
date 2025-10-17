@@ -2,7 +2,7 @@ import Link from 'next/link'
 import {Metadata} from 'next'
 import {Button} from '@/components/ui/button'
 import {ServiceCard} from '@/components/ui/service-card'
-import {services} from '@/data/service/services'
+import {services} from '@/data/services'
 
 export const metadata: Metadata = {
   title: 'Home | Luis Amador Portfolio',
@@ -22,6 +22,7 @@ export default function Home() {
           <h2 className="mb-10 text-4xl text-white lg:text-5xl">
             <span className="block text-center">why you should hire me</span>
           </h2>
+
           <Link href="/about">
             <Button variant="outline">Who am I ?</Button>
           </Link>
