@@ -17,9 +17,10 @@ const nextConfig = {
     ],
   },
   experimental: {
-    reactCompiler: true,
     optimizePackageImports: ['lucide-react'],
+    cacheComponents: true,
   },
+  turbopack: {},
 }
 
 export default withPayload(nextConfig)
