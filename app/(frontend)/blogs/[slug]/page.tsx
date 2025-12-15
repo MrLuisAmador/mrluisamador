@@ -8,6 +8,8 @@ import CommentSection from '@/components/comments/CommentSection'
 import {Suspense} from 'react'
 import {Metadata} from 'next'
 
+export const dynamic = 'force-dynamic'
+
 type Props = {
   params: Promise<{slug: string}>
 }

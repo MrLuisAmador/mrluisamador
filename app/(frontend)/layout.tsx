@@ -1,6 +1,10 @@
 import Script from 'next/script'
-import Nav from '@/components/base/nav'
+import dynamic from 'next/dynamic'
 import Footer from '@/components/base/footer'
+
+const Nav = dynamic(() => import('@/components/base/nav'), {
+  ssr: false,
+})
 import {GoogleTagManager} from '@next/third-parties/google'
 import {Analytics} from '@vercel/analytics/next'
 import {Metadata, Viewport} from 'next'
