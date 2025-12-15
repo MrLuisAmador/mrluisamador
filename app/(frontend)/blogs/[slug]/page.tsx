@@ -8,67 +8,74 @@ import CommentSection from '@/components/comments/CommentSection'
 import {Suspense} from 'react'
 import {Metadata} from 'next'
 
-export const dynamic = 'force-dynamic'
-
 type Props = {
   params: Promise<{slug: string}>
 }
 
+async function getBlogPost(slug: string) {
+  const queryWixBlogs = await getWixClient()
+  const {items: blog} = await queryWixBlogs.items.query('blogPost').eq('slug', slug).find()
+  return blog![0]
+}
+
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params
-
   const {slug} = params
 
-  const queryWixBlogs = await getWixClient()
+  try {
+    const post = await getBlogPost(slug)
+    const metaURL = media.getImageUrl(post.image).url
+    const metaAuthor = post.refAuthors.title
+    const metaDate = post._updatedDate?.toISOString()
+    const metaTile = post.title
 
-  const {items: blog} = await queryWixBlogs.items.query('blogPost').eq('slug', slug).find()
-
-  const post = blog![0]
-
-  const metaURL = media.getImageUrl(post.image).url
-  const metaAuthor = post.refAuthors.title
-  const metaDate = post._updatedDate?.toISOString()
-  const metaTile = post.title
-
-  return {
-    title: metaTile,
-    description: post.description,
-    alternates: {
-      canonical: `/blogs/${slug}`,
-    },
-    openGraph: {
-      images: [
-        {
-          url: metaURL,
-          width: 800,
-          height: 600,
-          alt: metaTile,
-        },
-      ],
-      type: 'article',
-      publishedTime: metaDate,
-      authors: metaAuthor,
-    },
-    twitter: {
-      images: [
-        {
-          url: metaURL,
-          width: 800,
-          height: 600,
-          alt: metaTile,
-        },
-      ],
-      creator: metaAuthor,
-    },
+    return {
+      metadataBase: new URL('https://www.mrluisamador.com/'),
+      title: metaTile,
+      description: post.description,
+      alternates: {
+        canonical: `/blogs/${slug}`,
+      },
+      openGraph: {
+        images: [
+          {
+            url: metaURL,
+            width: 800,
+            height: 600,
+            alt: metaTile,
+          },
+        ],
+        type: 'article',
+        publishedTime: metaDate,
+        authors: metaAuthor,
+      },
+      twitter: {
+        images: [
+          {
+            url: metaURL,
+            width: 800,
+            height: 600,
+            alt: metaTile,
+          },
+        ],
+        creator: metaAuthor,
+      },
+    }
+  } catch {
+    // Fallback metadata if Wix API fails during build
+    return {
+      metadataBase: new URL('https://www.mrluisamador.com/'),
+      title: 'Blog Post',
+      description: 'Read our latest blog post',
+      alternates: {
+        canonical: `/blogs/${slug}`,
+      },
+    }
   }
 }
 
 async function BlogContent({slug: blogSlug}: {slug: string}) {
-  const queryWixBlogs = await getWixClient()
-
-  const {items: blog} = await queryWixBlogs.items.query('blogPost').eq('slug', blogSlug).find()
-
-  const post = blog![0]
+  const post = await getBlogPost(blogSlug)
 
   const jsonLd = {
     '@context': 'https://schema.org',

@@ -18,7 +18,6 @@ const nextConfig = {
   },
   experimental: {
     optimizePackageImports: ['lucide-react'],
-    cacheComponents: true,
   },
   turbopack: {},
 }

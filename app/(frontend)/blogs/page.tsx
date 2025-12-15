@@ -50,8 +50,9 @@ async function BlogsList() {
         ))}
       </ul>
     )
-  } catch (error) {
-    console.error('Failed to fetch blogs:', error)
+  } catch {
+    // Wix API may not be available during build-time static generation
+    // Error is handled gracefully with user-friendly message
     return (
       <div className="py-10 text-center">
         <p className="mb-4 text-gray-600">Unable to load blogs at the moment.</p>

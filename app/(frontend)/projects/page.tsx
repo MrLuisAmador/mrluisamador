@@ -21,8 +21,9 @@ async function ProjectsList() {
     const projects = items as Project[]
 
     return <ProjectFilter projects={projects} />
-  } catch (error) {
-    console.error('Failed to fetch projects:', error)
+  } catch {
+    // Wix API may not be available during build-time static generation
+    // Error is handled gracefully with user-friendly message
     return (
       <div className="py-10 text-center">
         <p className="mb-4 text-white">Unable to load projects at the moment.</p>

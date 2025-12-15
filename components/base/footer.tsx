@@ -1,5 +1,3 @@
-'use cache'
-
 export default async function Footer() {
   const year = new Date().getFullYear()
   return (
