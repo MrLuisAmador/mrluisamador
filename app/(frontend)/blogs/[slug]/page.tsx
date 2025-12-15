@@ -5,12 +5,14 @@ import RichContentViewer from '@/components/wix/RichContentViewer'
 import {media} from '@wix/sdk'
 import GoogleAd from '@/components/google/google-adsense'
 import CommentSection from '@/components/comments/CommentSection'
+import {Suspense} from 'react'
+import {Metadata} from 'next'
 
 type Props = {
   params: Promise<{slug: string}>
 }
 
-export async function generateMetadata(props: Props) {
+export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params
 
   const {slug} = params
@@ -59,14 +61,10 @@ export async function generateMetadata(props: Props) {
   }
 }
 
-const Blog = async (props: Props) => {
-  const params = await props.params
-
-  const {slug} = params
-
+async function BlogContent({slug: blogSlug}: {slug: string}) {
   const queryWixBlogs = await getWixClient()
 
-  const {items: blog} = await queryWixBlogs.items.query('blogPost').eq('slug', slug).find()
+  const {items: blog} = await queryWixBlogs.items.query('blogPost').eq('slug', blogSlug).find()
 
   const post = blog![0]
 
@@ -87,7 +85,7 @@ const Blog = async (props: Props) => {
   }
 
   return (
-    <article className="py-16">
+    <>
       {/* Add JSON-LD to your page */}
       <script
         type="application/ld+json"
@@ -117,8 +115,42 @@ const Blog = async (props: Props) => {
       </div>
 
       <div className="mx-auto max-w-4xl px-5 md:px-0">
-        <CommentSection blogSlug={slug} />
+        <CommentSection blogSlug={blogSlug} />
       </div>
+    </>
+  )
+}
+
+function BlogSkeleton() {
+  return (
+    <>
+      <div className="mx-2 mb-4 h-6 w-32 animate-pulse bg-gray-200 xl:mx-6 xl:mb-6"></div>
+      <div className="mx-auto mb-12 h-12 w-3/4 animate-pulse bg-gray-200"></div>
+      <div className="mx-auto max-w-4xl bg-white px-5 pt-14 xl:rounded xl:py-16 xl:shadow-sm xl:shadow-black">
+        <div className="mb-16 h-96 w-full animate-pulse bg-gray-200"></div>
+        <div className="my-8 h-32 w-full animate-pulse bg-gray-200"></div>
+        <div className="space-y-4">
+          <div className="h-4 w-full animate-pulse bg-gray-200"></div>
+          <div className="h-4 w-5/6 animate-pulse bg-gray-200"></div>
+          <div className="h-4 w-full animate-pulse bg-gray-200"></div>
+        </div>
+      </div>
+      <div className="mx-auto max-w-4xl px-5 md:px-0">
+        <div className="h-64 w-full animate-pulse bg-gray-200"></div>
+      </div>
+    </>
+  )
+}
+
+const Blog = async (props: Props) => {
+  const params = await props.params
+  const {slug} = params
+
+  return (
+    <article className="py-16">
+      <Suspense fallback={<BlogSkeleton />}>
+        <BlogContent slug={slug} />
+      </Suspense>
     </article>
   )
 }
