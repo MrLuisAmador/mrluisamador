@@ -5,26 +5,34 @@ import {redirect} from 'next/navigation'
 import {ContactFormSchema} from '@/lib/zod/contact-form-schema'
 import {createTransporter, emailTemplates} from '@/lib/nodemailer/config'
 
-export async function nodemailerAction(formData: FormData) {
+type ActionResult = {success: true} | {success: false; error: string}
+
+export async function nodemailerAction(formData: FormData): Promise<ActionResult> {
   const formDataObj = Object.fromEntries(formData.entries())
   const parsedData = ContactFormSchema.safeParse(formDataObj)
 
   if (!parsedData.success) {
-    console.error('Validation errors:', parsedData.error)
-    return
+    return {
+      success: false,
+      error: 'Invalid form data',
+    }
   }
 
   const token = formData.get('recaptchaToken') as string
 
   if (!token) {
-    console.error('reCAPTCHA token is empty')
-    return
+    return {
+      success: false,
+      error: 'reCAPTCHA token is missing',
+    }
   }
 
   const isHuman = await verifyRecaptcha(token)
   if (!isHuman) {
-    console.error('reCAPTCHA verification failed:')
-    return
+    return {
+      success: false,
+      error: 'reCAPTCHA verification failed',
+    }
   }
 
   const body = {
@@ -33,15 +41,16 @@ export async function nodemailerAction(formData: FormData) {
   }
 
   const transporter = createTransporter()
-
   const mailOptions = emailTemplates.contactForm(body)
 
   try {
     await transporter.sendMail(mailOptions)
+    redirect('/thankyou')
   } catch (error) {
     console.error('Error sending email:', error)
-    return
+    return {
+      success: false,
+      error: 'Failed to send email. Please try again.',
+    }
   }
-
-  redirect('/thankyou')
 }
