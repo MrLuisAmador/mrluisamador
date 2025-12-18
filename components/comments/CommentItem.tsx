@@ -1,6 +1,7 @@
 'use client'
 
 import {useState} from 'react'
+import Image from 'next/image'
 import {Comment} from '@/lib/types/comment'
 import CommentForm from './CommentForm'
 import {toast} from 'sonner'
@@ -157,9 +158,11 @@ export default function CommentItem({
         <div className="mb-3 flex items-start justify-between">
           <div className="flex items-center space-x-3">
             {comment.user?.image && (
-              <img
+              <Image
                 src={comment.user.image}
-                alt={comment.user.name}
+                alt={comment.user.name || 'User avatar'}
+                width={32}
+                height={32}
                 className="h-8 w-8 rounded-full"
               />
             )}

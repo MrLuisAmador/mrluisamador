@@ -13,14 +13,13 @@ export const metadata: Metadata = {
 }
 
 async function ProjectsList() {
+  let projects: Project[]
   try {
     const queryWixProjects = await getWixClient()
     const {items} = await queryWixProjects.items.query('projectGallery').ascending('orderId').find()
 
     // Cast the items to Project[] type since we know the structure matches
-    const projects = items as Project[]
-
-    return <ProjectFilter projects={projects} />
+    projects = items as Project[]
   } catch {
     // Wix API may not be available during build-time static generation
     // Error is handled gracefully with user-friendly message
@@ -33,6 +32,8 @@ async function ProjectsList() {
       </div>
     )
   }
+
+  return <ProjectFilter projects={projects} />
 }
 
 function ProjectsListSkeleton() {

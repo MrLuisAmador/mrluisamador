@@ -1,6 +1,6 @@
 'use client'
 
-import {useState, useTransition, useEffect} from 'react'
+import {useState, useTransition} from 'react'
 import {useRouter} from 'next/navigation'
 import Link from 'next/link'
 import {signIn} from '@/lib/better-auth/auth-client'
@@ -19,17 +19,13 @@ export default function SignInPage() {
   const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState('')
-  const [redirectTo, setRedirectTo] = useState('/blogs')
-
-  useEffect(() => {
+  const [redirectTo] = useState(() => {
     if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search)
-      const redirect = urlParams.get('redirect')
-      if (redirect) {
-        setRedirectTo(redirect)
-      }
+      return urlParams.get('redirect') || '/blogs'
     }
-  }, [])
+    return '/blogs'
+  })
 
   const {
     register,

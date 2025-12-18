@@ -15,21 +15,21 @@ export default function About() {
         <div className="text-center">
           <h1 className="mb-16 text-4xl">About Me</h1>
           <p className="mb-12 text-lg">
-            Hello and welcome! I'm Luis Amador. I've been developing for the web for almost a
-            decade. I believe in setting higher standards by lending the field in SEO, performance,
-            security, development and maintenance for websites. Those lists of attributes are a
-            major player to a successful website. I am constantly chasing the newest technologies
-            and best modern practices while sticking to solid fundamentals. This is what makes me
-            stand out. I'm always growing my skills and knowledge while I also clearing out the
-            technologies that come and go. I'm not only a web developer, I'm a father first. I have
-            a passion for business, economics, financing and pretty much anything educational. I
-            love to always learn and teach others where I can.
+            Hello and welcome! I&apos;m Luis Amador. I&apos;ve been developing for the web for
+            almost a decade. I believe in setting higher standards by lending the field in SEO,
+            performance, security, development and maintenance for websites. Those lists of
+            attributes are a major player to a successful website. I am constantly chasing the
+            newest technologies and best modern practices while sticking to solid fundamentals. This
+            is what makes me stand out. I&apos;m always growing my skills and knowledge while I also
+            clearing out the technologies that come and go. I&apos;m not only a web developer,
+            I&apos;m a father first. I have a passion for business, economics, financing and pretty
+            much anything educational. I love to always learn and teach others where I can.
           </p>
         </div>
 
         <div className="mb-7">
           <h2 className="mb-5 text-2xl">
-            Here's a list of the technologies I use on a consistent daily basis
+            Here&apos;s a list of the technologies I use on a consistent daily basis
           </h2>
 
           <div className="mb-5">

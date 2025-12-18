@@ -1,14 +1,18 @@
+import next from 'eslint-config-next'
+import nextCoreWebVitals from 'eslint-config-next/core-web-vitals'
+import nextTypescript from 'eslint-config-next/typescript'
 import prettier from 'eslint-config-prettier'
 import prettierPlugin from 'eslint-plugin-prettier'
-import typescriptPlugin from '@typescript-eslint/eslint-plugin'
 import typescriptParser from '@typescript-eslint/parser'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 
-export default [
+const eslintConfig = [
+  ...next,
+  ...nextCoreWebVitals,
+  ...nextTypescript,
   {
     ignores: ['.next/**', 'node_modules/**', 'dist/**', 'build/**', '**/*.d.ts'],
-  },
-  // JavaScript config files
+  }, // JavaScript config files
   {
     files: ['**/*.js', '**/*.mjs', '**/*.cjs'],
     languageOptions: {
@@ -23,8 +27,7 @@ export default [
       'no-var': 'error',
       'prettier/prettier': 'error',
     },
-  },
-  // TypeScript and React files
+  }, // TypeScript and React files
   {
     files: ['**/*.{ts,tsx,jsx}'],
     languageOptions: {
@@ -40,7 +43,6 @@ export default [
     },
     plugins: {
       prettier: prettierPlugin,
-      '@typescript-eslint': typescriptPlugin,
       'react-hooks': reactHooksPlugin,
     },
     rules: {
@@ -55,3 +57,5 @@ export default [
   },
   prettier,
 ]
+
+export default eslintConfig
