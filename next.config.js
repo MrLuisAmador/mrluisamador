@@ -3,6 +3,7 @@ import {withPayload} from '@payloadcms/next/withPayload'
 const nextConfig = {
   reactStrictMode: true,
   typedRoutes: false,
+  reactCompiler: true,
   images: {
     formats: ['image/webp', 'image/avif'],
     remotePatterns: [
