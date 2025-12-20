@@ -1,13 +1,12 @@
 'use client'
 
+import {useActionState, useEffect, startTransition} from 'react'
+import {useRouter} from 'next/navigation'
 import {nodemailerAction} from '@/actions/nodemailer/nodemailerAction'
-import {ContactFormSchema} from '@/lib/zod/contact-form-schema'
-import {useActionState} from 'react'
 
 declare global {
   interface Window {
     grecaptcha: {
-      ready: (cb: () => void) => void
       execute: (siteKey: string, options: {action: string}) => Promise<string>
     }
   }
@@ -23,128 +22,97 @@ type FormState = {
   }
 }
 
+const initialState: FormState = {
+  success: false,
+  errors: undefined,
+}
+
 const SendEmail = () => {
-  const initialState: FormState = {
-    success: false,
-    errors: undefined,
+  const router = useRouter()
+  const [state, formAction, isPending] = useActionState(nodemailerAction, initialState)
+
+  // Redirect on success
+  useEffect(() => {
+    if (state.success) {
+      if (typeof window !== 'undefined' && 'dataLayer' in window) {
+        const dataLayer = (window as {dataLayer: object[]}).dataLayer
+        dataLayer.push({
+          event: 'form_submit',
+          form_name: 'contact_form',
+          page_location: window.location.href,
+        })
+      }
+      router.push('/thankyou')
+    }
+  }, [state.success, router])
+
+  // Inject reCAPTCHA token before submit
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    try {
+      const token = await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!, {
+        action: 'submit',
+      })
+
+      formData.append('recaptchaToken', token)
+
+      startTransition(() => {
+        formAction(formData)
+      })
+    } catch {
+      alert('reCAPTCHA failed. Please refresh and try again.')
+    }
   }
 
-  const [state, formAction, isPending] = useActionState(
-    async (_prevState: FormState, formData: FormData) => {
-      try {
-        const formDataObj = Object.fromEntries(formData.entries())
-        const result = ContactFormSchema.safeParse(formDataObj)
-
-        if (!result.success) {
-          return {
-            success: false,
-            errors: result.error.flatten().fieldErrors as FormState['errors'],
-          }
-        }
-
-        let token
-        try {
-          token = await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!, {
-            action: 'submit',
-          })
-          formData.append('recaptchaToken', token)
-        } catch (error) {
-          console.error('reCAPTCHA error:', error)
-          return {
-            success: false,
-            errors: {
-              recaptcha: ['reCAPTCHA verification failed. Please try again.'],
-            },
-          }
-        }
-
-        await nodemailerAction(formData)
-
-        if (typeof window !== 'undefined' && 'dataLayer' in window) {
-          const dataLayer = (window as {dataLayer: unknown[]}).dataLayer
-          dataLayer.push({
-            event: 'form_submit',
-            form_name: 'contact_form',
-            page_location: window.location.href,
-          })
-        }
-
-        return {
-          success: true,
-          errors: undefined,
-        }
-      } catch (error) {
-        console.error('Form submission error:', error)
-        return {
-          success: false,
-          errors: {
-            server: [(error as Error).message || 'An unknown error occurred'],
-          },
-        }
-      }
-    },
-    initialState
-  )
-
   return (
-    <form action={formAction} id="mail" className="mail">
-      <label className="">
-        <span className="absolute -m-px h-px w-px overflow-hidden border-0 p-0">Email</span>
-        <input
-          type="email"
-          name="email"
-          size={40}
-          className={`mb-2.5 h-12 w-full rounded border-none bg-[#053c50] pl-2.5 text-xl ${
-            state.errors?.email ? 'border-2 border-red-500' : ''
-          }`}
-          id="email"
-          placeholder="Email"
-          autoComplete="off"
-        />
-        {state.errors?.email && (
-          <div className="mb-[10px] text-sm text-red-500">
-            {state.errors.email.map((error, i) => (
-              <p key={i}>{error}</p>
-            ))}
-          </div>
-        )}
-      </label>
+    <form onSubmit={handleSubmit} className="mail">
+      {/* Email */}
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        className={`mb-2.5 h-12 w-full rounded bg-[#053c50] pl-2.5 text-xl ${
+          state.errors?.email ? 'border-2 border-red-500' : ''
+        }`}
+      />
+      {state.errors?.email?.map((error: string, i: number) => (
+        <p key={i} className="pb-2 text-sm text-red-500">
+          {error}
+        </p>
+      ))}
 
-      <label className="">
-        <span className="absolute -m-px h-px w-px overflow-hidden border-0 p-0">
-          What service do you need done?
-        </span>
-        <textarea
-          id="message"
-          name="message"
-          cols={40}
-          rows={10}
-          className={`mb-2.5 h-12 min-h-[250px] w-full rounded border-none bg-[#053c50] p-2.5 text-xl ${
-            state.errors?.message ? 'border-2 border-red-500' : ''
-          }`}
-          placeholder="What service do you need done?"
-          autoComplete="off"
-          aria-label="Enter your comment"
-        ></textarea>
-        {state.errors?.message && (
-          <div className="mb-[20px] text-sm text-red-500">
-            {state.errors.message.map((error, i) => (
-              <p key={i}>{error}</p>
-            ))}
-          </div>
-        )}
-      </label>
+      {/* Message */}
+      <textarea
+        name="message"
+        placeholder="What service do you need done?"
+        className={`mb-2.5 min-h-[250px] w-full rounded bg-[#053c50] p-2.5 text-xl ${
+          state.errors?.message ? 'border-2 border-red-500' : ''
+        }`}
+      />
+      {state.errors?.message?.map((error: string, i: number) => (
+        <p key={i} className="text-sm text-red-500">
+          {error}
+        </p>
+      ))}
 
-      <label className="">
-        <span className="absolute -m-px h-px w-px overflow-hidden border-0 p-0">Submit</span>
-        <input
-          id="submit"
-          type="submit"
-          value={isPending ? 'Sending...' : 'Send It!'}
-          disabled={isPending}
-          className="inline-block w-full max-w-[50%] cursor-pointer rounded border border-solid border-white px-4 py-2.5 text-xl text-white transition-colors hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-50"
-        />
-      </label>
+      {/* Server error */}
+      {state.errors?.server?.map((error: string, i: number) => (
+        <p key={i} className="text-sm text-red-500">
+          {error}
+        </p>
+      ))}
+
+      <button
+        type="submit"
+        disabled={isPending}
+        className="mt-4 w-full max-w-[50%] rounded border border-white px-4 py-2.5 text-xl text-white disabled:opacity-50"
+      >
+        {isPending ? 'Sending...' : 'Send It!'}
+      </button>
     </form>
   )
 }
