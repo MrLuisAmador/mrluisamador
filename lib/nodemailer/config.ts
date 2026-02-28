@@ -1,28 +1,33 @@
 import nodemailer from 'nodemailer'
+import {env} from '@/lib/env'
 
-// Email configuration
-export const emailConfig = {
-  host: process.env.SMTP_HOST || '',
-  port: parseInt(process.env.SMTP_PORT || ''),
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: process.env.EMAIL_USER || '',
-    pass: process.env.EMAIL_PASSWORD || '',
-  },
+const SECURE_PORT = 465
+
+function getEmailConfig() {
+  const smtp = env.smtp
+  return {
+    host: smtp.SMTP_HOST,
+    port: smtp.SMTP_PORT,
+    secure: smtp.SMTP_PORT === SECURE_PORT,
+    auth: {
+      user: smtp.EMAIL_USER,
+      pass: smtp.EMAIL_PASSWORD,
+    },
+  }
 }
 
-// Create reusable transporter
-export const createTransporter = () => {
-  return nodemailer.createTransport(emailConfig)
+export function createTransporter(): nodemailer.Transporter {
+  return nodemailer.createTransport(getEmailConfig())
 }
 
-// Email templates
 export const emailTemplates = {
-  contactForm: (data: {email: string; message: string}) => ({
-    from: process.env.SMTP_FROM || 'webmaster@mrluisamador.com',
-    to: 'mrluisamador@gmail.com',
-    subject: 'What service do you need done?',
-    html: `
+  contactForm: (data: {email: string; message: string}) => {
+    const smtp = env.smtp
+    return {
+      from: smtp.SMTP_FROM ?? 'webmaster@mrluisamador.com',
+      to: 'mrluisamador@gmail.com',
+      subject: 'What service do you need done?',
+      html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h1 style="color: #333; border-bottom: 2px solid #cf4646; padding-bottom: 10px;">
           Contact Form Submission
@@ -44,5 +49,6 @@ export const emailTemplates = {
         </div>
       </div>
     `,
-  }),
+    }
+  },
 }

@@ -1,35 +1,22 @@
 import {NextRequest, NextResponse} from 'next/server'
-import {auth} from '@/lib/better-auth/auth'
-import {Pool} from 'pg'
-
-const pool = new Pool({
-  connectionString: process.env.NEON_DB_CONNECTION_STRING,
-})
+import {handleApiError} from '@/lib/api/errorHandler'
+import {requireAuth} from '@/lib/api/requireAuth'
+import {rejectComment} from '@/lib/db/comments'
 
 export async function DELETE(request: NextRequest, {params}: {params: Promise<{id: string}>}) {
   try {
-    const session = await auth.api.getSession({headers: request.headers})
-
-    if (!session) {
-      return NextResponse.json({error: 'Authentication required'}, {status: 401})
-    }
+    const authResult = await requireAuth(request)
+    if (authResult.response) return authResult.response
 
     const {id} = await params
-    const client = await pool.connect()
+    const deleted = await rejectComment(id)
 
-    try {
-      const result = await client.query(`DELETE FROM "comment" WHERE id = $1`, [id])
-
-      if (result.rowCount === 0) {
-        return NextResponse.json({error: 'Comment not found'}, {status: 404})
-      }
-
-      return NextResponse.json({message: 'Comment rejected successfully'})
-    } finally {
-      client.release()
+    if (!deleted) {
+      return NextResponse.json({error: 'Comment not found'}, {status: 404})
     }
+
+    return NextResponse.json({message: 'Comment rejected successfully'})
   } catch (error) {
-    console.error('Error rejecting comment:', error)
-    return NextResponse.json({error: 'Failed to reject comment'}, {status: 500})
+    return handleApiError(error, 'Error rejecting comment')
   }
 }

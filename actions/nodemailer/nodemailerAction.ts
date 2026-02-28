@@ -1,8 +1,8 @@
 'use server'
 
 import {verifyRecaptcha} from '@/lib/google/verifyRecaptcha'
-import {ContactFormSchema} from '@/lib/zod/contact-form-schema'
 import {createTransporter, emailTemplates} from '@/lib/nodemailer/config'
+import {ContactFormSchema} from '@/lib/zod/contact-form-schema'
 
 type FormState = {
   success: boolean
@@ -14,12 +14,15 @@ type FormState = {
   }
 }
 
+function getErrorMessage(error: unknown): string {
+  return error instanceof Error ? error.message : 'An unknown error occurred'
+}
+
 export async function nodemailerAction(
   _prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
   try {
-    // 1. Parse & validate
     const formDataObj = Object.fromEntries(formData.entries())
     const result = ContactFormSchema.safeParse(formDataObj)
 
@@ -30,9 +33,9 @@ export async function nodemailerAction(
       }
     }
 
-    // 2. Security - verify reCAPTCHA
-    const token = formData.get('recaptchaToken') as string | null
-    if (!token) {
+    const token = formData.get('recaptchaToken')
+    const tokenValue = typeof token === 'string' ? token : null
+    if (!tokenValue) {
       return {
         success: false,
         errors: {
@@ -41,7 +44,7 @@ export async function nodemailerAction(
       }
     }
 
-    const isHuman = await verifyRecaptcha(token)
+    const isHuman = await verifyRecaptcha(tokenValue)
     if (!isHuman) {
       return {
         success: false,
@@ -66,7 +69,7 @@ export async function nodemailerAction(
     return {
       success: false,
       errors: {
-        server: [(error as Error).message || 'An unknown error occurred'],
+        server: [getErrorMessage(error)],
       },
     }
   }

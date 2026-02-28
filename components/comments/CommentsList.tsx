@@ -2,6 +2,7 @@
 
 import {useState, useEffect} from 'react'
 import {Comment} from '@/lib/types/comment'
+import {addReplyToTree, removeCommentFromTree, updateCommentInTree} from '@/lib/comments/treeUtils'
 import CommentItem from './CommentItem'
 
 interface CommentsListProps {
@@ -37,96 +38,15 @@ export default function CommentsList({blogSlug, currentUserId}: CommentsListProp
   }, [blogSlug])
 
   const handleCommentAdded = (newComment: Comment) => {
-    setComments((prev) => {
-      // If it's a reply, find the parent comment and add it to its replies
-      if (newComment.parentId) {
-        // Recursive function to find and update the parent comment
-        const addReplyToComment = (comments: Comment[]): Comment[] => {
-          return comments.map((comment) => {
-            // Check if this is the direct parent
-            if (comment.id === newComment.parentId) {
-              return {
-                ...comment,
-                replies: [...(comment.replies || []), newComment],
-              }
-            }
-            // Recursively check nested replies
-            if (comment.replies && comment.replies.length > 0) {
-              return {
-                ...comment,
-                replies: addReplyToComment(comment.replies),
-              }
-            }
-            return comment
-          })
-        }
-
-        return addReplyToComment(prev)
-      }
-      // If it's a top-level comment, add it to the main array
-      return [...prev, newComment]
-    })
+    setComments((prev) => addReplyToTree(prev, newComment))
   }
 
   const handleCommentUpdated = (commentId: string, content: string) => {
-    setComments((prev) => {
-      // Recursive function to find and update the comment at any nesting level
-      const updateCommentRecursively = (comments: Comment[]): Comment[] => {
-        return comments.map((comment) => {
-          // Check if this is the comment to update
-          if (comment.id === commentId) {
-            return {
-              ...comment,
-              content,
-              updatedAt: new Date(),
-            }
-          }
-          // Recursively check nested replies
-          if (comment.replies && comment.replies.length > 0) {
-            return {
-              ...comment,
-              replies: updateCommentRecursively(comment.replies),
-            }
-          }
-          return comment
-        })
-      }
-
-      return updateCommentRecursively(prev)
-    })
+    setComments((prev) => updateCommentInTree(prev, commentId, content))
   }
 
   const handleCommentDeleted = (commentId: string) => {
-    setComments((prev) => {
-      // Helper function to recursively remove nested replies
-      const removeNestedReply = (comments: Comment[], targetId: string): Comment[] => {
-        return comments.map((comment) => {
-          if (comment.replies && comment.replies.length > 0) {
-            // First, filter out the target comment from this level's replies
-            const filteredReplies = comment.replies.filter((reply) => reply.id !== targetId)
-
-            // Then recursively search deeper levels
-            const processedReplies = removeNestedReply(filteredReplies, targetId)
-
-            return {
-              ...comment,
-              replies: processedReplies,
-            }
-          }
-          return comment
-        })
-      }
-
-      // First, try to find and remove the comment from the main array
-      const filteredComments = prev.filter((comment) => comment.id !== commentId)
-
-      // If the comment wasn't found in the main array, it might be a nested reply
-      if (filteredComments.length === prev.length) {
-        return removeNestedReply(prev, commentId)
-      }
-
-      return filteredComments
-    })
+    setComments((prev) => removeCommentFromTree(prev, commentId))
   }
 
   if (isLoading) {

@@ -29,3 +29,14 @@ export interface CommentFormData {
   content: string
   parentId?: string
 }
+
+export interface PendingComment {
+  id: string
+  content: string
+  blogSlug: string
+  createdAt: Date
+  user: {
+    name: string
+    email: string
+  }
+}

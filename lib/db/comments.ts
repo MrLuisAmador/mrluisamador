@@ -1,9 +1,7 @@
-import {Pool} from 'pg'
-import {Comment, CreateCommentData, UpdateCommentData} from '@/lib/types/comment'
+import {pool} from '@/lib/db/pool'
+import {Comment, CreateCommentData, PendingComment, UpdateCommentData} from '@/lib/types/comment'
 
-const pool = new Pool({
-  connectionString: process.env.NEON_DB_CONNECTION_STRING,
-})
+const AUTO_APPROVE_COMMENTS = true
 
 export async function createComment(data: CreateCommentData, userId: string): Promise<Comment> {
   const client = await pool.connect()
@@ -20,7 +18,7 @@ export async function createComment(data: CreateCommentData, userId: string): Pr
         data.blogSlug,
         userId,
         data.parentId || null,
-        true, // Auto-approve comments for now
+        AUTO_APPROVE_COMMENTS,
         new Date(),
         new Date(),
       ]
@@ -152,6 +150,41 @@ export async function approveComment(commentId: string): Promise<Comment | null>
     )
 
     return result.rows[0] || null
+  } finally {
+    client.release()
+  }
+}
+
+export async function getPendingComments(): Promise<PendingComment[]> {
+  const client = await pool.connect()
+
+  try {
+    const result = await client.query(
+      `SELECT c.id, c.content, c."blogSlug", c."createdAt", u.name, u.email
+       FROM "comment" c
+       JOIN "user" u ON c."userId" = u.id
+       WHERE c."isApproved" = false
+       ORDER BY c."createdAt" ASC`
+    )
+
+    return result.rows.map((row) => ({
+      id: row.id,
+      content: row.content,
+      blogSlug: row.blogSlug,
+      createdAt: row.createdAt,
+      user: {name: row.name, email: row.email},
+    }))
+  } finally {
+    client.release()
+  }
+}
+
+export async function rejectComment(commentId: string): Promise<boolean> {
+  const client = await pool.connect()
+
+  try {
+    const result = await client.query(`DELETE FROM "comment" WHERE id = $1`, [commentId])
+    return (result.rowCount ?? 0) > 0
   } finally {
     client.release()
   }

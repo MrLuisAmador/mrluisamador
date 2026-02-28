@@ -1,5 +1,6 @@
 import {NextRequest, NextResponse} from 'next/server'
-import {auth} from '@/lib/better-auth/auth'
+import {handleApiError} from '@/lib/api/errorHandler'
+import {requireAuth} from '@/lib/api/requireAuth'
 import {createComment, getCommentsByBlogSlug} from '@/lib/db/comments'
 import {CreateCommentData} from '@/lib/types/comment'
 
@@ -15,20 +16,17 @@ export async function GET(request: NextRequest) {
     const comments = await getCommentsByBlogSlug(blogSlug)
     return NextResponse.json(comments)
   } catch (error) {
-    console.error('Error fetching comments:', error)
-    return NextResponse.json({error: 'Failed to fetch comments'}, {status: 500})
+    return handleApiError(error, 'Error fetching comments')
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await auth.api.getSession({headers: request.headers})
+    const authResult = await requireAuth(request)
+    if (authResult.response) return authResult.response
+    const {session} = authResult
 
-    if (!session) {
-      return NextResponse.json({error: 'Authentication required'}, {status: 401})
-    }
-
-    const body: CreateCommentData = await request.json()
+    const body = (await request.json()) as CreateCommentData
 
     if (!body.content || !body.blogSlug) {
       return NextResponse.json({error: 'Content and blog slug are required'}, {status: 400})
@@ -37,7 +35,6 @@ export async function POST(request: NextRequest) {
     const comment = await createComment(body, session.user.id)
     return NextResponse.json(comment, {status: 201})
   } catch (error) {
-    console.error('Error creating comment:', error)
-    return NextResponse.json({error: 'Failed to create comment'}, {status: 500})
+    return handleApiError(error, 'Error creating comment')
   }
 }

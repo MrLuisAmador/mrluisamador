@@ -1,14 +1,12 @@
 import {NextRequest, NextResponse} from 'next/server'
-import {auth} from '@/lib/better-auth/auth'
+import {handleApiError} from '@/lib/api/errorHandler'
+import {requireAuth} from '@/lib/api/requireAuth'
 import {approveComment} from '@/lib/db/comments'
 
 export async function POST(request: NextRequest, {params}: {params: Promise<{id: string}>}) {
   try {
-    const session = await auth.api.getSession({headers: request.headers})
-
-    if (!session) {
-      return NextResponse.json({error: 'Authentication required'}, {status: 401})
-    }
+    const authResult = await requireAuth(request)
+    if (authResult.response) return authResult.response
 
     const {id} = await params
     const comment = await approveComment(id)
@@ -19,7 +17,6 @@ export async function POST(request: NextRequest, {params}: {params: Promise<{id:
 
     return NextResponse.json(comment)
   } catch (error) {
-    console.error('Error approving comment:', error)
-    return NextResponse.json({error: 'Failed to approve comment'}, {status: 500})
+    return handleApiError(error, 'Error approving comment')
   }
 }

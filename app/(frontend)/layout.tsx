@@ -5,6 +5,7 @@ import {GoogleTagManager} from '@next/third-parties/google'
 import {Analytics} from '@vercel/analytics/next'
 import {Metadata, Viewport} from 'next'
 import {Toaster} from '@/components/ui/sonner'
+import {cn} from '@/lib/utils'
 
 import {Alice, Playfair_Display} from 'next/font/google'
 import '../../styles/global.css'
@@ -52,15 +53,20 @@ export const viewport: Viewport = {
 }
 
 export default function HomeLayout({children}: {children: React.ReactNode}) {
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID
+  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
+
   return (
-    <html lang="en" className={`${alice.variable} ${playfair_display.variable}`}>
-      <GoogleTagManager gtmId="GTM-WMZTF2CW" />
+    <html lang="en" className={cn(alice.variable, playfair_display.variable)}>
+      {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
       <body>
-        <Script
-          strategy="beforeInteractive"
-          src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
-        />
-        <div className="w-[calc(100%-70px) mr-[70px] lg:mr-[350px] lg:w-[calc(100%-350px)]">
+        {recaptchaSiteKey ? (
+          <Script
+            strategy="beforeInteractive"
+            src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
+          />
+        ) : null}
+        <div className="mr-[70px] w-[calc(100%-70px)] lg:mr-[350px] lg:w-[calc(100%-350px)]">
           <Nav />
           <main>{children}</main>
           <Footer />

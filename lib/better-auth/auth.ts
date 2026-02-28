@@ -1,24 +1,23 @@
 import {betterAuth} from 'better-auth'
-import {Pool} from 'pg'
+import {pool} from '@/lib/db/pool'
+import {env} from '@/lib/env'
+
+const SESSION_EXPIRY_SECONDS = 60 * 60 * 24 * 7 // 7 days
+const SESSION_UPDATE_AGE_SECONDS = 60 * 60 * 24 // 1 day
+const COOKIE_CACHE_MAX_AGE_SECONDS = 60 * 5 // 5 minutes
 
 export const auth = betterAuth({
-  database: new Pool({
-    connectionString: process.env.NEON_DB_CONNECTION_STRING,
-    max: 10,
-    min: 2,
-    idleTimeoutMillis: 10000,
-    connectionTimeoutMillis: 5000,
-  }),
-  secret: process.env.AUTH_SECRET || '',
+  database: pool,
+  secret: env.BETTER_AUTH_SECRET,
   emailAndPassword: {
     enabled: true,
   },
   session: {
-    expiresIn: 60 * 60 * 24 * 7, // 7 days
-    updateAge: 60 * 60 * 24, // 1 day
+    expiresIn: SESSION_EXPIRY_SECONDS,
+    updateAge: SESSION_UPDATE_AGE_SECONDS,
     cookieCache: {
       enabled: true,
-      maxAge: 60 * 5, // 5 minutes
+      maxAge: COOKIE_CACHE_MAX_AGE_SECONDS,
     },
   },
   advanced: {
