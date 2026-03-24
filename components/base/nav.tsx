@@ -112,7 +112,7 @@ export default function Nav() {
   ]
 
   return (
-    <nav className="bg-dark-grey fixed right-0 z-1 h-full w-[70px] overflow-y-scroll lg:w-[350px] lg:px-[20px]">
+    <nav className="bg-dark-grey fixed right-0 z-1 h-full w-70 overflow-y-scroll lg:w-350 lg:px-20">
       <div className="flex items-center text-white">
         <div className="w-full">
           <h3 className="mt-12 text-center text-3xl">
