@@ -18,9 +18,16 @@ const recaptchaEnvSchema = z.object({
   NEXT_PUBLIC_RECAPTCHA_SITE_KEY: z.string().min(1),
 })
 
+const adminEnvSchema = z.object({
+  ADMIN_EMAILS: z.string().optional(),
+})
+
 export type RequiredEnv = z.infer<typeof requiredEnvSchema>
 export type SmtpEnv = z.infer<typeof smtpEnvSchema>
 export type RecaptchaEnv = z.infer<typeof recaptchaEnvSchema>
+export type AdminEnv = {
+  emails: string[]
+}
 
 function formatZodMessages(issues: Array<{path: unknown[]; message: string}>): string {
   return issues
@@ -59,5 +66,19 @@ export const env = {
   },
   get gtmId(): string | undefined {
     return process.env.NEXT_PUBLIC_GTM_ID
+  },
+  get admin(): AdminEnv {
+    const result = adminEnvSchema.safeParse(process.env)
+    if (!result.success) {
+      const messages = result.error.issues.map((issue) => issue.message).join(', ')
+      throw new Error(`Invalid admin config: ${messages}`)
+    }
+
+    return {
+      emails: (result.data.ADMIN_EMAILS ?? '')
+        .split(',')
+        .map((email) => email.trim().toLowerCase())
+        .filter(Boolean),
+    }
   },
 }

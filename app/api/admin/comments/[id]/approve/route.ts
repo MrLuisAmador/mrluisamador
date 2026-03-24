@@ -1,11 +1,11 @@
 import {NextRequest, NextResponse} from 'next/server'
 import {handleApiError} from '@/lib/api/errorHandler'
-import {requireAuth} from '@/lib/api/requireAuth'
+import {requireAdmin} from '@/lib/api/requireAdmin'
 import {approveComment} from '@/lib/db/comments'
 
 export async function POST(request: NextRequest, {params}: {params: Promise<{id: string}>}) {
   try {
-    const authResult = await requireAuth(request)
+    const authResult = await requireAdmin(request)
     if (authResult.response) return authResult.response
 
     const {id} = await params

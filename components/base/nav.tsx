@@ -15,11 +15,11 @@ const NavLink = ({
   isActive: boolean
 }) => (
   <li className="mb-3.5">
-    <Link href={href} aria-label={children as string}>
-      <Button variant="link" className={`${isActive ? 'underline' : ''}`}>
+    <Button asChild variant="link" className={isActive ? 'underline' : ''}>
+      <Link href={href} aria-label={children as string}>
         {children}
-      </Button>
-    </Link>
+      </Link>
+    </Button>
   </li>
 )
 
@@ -122,7 +122,7 @@ export default function Nav() {
             </Link>
           </h3>
 
-          <div className="">
+          <div>
             <Link className="block" href="/">
               <Image
                 priority

@@ -7,6 +7,7 @@ import GoogleAd from '@/components/google/google-adsense'
 import CommentSection from '@/components/comments/CommentSection'
 import {Suspense} from 'react'
 import {Metadata} from 'next'
+import {notFound} from 'next/navigation'
 
 type Props = {
   params: Promise<{slug: string}>
@@ -15,7 +16,7 @@ type Props = {
 async function getBlogPost(slug: string) {
   const queryWixBlogs = await getWixClient()
   const {items: blog} = await queryWixBlogs.items.query('blogPost').eq('slug', slug).find()
-  return blog![0]
+  return blog?.[0] ?? null
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
@@ -24,6 +25,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   try {
     const post = await getBlogPost(slug)
+    if (!post) {
+      return {
+        metadataBase: new URL('https://www.mrluisamador.com/'),
+        title: 'Blog Post',
+        description: 'Read our latest blog post',
+        alternates: {
+          canonical: `/blogs/${slug}`,
+        },
+      }
+    }
+
     const metaURL = media.getImageUrl(post.image).url
     const metaAuthor = post.refAuthors.title
     const metaDate = post._updatedDate?.toISOString()
@@ -76,6 +88,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
 async function BlogContent({slug: blogSlug}: {slug: string}) {
   const post = await getBlogPost(blogSlug)
+  if (!post) {
+    notFound()
+  }
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -112,9 +127,9 @@ async function BlogContent({slug: blogSlug}: {slug: string}) {
       <div className="mx-auto max-w-4xl bg-white px-5 pt-14 xl:rounded xl:py-16 xl:shadow-sm xl:shadow-black">
         <Image
           src={media.getImageUrl(post.image).url}
-          width="896"
-          height="800"
-          alt={`media.getImageUrl(post.image).altText`}
+          width={896}
+          height={800}
+          alt={media.getImageUrl(post.image).altText || post.title}
           className="pb-16"
         />
         <div className="my-8">

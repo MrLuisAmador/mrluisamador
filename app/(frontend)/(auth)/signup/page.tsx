@@ -64,10 +64,10 @@ export default function SignUpPage() {
             setConfirmPassword('')
 
             const referrer = document.referrer
-            const isFromBlog = referrer.includes('/blogs/')
+            const blogUrl = referrer ? new URL(referrer).pathname : ''
+            const isFromBlog = blogUrl.startsWith('/blogs/')
 
             if (isFromBlog) {
-              const blogUrl = referrer.split('localhost:3000')[1]
               setTimeout(() => {
                 if (blogUrl && blogUrl.startsWith('/')) {
                   router.push(blogUrl as `/blogs/${string}`)
