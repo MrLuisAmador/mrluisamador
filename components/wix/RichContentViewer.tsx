@@ -1,13 +1,13 @@
 'use client'
 
 import {
-  pluginGallery,
-  pluginImage,
+  pluginGalleryViewer,
+  pluginImageViewer,
   quickStartViewerPlugins,
   RicosViewer,
-  pluginDivider,
-  pluginCodeBlock,
-  pluginTable,
+  pluginDividerViewer,
+  pluginCodeBlockViewer,
+  pluginTableViewer,
   RichContent,
 } from '@wix/ricos'
 
@@ -18,11 +18,11 @@ interface RichContentViewerProps {
 const RichContentViewer = ({content}: RichContentViewerProps) => {
   const plugins = [
     ...quickStartViewerPlugins(),
-    pluginGallery(),
-    pluginImage(),
-    pluginDivider(),
-    pluginCodeBlock(),
-    pluginTable(),
+    pluginGalleryViewer(),
+    pluginImageViewer(),
+    pluginDividerViewer(),
+    pluginCodeBlockViewer(),
+    pluginTableViewer(),
   ]
 
   return <RicosViewer content={content} plugins={plugins} />
