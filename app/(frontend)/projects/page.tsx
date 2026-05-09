@@ -1,8 +1,9 @@
 import {Metadata} from 'next'
 import {Suspense} from 'react'
-import {getWixClient} from '@/lib/wix/useWixClientServer'
-import ProjectFilter from '@/components/wix/projectFilter'
-import {Project} from '@/lib/types/wix'
+import {getPayload} from 'payload'
+import config from '@/payload.config'
+import ProjectList from '@/components/projects/ProjectList'
+import {Project as PayloadProject} from '@/payload-types'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -13,16 +14,16 @@ export const metadata: Metadata = {
 }
 
 async function ProjectsList() {
-  let projects: Project[]
+  let projects: PayloadProject[] = []
   try {
-    const queryWixProjects = await getWixClient()
-    const {items} = await queryWixProjects.items.query('projectGallery').ascending('orderId').find()
-
-    // Cast the items to Project[] type since we know the structure matches
-    projects = items as Project[]
-  } catch {
-    // Wix API may not be available during build-time static generation
-    // Error is handled gracefully with user-friendly message
+    const payload = await getPayload({config})
+    const result = await payload.find({
+      collection: 'projects',
+      sort: 'orderId',
+    })
+    projects = result.docs
+  } catch (error) {
+    console.error('Error fetching projects from Payload:', error)
     return (
       <div className="py-10 text-center">
         <p className="mb-4 text-white">Unable to load projects at the moment.</p>
@@ -33,7 +34,7 @@ async function ProjectsList() {
     )
   }
 
-  return <ProjectFilter projects={projects} />
+  return <ProjectList projects={projects} />
 }
 
 function ProjectsListSkeleton() {

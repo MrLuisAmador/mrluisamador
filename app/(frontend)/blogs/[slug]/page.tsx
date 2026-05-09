@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import {getWixClient} from '@/lib/wix/useWixClientServer'
-import RichContentViewer from '@/components/wix/RichContentViewer'
-import {media} from '@wix/sdk'
+import {getPayload} from 'payload'
+import config from '@/payload.config'
+import PayloadRichText from '@/components/blog/PayloadRichText'
 import GoogleAd from '@/components/google/google-adsense'
 import CommentSection from '@/components/comments/CommentSection'
 import {Suspense} from 'react'
@@ -14,9 +14,16 @@ type Props = {
 }
 
 async function getBlogPost(slug: string) {
-  const queryWixBlogs = await getWixClient()
-  const {items: blog} = await queryWixBlogs.items.query('blogPost').eq('slug', slug).find()
-  return blog?.[0] ?? null
+  const payload = await getPayload({config})
+  const {docs} = await payload.find({
+    collection: 'blogs',
+    where: {
+      slug: {
+        equals: slug,
+      },
+    },
+  })
+  return docs?.[0] ?? null
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
@@ -36,45 +43,45 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       }
     }
 
-    const metaURL = media.getImageUrl(post.image).url
-    const metaAuthor = post.refAuthors.title
-    const metaDate = post._updatedDate?.toISOString()
-    const metaTile = post.title
+    const coverImage = post.coverImage && typeof post.coverImage !== 'string' ? post.coverImage : null
+    const metaURL = coverImage?.url || ''
+    const metaDate = post.publishedDate || post.updatedAt
+    const metaTitle = post.title
 
     return {
       metadataBase: new URL('https://www.mrluisamador.com/'),
-      title: metaTile,
-      description: post.description,
+      title: metaTitle,
+      description: post.excerpt,
       alternates: {
         canonical: `/blogs/${slug}`,
       },
       openGraph: {
-        images: [
+        images: metaURL ? [
           {
             url: metaURL,
-            width: 800,
-            height: 600,
-            alt: metaTile,
+            width: coverImage?.width || 800,
+            height: coverImage?.height || 600,
+            alt: coverImage?.alt || metaTitle,
           },
-        ],
+        ] : [],
         type: 'article',
         publishedTime: metaDate,
-        authors: metaAuthor,
+        authors: ['Luis Amador'],
       },
       twitter: {
-        images: [
+        images: metaURL ? [
           {
             url: metaURL,
-            width: 800,
-            height: 600,
-            alt: metaTile,
+            width: coverImage?.width || 800,
+            height: coverImage?.height || 600,
+            alt: coverImage?.alt || metaTitle,
           },
-        ],
-        creator: metaAuthor,
+        ] : [],
+        creator: 'Luis Amador',
       },
     }
-  } catch {
-    // Fallback metadata if Wix API fails during build
+  } catch (error) {
+    console.error('Error generating metadata:', error)
     return {
       metadataBase: new URL('https://www.mrluisamador.com/'),
       title: 'Blog Post',
@@ -92,25 +99,26 @@ async function BlogContent({slug: blogSlug}: {slug: string}) {
     notFound()
   }
 
+  const coverImage = post.coverImage && typeof post.coverImage !== 'string' ? post.coverImage : null
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
-    datePublished: post.publishedAt,
-    description: post.description,
+    datePublished: post.publishedDate,
+    description: post.excerpt,
     author: [
       {
         '@type': 'Person',
         name: 'Luis Amador',
         url: `https://www.mrluisamador.com/blogs/${post.slug}`,
-        image: media.getImageUrl(post.image).url,
+        image: coverImage?.url || '',
       },
     ],
   }
 
   return (
     <>
-      {/* Add JSON-LD to your page */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
@@ -125,17 +133,19 @@ async function BlogContent({slug: blogSlug}: {slug: string}) {
       <h1 className="text-center text-4xl xl:mb-12">{post.title}</h1>
 
       <div className="mx-auto max-w-4xl bg-white px-5 pt-14 xl:rounded xl:py-16 xl:shadow-sm xl:shadow-black">
-        <Image
-          src={media.getImageUrl(post.image).url}
-          width={896}
-          height={800}
-          alt={media.getImageUrl(post.image).altText || post.title}
-          className="pb-16"
-        />
+        {coverImage && (
+          <Image
+            src={coverImage.url || ''}
+            width={coverImage.width || 896}
+            height={coverImage.height || 800}
+            alt={coverImage.alt || post.title}
+            className="pb-16"
+          />
+        )}
         <div className="my-8">
           <GoogleAd adSlot="6232399682" />
         </div>
-        <RichContentViewer content={post.content} />
+        <PayloadRichText content={post.content as any} />
       </div>
 
       <div className="mx-auto max-w-4xl px-5 md:px-0">

@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import {Metadata} from 'next'
-import {getWixClient} from '@/lib/wix/useWixClientServer'
 import Image from 'next/image'
-import {media} from '@wix/sdk'
+import {getPayload} from 'payload'
+import config from '@/payload.config'
+import {Suspense} from 'react'
 
 export const metadata: Metadata = {
   title: 'Blogs',
@@ -12,17 +13,17 @@ export const metadata: Metadata = {
   },
 }
 
-import {Suspense} from 'react'
-
 async function BlogsList() {
   let blogs
   try {
-    const myWixBlogs = await getWixClient()
-    const result = await myWixBlogs.items.query('blogPost').descending('order').find()
-    blogs = result.items
-  } catch {
-    // Wix API may not be available during build-time static generation
-    // Error is handled gracefully with user-friendly message
+    const payload = await getPayload({config})
+    const result = await payload.find({
+      collection: 'blogs',
+      sort: '-publishedDate',
+    })
+    blogs = result.docs
+  } catch (error) {
+    console.error('Error fetching blogs from Payload:', error)
     return (
       <div className="py-10 text-center">
         <p className="mb-4 text-gray-600">Unable to load blogs at the moment.</p>
@@ -33,24 +34,34 @@ async function BlogsList() {
     )
   }
 
+  if (blogs.length === 0) {
+    return (
+      <div className="py-10 text-center text-gray-500">
+        No blogs found.
+      </div>
+    )
+  }
+
   return (
     <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
       {blogs.map((blog) => (
-        <li key={blog._id} className="rounded bg-white shadow shadow-black">
+        <li key={blog.id} className="rounded bg-white shadow shadow-black">
           <article className="px-4 py-5">
             <div className="">
-              <Image
-                src={media.getImageUrl(blog.image).url}
-                width="896"
-                height="800"
-                alt={`media.getImageUrl(blog.data.image).altText`}
-                className="pb-4"
-              />
+              {blog.coverImage && typeof blog.coverImage !== 'string' && (
+                <Image
+                  src={blog.coverImage.url || '/images/placeholder.jpg'}
+                  width={blog.coverImage.width || 896}
+                  height={blog.coverImage.height || 800}
+                  alt={blog.coverImage.alt || blog.title}
+                  className="pb-4"
+                />
+              )}
             </div>
             <h2 className="pb-4 text-center text-xl font-bold">
               <Link href={`/blogs/${blog.slug}`}>{blog.title}</Link>
             </h2>
-            <p className="pb-4">{blog.description}</p>
+            <p className="pb-4">{blog.excerpt}</p>
             <div className="text-center">
               <Link
                 className="inline-block rounded border border-solid border-black px-4 py-2.5 text-xl text-black transition-colors hover:bg-black/15"

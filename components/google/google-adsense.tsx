@@ -1,6 +1,6 @@
 'use client'
 
-import {useEffect, useRef} from 'react'
+import {useEffect, useRef, useState} from 'react'
 
 interface GoogleAdProps {
   adSlot: string
@@ -15,8 +15,13 @@ export default function GoogleAd({
 }: GoogleAdProps) {
   const adRef = useRef<HTMLModElement>(null)
   const isInitialized = useRef(false)
+  const [mounted, setMounted] = useState(false)
+  const isDev = process.env.NODE_ENV === 'development'
 
   useEffect(() => {
+    setMounted(true)
+    if (isDev) return
+
     // Prevent multiple initializations of the same ad
     if (isInitialized.current) return
 
@@ -69,7 +74,22 @@ export default function GoogleAd({
     return () => {
       isInitialized.current = false
     }
-  }, [adSlot]) // Re-run effect only when adSlot changes
+  }, [adSlot, isDev]) // Re-run effect only when adSlot changes
+
+  // Use the 'mounted' check to prevent hydration mismatch errors.
+  // The server will render the <ins> tag, and once the client mounts, 
+  // it will switch to the placeholder in development mode.
+  if (isDev && mounted) {
+    return (
+      <div className="flex min-h-[250px] w-full items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 text-gray-400">
+        <div className="text-center">
+          <p className="font-semibold text-gray-500">Advertisement Placeholder</p>
+          <p className="text-xs text-gray-400 font-normal">Slot: {adSlot}</p>
+          <p className="mt-1 text-[10px] uppercase tracking-widest opacity-60">(Visible on Localhost only)</p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <ins

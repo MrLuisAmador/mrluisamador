@@ -2,13 +2,16 @@ import sharp from 'sharp'
 import {lexicalEditor} from '@payloadcms/richtext-lexical'
 import {postgresAdapter} from '@payloadcms/db-postgres'
 import {buildConfig} from 'payload'
+import {Media} from './collections/Media'
+import {Blogs} from './collections/Blogs'
+import {Projects} from './collections/Projects'
 
 export default buildConfig({
   // If you'd like to use Rich Text, pass your editor here
   editor: lexicalEditor(),
 
   // Define and configure your collections in this array
-  collections: [],
+  collections: [Media, Blogs, Projects],
 
   // Your Payload secret - should be a complex and secure string, unguessable
   secret: process.env.PAYLOAD_SECRET || '',
@@ -19,6 +22,7 @@ export default buildConfig({
     // `pool` is required.
     pool: {
       connectionString: process.env.NEON_PAYLOAD_DATABASE_URI,
+      ssl: true,
     },
   }),
   // If you want to resize images, crop, set focal point, etc.

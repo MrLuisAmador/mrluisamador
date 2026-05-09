@@ -9,13 +9,17 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cdn.sanity.io',
-      },
-      {
-        protocol: 'https',
-        hostname: 'static.wixstatic.com',
+        hostname: '**',
       },
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/media/:path*',
+        destination: '/api/media/:path*', // Payload handles this via withPayload usually, but let's ensure rewrites exist if needed
+      },
+    ]
   },
   experimental: {
     optimizePackageImports: ['lucide-react'],
