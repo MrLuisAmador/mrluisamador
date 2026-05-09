@@ -20,7 +20,10 @@ async function BlogsList() {
     const result = await payload.find({
       collection: 'blogs',
       sort: '-publishedDate',
+      limit: 100,
+      pagination: false,
     })
+    console.log(`Fetched ${result.docs.length} blogs from Payload`)
     blogs = result.docs
   } catch (error) {
     console.error('Error fetching blogs from Payload:', error)

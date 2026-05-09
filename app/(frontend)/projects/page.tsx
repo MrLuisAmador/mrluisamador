@@ -20,7 +20,10 @@ async function ProjectsList() {
     const result = await payload.find({
       collection: 'projects',
       sort: 'orderId',
+      limit: 100, 
+      pagination: false, // Explicitly disable pagination to get all items up to the limit
     })
+    console.log(`Fetched ${result.docs.length} projects from Payload`)
     projects = result.docs
   } catch (error) {
     console.error('Error fetching projects from Payload:', error)

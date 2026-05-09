@@ -11,11 +11,12 @@ interface ProjectListProps {
 export default function ProjectList({ projects }: ProjectListProps) {
   const [activeFilter, setActiveFilter] = useState('All')
   
-  const filters = ['All', ...new Set(projects.map((p) => p.filter))]
+  // Normalize filters by trimming whitespace
+  const filters = ['All', ...new Set(projects.map((p) => p.filter.trim()))]
   
   const filteredProjects = activeFilter === 'All' 
     ? projects 
-    : projects.filter((p) => p.filter === activeFilter)
+    : projects.filter((p) => p.filter.trim() === activeFilter)
 
   return (
     <>
