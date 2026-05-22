@@ -26,16 +26,18 @@
   /* Stitch Design System Color Mappings */
   --color-primary: #a33537;
   --color-on-primary: #ffffff;
-  --color-on-secondary-container: #636467;
+  --color-on-secondary-container: #5d5e61;
   --color-surface-container-lowest: #ffffff;
   --color-surface-container-low: #f3f4f5;
   --color-on-surface-variant: #574140;
-  --color-on-surface: #191c1d;
+  --color-on-surface: #1a1c1e;
   --color-surface: #f8f9fa;
   --color-primary-fixed-dim: #ffb3b0;
   --color-secondary-fixed-dim: #c6c6c9;
   --color-outline: #8a7170;
   --color-outline-variant: #debfbe;
+  --color-secondary: #5d5e61;
+  --color-on-background: #191c1d;
 
   /* Stitch Design System Spacings */
   --spacing-section-gap-sm: 64px;

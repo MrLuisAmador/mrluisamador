@@ -206,6 +206,10 @@ export interface Project {
    * The category tag (e.g., 'React', 'Magento', 'Next.js')
    */
   filter: string;
+  /**
+   * A brief description of the project
+   */
+  description?: string | null;
   image: number | Media;
   /**
    * External link to the project
@@ -398,6 +402,7 @@ export interface BlogsSelect<T extends boolean = true> {
 export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
   filter?: T;
+  description?: T;
   image?: T;
   url?: T;
   orderId?: T;
