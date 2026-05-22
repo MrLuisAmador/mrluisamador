@@ -19,7 +19,6 @@ export default function Nav() {
     {href: '/about', label: 'About'},
     {href: '/projects', label: 'Projects'},
     {href: '/blogs', label: 'Blogs'},
-    {href: '/services', label: 'Services'},
   ]
 
   return (

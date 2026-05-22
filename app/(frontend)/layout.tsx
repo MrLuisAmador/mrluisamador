@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: '%s | Luis Amador Portfolio',
     default: 'Luis Amador',
   },
-  description: 'Luis Amador portfolio to showcase his services and skills.',
+  description: 'Luis Amador portfolio to showcase his projects and skills.',
   keywords: ['Next.js', 'React', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Portfolio'],
   metadataBase: new URL('https://www.mrluisamador.com/'),
   authors: [{name: 'Luis Amador'}],

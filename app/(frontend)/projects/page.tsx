@@ -105,11 +105,6 @@ export default function Projects() {
                 Start a Conversation
               </button>
             </Link>
-            <Link href="/services" className="w-full sm:w-auto">
-              <button className="border border-surface-charcoal text-surface-charcoal px-10 py-4 rounded-lg text-button font-button hover:bg-surface-charcoal hover:text-white transition-all w-full">
-                View Services
-              </button>
-            </Link>
           </div>
         </div>
       </section>

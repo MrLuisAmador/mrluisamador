@@ -11,10 +11,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
-      url: 'https://www.mrluisamador.com/services',
-      lastModified: new Date(),
-    },
-    {
       url: 'https://www.mrluisamador.com/projects',
       lastModified: new Date(),
     },

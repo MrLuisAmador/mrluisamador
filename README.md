@@ -1,6 +1,6 @@
 # Luis Amador Portfolio
 
-A modern, professional portfolio website built with Next.js 15 and React 19, showcasing web development services, projects, and blog content. This portfolio is fully powered by PayloadCMS 3.0 and PostgreSQL (Neon).
+A modern, professional portfolio website built with Next.js 15 and React 19, showcasing projects and blog content. This portfolio is fully powered by PayloadCMS 3.0 and PostgreSQL (Neon).
 
 ## 🚀 Features
 
@@ -23,7 +23,7 @@ A modern, professional portfolio website built with Next.js 15 and React 19, sho
 - **TypeScript**: 5.8.2 for type safety
 - **Icons**: Lucide React for modern iconography
 
-### Backend & Services
+### Backend & Infrastructure
 
 - **Authentication**: Better Auth and Payload Auth
 - **Database**: PostgreSQL with Neon integration

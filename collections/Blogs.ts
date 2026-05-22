@@ -22,6 +22,14 @@ export const Blogs: CollectionConfig = {
       type: 'textarea',
     },
     {
+      name: 'category',
+      type: 'text',
+      required: false,
+      admin: {
+        description: "The category tag (e.g., 'Next.js', 'Strategy', 'Architecture')",
+      },
+    },
+    {
       name: 'publishedDate',
       type: 'date',
     },

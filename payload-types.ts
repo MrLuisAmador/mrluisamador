@@ -175,6 +175,10 @@ export interface Blog {
   title: string;
   slug: string;
   excerpt?: string | null;
+  /**
+   * The category tag (e.g., 'Next.js', 'Strategy', 'Architecture')
+   */
+  category?: string | null;
   publishedDate?: string | null;
   coverImage?: (number | null) | Media;
   content?: {
@@ -389,6 +393,7 @@ export interface BlogsSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   excerpt?: T;
+  category?: T;
   publishedDate?: T;
   coverImage?: T;
   content?: T;
