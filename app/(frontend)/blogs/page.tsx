@@ -51,7 +51,7 @@ async function BlogsList() {
         <li key={blog.id} className="rounded bg-white shadow shadow-black">
           <article className="px-4 py-5">
             <div className="">
-              {blog.coverImage && typeof blog.coverImage !== 'string' && (
+              {blog.coverImage && typeof blog.coverImage === 'object' && (
                 <Image
                   src={blog.coverImage.url || '/images/placeholder.jpg'}
                   width={blog.coverImage.width || 896}
@@ -104,7 +104,7 @@ function BlogsListSkeleton() {
 
 export default function Blogs() {
   return (
-    <section className="h-full px-5 py-20">
+    <section className="min-h-[calc(100vh-5rem)] px-5 py-20">
       <h1 className="mb-20 text-center text-5xl">Blogs</h1>
 
       <Suspense fallback={<BlogsListSkeleton />}>

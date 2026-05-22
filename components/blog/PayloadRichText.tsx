@@ -48,7 +48,7 @@ const renderLexicalNode = (node: LexicalNode, index: number): React.ReactNode =>
         element = <p className="mb-4">{children}</p>
         break
       case 'heading':
-        const Tag = node.tag as keyof JSX.IntrinsicElements
+        const Tag = (node.tag || 'h1') as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
         const headingClasses = {
           h1: 'text-4xl font-bold mb-6 font-title-font',
           h2: 'text-3xl font-bold mb-5 font-title-font',

@@ -1,4 +1,3 @@
-import Script from 'next/script'
 import Nav from '@/components/base/nav'
 import Footer from '@/components/base/footer'
 import {GoogleTagManager} from '@next/third-parties/google'
@@ -7,17 +6,17 @@ import {Metadata, Viewport} from 'next'
 import {Toaster} from '@/components/ui/sonner'
 import {cn} from '@/lib/utils'
 
-import {Alice, Playfair_Display} from 'next/font/google'
+import {Newsreader, Inter} from 'next/font/google'
 import '../../styles/global.css'
 
-const alice = Alice({
-  weight: '400',
+const newsreader = Newsreader({
   variable: '--title-font',
   subsets: ['latin'],
+  style: ['normal', 'italic'],
   display: 'swap',
 })
 
-const playfair_display = Playfair_Display({
+const inter = Inter({
   variable: '--text-font',
   subsets: ['latin'],
   display: 'swap',
@@ -52,21 +51,19 @@ export const viewport: Viewport = {
 
 export default function HomeLayout({children}: {children: React.ReactNode}) {
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID
-  const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY
 
   return (
-    <html lang="en" className={cn(alice.variable, playfair_display.variable)}>
+    <html lang="en" className={cn(newsreader.variable, inter.variable)}>
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+      </head>
       {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
-      <body>
-        {recaptchaSiteKey ? (
-          <Script
-            strategy="beforeInteractive"
-            src={`https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`}
-          />
-        ) : null}
-        <div className="mr-[70px] w-[calc(100%-70px)] lg:mr-[350px] lg:w-[calc(100%-350px)]">
+      <body className="bg-surface text-on-surface font-body-md overflow-x-hidden antialiased">
+        <div className="flex flex-col min-h-screen">
           <Nav />
-          <main>{children}</main>
+          <main className="flex-1 w-full pt-20">
+            {children}
+          </main>
           <Footer />
         </div>
         <Analytics />

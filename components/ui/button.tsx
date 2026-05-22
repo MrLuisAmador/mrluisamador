@@ -3,28 +3,30 @@ import {Slot} from '@radix-ui/react-slot'
 import {cva, type VariantProps} from 'class-variance-authority'
 import {cn} from '@/lib/utils'
 
-const buttonVariants = cva('hover:cursor-pointer', {
-  variants: {
-    variant: {
-      default: '',
-      outline:
-        'inline-block px-4 py-2.5 hover:bg-white/15 md:max-w-[30%] w-full max-w-[80%] rounded text-xl text-white transition-colors border border-solid border-white',
-      secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-      ghost: 'hover:bg-accent hover:text-accent-foreground',
-      link: 'inline-block hover:underline',
+const buttonVariants = cva(
+  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#a33537] disabled:pointer-events-none disabled:opacity-50 hover:cursor-pointer active:scale-[0.98]',
+  {
+    variants: {
+      variant: {
+        default: 'bg-primary-red text-white hover:bg-[#862b2d] shadow-sm min-h-[48px] px-6 py-3 text-base font-semibold',
+        outline: 'border border-surface-charcoal text-surface-charcoal hover:bg-surface-charcoal/5 min-h-[48px] px-6 py-3 text-base font-semibold',
+        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80 min-h-[48px] px-6 py-3 text-base',
+        ghost: 'hover:bg-accent hover:text-accent-foreground',
+        link: 'inline-block text-surface-charcoal hover:underline decoration-[#a33537] decoration-2 underline-offset-4',
+      },
+      size: {
+        default: '',
+        sm: 'h-9 rounded-md px-3 text-xs',
+        lg: 'h-11 rounded-md px-8 text-base',
+        icon: 'h-10 w-10',
+      },
     },
-    size: {
-      default: '',
-      sm: 'h-9 rounded-md px-3',
-      lg: 'h-11 rounded-md px-8',
-      icon: 'h-10 w-10',
+    defaultVariants: {
+      variant: 'default',
+      size: 'default',
     },
-  },
-  defaultVariants: {
-    variant: 'default',
-    size: 'default',
-  },
-})
+  }
+)
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {

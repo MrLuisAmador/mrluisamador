@@ -15,7 +15,7 @@ export default function ProjectCard({ title, filter, url, image }: ProjectCardPr
   const imageAlt = typeof image !== 'number' && typeof image !== 'string' ? image.alt : title
 
   return (
-    <div className={`text-text-grey basis-6/12 bg-white shadow-[0_0_1px_0_rgba(0,0,0,0.3)] md:basis-1/4 ${filter}`}>
+    <div className={`text-text-grey basis-6/12 bg-white shadow-[0_0_1px_0_rgba(0,0,0,0.3)] lg:basis-1/4 ${filter}`}>
       <Link
         className="block"
         target="_blank"

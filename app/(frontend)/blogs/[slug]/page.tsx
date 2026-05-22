@@ -43,7 +43,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       }
     }
 
-    const coverImage = post.coverImage && typeof post.coverImage !== 'string' ? post.coverImage : null
+    const coverImage = post.coverImage && typeof post.coverImage === 'object' ? post.coverImage : null
     const metaURL = coverImage?.url || ''
     const metaDate = post.publishedDate || post.updatedAt
     const metaTitle = post.title
@@ -99,7 +99,7 @@ async function BlogContent({slug: blogSlug}: {slug: string}) {
     notFound()
   }
 
-  const coverImage = post.coverImage && typeof post.coverImage !== 'string' ? post.coverImage : null
+  const coverImage = post.coverImage && typeof post.coverImage === 'object' ? post.coverImage : null
 
   const jsonLd = {
     '@context': 'https://schema.org',

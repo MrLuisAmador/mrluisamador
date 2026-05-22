@@ -1,3 +1,5 @@
+import * as React from 'react'
+
 export function ServiceCard({
   icon: Icon,
   title,
@@ -8,13 +10,15 @@ export function ServiceCard({
   description: string
 }) {
   return (
-    <div className="self-center bg-white px-4 py-2 md:self-end md:px-16 md:py-5">
-      <div>
+    <div className="flex flex-col items-start bg-white p-8 rounded-2xl border border-border-subtle shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 transition-all duration-300 ease-out">
+      <div className="h-12 w-12 flex items-center justify-center p-2.5 bg-surface-container rounded-lg text-primary-red mb-6">
         <Icon />
       </div>
-      <p className="pt-5 pb-5 md:pt-12">
-        <span className="block text-center">{title}</span>
-        <span className="block text-center">{description}</span>
+      <h3 className="font-title-font text-xl font-semibold text-surface-charcoal mb-3">
+        {title}
+      </h3>
+      <p className="font-text-font text-text-muted text-sm leading-relaxed">
+        {description}
       </p>
     </div>
   )

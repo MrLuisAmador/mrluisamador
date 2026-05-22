@@ -18,7 +18,7 @@ const GoHome = () => {
   return (
     <section
       id="about-me"
-      className="text-text-grey flex h-screen items-center justify-center px-5 py-16"
+      className="text-text-grey flex min-h-[calc(100vh-5rem)] items-center justify-center px-5 py-16"
     >
       <div className="md:w-4/5">
         <div className="text-center">

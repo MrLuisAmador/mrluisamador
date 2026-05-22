@@ -63,7 +63,7 @@ function ProjectsListSkeleton() {
 
 export default function Projects() {
   return (
-    <section id="projects" className="bg-projects-orange h-full py-16 text-white">
+    <section id="projects" className="bg-projects-orange min-h-[calc(100vh-5rem)] py-16 text-white">
       <div className="mb-12">
         <h2 className="mb-10 text-center text-5xl">Projects</h2>
         <h3 className="mb-8 text-center text-lg">List of Projects.</h3>
