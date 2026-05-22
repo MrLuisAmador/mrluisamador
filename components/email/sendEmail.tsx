@@ -69,35 +69,69 @@ const SendEmail = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mail">
-      {/* Email */}
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        className={`mb-2.5 h-12 w-full rounded bg-[#053c50] pl-2.5 text-xl ${
-          state.errors?.email ? 'border-2 border-red-500' : ''
-        }`}
-      />
-      {state.errors?.email?.map((error: string, i: number) => (
-        <p key={i} className="pb-2 text-sm text-red-500">
-          {error}
-        </p>
-      ))}
-
-      {/* Message */}
-      <textarea
-        name="message"
-        placeholder="What service do you need done?"
-        className={`mb-2.5 min-h-[250px] w-full rounded bg-[#053c50] p-2.5 text-xl ${
-          state.errors?.message ? 'border-2 border-red-500' : ''
-        }`}
-      />
-      {state.errors?.message?.map((error: string, i: number) => (
-        <p key={i} className="text-sm text-red-500">
-          {error}
-        </p>
-      ))}
+    <form onSubmit={handleSubmit} className="space-y-8" id="contact-form">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="relative">
+          <label className="text-label-sm font-label-sm text-on-secondary-container uppercase block mb-2">Name</label>
+          <input 
+            type="text"
+            name="name"
+            placeholder="John Doe"
+            className={`w-full bg-surface-container-low border-0 border-b py-3 px-0 focus:outline-none focus:border-primary transition-all duration-200 placeholder:text-outline-variant ${
+              state.errors?.name ? 'border-red-500' : 'border-border-subtle'
+            }`}
+          />
+          {state.errors?.name?.map((error: string, i: number) => (
+            <p key={i} className="pt-1 text-xs text-red-500">{error}</p>
+          ))}
+        </div>
+        <div className="relative">
+          <label className="text-label-sm font-label-sm text-on-secondary-container uppercase block mb-2">Email</label>
+          <input 
+            type="email"
+            name="email"
+            placeholder="john@example.com"
+            className={`w-full bg-surface-container-low border-0 border-b py-3 px-0 focus:outline-none focus:border-primary transition-all duration-200 placeholder:text-outline-variant ${
+              state.errors?.email ? 'border-red-500' : 'border-border-subtle'
+            }`}
+          />
+          {state.errors?.email?.map((error: string, i: number) => (
+            <p key={i} className="pt-1 text-xs text-red-500">{error}</p>
+          ))}
+        </div>
+      </div>
+      <div className="relative">
+        <label className="text-label-sm font-label-sm text-on-secondary-container uppercase block mb-2">Subject</label>
+        <select 
+          name="subject"
+          className={`w-full bg-surface-container-low border-0 border-b py-3 px-0 focus:outline-none focus:border-primary transition-all duration-200 text-on-surface ${
+            state.errors?.subject ? 'border-red-500' : 'border-border-subtle'
+          }`}
+        >
+          <option value="">Select a service</option>
+          <option value="Next.js Development">Next.js Development</option>
+          <option value="Magento E-commerce">Magento E-commerce</option>
+          <option value="Wix Consulting">Wix Consulting</option>
+          <option value="General Inquiry">General Inquiry</option>
+        </select>
+        {state.errors?.subject?.map((error: string, i: number) => (
+          <p key={i} className="pt-1 text-xs text-red-500">{error}</p>
+        ))}
+      </div>
+      <div className="relative">
+        <label className="text-label-sm font-label-sm text-on-secondary-container uppercase block mb-2">Message</label>
+        <textarea 
+          name="message"
+          rows={4}
+          placeholder="Tell me about your project..."
+          className={`w-full bg-surface-container-low border-0 border-b py-3 px-0 focus:outline-none focus:border-primary transition-all duration-200 placeholder:text-outline-variant resize-none ${
+            state.errors?.message ? 'border-red-500' : 'border-border-subtle'
+          }`}
+        />
+        {state.errors?.message?.map((error: string, i: number) => (
+          <p key={i} className="pt-1 text-xs text-red-500">{error}</p>
+        ))}
+      </div>
 
       {/* Server error */}
       {state.errors?.server?.map((error: string, i: number) => (
@@ -106,13 +140,25 @@ const SendEmail = () => {
         </p>
       ))}
 
-      <button
-        type="submit"
-        disabled={isPending}
-        className="mt-4 w-full max-w-[50%] rounded border border-white px-4 py-2.5 text-xl text-white disabled:opacity-50"
-      >
-        {isPending ? 'Sending...' : 'Send It!'}
-      </button>
+      <div className="pt-4">
+        <button 
+          type="submit"
+          disabled={isPending}
+          className="w-full md:w-auto px-10 h-12 bg-primary text-on-primary font-button rounded-lg hover:opacity-90 transition-all duration-200 transform hover:-translate-y-1 shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isPending ? (
+            <>
+              <span className="material-symbols-outlined animate-spin text-[20px]">sync</span>
+              Sending...
+            </>
+          ) : (
+            <>
+              Send Message
+              <span className="material-symbols-outlined text-[20px]">send</span>
+            </>
+          )}
+        </button>
+      </div>
     </form>
   )
 }

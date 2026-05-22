@@ -7,7 +7,9 @@ import {ContactFormSchema} from '@/lib/zod/contact-form-schema'
 type FormState = {
   success: boolean
   errors?: {
+    name?: string[]
     email?: string[]
+    subject?: string[]
     message?: string[]
     recaptcha?: string[]
     server?: string[]
