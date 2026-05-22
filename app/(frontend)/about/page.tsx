@@ -1,8 +1,10 @@
+import Link from 'next/link'
 import {Metadata} from 'next'
+import {ScrollObserver} from '@/components/base/ScrollObserver'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Luis Amador website to showcase his skills and services he offers to businesses',
+  description: 'Luis Amador has over 10 years of experience bridging complex technical challenges and elegant, user-centric solutions. Senior Software Engineer specializing in React, Next.js, and TypeScript.',
   alternates: {
     canonical: '/about',
   },
@@ -10,110 +12,182 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <section id="about-me" className="text-text-grey flex items-center justify-center px-5 py-16">
-      <div className="md:w-4/5">
-        <div className="text-center">
-          <h1 className="mb-16 text-4xl">About Me</h1>
-          <p className="mb-12 text-lg">
-            Hello and welcome! I&apos;m Luis Amador. I&apos;ve been developing for the web for
-            almost a decade. I believe in setting higher standards by lending the field in SEO,
-            performance, security, development and maintenance for websites. Those lists of
-            attributes are a major player to a successful website. I am constantly chasing the
-            newest technologies and best modern practices while sticking to solid fundamentals. This
-            is what makes me stand out. I&apos;m always growing my skills and knowledge while I also
-            clearing out the technologies that come and go. I&apos;m not only a web developer,
-            I&apos;m a father first. I have a passion for business, economics, financing and pretty
-            much anything educational. I love to always learn and teach others where I can.
-          </p>
-        </div>
-
-        <div className="mb-7">
-          <h2 className="mb-5 text-2xl">
-            Here&apos;s a list of the technologies I use on a consistent daily basis
-          </h2>
-
-          <div className="mb-5">
-            <h3 className="text-xl">Languages:</h3>
-            <ul>
-              <li>HTML</li>
-              <li>CSS | Sass | Less | Tailwindcss</li>
-              <li>JavaScript | TypeScript</li>
-              <li>Node.js</li>
-              <li>SQL</li>
-              <li>Markdown</li>
-              <li>Bash</li>
-              <li>Regular Expression</li>
-            </ul>
+    <>
+      {/* Hero Section */}
+      <header className="pt-20 pb-section-gap-sm md:pt-28 md:pb-section-gap-lg px-margin-mobile md:px-gutter">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+          <div className="md:col-span-8 space-y-6">
+            <span className="text-label-sm font-label-sm text-primary uppercase tracking-[0.2em] block">
+              Crafting Digital Excellence
+            </span>
+            <h1 className="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface">
+              A decade of engineering, <br className="hidden md:block" />
+              built on rigor and curiosity.
+            </h1>
+            <p className="text-body-lg font-body-lg text-text-muted max-w-2xl leading-relaxed">
+              I am a Full-Stack Software Engineer with over 10 years of experience bridging the gap between complex technical challenges and elegant, user-centric solutions.
+            </p>
           </div>
-
-          <div className="mb-5">
-            <h3 className="text-xl">Platforms:</h3>
-            <ul>
-              <li>React | Next.js</li>
-              <li>Wix</li>
-              <li>AEM</li>
-              <li>Adobe Commerce</li>
-              <li>Shopify</li>
-            </ul>
-          </div>
-
-          <div className="mb-5">
-            <h3 className="text-xl">Databases:</h3>
-            <ul>
-              <li>MySQL</li>
-              <li>Postgress | SupaBase</li>
-              <li>MongoDB</li>
-            </ul>
-          </div>
-
-          <div className="mb-5">
-            <h3 className="text-xl">DevOps:</h3>
-            <ul>
-              <li>AWS</li>
-              <li>Docker</li>
-              <li>GitHub | Bitbucket | GitLab</li>
-              <li>Linux</li>
-              <li>CI/CD</li>
-            </ul>
-          </div>
-
-          <div className="mb-5">
-            <h3 className="text-xl">Webmaster:</h3>
-            <ul>
-              <li>Google Analytics</li>
-              <li>Google Webmaster Tools</li>
-              <li>Domain Names (DNS)</li>
-            </ul>
-          </div>
-
-          <div className="mb-5">
-            <h3 className="text-xl">Team Management:</h3>
-            <ul>
-              <li>Jira Scrum | Kanban</li>
-              <li>Slack | Discord</li>
-            </ul>
-          </div>
-
-          <div className="mb-5">
-            <h3 className="text-xl">Misc:</h3>
-            <ul>
-              <li>Vim | Jetbrains | VSCode</li>
-              <li>PhotoShop | Adobe XD | Figma | Sketch</li>
-            </ul>
+          <div className="md:col-span-4">
+            <div className="relative group">
+              <div className="absolute -inset-2 bg-primary/5 rounded-xl transition-all duration-300 group-hover:-inset-3"></div>
+              <img 
+                className="relative rounded-xl shadow-lg w-full grayscale hover:grayscale-0 transition-all duration-700 aspect-[4/5] object-cover" 
+                alt="Portrait of Luis Amador" 
+                src="/images/luis-portrait.jpg" 
+              />
+            </div>
           </div>
         </div>
+      </header>
 
-        <div>
-          <h2 className="mb-1 text-2xl">Other Skills and Experiences:</h2>
-          <ul>
-            <li>Computer Repair and Software Support</li>
-            <li>Mobile Phone Repairs </li>
-            <li>Small Motor Mechanical Technician</li>
-            <li>Bilingual</li>
-            <li>Guitar Player</li>
-          </ul>
+      {/* Biography / Personal Side */}
+      <section className="py-section-gap-sm md:py-section-gap-lg bg-white border-y border-border-subtle/30">
+        <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">
+            <div className="md:col-span-6">
+              <h2 className="text-headline-md font-headline-md text-on-surface mb-8">The Professional Journey</h2>
+              <div className="space-y-6 text-body-lg font-body-lg text-text-muted leading-relaxed">
+                <p>
+                  My path in software development hasn&apos;t just been about writing code; it&apos;s been about mastering the craft of architecture and efficiency. Currently, I am a Senior Frontend Engineer at Aeroflow Health, where I lead the development of scalable internal React applications, leveraging the power of TypeScript and Hooks to deliver high-performance tools.
+                </p>
+                <p>
+                  Previously, I honed my skills at Blue Acorn iCi, delivering enterprise-grade Adobe Commerce and AEM storefronts for global brands. I specialize in building robust web applications using <span className="text-on-surface font-semibold">React, Next.js, and TypeScript</span>, bridging the gap between legacy cloud transformations and modern serverless architectures.
+                </p>
+              </div>
+            </div>
+            <div className="md:col-span-6">
+              <h2 className="text-headline-md font-headline-md text-on-surface mb-8">Beyond the Screen</h2>
+              <div className="space-y-6 text-body-lg font-body-lg text-text-muted leading-relaxed">
+                <p>
+                  Beyond the code editor, my life is anchored by family and a continuous pursuit of knowledge. I believe that being a great engineer starts with being a well-rounded individual, and I structure my time to reflect those core values.
+                </p>
+                <p>
+                  I am a father first and foremost. I also hold a deep passion for business, economics, finance, and mentorship. Whether I&apos;m teaching the next generation of developers or exploring new academic subjects, I am always seeking opportunities to grow and share what I&apos;ve learned.
+                </p>
+              </div>
+              <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-6 bg-surface-container-low rounded-xl border border-border-subtle/50 flex flex-col justify-between">
+                  <div>
+                    <span className="material-symbols-outlined text-primary text-3xl mb-4">family_history</span>
+                    <h4 className="text-on-surface font-bold">Family First</h4>
+                  </div>
+                  <p className="text-label-sm font-label-sm mt-2 text-text-muted">Foundational values</p>
+                </div>
+                <div className="p-6 bg-surface-container-low rounded-xl border border-border-subtle/50 flex flex-col justify-between">
+                  <div>
+                    <span className="material-symbols-outlined text-primary text-3xl mb-4">school</span>
+                    <h4 className="text-on-surface font-bold">Mentorship</h4>
+                  </div>
+                  <p className="text-label-sm font-label-sm mt-2 text-text-muted">Teaching the next gen</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Tech Stack / Skills Section */}
+      <section className="py-section-gap-sm md:py-section-gap-lg px-margin-mobile md:px-gutter">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="mb-16">
+            <span className="text-label-sm font-label-sm text-primary uppercase tracking-[0.2em] mb-4 block">The Toolkit</span>
+            <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md">Technological Expertise</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Languages */}
+            <div className="skill-card p-8 bg-white rounded-xl border border-border-subtle shadow-sm transition-all duration-300">
+              <span className="material-symbols-outlined text-primary mb-6 text-4xl">code</span>
+              <h3 className="text-headline-md font-headline-md text-on-surface mb-4">Languages</h3>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> TypeScript / JavaScript</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Node.js</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Python</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> GoLang</li>
+              </ul>
+            </div>
+            {/* Frontend */}
+            <div className="skill-card p-8 bg-white rounded-xl border border-border-subtle shadow-sm transition-all duration-300">
+              <span className="material-symbols-outlined text-primary mb-6 text-4xl">layers</span>
+              <h3 className="text-headline-md font-headline-md text-on-surface mb-4">Frontend</h3>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> React / Next.js</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> TypeScript / Hooks</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Tailwind CSS</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Adobe Commerce / AEM</li>
+              </ul>
+            </div>
+            {/* Databases */}
+            <div className="skill-card p-8 bg-white rounded-xl border border-border-subtle shadow-sm transition-all duration-300">
+              <span className="material-symbols-outlined text-primary mb-6 text-4xl">database</span>
+              <h3 className="text-headline-md font-headline-md text-on-surface mb-4">Databases</h3>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> PostgreSQL / Prisma</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Drizzle ORM</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Redis / Upstash</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> MongoDB</li>
+              </ul>
+            </div>
+            {/* DevOps */}
+            <div className="skill-card p-8 bg-white rounded-xl border border-border-subtle shadow-sm transition-all duration-300">
+              <span className="material-symbols-outlined text-primary mb-6 text-4xl">terminal</span>
+              <h3 className="text-headline-md font-headline-md text-on-surface mb-4">DevOps</h3>
+              <ul className="space-y-3">
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> AWS / Vercel</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Docker / Kubernetes</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> GitHub Actions</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Terraform</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Visual CTA Section */}
+      <section className="py-section-gap-sm md:py-section-gap-lg px-margin-mobile md:px-gutter relative overflow-hidden">
+        <div className="max-w-[1200px] mx-auto bg-surface-charcoal rounded-3xl p-8 md:p-16 lg:p-24 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md text-white">
+                Let&apos;s build something exceptional.
+              </h2>
+              <p className="text-body-lg font-body-lg text-secondary-fixed-dim leading-relaxed">
+                Whether you need a technical architect for a complex SaaS platform or a high-end web experience, I bring a decade of rigor to every project.
+              </p>
+              <div className="flex flex-wrap gap-4 pt-4">
+                <Link 
+                  href="/contact" 
+                  className="bg-primary text-on-primary px-8 py-4 rounded font-button hover:bg-on-primary-fixed-variant transition-all active:scale-95 duration-150 text-center"
+                >
+                  Hire for Next.js
+                </Link>
+                <Link 
+                  href="/contact" 
+                  className="border border-white/20 text-white px-8 py-4 rounded font-button hover:bg-white/10 transition-all active:scale-95 duration-150 text-center"
+                >
+                  Consult for Wix
+                </Link>
+              </div>
+            </div>
+            <div className="relative hidden md:block">
+              <img 
+                className="rounded-xl shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 w-full object-cover" 
+                alt="A clean, minimalist workspace" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD37So8htCHxB_qgXM1pOGmK6tLBAaMWnzluAnBCCy4l4E-g8nUhe8_ZaMJstsr9GxnzMJFlxoPIgny3nyJarXHr3CbS2blgO_q11gSvZ1ECyEuC1l40qvItTBRnI89ho2TQM0ppIxeFpKxsEp5Xo6GsipRGUEa-BFoqwBF8DHdrF34ql1IS7AtsqllaTKgoGLt4NoeNE8Qswf_G44oD9u2MVImq3rExg-awqCExLBJxE6uoTky6uIkmwsY3PzWrKA31ClJtY_iAyo" 
+              />
+            </div>
+          </div>
+          {/* Abstract Background Element */}
+          <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+            <svg fill="none" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+              <path d="M400 200C400 310.457 310.457 400 200 400C89.543 400 0 310.457 0 200C0 89.543 89.543 0 200 0C310.457 0 400 89.543 400 200Z" fill="currentColor" className="text-white" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      {/* Scroll observer client script */}
+      <ScrollObserver />
+    </>
   )
 }
