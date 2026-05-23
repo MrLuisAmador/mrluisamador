@@ -19,6 +19,7 @@
     "@payloadcms/db-postgres": "^3.80.0",
     "@payloadcms/next": "^3.80.0",
     "@payloadcms/richtext-lexical": "^3.80.0",
+    "@payloadcms/storage-vercel-blob": "^3.84.1",
     "@radix-ui/react-slot": "^1.2.4",
     "@vercel/analytics": "^2.0.1",
     "better-auth": "^1.5.6",
@@ -61,6 +62,5 @@
       "@types/react": "^19.1.2",
       "@types/react-dom": "^19.1.2"
     }
-  },
-  "packageManager": "pnpm@11.2.2"
+  }
 }
