@@ -57,10 +57,15 @@
     "tsx": "^4.21.0",
     "typescript": "^5"
   },
+  "resolutions": {
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2"
+  },
   "pnpm": {
-    "overrides": {
-      "@types/react": "^19.1.2",
-      "@types/react-dom": "^19.1.2"
-    }
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "unrs-resolver"
+    ]
   }
 }
