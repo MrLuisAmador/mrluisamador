@@ -16,8 +16,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/media/:path*',
-        destination: '/api/media/:path*', // Payload handles this via withPayload usually, but let's ensure rewrites exist if needed
+        source: '/api/media/file/:path*',
+        destination: '/media/:path*',
       },
     ]
   },
