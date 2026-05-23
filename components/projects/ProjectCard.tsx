@@ -29,14 +29,8 @@ export default function ProjectCard({
   let imageAlt = title
 
   if (image && typeof image === 'object') {
-    // The 'card' size in Payload is a portrait center-crop (768x1024).
-    // We use it ONLY for the narrow portrait cards (col-span-4) where it fits the shape perfectly.
-    // For wider landscape cards, we use the original uncropped image so Next.js can optimize it.
-    if (colSpan.includes('col-span-4') && image.sizes?.card?.url) {
-      imageUrl = image.sizes.card.url
-    } else {
-      imageUrl = image.url || (image.filename ? `/media/${image.filename}` : '')
-    }
+    // Use the original uncropped image URL so Next.js can optimize and position it correctly.
+    imageUrl = image.url || (image.filename ? `/media/${image.filename}` : '')
     imageAlt = image.alt || title
   }
 
@@ -59,7 +53,7 @@ export default function ProjectCard({
                 alt={imageAlt}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                className="object-contain p-2 transition-transform duration-500 group-hover:scale-105"
                 priority={colSpan.includes('lg:col-span-8')}
               />
             ) : (
@@ -83,13 +77,9 @@ export default function ProjectCard({
               {title}
             </h3>
             
-            {description ? (
+            {description && (
               <p className="text-body-md font-body-md text-on-secondary-container line-clamp-3">
                 {description}
-              </p>
-            ) : (
-              <p className="text-body-md font-body-md text-on-secondary-container italic opacity-50">
-                No description provided.
               </p>
             )}
           </div>
