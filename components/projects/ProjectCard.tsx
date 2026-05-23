@@ -29,9 +29,9 @@ export default function ProjectCard({
   let imageAlt = title
 
   if (image && typeof image === 'object') {
-    // Try to use a specific size if it exists, otherwise use original url
-    // Fallback to filename if url is missing (though Payload usually provides it)
-    imageUrl = image.sizes?.card?.url || image.url || (image.filename ? `/media/${image.filename}` : '')
+    // Use the original uncropped image URL so Next.js can optimize and position it correctly.
+    // The 'card' size in Payload is a portrait center-crop (768x1024), which ruins landscape aspect ratios.
+    imageUrl = image.url || (image.filename ? `/media/${image.filename}` : '')
     imageAlt = image.alt || title
   }
 
