@@ -4,7 +4,7 @@ import {ScrollObserver} from '@/components/base/ScrollObserver'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Luis Amador has over 10 years of experience bridging complex technical challenges and elegant, user-centric solutions. Senior Software Engineer specializing in React, Next.js, and TypeScript.',
+  description: 'Luis Amador has over 10 years of experience bridging complex technical challenges and elegant, user-centric solutions. Senior Software Engineer specializing in React, Next.js, and AI Agentic Workflows.',
   alternates: {
     canonical: '/about',
   },
@@ -52,7 +52,7 @@ export default function About() {
                   My path in software development hasn&apos;t just been about writing code; it&apos;s been about mastering the craft of architecture and efficiency. Currently, I am a Senior Frontend Engineer at Aeroflow Health, where I lead the development of scalable internal React applications, leveraging the power of TypeScript and Hooks to deliver high-performance tools.
                 </p>
                 <p>
-                  Previously, I honed my skills at Blue Acorn iCi, delivering enterprise-grade Adobe Commerce and AEM storefronts for global brands. I specialize in building robust web applications using <span className="text-on-surface font-semibold">React, Next.js, and TypeScript</span>, bridging the gap between legacy cloud transformations and modern serverless architectures.
+                  I specialize in building robust web applications using <span className="text-on-surface font-semibold">Next.js and TypeScript</span>, and recently, I have deeply integrated <span className="text-on-surface font-semibold">AI Engineering and Agentic Workflows</span> into my repertoire. I focus on developing autonomous systems that leverage LLMs to drive real business value, moving beyond simple wrappers into full-fledged agentic architectures.
                 </p>
               </div>
             </div>
@@ -128,15 +128,15 @@ export default function About() {
                 <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> MongoDB</li>
               </ul>
             </div>
-            {/* DevOps */}
+            {/* AI & Systems */}
             <div className="skill-card p-8 bg-white rounded-xl border border-border-subtle shadow-sm transition-all duration-300">
-              <span className="material-symbols-outlined text-primary mb-6 text-4xl">terminal</span>
-              <h3 className="text-headline-md font-headline-md text-on-surface mb-4">DevOps</h3>
+              <span className="material-symbols-outlined text-primary mb-6 text-4xl">smart_toy</span>
+              <h3 className="text-headline-md font-headline-md text-on-surface mb-4">AI & Systems</h3>
               <ul className="space-y-3">
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Agentic Workflows</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> LLM Orchestration</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> LangChain / OpenAI</li>
                 <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> AWS / Vercel</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Docker / Kubernetes</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> GitHub Actions</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Terraform</li>
               </ul>
             </div>
           </div>
@@ -152,20 +152,20 @@ export default function About() {
                 Let&apos;s build something exceptional.
               </h2>
               <p className="text-body-lg font-body-lg text-secondary-fixed-dim leading-relaxed">
-                Whether you need a technical architect for a complex SaaS platform or a high-end web experience, I bring a decade of rigor to every project.
+                Whether you're looking for a Senior Engineer for your full-time team or a consultant for a specialized Next.js/Wix project, I bring a decade of rigor to every role.
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
                 <Link 
                   href="/contact" 
                   className="bg-primary text-on-primary px-8 py-4 rounded font-button hover:bg-on-primary-fixed-variant transition-all active:scale-95 duration-150 text-center"
                 >
-                  Hire for Next.js
+                  Hire Me Full-Time
                 </Link>
                 <Link 
                   href="/contact" 
                   className="border border-white/20 text-white px-8 py-4 rounded font-button hover:bg-white/10 transition-all active:scale-95 duration-150 text-center"
                 >
-                  Consult for Wix
+                  Consulting & Contract
                 </Link>
               </div>
             </div>

@@ -15,6 +15,7 @@ declare global {
 type FormState = {
   success: boolean
   errors?: {
+    name?: string[]
     email?: string[]
     message?: string[]
     recaptcha?: string[]
@@ -77,7 +78,7 @@ const SendEmail = () => {
             type="text"
             name="name"
             placeholder="John Doe"
-            className={`w-full bg-surface-container-low border-0 border-b py-3 px-0 focus:outline-none focus:border-primary transition-all duration-200 placeholder:text-outline-variant ${
+            className={`w-full bg-surface-container-low border-0 border-b py-3 px-4 rounded-t-md focus:outline-none focus:border-primary transition-all duration-200 placeholder:text-outline-variant ${
               state.errors?.name ? 'border-red-500' : 'border-border-subtle'
             }`}
           />
@@ -91,7 +92,7 @@ const SendEmail = () => {
             type="email"
             name="email"
             placeholder="john@example.com"
-            className={`w-full bg-surface-container-low border-0 border-b py-3 px-0 focus:outline-none focus:border-primary transition-all duration-200 placeholder:text-outline-variant ${
+            className={`w-full bg-surface-container-low border-0 border-b py-3 px-4 rounded-t-md focus:outline-none focus:border-primary transition-all duration-200 placeholder:text-outline-variant ${
               state.errors?.email ? 'border-red-500' : 'border-border-subtle'
             }`}
           />
@@ -100,31 +101,14 @@ const SendEmail = () => {
           ))}
         </div>
       </div>
-      <div className="relative">
-        <label className="text-label-sm font-label-sm text-on-secondary-container uppercase block mb-2">Subject</label>
-        <select 
-          name="subject"
-          className={`w-full bg-surface-container-low border-0 border-b py-3 px-0 focus:outline-none focus:border-primary transition-all duration-200 text-on-surface ${
-            state.errors?.subject ? 'border-red-500' : 'border-border-subtle'
-          }`}
-        >
-          <option value="">Select a service</option>
-          <option value="Next.js Development">Next.js Development</option>
-          <option value="Magento E-commerce">Magento E-commerce</option>
-          <option value="Wix Consulting">Wix Consulting</option>
-          <option value="General Inquiry">General Inquiry</option>
-        </select>
-        {state.errors?.subject?.map((error: string, i: number) => (
-          <p key={i} className="pt-1 text-xs text-red-500">{error}</p>
-        ))}
-      </div>
+
       <div className="relative">
         <label className="text-label-sm font-label-sm text-on-secondary-container uppercase block mb-2">Message</label>
         <textarea 
           name="message"
           rows={4}
           placeholder="Tell me about your project..."
-          className={`w-full bg-surface-container-low border-0 border-b py-3 px-0 focus:outline-none focus:border-primary transition-all duration-200 placeholder:text-outline-variant resize-none ${
+          className={`w-full bg-surface-container-low border-0 border-b py-3 px-4 rounded-t-md focus:outline-none focus:border-primary transition-all duration-200 placeholder:text-outline-variant resize-none ${
             state.errors?.message ? 'border-red-500' : 'border-border-subtle'
           }`}
         />
@@ -144,7 +128,7 @@ const SendEmail = () => {
         <button 
           type="submit"
           disabled={isPending}
-          className="w-full md:w-auto px-10 h-12 bg-primary text-on-primary font-button rounded-lg hover:opacity-90 transition-all duration-200 transform hover:-translate-y-1 shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full md:w-auto cursor-pointer px-10 h-12 bg-primary text-on-primary font-button rounded-lg hover:opacity-90 transition-all duration-200 transform hover:-translate-y-1 shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isPending ? (
             <>

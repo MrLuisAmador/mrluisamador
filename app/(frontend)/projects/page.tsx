@@ -8,7 +8,7 @@ import {Project as PayloadProject} from '@/payload-types'
 
 export const metadata: Metadata = {
   title: 'Projects',
-  description: 'Portfolio Website And Blog',
+  description: 'Portfolio showcasing Next.js applications, Wix platforms, and AI Engineering agentic workflows.',
   alternates: {
     canonical: '/projects',
   },
@@ -84,7 +84,7 @@ export default function Projects() {
           Crafting high-performance digital experiences across platforms.
         </h1>
         <p className="text-body-lg font-body-lg text-on-secondary-container mt-6 max-w-2xl">
-          A curated selection of technical solutions spanning e-commerce architectures, modern web frameworks, and managed content systems.
+          A curated selection of technical solutions spanning AI-powered agentic workflows, enterprise Next.js applications, and custom Wix platforms.
         </p>
       </section>
 
@@ -95,13 +95,13 @@ export default function Projects() {
       {/* CTA Section */}
       <section className="mt-section-gap-lg max-w-[1200px] mx-auto px-margin-mobile md:px-gutter text-center">
         <div className="bg-surface-container-low rounded-3xl p-12 md:p-24 border border-border-subtle/50">
-          <h2 className="text-headline-md font-headline-md mb-6 text-on-surface">Have a project in mind?</h2>
+          <h2 className="text-headline-md font-headline-md mb-6 text-on-surface">Looking for a Senior Engineer?</h2>
           <p className="text-body-lg font-body-lg text-on-secondary-container mb-10 max-w-xl mx-auto">
-            Whether you need a robust e-commerce platform or a sleek corporate site, let's build something exceptional together.
+            Whether you need a Senior Engineer for your full-time team or a consultant for a specialized AI/Next.js project, let's connect.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact" className="w-full sm:w-auto">
-              <button className="bg-primary text-on-primary px-10 py-4 rounded-lg text-button font-button hover:opacity-90 active:scale-95 transition-all shadow-md w-full">
+              <button className="bg-primary cursor-pointer text-on-primary px-10 py-4 rounded-lg text-button font-button hover:opacity-90 active:scale-95 transition-all shadow-md w-full">
                 Start a Conversation
               </button>
             </Link>

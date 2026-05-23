@@ -4,7 +4,7 @@ import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Portfolio Website And Blog',
+  description: 'Connect with Luis Amador for full-time opportunities in AI Engineering and Next.js, or for select contract work.',
   alternates: {
     canonical: '/contact',
   },
@@ -28,10 +28,10 @@ const Contact = () => {
             <header>
               <span className="text-label-sm font-label-sm text-primary uppercase tracking-[0.2em] mb-4 block">Get In Touch</span>
               <h1 className="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface mb-6 leading-tight">
-                Do you need something done?
+                Let's connect.
               </h1>
               <p className="text-body-lg font-body-lg text-on-secondary-container max-w-md">
-                Whether it's a complex Next.js application or a tailored Wix solution, I'm here to help you build something remarkable.
+                I am currently open to full-time roles in AI Engineering and Next.js, as well as select contract work. Let's build something remarkable.
               </p>
             </header>
 
@@ -112,14 +112,14 @@ const Contact = () => {
           <div className="absolute bottom-10 left-10 bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/50 max-w-sm animate-fade-in-up [animation-delay:400ms]">
             <h3 className="text-headline-md font-headline-md text-primary mb-3">Office</h3>
             <p className="text-body-md font-body-md text-on-secondary-container">
-              Currently working remotely from the vibrant heart of the Tech District.
+              Currently working remotely, collaborating with teams across the globe.
             </p>
             <div className="mt-6 flex items-center gap-3 text-primary font-bold text-sm tracking-widest uppercase">
               <span className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
               </span>
-              Open for new projects
+              Open for Full-Time & Contract
             </div>
           </div>
         </div>

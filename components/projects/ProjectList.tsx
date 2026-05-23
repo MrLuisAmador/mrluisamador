@@ -67,7 +67,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
                 filter={project.filter}
                 url={project.url}
                 image={project.image}
-                description={project.description}
+                description={project.description ?? undefined}
                 colSpan={colSpan}
                 aspect={aspect}
               />

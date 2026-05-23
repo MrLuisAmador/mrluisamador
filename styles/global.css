@@ -284,3 +284,8 @@
     scroll-behavior: smooth;
   }
 }
+
+/* Hide reCAPTCHA badge globally, required text added to form */
+.grecaptcha-badge { 
+  visibility: hidden !important; 
+}

@@ -21,12 +21,12 @@ export function createTransporter(): nodemailer.Transporter {
 }
 
 export const emailTemplates = {
-  contactForm: (data: {name: string; email: string; subject: string; message: string}) => {
+  contactForm: (data: {name: string; email: string; message: string}) => {
     const smtp = env.smtp
     return {
       from: smtp.SMTP_FROM ?? 'webmaster@mrluisamador.com',
       to: 'mrluisamador@gmail.com',
-      subject: `New Inquiry: ${data.subject}`,
+      subject: `New Inquiry from ${data.name}`,
       html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h1 style="color: #333; border-bottom: 2px solid #a33537; padding-bottom: 10px;">
@@ -37,7 +37,6 @@ export const emailTemplates = {
           <h2 style="color: #555; margin-top: 0;">Contact Information</h2>
           <p><strong>Name:</strong> ${data.name}</p>
           <p><strong>Email:</strong> <a href="mailto:${data.email}" style="color: #a33537;">${data.email}</a></p>
-          <p><strong>Subject:</strong> ${data.subject}</p>
         </div>
 
         <div style="background-color: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">

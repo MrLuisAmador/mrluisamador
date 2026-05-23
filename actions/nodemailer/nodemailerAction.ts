@@ -9,7 +9,6 @@ type FormState = {
   errors?: {
     name?: string[]
     email?: string[]
-    subject?: string[]
     message?: string[]
     recaptcha?: string[]
     server?: string[]

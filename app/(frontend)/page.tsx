@@ -3,8 +3,8 @@ import {Metadata} from 'next'
 import {ScrollObserver} from '@/components/base/ScrollObserver'
 
 export const metadata: Metadata = {
-  title: 'Luis Amador | Senior Developer Portfolio',
-  description: 'Full-stack developer portfolio showcasing senior frontend engineering, enterprise architecture, and Magento storefront optimization.',
+  title: 'Luis Amador | Senior Full-Stack Engineer',
+  description: 'Senior Full-Stack & AI Engineer specializing in Next.js, Agentic Workflows, and Wix enterprise solutions. Open to full-time roles.',
   alternates: {
     canonical: '/',
   },
@@ -13,7 +13,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center bg-primary overflow-hidden pt-20">
         <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
           <span className="absolute -top-32 -left-32 text-[600px] font-headline-md text-white select-none leading-none">LA</span>
@@ -22,17 +21,17 @@ export default function Home() {
           <div className="text-white space-y-10 animate-fade-in-up">
             <div className="space-y-4">
               <span className="font-label-sm text-label-sm uppercase tracking-[0.2em] opacity-80 bg-white/10 px-3 py-1 rounded inline-block">
-                Full-Stack Architect
+                Full-Stack Engineer
               </span>
               <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white">
                 Luis Amador
               </h1>
               <h2 className="font-headline-md text-headline-md italic opacity-90 leading-relaxed">
-                Why you should hire me
+                Why you should hire me?
               </h2>
             </div>
             <p className="font-body-lg text-body-lg text-white/80 max-w-xl leading-relaxed">
-              I bridge the gap between complex engineering and elegant design, delivering high-performance digital experiences tailored to your unique business goals with precision and passion.
+              I bridge the gap between complex engineering and elegant design, delivering high performance digital experiences tailored to your unique business goals with precision and passion.
             </p>
             <div className="flex flex-wrap gap-6 pt-4">
               <Link 
@@ -68,7 +67,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Core Expertise Section */}
       <section id="expertise" className="py-section-gap-lg bg-surface relative scroll-mt-20">
         <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter">
           <div className="text-center max-w-3xl mx-auto mb-24">
@@ -76,41 +74,38 @@ export default function Home() {
               Strategic Thinking
             </span>
             <h2 className="font-display-lg text-display-lg-mobile md:text-[56px] leading-tight">
-              Senior Frontend Engineering &amp; Strategy
+              Senior Frontend Engineering & Strategy
             </h2>
             <p className="mt-8 font-body-lg text-text-muted">
-              Engineering robust systems that don't just scale—they thrive under pressure. My approach combines technical depth with business-first architectural decisions.
+              Engineering robust systems that don't just scale, they thrive under pressure. My approach combines technical depth with business first architectural decisions.
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-            {/* Architecture Card */}
             <div className="animate-on-scroll p-10 bg-white rounded-2xl border border-border-subtle card-shadow group hover:border-primary/30 transition-all duration-300">
               <div className="w-16 h-16 bg-primary/5 rounded-xl flex items-center justify-center mb-8">
                 <span className="material-symbols-outlined text-4xl text-primary">account_tree</span>
               </div>
-              <h3 className="font-headline-md text-2xl mb-4">Enterprise React &amp; Next.js</h3>
+              <h3 className="font-headline-md text-2xl mb-4">Enterprise React & Next.js</h3>
               <p className="font-body-md text-text-muted leading-relaxed">
-                10+ years of experience delivering high-performance web applications across E-commerce and Healthcare using React, Next.js, and TypeScript with modular components.
+                10+ years of experience delivering high performance web applications across E-commerce and Healthcare using React, Next.js, and TypeScript with modular components.
               </p>
             </div>
             
-            {/* Performance Card */}
             <div className="animate-on-scroll p-10 bg-white rounded-2xl border border-border-subtle card-shadow group hover:border-primary/30 transition-all duration-300">
               <div className="w-16 h-16 bg-primary/5 rounded-xl flex items-center justify-center mb-8">
-                <span className="material-symbols-outlined text-4xl text-primary">bolt</span>
+                <span className="material-symbols-outlined text-4xl text-primary">smart_toy</span>
               </div>
-              <h3 className="font-headline-md text-2xl mb-4">Adobe Commerce (Magento)</h3>
+              <h3 className="font-headline-md text-2xl mb-4">AI-Accelerated Development</h3>
               <p className="font-body-md text-text-muted leading-relaxed">
-                Expertise in Magento 1 &amp; 2 storefronts, implementing site-wide UI improvements, and optimizing complex checkout flows for enterprise-scale platforms.
+                Developing software using agentic AI, AI managers, and advanced coding assistants. I leverage these workflows to drastically accelerate the development lifecycle and deliver robust code efficiently.
               </p>
             </div>
 
-            {/* Scalability Card */}
             <div className="animate-on-scroll p-10 bg-white rounded-2xl border border-border-subtle card-shadow group hover:border-primary/30 transition-all duration-300">
               <div className="w-16 h-16 bg-primary/5 rounded-xl flex items-center justify-center mb-8">
                 <span className="material-symbols-outlined text-4xl text-primary">dynamic_feed</span>
               </div>
-              <h3 className="font-headline-md text-2xl mb-4">Architecture &amp; Testing</h3>
+              <h3 className="font-headline-md text-2xl mb-4">Architecture & Testing</h3>
               <p className="font-body-md text-text-muted leading-relaxed">
                 Leading architectural shifts with React Server Components, Drizzle ORM, and comprehensive testing suites using Jest, Cypress, and Playwright for robust reliability.
               </p>
@@ -119,7 +114,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Experience Section */}
       <section className="py-section-gap-lg bg-surface-container-low">
         <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-24">
@@ -128,19 +122,19 @@ export default function Home() {
                 Expert craftsmanship for the modern web.
               </h2>
               <p className="font-body-lg text-on-surface-variant leading-relaxed">
-                With years of experience in both rapid prototyping and enterprise-grade software development, I deliver bespoke digital solutions that don't just work—they excel in the marketplace.
+                With years of experience in both rapid prototyping and enterprise-grade software development, I deliver bespoke digital solutions that don't just work, they excel in the marketplace.
               </p>
               <div className="grid grid-cols-2 gap-12 pt-4">
                 <div className="space-y-2">
-                  <span className="block text-5xl font-headline-md text-primary font-bold">50+</span>
+                  <span className="block text-5xl font-headline-md text-primary font-bold">10+</span>
                   <span className="font-label-sm text-on-surface-variant uppercase tracking-wider">
-                    Projects Delivered
+                    Years Experience
                   </span>
                 </div>
                 <div className="space-y-2">
-                  <span className="block text-5xl font-headline-md text-primary font-bold">100%</span>
+                  <span className="block text-5xl font-headline-md text-primary font-bold">AI</span>
                   <span className="font-label-sm text-on-surface-variant uppercase tracking-wider">
-                    Client Satisfaction
+                    Production Agents
                   </span>
                 </div>
               </div>
