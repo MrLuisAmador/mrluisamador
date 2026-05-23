@@ -3,7 +3,7 @@ import {Metadata} from 'next'
 import {ScrollObserver} from '@/components/base/ScrollObserver'
 
 export const metadata: Metadata = {
-  title: 'Luis Amador | Senior Full-Stack Engineer',
+  title: 'Luis Amador | Senior Frontend Engineer',
   description: 'Senior Full-Stack & AI Engineer specializing in Next.js, Agentic Workflows, and Wix enterprise solutions. Open to full-time roles.',
   alternates: {
     canonical: '/',
@@ -21,7 +21,7 @@ export default function Home() {
           <div className="text-white space-y-10 animate-fade-in-up">
             <div className="space-y-4">
               <span className="font-label-sm text-label-sm uppercase tracking-[0.2em] opacity-80 bg-white/10 px-3 py-1 rounded inline-block">
-                Full-Stack Engineer
+                Senior Frontend Engineer
               </span>
               <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white">
                 Luis Amador

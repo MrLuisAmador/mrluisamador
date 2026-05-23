@@ -23,9 +23,9 @@ const adminEnvSchema = z.object({
 })
 
 export type RequiredEnv = z.infer<typeof requiredEnvSchema>
-export type SmtpEnv = z.infer<typeof smtpEnvSchema>
-export type RecaptchaEnv = z.infer<typeof recaptchaEnvSchema>
-export type AdminEnv = {
+type SmtpEnv = z.infer<typeof smtpEnvSchema>
+type RecaptchaEnv = z.infer<typeof recaptchaEnvSchema>
+type AdminEnv = {
   emails: string[]
 }
 

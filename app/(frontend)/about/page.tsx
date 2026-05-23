@@ -4,7 +4,7 @@ import {ScrollObserver} from '@/components/base/ScrollObserver'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Luis Amador has over 10 years of experience bridging complex technical challenges and elegant, user-centric solutions. Senior Software Engineer specializing in React, Next.js, and AI Agentic Workflows.',
+  description: 'Luis Amador has over 10 years of experience bridging complex technical challenges and elegant, user-centric solutions. Senior Frontend Engineer specializing in React, Next.js, and AI Agentic Workflows.',
   alternates: {
     canonical: '/about',
   },
@@ -25,7 +25,7 @@ export default function About() {
               built on rigor and curiosity.
             </h1>
             <p className="text-body-lg font-body-lg text-text-muted max-w-2xl leading-relaxed">
-              I am a Full-Stack Software Engineer with over 10 years of experience bridging the gap between complex technical challenges and elegant, user-centric solutions.
+              I am a Senior Frontend Engineer with over 10 years of experience bridging the gap between complex technical challenges and elegant, user-centric solutions.
             </p>
           </div>
           <div className="md:col-span-4">
@@ -41,7 +41,6 @@ export default function About() {
         </div>
       </header>
 
-      {/* Biography / Personal Side */}
       <section className="py-section-gap-sm md:py-section-gap-lg bg-white border-y border-border-subtle/30">
         <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">
@@ -87,7 +86,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Tech Stack / Skills Section */}
       <section className="py-section-gap-sm md:py-section-gap-lg px-margin-mobile md:px-gutter">
         <div className="max-w-[1200px] mx-auto">
           <div className="mb-16">
@@ -95,7 +93,6 @@ export default function About() {
             <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md">Technological Expertise</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Languages */}
             <div className="skill-card p-8 bg-white rounded-xl border border-border-subtle shadow-sm transition-all duration-300">
               <span className="material-symbols-outlined text-primary mb-6 text-4xl">code</span>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-4">Languages</h3>
@@ -106,7 +103,6 @@ export default function About() {
                 <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> GoLang</li>
               </ul>
             </div>
-            {/* Frontend */}
             <div className="skill-card p-8 bg-white rounded-xl border border-border-subtle shadow-sm transition-all duration-300">
               <span className="material-symbols-outlined text-primary mb-6 text-4xl">layers</span>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-4">Frontend</h3>
@@ -117,7 +113,6 @@ export default function About() {
                 <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Adobe Commerce / AEM</li>
               </ul>
             </div>
-            {/* Databases */}
             <div className="skill-card p-8 bg-white rounded-xl border border-border-subtle shadow-sm transition-all duration-300">
               <span className="material-symbols-outlined text-primary mb-6 text-4xl">database</span>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-4">Databases</h3>
@@ -128,7 +123,6 @@ export default function About() {
                 <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> MongoDB</li>
               </ul>
             </div>
-            {/* AI & Systems */}
             <div className="skill-card p-8 bg-white rounded-xl border border-border-subtle shadow-sm transition-all duration-300">
               <span className="material-symbols-outlined text-primary mb-6 text-4xl">smart_toy</span>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-4">AI & Systems</h3>
@@ -143,7 +137,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Visual CTA Section */}
       <section className="py-section-gap-sm md:py-section-gap-lg px-margin-mobile md:px-gutter relative overflow-hidden">
         <div className="max-w-[1200px] mx-auto bg-surface-charcoal rounded-3xl p-8 md:p-16 lg:p-24 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -152,7 +145,7 @@ export default function About() {
                 Let&apos;s build something exceptional.
               </h2>
               <p className="text-body-lg font-body-lg text-secondary-fixed-dim leading-relaxed">
-                Whether you're looking for a Senior Engineer for your full-time team or a consultant for a specialized Next.js/Wix project, I bring a decade of rigor to every role.
+                Whether you're looking for a Senior Frontend Engineer for your full-time team or a consultant for a specialized Next.js/Wix project, I bring a decade of rigor to every role.
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
                 <Link 
@@ -177,7 +170,6 @@ export default function About() {
               />
             </div>
           </div>
-          {/* Abstract Background Element */}
           <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
             <svg fill="none" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
               <path d="M400 200C400 310.457 310.457 400 200 400C89.543 400 0 310.457 0 200C0 89.543 89.543 0 200 0C310.457 0 400 89.543 400 200Z" fill="currentColor" className="text-white" />
@@ -186,7 +178,6 @@ export default function About() {
         </div>
       </section>
 
-      {/* Scroll observer client script */}
       <ScrollObserver />
     </>
   )

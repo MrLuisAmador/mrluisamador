@@ -4,7 +4,7 @@ import Script from 'next/script'
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Connect with Luis Amador for full-time opportunities in AI Engineering and Next.js, or for select contract work.',
+  description: 'Connect with Luis Amador for full-time opportunities in Senior Frontend Engineer and AI Engineer roles, or for select contract work.',
   alternates: {
     canonical: '/contact',
   },
@@ -23,7 +23,6 @@ const Contact = () => {
       
       <main className="pt-24 pb-section-gap-lg px-margin-mobile md:px-gutter max-w-[1200px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          {/* Left Column: Branding & Contact Info */}
           <div className="lg:col-span-5 space-y-12 animate-fade-in-up">
             <header>
               <span className="text-label-sm font-label-sm text-primary uppercase tracking-[0.2em] mb-4 block">Get In Touch</span>
@@ -31,7 +30,7 @@ const Contact = () => {
                 Let's connect.
               </h1>
               <p className="text-body-lg font-body-lg text-on-secondary-container max-w-md">
-                I am currently open to full-time roles in AI Engineering and Next.js, as well as select contract work. Let's build something remarkable.
+                I am currently open to full-time opportunities as a Senior Frontend Engineer or AI Engineer, as well as select contract work. Let's build something remarkable.
               </p>
             </header>
 
@@ -93,14 +92,12 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Right Column: Contact Form */}
           <div className="lg:col-span-7 bg-white rounded-2xl card-shadow border border-border-subtle p-8 md:p-12 animate-fade-in-up [animation-delay:200ms]">
             <SendEmail />
           </div>
         </div>
       </main>
 
-      {/* Map/Atmosphere Section */}
       <section className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter pb-section-gap-lg">
         <div className="relative h-[450px] w-full rounded-3xl overflow-hidden shadow-sm border border-border-subtle group">
           <img 
