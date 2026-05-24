@@ -20,27 +20,27 @@ export default function Footer() {
         <div className="flex flex-wrap justify-center gap-8">
           <a 
             className="text-label-sm font-label-sm text-white/60 hover:text-primary-fixed-dim transition-colors duration-200" 
-            href="https://github.com/MrLuisAmador"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Github
-          </a>
-          <a 
-            className="text-label-sm font-label-sm text-white/60 hover:text-primary-fixed-dim transition-colors duration-200" 
             href="https://www.linkedin.com/in/mrluisamador"
             target="_blank"
             rel="noopener noreferrer"
           >
             LinkedIn
           </a>
-          <a 
+           <a 
             className="text-label-sm font-label-sm text-white/60 hover:text-primary-fixed-dim transition-colors duration-200" 
             href="https://twitter.com/LinuxLue"
             target="_blank"
             rel="noopener noreferrer"
           >
             Twitter
+          </a>
+          <a 
+            className="text-label-sm font-label-sm text-white/60 hover:text-primary-fixed-dim transition-colors duration-200" 
+            href="https://github.com/MrLuisAmador"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github
           </a>
         </div>
       </div>
