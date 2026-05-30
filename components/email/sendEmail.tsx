@@ -2,7 +2,7 @@
 
 import {useActionState, useEffect, startTransition} from 'react'
 import {useRouter} from 'next/navigation'
-import {nodemailerAction} from '@/actions/nodemailer/nodemailerAction'
+import {hubspotAction} from '@/actions/hubspot/hubspotAction'
 
 declare global {
   interface Window {
@@ -30,7 +30,7 @@ const initialState: FormState = {
 
 const SendEmail = () => {
   const router = useRouter()
-  const [state, formAction, isPending] = useActionState(nodemailerAction, initialState)
+  const [state, formAction, isPending] = useActionState(hubspotAction, initialState)
 
   // Redirect on success
   useEffect(() => {

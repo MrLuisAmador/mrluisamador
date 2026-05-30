@@ -1,7 +1,6 @@
 'use server'
 
 import {verifyRecaptcha} from '@/lib/google/verifyRecaptcha'
-import {createTransporter, emailTemplates} from '@/lib/nodemailer/config'
 import {ContactFormSchema} from '@/lib/zod/contact-form-schema'
 
 type FormState = {
@@ -19,7 +18,7 @@ function getErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : 'An unknown error occurred'
 }
 
-export async function nodemailerAction(
+export async function hubspotAction(
   _prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
@@ -55,18 +54,48 @@ export async function nodemailerAction(
       }
     }
 
-    // 3. Send email
-    const transporter = createTransporter()
-    const mailOptions = emailTemplates.contactForm(result.data)
+    const {name, email, message} = result.data
 
-    await transporter.sendMail(mailOptions)
+    // Split the name into firstname and lastname
+    const nameParts = name.trim().split(' ')
+    const firstname = nameParts[0]
+    const lastname = nameParts.length > 1 ? nameParts.slice(1).join(' ') : ''
+
+    const portalId = '1654039'
+    const formGuid = '5eb27d0e-2cc5-4438-9e2f-3af045c6c5ef'
+
+    const hubspotData = {
+      fields: [
+        {name: 'email', value: email},
+        {name: 'firstname', value: firstname},
+        {name: 'lastname', value: lastname},
+        {name: 'message', value: message},
+      ],
+    }
+
+    const response = await fetch(
+      `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(hubspotData),
+      }
+    )
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      console.error('HubSpot Forms API Error:', errorData)
+      throw new Error(`Failed to submit to HubSpot Forms: ${response.statusText}`)
+    }
 
     return {
       success: true,
       errors: undefined,
     }
   } catch (error) {
-    console.error('Email sending error:', error)
+    console.error('Form submission error:', error)
     return {
       success: false,
       errors: {
