@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import {Metadata} from 'next'
-import {ScrollObserver} from '@/components/base/ScrollObserver'
+import { Metadata } from 'next'
+import { ScrollObserver } from '@/components/base/ScrollObserver'
 
 export const metadata: Metadata = {
   title: 'About',
@@ -31,10 +31,10 @@ export default function About() {
           <div className="md:col-span-4">
             <div className="relative group">
               <div className="absolute -inset-2 bg-primary/5 rounded-xl transition-all duration-300 group-hover:-inset-3"></div>
-              <img 
-                className="relative rounded-xl shadow-lg w-full grayscale hover:grayscale-0 transition-all duration-700 aspect-[4/5] object-cover" 
-                alt="Portrait of Luis Amador" 
-                src="/images/luis-portrait.jpg" 
+              <img
+                className="relative rounded-xl shadow-lg w-full grayscale hover:grayscale-0 transition-all duration-700 aspect-[4/5] object-cover"
+                alt="Portrait of Luis Amador"
+                src="/images/luis-portrait.jpg"
               />
             </div>
           </div>
@@ -98,39 +98,42 @@ export default function About() {
               <h3 className="text-headline-md font-headline-md text-on-surface mb-4">Languages</h3>
               <ul className="space-y-3">
                 <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> TypeScript / JavaScript</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Node.js</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Python</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> GoLang</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> HTML</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>CSS</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>PHP</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>SQL</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>Bash / Shell</li>
               </ul>
             </div>
             <div className="skill-card p-8 bg-white rounded-xl border border-border-subtle shadow-sm transition-all duration-300">
               <span className="material-symbols-outlined text-primary mb-6 text-4xl">layers</span>
-              <h3 className="text-headline-md font-headline-md text-on-surface mb-4">Frontend</h3>
+              <h3 className="text-headline-md font-headline-md text-on-surface mb-4">Platforms</h3>
               <ul className="space-y-3">
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> React / Next.js</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> TypeScript / Hooks</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Tailwind CSS</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Adobe Commerce / AEM</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>Next.js</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Adobe Experience Manager</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> WordPress</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Shopify</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Adobe Commerce</li>
               </ul>
             </div>
             <div className="skill-card p-8 bg-white rounded-xl border border-border-subtle shadow-sm transition-all duration-300">
               <span className="material-symbols-outlined text-primary mb-6 text-4xl">database</span>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-4">Databases</h3>
               <ul className="space-y-3">
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> PostgreSQL / Prisma</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Drizzle ORM</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Redis / Upstash</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> MongoDB</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>PostgreSQL / Prisma</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>Drizzle ORM</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>Redis / Upstash</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>MongoDB</li>
               </ul>
             </div>
             <div className="skill-card p-8 bg-white rounded-xl border border-border-subtle shadow-sm transition-all duration-300">
               <span className="material-symbols-outlined text-primary mb-6 text-4xl">smart_toy</span>
               <h3 className="text-headline-md font-headline-md text-on-surface mb-4">AI & Systems</h3>
               <ul className="space-y-3">
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> Agentic Workflows</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> LLM Orchestration</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> LangChain / OpenAI</li>
-                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span> AWS / Vercel</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>Agentic Workflows</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>Claude Code</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>Codex</li>
+                <li className="flex items-center gap-2 text-text-muted"><span className="w-1.5 h-1.5 bg-primary rounded-full"></span>Antigravity</li>
               </ul>
             </div>
           </div>
@@ -148,14 +151,14 @@ export default function About() {
                 Whether you're looking for a Senior Frontend Engineer for your full-time team or a consultant for a specialized Next.js/Wix project, I bring a decade of rigor to every role.
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
-                <Link 
-                  href="/contact" 
+                <Link
+                  href="/contact"
                   className="bg-primary text-on-primary px-8 py-4 rounded font-button hover:bg-on-primary-fixed-variant transition-all active:scale-95 duration-150 text-center"
                 >
                   Hire Me Full-Time
                 </Link>
-                <Link 
-                  href="/contact" 
+                <Link
+                  href="/contact"
                   className="border border-white/20 text-white px-8 py-4 rounded font-button hover:bg-white/10 transition-all active:scale-95 duration-150 text-center"
                 >
                   Consulting & Contract
@@ -163,10 +166,10 @@ export default function About() {
               </div>
             </div>
             <div className="relative hidden md:block">
-              <img 
-                className="rounded-xl shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 w-full object-cover" 
-                alt="A clean, minimalist workspace" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD37So8htCHxB_qgXM1pOGmK6tLBAaMWnzluAnBCCy4l4E-g8nUhe8_ZaMJstsr9GxnzMJFlxoPIgny3nyJarXHr3CbS2blgO_q11gSvZ1ECyEuC1l40qvItTBRnI89ho2TQM0ppIxeFpKxsEp5Xo6GsipRGUEa-BFoqwBF8DHdrF34ql1IS7AtsqllaTKgoGLt4NoeNE8Qswf_G44oD9u2MVImq3rExg-awqCExLBJxE6uoTky6uIkmwsY3PzWrKA31ClJtY_iAyo" 
+              <img
+                className="rounded-xl shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 w-full object-cover"
+                alt="A clean, minimalist workspace"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD37So8htCHxB_qgXM1pOGmK6tLBAaMWnzluAnBCCy4l4E-g8nUhe8_ZaMJstsr9GxnzMJFlxoPIgny3nyJarXHr3CbS2blgO_q11gSvZ1ECyEuC1l40qvItTBRnI89ho2TQM0ppIxeFpKxsEp5Xo6GsipRGUEa-BFoqwBF8DHdrF34ql1IS7AtsqllaTKgoGLt4NoeNE8Qswf_G44oD9u2MVImq3rExg-awqCExLBJxE6uoTky6uIkmwsY3PzWrKA31ClJtY_iAyo"
               />
             </div>
           </div>
