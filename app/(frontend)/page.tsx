@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import {Metadata} from 'next'
 import {ScrollObserver} from '@/components/base/ScrollObserver'
 
@@ -20,7 +21,7 @@ export default function Home() {
         <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-24 relative z-10 py-24">
           <div className="text-white space-y-10 animate-fade-in-up">
             <div className="space-y-4">
-              <span className="font-label-sm text-label-sm uppercase tracking-[0.2em] opacity-80 bg-white/10 px-3 py-1 rounded inline-block">
+              <span className="font-label-sm text-label-sm uppercase tracking-[0.2em] text-white/90 bg-white/10 px-3 py-1 rounded inline-block">
                 Senior Frontend Engineer
               </span>
               <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-white">
@@ -50,10 +51,13 @@ export default function Home() {
           </div>
           <div className="hidden md:flex justify-center relative animate-fade-in-up [animation-delay:200ms] mt-12 lg:mt-0">
             <div className="relative w-[320px] h-[320px] lg:w-[380px] lg:h-[380px] xl:w-[450px] xl:h-[450px] bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20">
-              <img 
+              <Image 
                 alt="Luis Amador Portrait" 
                 className="w-56 h-56 lg:w-64 lg:h-64 xl:w-80 xl:h-80 object-contain filter grayscale brightness-110 drop-shadow-2xl transition-transform hover:scale-105 duration-700" 
                 src="/images/mugshot.png" 
+                width={450}
+                height={450}
+                priority
               />
             </div>
             <a 
@@ -141,10 +145,12 @@ export default function Home() {
             </div>
             <div className="lg:w-1/2 w-full">
               <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-2xl">
-                <img 
+                <Image 
                   alt="Modern clean workspace with laptop" 
                   className="w-full h-full object-cover" 
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv9J6a_YaqXCdPE8uZJ2s2rKp7W8fhY-Kwz7GmB1f_LymX-VjC9vXup449PxOD4DIokxoHVzW2IczJh18h6Q2jDS-HjDR8DUM_5rRbmK1tUXOz9LEY61MiW30USxRu6T8-4o7YeNtuki9Lu_YAlEksiTk38OEy3NB0tF-1EAuhO1vTUsaMl-zNBxDTARWRRWMKcAYW8fzU01SDen2E0HIw_KpH-8uHxMipGnplen3ne-CTpeX5WDIuEex_Nw9Wp0wCnyXSXSwiUPI" 
+                  width={1200}
+                  height={900}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-12">
                   <span className="text-white font-headline-md text-2xl italic leading-relaxed">

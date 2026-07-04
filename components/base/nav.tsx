@@ -2,6 +2,7 @@
 
 import {useState, useEffect} from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import {usePathname} from 'next/navigation'
 import {cn} from '@/lib/utils'
 
@@ -26,10 +27,12 @@ export default function Nav() {
       <div className="flex justify-between items-center max-w-[1200px] mx-auto px-margin-mobile md:px-gutter h-full">
         {/* Logo & Avatar */}
         <Link href="/" className="flex items-center gap-4 group">
-          <img 
+          <Image 
             alt="Luis Amador" 
             className="w-10 h-10 rounded-full border border-outline-variant object-cover" 
             src="/images/mugshot.png"
+            width={40}
+            height={40}
           />
           <span className="text-headline-md font-headline-md text-primary dark:text-primary-fixed-dim tracking-tight uppercase group-hover:opacity-85 transition-opacity">
             LUIS AMADOR
