@@ -5,6 +5,7 @@ import {Analytics} from '@vercel/analytics/next'
 import {Metadata, Viewport} from 'next'
 import {Toaster} from '@/components/ui/sonner'
 import {cn} from '@/lib/utils'
+import {QueryProvider} from '@/components/providers/QueryProvider'
 
 import {Newsreader, Inter} from 'next/font/google'
 import '../../styles/global.css'
@@ -61,15 +62,17 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
       </head>
       {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
       <body className="bg-surface text-on-surface font-body-md overflow-x-hidden antialiased">
-        <div className="flex flex-col min-h-screen">
-          <Nav />
-          <main className="flex-1 w-full pt-20">
-            {children}
-          </main>
-          <Footer />
-        </div>
-        <Analytics />
-        <Toaster />
+        <QueryProvider>
+          <div className="flex flex-col min-h-screen">
+            <Nav />
+            <main className="flex-1 w-full pt-20">
+              {children}
+            </main>
+            <Footer />
+          </div>
+          <Analytics />
+          <Toaster />
+        </QueryProvider>
       </body>
     </html>
   )

@@ -1,8 +1,7 @@
 'use client'
 
-import {useState, useEffect} from 'react'
+import {useQuery} from '@tanstack/react-query'
 import {Comment} from '@/lib/types/comment'
-import {addReplyToTree, removeCommentFromTree, updateCommentInTree} from '@/lib/comments/treeUtils'
 import CommentItem from './CommentItem'
 
 interface CommentsListProps {
@@ -10,44 +9,24 @@ interface CommentsListProps {
   currentUserId?: string
 }
 
+async function fetchComments(blogSlug: string): Promise<Comment[]> {
+  const response = await fetch(`/api/comments?blogSlug=${encodeURIComponent(blogSlug)}`)
+  if (!response.ok) {
+    throw new Error('Failed to fetch comments')
+  }
+  return response.json()
+}
+
 export default function CommentsList({blogSlug, currentUserId}: CommentsListProps) {
-  const [comments, setComments] = useState<Comment[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        setIsLoading(true)
-        const response = await fetch(`/api/comments?blogSlug=${encodeURIComponent(blogSlug)}`)
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch comments')
-        }
-
-        const data = await response.json()
-        setComments(data)
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch comments')
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchComments()
-  }, [blogSlug])
-
-  const handleCommentAdded = (newComment: Comment) => {
-    setComments((prev) => addReplyToTree(prev, newComment))
-  }
-
-  const handleCommentUpdated = (commentId: string, content: string) => {
-    setComments((prev) => updateCommentInTree(prev, commentId, content))
-  }
-
-  const handleCommentDeleted = (commentId: string) => {
-    setComments((prev) => removeCommentFromTree(prev, commentId))
-  }
+  const {
+    data: comments = [],
+    isLoading,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ['comments', blogSlug],
+    queryFn: () => fetchComments(blogSlug),
+  })
 
   if (isLoading) {
     return (
@@ -66,9 +45,11 @@ export default function CommentsList({blogSlug, currentUserId}: CommentsListProp
   if (error) {
     return (
       <div className="mt-8 rounded-lg border border-red-200 bg-red-50 p-4">
-        <p className="text-red-600">Error loading comments: {error}</p>
+        <p className="text-red-600">
+          Error loading comments: {error instanceof Error ? error.message : 'Failed to fetch comments'}
+        </p>
         <button
-          onClick={() => window.location.reload()}
+          onClick={() => refetch()}
           className="mt-2 text-sm text-red-600 underline hover:text-red-800"
         >
           Try again
@@ -90,12 +71,10 @@ export default function CommentsList({blogSlug, currentUserId}: CommentsListProp
             key={comment.id}
             comment={comment}
             currentUserId={currentUserId}
-            onCommentUpdated={handleCommentUpdated}
-            onCommentDeleted={handleCommentDeleted}
-            onCommentAdded={handleCommentAdded}
           />
         ))
       )}
     </div>
   )
 }
+

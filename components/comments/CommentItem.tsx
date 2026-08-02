@@ -2,46 +2,29 @@
 
 import {useState} from 'react'
 import Image from 'next/image'
+import {useMutation, useQueryClient} from '@tanstack/react-query'
 import {Comment} from '@/lib/types/comment'
 import CommentForm from './CommentForm'
 import {toast} from 'sonner'
 
 interface EditCommentFormProps {
   comment: Comment
-  onCommentUpdated: (commentId: string, content: string) => void
   onCancel: () => void
 }
 
-function EditCommentForm({comment, onCommentUpdated, onCancel}: EditCommentFormProps) {
+function EditCommentForm({comment, onCancel}: EditCommentFormProps) {
   const [content, setContent] = useState(comment.content)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const queryClient = useQueryClient()
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!content.trim()) {
-      setError('Comment cannot be empty')
-      return
-    }
-
-    if (content.trim() === comment.content) {
-      // No changes made, just cancel
-      onCancel()
-      return
-    }
-
-    setIsSubmitting(true)
-    setError(null)
-
-    try {
+  const updateMutation = useMutation({
+    mutationFn: async (updatedContent: string) => {
       const response = await fetch(`/api/comments/${comment.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          content: content.trim(),
+          content: updatedContent,
         }),
         credentials: 'include',
       })
@@ -51,13 +34,32 @@ function EditCommentForm({comment, onCommentUpdated, onCancel}: EditCommentFormP
         throw new Error(errorData.error || 'Failed to update comment')
       }
 
-      onCommentUpdated(comment.id, content.trim())
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to update comment')
-    } finally {
-      setIsSubmitting(false)
+      return response.json()
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['comments', comment.blogSlug]})
+      toast.success('Comment updated')
+      onCancel()
+    },
+  })
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!content.trim()) {
+      return
     }
+
+    if (content.trim() === comment.content) {
+      onCancel()
+      return
+    }
+
+    updateMutation.mutate(content.trim())
   }
+
+  const isSubmitting = updateMutation.isPending
+  const error = updateMutation.error instanceof Error ? updateMutation.error.message : null
 
   return (
     <form onSubmit={handleSubmit} className="mb-3">
@@ -100,29 +102,22 @@ function EditCommentForm({comment, onCommentUpdated, onCancel}: EditCommentFormP
 interface CommentItemProps {
   comment: Comment
   currentUserId?: string
-  onCommentUpdated: (commentId: string, content: string) => void
-  onCommentDeleted: (commentId: string) => void
-  onCommentAdded: (newComment: Comment) => void
 }
 
 export default function CommentItem({
   comment,
   currentUserId,
-  onCommentUpdated,
-  onCommentDeleted,
-  onCommentAdded,
 }: CommentItemProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [isReplying, setIsReplying] = useState(false)
-  const [isDeleting, setIsDeleting] = useState(false)
+  const queryClient = useQueryClient()
 
   const isOwner = currentUserId === comment.userId
   const canEdit = isOwner
   const canDelete = isOwner
 
-  const handleDelete = async () => {
-    setIsDeleting(true)
-    try {
+  const deleteMutation = useMutation({
+    mutationFn: async () => {
       const response = await fetch(`/api/comments/${comment.id}`, {
         method: 'DELETE',
         credentials: 'include',
@@ -132,14 +127,20 @@ export default function CommentItem({
         throw new Error('Failed to delete comment')
       }
 
+      return response.json()
+    },
+    onSuccess: () => {
       toast.success('Comment deleted successfully')
-      onCommentDeleted(comment.id)
-    } catch (error) {
+      queryClient.invalidateQueries({queryKey: ['comments', comment.blogSlug]})
+    },
+    onError: (error) => {
       console.error('Error deleting comment:', error)
       toast.error('Failed to delete comment')
-    } finally {
-      setIsDeleting(false)
-    }
+    },
+  })
+
+  const handleDelete = () => {
+    deleteMutation.mutate()
   }
 
   const formatDate = (date: Date) => {
@@ -151,6 +152,8 @@ export default function CommentItem({
       minute: '2-digit',
     }).format(new Date(date))
   }
+
+  const isDeleting = deleteMutation.isPending
 
   return (
     <div className="border-l-4 border-gray-200 pl-4">
@@ -198,10 +201,6 @@ export default function CommentItem({
         {isEditing ? (
           <EditCommentForm
             comment={comment}
-            onCommentUpdated={(commentId, content) => {
-              onCommentUpdated(commentId, content)
-              setIsEditing(false)
-            }}
             onCancel={() => setIsEditing(false)}
           />
         ) : (
@@ -227,10 +226,7 @@ export default function CommentItem({
             <CommentForm
               blogSlug={comment.blogSlug}
               parentId={comment.id}
-              onCommentAdded={(newReply) => {
-                onCommentAdded(newReply)
-                setIsReplying(false)
-              }}
+              onCommentAdded={() => setIsReplying(false)}
               onCancel={() => setIsReplying(false)}
               isReply={true}
             />
@@ -244,9 +240,6 @@ export default function CommentItem({
                 key={reply.id}
                 comment={reply}
                 currentUserId={currentUserId}
-                onCommentUpdated={onCommentUpdated}
-                onCommentDeleted={onCommentDeleted}
-                onCommentAdded={onCommentAdded}
               />
             ))}
           </div>
@@ -255,3 +248,4 @@ export default function CommentItem({
     </div>
   )
 }
+

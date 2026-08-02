@@ -1,8 +1,8 @@
 'use client'
 
-import {useState, useEffect} from 'react'
-import {useRouter} from 'next/navigation'
+import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query'
 import {PendingComment} from '@/lib/types/comment'
+import {toast} from 'sonner'
 
 async function fetchPendingComments(): Promise<PendingComment[]> {
   const response = await fetch('/api/admin/comments/pending')
@@ -13,53 +13,57 @@ async function fetchPendingComments(): Promise<PendingComment[]> {
 }
 
 export default function PendingCommentsList() {
-  const [pendingComments, setPendingComments] = useState<PendingComment[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const router = useRouter()
+  const queryClient = useQueryClient()
 
-  useEffect(() => {
-    const loadComments = async () => {
-      try {
-        const comments = await fetchPendingComments()
-        setPendingComments(comments)
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred')
-      } finally {
-        setIsLoading(false)
-      }
-    }
+  const {
+    data: pendingComments = [],
+    isLoading,
+    error,
+    refetch,
+  } = useQuery<PendingComment[]>({
+    queryKey: ['admin', 'comments', 'pending'],
+    queryFn: fetchPendingComments,
+    refetchInterval: 15000,
+  })
 
-    loadComments()
-  }, [])
-
-  const handleApprove = async (commentId: string) => {
-    try {
+  const approveMutation = useMutation({
+    mutationFn: async (commentId: string) => {
       const response = await fetch(`/api/admin/comments/${commentId}/approve`, {
         method: 'POST',
       })
-
-      if (response.ok) {
-        setPendingComments((prev) => prev.filter((c) => c.id !== commentId))
+      if (!response.ok) {
+        throw new Error('Failed to approve comment')
       }
-    } catch (error) {
-      console.error('Error approving comment:', error)
-    }
-  }
+      return response.json()
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['admin', 'comments', 'pending']})
+      queryClient.invalidateQueries({queryKey: ['comments']})
+      toast.success('Comment approved')
+    },
+    onError: (err) => {
+      toast.error(err instanceof Error ? err.message : 'Error approving comment')
+    },
+  })
 
-  const handleReject = async (commentId: string) => {
-    try {
+  const rejectMutation = useMutation({
+    mutationFn: async (commentId: string) => {
       const response = await fetch(`/api/admin/comments/${commentId}/reject`, {
         method: 'DELETE',
       })
-
-      if (response.ok) {
-        setPendingComments((prev) => prev.filter((c) => c.id !== commentId))
+      if (!response.ok) {
+        throw new Error('Failed to reject comment')
       }
-    } catch (error) {
-      console.error('Error rejecting comment:', error)
-    }
-  }
+      return response.json()
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({queryKey: ['admin', 'comments', 'pending']})
+      toast.success('Comment rejected')
+    },
+    onError: (err) => {
+      toast.error(err instanceof Error ? err.message : 'Error rejecting comment')
+    },
+  })
 
   if (isLoading) {
     return (
@@ -72,9 +76,9 @@ export default function PendingCommentsList() {
   if (error) {
     return (
       <div className="py-8 text-center">
-        <p className="text-red-600">Error: {error}</p>
+        <p className="text-red-600">Error: {error instanceof Error ? error.message : 'An error occurred'}</p>
         <button
-          onClick={() => router.refresh()}
+          onClick={() => refetch()}
           className="mt-2 rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
         >
           Retry
@@ -104,14 +108,16 @@ export default function PendingCommentsList() {
                 </div>
                 <div className="flex space-x-2">
                   <button
-                    onClick={() => handleApprove(comment.id)}
-                    className="rounded bg-green-600 px-3 py-1 text-sm text-white transition-colors hover:bg-green-700"
+                    onClick={() => approveMutation.mutate(comment.id)}
+                    disabled={approveMutation.isPending || rejectMutation.isPending}
+                    className="rounded bg-green-600 px-3 py-1 text-sm text-white transition-colors hover:bg-green-700 disabled:opacity-50"
                   >
                     Approve
                   </button>
                   <button
-                    onClick={() => handleReject(comment.id)}
-                    className="rounded bg-red-600 px-3 py-1 text-sm text-white transition-colors hover:bg-red-700"
+                    onClick={() => rejectMutation.mutate(comment.id)}
+                    disabled={approveMutation.isPending || rejectMutation.isPending}
+                    className="rounded bg-red-600 px-3 py-1 text-sm text-white transition-colors hover:bg-red-700 disabled:opacity-50"
                   >
                     Reject
                   </button>
@@ -125,3 +131,4 @@ export default function PendingCommentsList() {
     </div>
   )
 }
+

@@ -1,12 +1,13 @@
 'use client'
 
 import {useState} from 'react'
+import {useMutation, useQueryClient} from '@tanstack/react-query'
 import {Comment, CommentFormData} from '@/lib/types/comment'
 
 interface CommentFormProps {
   blogSlug: string
   parentId?: string
-  onCommentAdded: (comment: Comment) => void
+  onCommentAdded?: (comment: Comment) => void
   onCancel?: () => void
   isReply?: boolean
 }
@@ -19,26 +20,10 @@ export default function CommentForm({
   isReply = false,
 }: CommentFormProps) {
   const [content, setContent] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const queryClient = useQueryClient()
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!content.trim()) {
-      setError('Comment cannot be empty')
-      return
-    }
-
-    setIsSubmitting(true)
-    setError(null)
-
-    try {
-      const commentData: CommentFormData = {
-        content: content.trim(),
-        parentId,
-      }
-
+  const postCommentMutation = useMutation({
+    mutationFn: async (commentData: CommentFormData) => {
       const response = await fetch('/api/comments', {
         method: 'POST',
         headers: {
@@ -48,7 +33,7 @@ export default function CommentForm({
           ...commentData,
           blogSlug,
         }),
-        credentials: 'include', // Include cookies for authentication
+        credentials: 'include',
       })
 
       if (!response.ok) {
@@ -56,19 +41,35 @@ export default function CommentForm({
         throw new Error(errorData.error || 'Failed to post comment')
       }
 
-      const newComment = await response.json()
-      onCommentAdded(newComment)
+      return response.json() as Promise<Comment>
+    },
+    onSuccess: (newComment) => {
+      queryClient.invalidateQueries({queryKey: ['comments', blogSlug]})
       setContent('')
-
+      if (onCommentAdded) {
+        onCommentAdded(newComment)
+      }
       if (onCancel) {
         onCancel()
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to post comment')
-    } finally {
-      setIsSubmitting(false)
+    },
+  })
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!content.trim()) {
+      return
     }
+
+    postCommentMutation.mutate({
+      content: content.trim(),
+      parentId,
+    })
   }
+
+  const isSubmitting = postCommentMutation.isPending
+  const error = postCommentMutation.error instanceof Error ? postCommentMutation.error.message : null
 
   return (
     <form onSubmit={handleSubmit} className="mb-6">
@@ -112,3 +113,4 @@ export default function CommentForm({
     </form>
   )
 }
+

@@ -1,6 +1,6 @@
 'use client'
 
-import {Suspense, useState} from 'react'
+import {Suspense} from 'react'
 import {useAuth} from '@/lib/hooks/useAuth'
 import CommentForm from './CommentForm'
 import CommentsList from './CommentsList'
@@ -12,24 +12,19 @@ interface CommentSectionProps {
 
 export default function CommentSection({blogSlug}: CommentSectionProps) {
   const {user, isAuthenticated} = useAuth()
-  const [refreshKey, setRefreshKey] = useState(0)
-
-  const handleCommentAdded = () => {
-    setRefreshKey((prev) => prev + 1)
-  }
 
   return (
     <div className="mt-8">
       <h3 className="mb-6 text-2xl font-semibold text-gray-800">Comments</h3>
 
       {isAuthenticated ? (
-        <CommentForm blogSlug={blogSlug} onCommentAdded={handleCommentAdded} />
+        <CommentForm blogSlug={blogSlug} />
       ) : (
         <LoginPrompt />
       )}
 
       <Suspense fallback={<CommentsSkeleton />}>
-        <CommentsList key={refreshKey} blogSlug={blogSlug} currentUserId={user?.id} />
+        <CommentsList blogSlug={blogSlug} currentUserId={user?.id} />
       </Suspense>
     </div>
   )
