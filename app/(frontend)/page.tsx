@@ -128,17 +128,11 @@ export default function Home() {
               <p className="font-body-lg text-on-surface-variant leading-relaxed">
                 With years of experience in both rapid prototyping and enterprise-grade software development, I deliver bespoke digital solutions that don't just work, they excel in the marketplace.
               </p>
-              <div className="grid grid-cols-2 gap-12 pt-4">
+              <div className="pt-4">
                 <div className="space-y-2">
                   <span className="block text-5xl font-headline-md text-primary font-bold">10+</span>
                   <span className="font-label-sm text-on-surface-variant uppercase tracking-wider">
                     Years Experience
-                  </span>
-                </div>
-                <div className="space-y-2">
-                  <span className="block text-5xl font-headline-md text-primary font-bold">AI</span>
-                  <span className="font-label-sm text-on-surface-variant uppercase tracking-wider">
-                    Production Agents
                   </span>
                 </div>
               </div>
