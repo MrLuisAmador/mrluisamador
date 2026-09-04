@@ -145,7 +145,7 @@ async function BlogContent({slug: blogSlug}: {slug: string}) {
         <div className="my-8">
           <GoogleAd adSlot="6232399682" />
         </div>
-        <PayloadRichText content={post.content as any} />
+        <PayloadRichText content={post.content as React.ComponentProps<typeof PayloadRichText>['content']} />
       </div>
 
       <div className="mx-auto max-w-4xl px-5 md:px-0">

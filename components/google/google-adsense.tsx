@@ -19,8 +19,8 @@ export default function GoogleAd({
   const isDev = process.env.NODE_ENV === 'development'
 
   useEffect(() => {
-    setMounted(true)
-    if (isDev) return
+    const timer = setTimeout(() => setMounted(true), 0)
+    if (isDev) return () => clearTimeout(timer)
 
     // Prevent multiple initializations of the same ad
     if (isInitialized.current) return
@@ -81,7 +81,7 @@ export default function GoogleAd({
   // it will switch to the placeholder in development mode.
   if (isDev && mounted) {
     return (
-      <div className="flex min-h-[250px] w-full items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 text-gray-400">
+      <div className="flex min-h-62.5 w-full items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50 text-gray-400">
         <div className="text-center">
           <p className="font-semibold text-gray-500">Advertisement Placeholder</p>
           <p className="text-xs text-gray-400 font-normal">Slot: {adSlot}</p>

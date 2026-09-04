@@ -21,7 +21,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
   return (
     <>
       {/* Filter Section */}
-      <section className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter mb-12">
+      <section className="max-w-300 mx-auto px-margin-mobile md:px-gutter mb-12">
         <div className="flex flex-wrap gap-3 items-center">
           {filters.map((filter) => (
             <button
@@ -40,7 +40,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
       </section>
       
       {/* Grid Section */}
-      <section className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter">
+      <section className="max-w-300 mx-auto px-margin-mobile md:px-gutter">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {filteredProjects.map((project, index) => {
             // Bento layout logic
@@ -49,14 +49,14 @@ export default function ProjectList({ projects }: ProjectListProps) {
             // Mobile: 1 column
             const patternIndex = index % 4
             let colSpan = 'lg:col-span-6 md:col-span-6'
-            let aspect = 'aspect-[3/2]'
+            let aspect = 'aspect-3/2'
             
             if (patternIndex === 0) {
               colSpan = 'lg:col-span-8 md:col-span-6'
-              aspect = 'lg:aspect-[16/9] aspect-[3/2]'
+              aspect = 'lg:aspect-video aspect-3/2'
             } else if (patternIndex === 1) {
               colSpan = 'lg:col-span-4 md:col-span-6'
-              aspect = 'lg:aspect-[4/5] aspect-[3/2]'
+              aspect = 'lg:aspect-4/5 aspect-3/2'
             }
 
             return (

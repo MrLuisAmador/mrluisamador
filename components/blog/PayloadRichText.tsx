@@ -6,12 +6,17 @@ type LexicalNode = {
   version: number
   children?: LexicalNode[]
   text?: string
-  format?: number
+  format?: number | string
   style?: string
   tag?: string
   url?: string
-  value?: any // For upload nodes
-  [key: string]: any
+  value?: {
+    url?: string
+    alt?: string
+    width?: number
+    height?: number
+  } | unknown
+  [key: string]: unknown
 }
 
 type Props = {
@@ -36,7 +41,7 @@ const renderLexicalNode = (node: LexicalNode, index: number): React.ReactNode =>
   let element: React.ReactNode = null
 
   if (node.type === 'text') {
-    element = applyTextFormatting(node.text || '', node.format || 0)
+    element = applyTextFormatting(node.text || '', (node.format as number) || 0)
   } else {
     const children = node.children?.map((child, i) => renderLexicalNode(child, i))
 
@@ -84,7 +89,7 @@ const renderLexicalNode = (node: LexicalNode, index: number): React.ReactNode =>
         element = <br />
         break
       case 'upload':
-        const media = node.value
+        const media = node.value as { url?: string; alt?: string; width?: number; height?: number } | undefined
         if (!media || typeof media === 'string' || !media.url) {
           element = null
         } else {

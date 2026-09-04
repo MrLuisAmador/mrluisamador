@@ -18,7 +18,7 @@ export default function Home() {
         <div className="absolute inset-0 opacity-10 pointer-events-none overflow-hidden">
           <span className="absolute -top-32 -left-32 text-[600px] font-headline-md text-white select-none leading-none">LA</span>
         </div>
-        <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-24 relative z-10 py-24">
+        <div className="max-w-300 mx-auto px-margin-mobile md:px-gutter grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-24 relative z-10 py-24">
           <div className="text-white space-y-10 animate-fade-in-up">
             <div className="space-y-4">
               <span className="font-label-sm text-label-sm uppercase tracking-[0.2em] text-white/90 bg-white/10 px-3 py-1 rounded inline-block">
@@ -50,7 +50,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hidden md:flex justify-center relative animate-fade-in-up [animation-delay:200ms] mt-12 lg:mt-0">
-            <div className="relative w-[320px] h-[320px] lg:w-[380px] lg:h-[380px] xl:w-[450px] xl:h-[450px] bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20">
+            <div className="relative w-80 h-80 lg:w-95 lg:h-95 xl:w-112.5 xl:h-112.5 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md border border-white/20">
               <Image 
                 alt="Luis Amador Portrait" 
                 className="w-56 h-56 lg:w-64 lg:h-64 xl:w-80 xl:h-80 object-contain filter grayscale brightness-110 drop-shadow-2xl transition-transform hover:scale-105 duration-700" 
@@ -72,7 +72,7 @@ export default function Home() {
       </section>
 
       <section id="expertise" className="py-section-gap-lg bg-surface relative scroll-mt-20">
-        <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter">
+        <div className="max-w-300 mx-auto px-margin-mobile md:px-gutter">
           <div className="text-center max-w-3xl mx-auto mb-24">
             <span className="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] bg-primary/10 px-6 py-2 rounded-full inline-block mb-6">
               Strategic Thinking
@@ -81,7 +81,7 @@ export default function Home() {
               Senior Frontend Engineering & Strategy
             </h2>
             <p className="mt-8 font-body-lg text-text-muted">
-              Engineering robust systems that don't just scale, they thrive under pressure. My approach combines technical depth with business first architectural decisions.
+              Engineering robust systems that don&apos;t just scale, they thrive under pressure. My approach combines technical depth with business first architectural decisions.
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
@@ -119,14 +119,14 @@ export default function Home() {
       </section>
 
       <section className="py-section-gap-lg bg-surface-container-low">
-        <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter">
+        <div className="max-w-300 mx-auto px-margin-mobile md:px-gutter">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-24">
             <div className="lg:w-1/2 space-y-10">
               <h2 className="font-display-lg text-[48px] leading-tight">
                 Expert craftsmanship for the modern web.
               </h2>
               <p className="font-body-lg text-on-surface-variant leading-relaxed">
-                With years of experience in both rapid prototyping and enterprise-grade software development, I deliver bespoke digital solutions that don't just work, they excel in the marketplace.
+                With years of experience in both rapid prototyping and enterprise-grade software development, I deliver bespoke digital solutions that don&apos;t just work, they excel in the marketplace.
               </p>
               <div className="pt-4">
                 <div className="space-y-2">
@@ -138,7 +138,7 @@ export default function Home() {
               </div>
             </div>
             <div className="lg:w-1/2 w-full">
-              <div className="relative rounded-3xl overflow-hidden aspect-[4/3] shadow-2xl">
+              <div className="relative rounded-3xl overflow-hidden aspect-4/3 shadow-2xl">
                 <Image 
                   alt="Modern clean workspace with laptop" 
                   className="w-full h-full object-cover" 
@@ -146,9 +146,9 @@ export default function Home() {
                   width={1200}
                   height={900}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-12">
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent flex items-end p-12">
                   <span className="text-white font-headline-md text-2xl italic leading-relaxed">
-                    "Precision in every single line of code, elegance in every pixel."
+                    &quot;Precision in every single line of code, elegance in every pixel.&quot;
                   </span>
                 </div>
               </div>

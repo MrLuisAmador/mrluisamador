@@ -49,7 +49,7 @@ export function ScrollObserver() {
       elementsToAnimate.forEach(el => {
         try {
           observer.unobserve(el)
-        } catch (e) {
+        } catch {
           // ignore
         }
       })

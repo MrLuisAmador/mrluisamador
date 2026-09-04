@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Metadata } from 'next'
 import { ScrollObserver } from '@/components/base/ScrollObserver'
 
@@ -15,7 +16,7 @@ export default function About() {
     <>
       {/* Hero Section */}
       <header className="pt-20 pb-section-gap-sm md:pt-28 md:pb-section-gap-lg px-margin-mobile md:px-gutter">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+        <div className="max-w-300 mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
           <div className="md:col-span-8 space-y-6">
             <span className="text-label-sm font-label-sm text-primary uppercase tracking-[0.2em] block">
               Crafting Digital Excellence
@@ -31,10 +32,12 @@ export default function About() {
           <div className="md:col-span-4">
             <div className="relative group">
               <div className="absolute -inset-2 bg-primary/5 rounded-xl transition-all duration-300 group-hover:-inset-3"></div>
-              <img
-                className="relative rounded-xl shadow-lg w-full grayscale hover:grayscale-0 transition-all duration-700 aspect-[4/5] object-cover"
+              <Image
+                className="relative rounded-xl shadow-lg w-full grayscale hover:grayscale-0 transition-all duration-700 aspect-4/5 object-cover"
                 alt="Portrait of Luis Amador"
                 src="/images/luis-portrait.jpg"
+                width={600}
+                height={750}
               />
             </div>
           </div>
@@ -42,7 +45,7 @@ export default function About() {
       </header>
 
       <section className="py-section-gap-sm md:py-section-gap-lg bg-white border-y border-border-subtle/30">
-        <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter">
+        <div className="max-w-300 mx-auto px-margin-mobile md:px-gutter">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16">
             <div className="md:col-span-6">
               <h2 className="text-headline-md font-headline-md text-on-surface mb-8">The Professional Journey</h2>
@@ -87,7 +90,7 @@ export default function About() {
       </section>
 
       <section className="py-section-gap-sm md:py-section-gap-lg px-margin-mobile md:px-gutter">
-        <div className="max-w-[1200px] mx-auto">
+        <div className="max-w-300 mx-auto">
           <div className="mb-16">
             <span className="text-label-sm font-label-sm text-primary uppercase tracking-[0.2em] mb-4 block">The Toolkit</span>
             <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md">Technological Expertise</h2>
@@ -141,14 +144,14 @@ export default function About() {
       </section>
 
       <section className="py-section-gap-sm md:py-section-gap-lg px-margin-mobile md:px-gutter relative overflow-hidden">
-        <div className="max-w-[1200px] mx-auto bg-surface-charcoal rounded-3xl p-8 md:p-16 lg:p-24 relative z-10">
+        <div className="max-w-300 mx-auto bg-surface-charcoal rounded-3xl p-8 md:p-16 lg:p-24 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h2 className="text-display-lg-mobile md:text-headline-md font-headline-md text-white">
                 Let&apos;s build something exceptional.
               </h2>
               <p className="text-body-lg font-body-lg text-secondary-fixed-dim leading-relaxed">
-                Whether you're looking for a Senior Frontend Engineer for your full-time team or a consultant for a specialized Next.js/Wix project, I bring a decade of rigor to every role.
+                Whether you&apos;re looking for a Senior Frontend Engineer for your full-time team or a consultant for a specialized Next.js/Wix project, I bring a decade of rigor to every role.
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
                 <Link
@@ -166,10 +169,12 @@ export default function About() {
               </div>
             </div>
             <div className="relative hidden md:block">
-              <img
+              <Image
                 className="rounded-xl shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500 w-full object-cover"
                 alt="A clean, minimalist workspace"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuD37So8htCHxB_qgXM1pOGmK6tLBAaMWnzluAnBCCy4l4E-g8nUhe8_ZaMJstsr9GxnzMJFlxoPIgny3nyJarXHr3CbS2blgO_q11gSvZ1ECyEuC1l40qvItTBRnI89ho2TQM0ppIxeFpKxsEp5Xo6GsipRGUEa-BFoqwBF8DHdrF34ql1IS7AtsqllaTKgoGLt4NoeNE8Qswf_G44oD9u2MVImq3rExg-awqCExLBJxE6uoTky6uIkmwsY3PzWrKA31ClJtY_iAyo"
+                width={800}
+                height={600}
               />
             </div>
           </div>

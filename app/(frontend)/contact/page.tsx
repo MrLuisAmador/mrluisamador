@@ -1,6 +1,7 @@
 import SendEmail from '@/components/email/sendEmail'
 import {Metadata} from 'next'
 import Script from 'next/script'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -21,16 +22,16 @@ const Contact = () => {
         />
       )}
       
-      <main className="pt-24 pb-section-gap-lg px-margin-mobile md:px-gutter max-w-[1200px] mx-auto">
+      <main className="pt-24 pb-section-gap-lg px-margin-mobile md:px-gutter max-w-300 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
           <div className="lg:col-span-5 space-y-12 animate-fade-in-up">
             <header>
               <span className="text-label-sm font-label-sm text-primary uppercase tracking-[0.2em] mb-4 block">Get In Touch</span>
               <h1 className="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface mb-6 leading-tight">
-                Let's connect.
+                Let&apos;s connect.
               </h1>
               <p className="text-body-lg font-body-lg text-on-secondary-container max-w-md">
-                I am currently open to full-time opportunities as a Senior Frontend Engineer or AI Engineer, as well as select contract work. Let's build something remarkable.
+                I am currently open to full-time opportunities as a Senior Frontend Engineer or AI Engineer, as well as select contract work. Let&apos;s build something remarkable.
               </p>
             </header>
 
@@ -98,14 +99,16 @@ const Contact = () => {
         </div>
       </main>
 
-      <section className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter pb-section-gap-lg">
-        <div className="relative h-[450px] w-full rounded-3xl overflow-hidden shadow-sm border border-border-subtle group">
-          <img 
+      <section className="max-w-300 mx-auto px-margin-mobile md:px-gutter pb-section-gap-lg">
+        <div className="relative h-112.5 w-full rounded-3xl overflow-hidden shadow-sm border border-border-subtle group">
+          <Image 
             alt="Location map" 
             className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" 
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7S4gXEE2K_W3V_h0qnsBcBF3QPXAMgclI88wm8uD95q0Zqiao0nIWheKiVUzhvSORjejN6Hvd3QkFz0bQflqtnMiew3_oBbwOEW5Ix2y6z2BCeY2sxPbO8a21cv9eKTE-y1RI6VeHCnek-t0Hlhq6eN769p8Ig7vQBmQUp8XRyA5lspfSRwqGcMb_xK57V4pxnh5ZWhEKQyyTimInQ4uYRYQrTy2wmyKOut1kmAN3Q8YqgTU6DcIMwvAzyNd5nTSgTeRi6I6CAoM"
+            width={1200}
+            height={450}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent"></div>
           <div className="absolute bottom-10 left-10 bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-2xl border border-white/50 max-w-sm animate-fade-in-up [animation-delay:400ms]">
             <h3 className="text-headline-md font-headline-md text-primary mb-3">Office</h3>
             <p className="text-body-md font-body-md text-on-secondary-container">

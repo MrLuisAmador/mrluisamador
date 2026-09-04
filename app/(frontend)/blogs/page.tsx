@@ -200,7 +200,7 @@ function BlogsListSkeleton() {
 export default function Blogs() {
   return (
     <div className="bg-surface min-h-screen">
-      <main className="pt-24 pb-section-gap-lg max-w-[1200px] mx-auto px-margin-mobile md:px-gutter">
+      <main className="pt-24 pb-section-gap-lg max-w-300 mx-auto px-margin-mobile md:px-gutter">
         {/* Header Section */}
         <header className="max-w-3xl mb-16 animate-fade-in-up">
           <span className="text-label-sm font-label-sm text-primary uppercase tracking-[0.2em] mb-4 block">

@@ -1,6 +1,6 @@
 'use client'
 
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import {usePathname} from 'next/navigation'
@@ -9,11 +9,13 @@ import {cn} from '@/lib/utils'
 export default function Nav() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
+  const [prevPathname, setPrevPathname] = useState(pathname)
 
   // Close mobile menu when pathname changes
-  useEffect(() => {
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname)
     setIsOpen(false)
-  }, [pathname])
+  }
 
   const navItems = [
     {href: '/', label: 'Home'},
@@ -24,7 +26,7 @@ export default function Nav() {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-charcoal/80 backdrop-blur-md shadow-sm border-b border-border-subtle/20 dark:border-outline/20 h-20 transition-all duration-300">
-      <div className="flex justify-between items-center max-w-[1200px] mx-auto px-margin-mobile md:px-gutter h-full">
+      <div className="flex justify-between items-center max-w-300 mx-auto px-margin-mobile md:px-gutter h-full">
         {/* Logo & Avatar */}
         <Link href="/" className="flex items-center gap-4 group">
           <Image 

@@ -43,7 +43,7 @@ async function ProjectsList() {
 
 function ProjectsListSkeleton() {
   return (
-    <div className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter">
+    <div className="max-w-300 mx-auto px-margin-mobile md:px-gutter">
       <div className="mb-12 flex flex-wrap gap-3">
         {[...Array(5)].map((_, i) => (
           <div key={i} className="h-10 w-28 rounded-full bg-surface-container-high"></div>
@@ -56,8 +56,8 @@ function ProjectsListSkeleton() {
                           patternIndex === 1 ? 'lg:col-span-4 md:col-span-6' : 
                           'lg:col-span-6 md:col-span-6'
           return (
-            <div key={i} className={`${colSpan} rounded-xl bg-white border border-border-subtle p-8 flex flex-col h-[500px]`}>
-              <div className="mb-6 aspect-[16/9] w-full rounded-lg bg-surface-container"></div>
+            <div key={i} className={`${colSpan} rounded-xl bg-white border border-border-subtle p-8 flex flex-col h-125`}>
+              <div className="mb-6 aspect-video w-full rounded-lg bg-surface-container"></div>
               <div className="mb-4 h-4 w-20 rounded bg-surface-container-high"></div>
               <div className="mb-4 h-8 w-3/4 rounded bg-surface-container-high"></div>
               <div className="flex-1 space-y-3">
@@ -75,7 +75,7 @@ function ProjectsListSkeleton() {
 export default function Projects() {
   return (
     <div className="min-h-screen pb-section-gap-lg">
-      <section className="max-w-[1200px] mx-auto px-margin-mobile md:px-gutter pt-24 pb-12 mb-10">
+      <section className="max-w-300 mx-auto px-margin-mobile md:px-gutter pt-24 pb-12 mb-10">
         <span className="text-label-sm font-label-sm text-primary uppercase tracking-[0.2em] block mb-4">
           Portfolio
         </span>
@@ -91,11 +91,11 @@ export default function Projects() {
         <ProjectsList />
       </Suspense>
 
-      <section className="mt-section-gap-lg max-w-[1200px] mx-auto px-margin-mobile md:px-gutter text-center">
+      <section className="mt-section-gap-lg max-w-300 mx-auto px-margin-mobile md:px-gutter text-center">
         <div className="bg-surface-container-low rounded-3xl p-12 md:p-24 border border-border-subtle/50">
           <h2 className="text-headline-md font-headline-md mb-6 text-on-surface">Looking for a Senior Frontend Engineer?</h2>
           <p className="text-body-lg font-body-lg text-on-secondary-container mb-10 max-w-xl mx-auto">
-            Whether you need a Senior Frontend Engineer for your full-time team or a consultant for a specialized AI/Next.js project, let's connect.
+            Whether you need a Senior Frontend Engineer for your full-time team or a consultant for a specialized AI/Next.js project, let&apos;s connect.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact" className="w-full sm:w-auto">

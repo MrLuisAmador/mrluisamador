@@ -21,8 +21,7 @@ export default function ProjectCard({
   image, 
   description,
   colSpan = 'md:col-span-6',
-  aspect = 'aspect-[3/2]',
-  index = 0
+  aspect = 'aspect-3/2'
 }: ProjectCardProps) {
   // Enhanced image URL resolution
   let imageUrl = ''
