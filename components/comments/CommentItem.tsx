@@ -4,6 +4,8 @@ import {useState} from 'react'
 import Image from 'next/image'
 import {useMutation, useQueryClient} from '@tanstack/react-query'
 import {Comment} from '@/lib/types/comment'
+import {commentKeys} from '@/lib/comments/queryKeys'
+import {updateCommentInTree, removeCommentFromTree} from '@/lib/comments/treeUtils'
 import CommentForm from './CommentForm'
 import {toast} from 'sonner'
 
@@ -36,10 +38,34 @@ function EditCommentForm({comment, onCancel}: EditCommentFormProps) {
 
       return response.json()
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['comments', comment.blogSlug]})
-      toast.success('Comment updated')
+    onMutate: async (updatedContent: string) => {
+      await queryClient.cancelQueries({queryKey: commentKeys.byBlog(comment.blogSlug)})
+
+      const previousComments = queryClient.getQueryData<Comment[]>(
+        commentKeys.byBlog(comment.blogSlug)
+      )
+
+      if (previousComments) {
+        queryClient.setQueryData<Comment[]>(
+          commentKeys.byBlog(comment.blogSlug),
+          updateCommentInTree(previousComments, comment.id, updatedContent)
+        )
+      }
+
       onCancel()
+      return {previousComments}
+    },
+    onError: (error, _updatedContent, context) => {
+      if (context?.previousComments) {
+        queryClient.setQueryData(commentKeys.byBlog(comment.blogSlug), context.previousComments)
+      }
+      toast.error(error instanceof Error ? error.message : 'Failed to update comment')
+    },
+    onSuccess: () => {
+      toast.success('Comment updated')
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({queryKey: commentKeys.byBlog(comment.blogSlug)})
     },
   })
 
@@ -104,10 +130,7 @@ interface CommentItemProps {
   currentUserId?: string
 }
 
-export default function CommentItem({
-  comment,
-  currentUserId,
-}: CommentItemProps) {
+export default function CommentItem({comment, currentUserId}: CommentItemProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [isReplying, setIsReplying] = useState(false)
   const queryClient = useQueryClient()
@@ -129,13 +152,34 @@ export default function CommentItem({
 
       return response.json()
     },
+    onMutate: async () => {
+      await queryClient.cancelQueries({queryKey: commentKeys.byBlog(comment.blogSlug)})
+
+      const previousComments = queryClient.getQueryData<Comment[]>(
+        commentKeys.byBlog(comment.blogSlug)
+      )
+
+      if (previousComments) {
+        queryClient.setQueryData<Comment[]>(
+          commentKeys.byBlog(comment.blogSlug),
+          removeCommentFromTree(previousComments, comment.id)
+        )
+      }
+
+      return {previousComments}
+    },
+    onError: (error, _variables, context) => {
+      if (context?.previousComments) {
+        queryClient.setQueryData(commentKeys.byBlog(comment.blogSlug), context.previousComments)
+      }
+      console.error('Error deleting comment:', error)
+      toast.error(error instanceof Error ? error.message : 'Failed to delete comment')
+    },
     onSuccess: () => {
       toast.success('Comment deleted successfully')
-      queryClient.invalidateQueries({queryKey: ['comments', comment.blogSlug]})
     },
-    onError: (error) => {
-      console.error('Error deleting comment:', error)
-      toast.error('Failed to delete comment')
+    onSettled: () => {
+      queryClient.invalidateQueries({queryKey: commentKeys.byBlog(comment.blogSlug)})
     },
   })
 
@@ -143,7 +187,7 @@ export default function CommentItem({
     deleteMutation.mutate()
   }
 
-  const formatDate = (date: Date) => {
+  const formatDate = (date: Date | string) => {
     return new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
       month: 'short',
@@ -199,14 +243,11 @@ export default function CommentItem({
         </div>
 
         {isEditing ? (
-          <EditCommentForm
-            comment={comment}
-            onCancel={() => setIsEditing(false)}
-          />
+          <EditCommentForm comment={comment} onCancel={() => setIsEditing(false)} />
         ) : (
           <div className="mb-3">
             <p className="whitespace-pre-wrap text-gray-800">{comment.content}</p>
-            {comment.updatedAt > comment.createdAt && (
+            {new Date(comment.updatedAt).getTime() > new Date(comment.createdAt).getTime() && (
               <p className="mt-1 text-xs text-gray-500">(edited)</p>
             )}
           </div>
@@ -236,11 +277,7 @@ export default function CommentItem({
         {comment.replies && comment.replies.length > 0 && (
           <div className="mt-4 space-y-4">
             {comment.replies.map((reply) => (
-              <CommentItem
-                key={reply.id}
-                comment={reply}
-                currentUserId={currentUserId}
-              />
+              <CommentItem key={reply.id} comment={reply} currentUserId={currentUserId} />
             ))}
           </div>
         )}
@@ -248,4 +285,3 @@ export default function CommentItem({
     </div>
   )
 }
-

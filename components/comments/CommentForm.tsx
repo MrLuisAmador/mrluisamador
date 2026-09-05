@@ -3,6 +3,10 @@
 import {useState} from 'react'
 import {useMutation, useQueryClient} from '@tanstack/react-query'
 import {Comment, CommentFormData} from '@/lib/types/comment'
+import {useAuth} from '@/lib/hooks/useAuth'
+import {addReplyToTree} from '@/lib/comments/treeUtils'
+import {commentKeys} from '@/lib/comments/queryKeys'
+import {toast} from 'sonner'
 
 interface CommentFormProps {
   blogSlug: string
@@ -19,6 +23,7 @@ export default function CommentForm({
   onCancel,
   isReply = false,
 }: CommentFormProps) {
+  const {user} = useAuth()
   const [content, setContent] = useState('')
   const queryClient = useQueryClient()
 
@@ -43,8 +48,44 @@ export default function CommentForm({
 
       return response.json() as Promise<Comment>
     },
+    onMutate: async (newCommentData) => {
+      await queryClient.cancelQueries({queryKey: commentKeys.byBlog(blogSlug)})
+
+      const previousComments = queryClient.getQueryData<Comment[]>(commentKeys.byBlog(blogSlug))
+
+      const optimisticComment: Comment = {
+        id: `temp-${Date.now()}`,
+        content: newCommentData.content,
+        blogSlug,
+        userId: user?.id || 'temp-user',
+        parentId: newCommentData.parentId,
+        isApproved: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        user: {
+          id: user?.id || 'temp-user',
+          name: user?.name || 'You',
+          image: user?.image || undefined,
+        },
+        replies: [],
+      }
+
+      if (previousComments) {
+        queryClient.setQueryData<Comment[]>(
+          commentKeys.byBlog(blogSlug),
+          addReplyToTree(previousComments, optimisticComment)
+        )
+      }
+
+      return {previousComments}
+    },
+    onError: (error, _variables, context) => {
+      if (context?.previousComments) {
+        queryClient.setQueryData(commentKeys.byBlog(blogSlug), context.previousComments)
+      }
+      toast.error(error instanceof Error ? error.message : 'Failed to post comment')
+    },
     onSuccess: (newComment) => {
-      queryClient.invalidateQueries({queryKey: ['comments', blogSlug]})
       setContent('')
       if (onCommentAdded) {
         onCommentAdded(newComment)
@@ -52,6 +93,9 @@ export default function CommentForm({
       if (onCancel) {
         onCancel()
       }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({queryKey: commentKeys.byBlog(blogSlug)})
     },
   })
 
@@ -69,7 +113,8 @@ export default function CommentForm({
   }
 
   const isSubmitting = postCommentMutation.isPending
-  const error = postCommentMutation.error instanceof Error ? postCommentMutation.error.message : null
+  const error =
+    postCommentMutation.error instanceof Error ? postCommentMutation.error.message : null
 
   return (
     <form onSubmit={handleSubmit} className="mb-6">
@@ -113,4 +158,3 @@ export default function CommentForm({
     </form>
   )
 }
-

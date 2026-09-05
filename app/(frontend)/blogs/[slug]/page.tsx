@@ -8,6 +8,9 @@ import CommentSection from '@/components/comments/CommentSection'
 import {Suspense} from 'react'
 import {Metadata} from 'next'
 import {notFound} from 'next/navigation'
+import {QueryClient, HydrationBoundary, dehydrate} from '@tanstack/react-query'
+import {getCommentsByBlogSlug} from '@/lib/db/comments'
+import {commentKeys} from '@/lib/comments/queryKeys'
 
 type Props = {
   params: Promise<{slug: string}>
@@ -43,7 +46,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
       }
     }
 
-    const coverImage = post.coverImage && typeof post.coverImage === 'object' ? post.coverImage : null
+    const coverImage =
+      post.coverImage && typeof post.coverImage === 'object' ? post.coverImage : null
     const metaURL = coverImage?.url || ''
     const metaDate = post.publishedDate || post.updatedAt
     const metaTitle = post.title
@@ -56,27 +60,31 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
         canonical: `/blogs/${slug}`,
       },
       openGraph: {
-        images: metaURL ? [
-          {
-            url: metaURL,
-            width: coverImage?.width || 800,
-            height: coverImage?.height || 600,
-            alt: coverImage?.alt || metaTitle,
-          },
-        ] : [],
+        images: metaURL
+          ? [
+              {
+                url: metaURL,
+                width: coverImage?.width || 800,
+                height: coverImage?.height || 600,
+                alt: coverImage?.alt || metaTitle,
+              },
+            ]
+          : [],
         type: 'article',
         publishedTime: metaDate,
         authors: ['Luis Amador'],
       },
       twitter: {
-        images: metaURL ? [
-          {
-            url: metaURL,
-            width: coverImage?.width || 800,
-            height: coverImage?.height || 600,
-            alt: coverImage?.alt || metaTitle,
-          },
-        ] : [],
+        images: metaURL
+          ? [
+              {
+                url: metaURL,
+                width: coverImage?.width || 800,
+                height: coverImage?.height || 600,
+                alt: coverImage?.alt || metaTitle,
+              },
+            ]
+          : [],
         creator: 'Luis Amador',
       },
     }
@@ -100,6 +108,16 @@ async function BlogContent({slug: blogSlug}: {slug: string}) {
   }
 
   const coverImage = post.coverImage && typeof post.coverImage === 'object' ? post.coverImage : null
+
+  const queryClient = new QueryClient()
+
+  try {
+    const rawComments = await getCommentsByBlogSlug(blogSlug)
+    const serializedComments = JSON.parse(JSON.stringify(rawComments))
+    queryClient.setQueryData(commentKeys.byBlog(blogSlug), serializedComments)
+  } catch (err) {
+    console.error('Error prefetching comments:', err)
+  }
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -145,11 +163,15 @@ async function BlogContent({slug: blogSlug}: {slug: string}) {
         <div className="my-8">
           <GoogleAd adSlot="6232399682" />
         </div>
-        <PayloadRichText content={post.content as React.ComponentProps<typeof PayloadRichText>['content']} />
+        <PayloadRichText
+          content={post.content as React.ComponentProps<typeof PayloadRichText>['content']}
+        />
       </div>
 
       <div className="mx-auto max-w-4xl px-5 md:px-0">
-        <CommentSection blogSlug={blogSlug} />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <CommentSection blogSlug={blogSlug} />
+        </HydrationBoundary>
       </div>
     </>
   )

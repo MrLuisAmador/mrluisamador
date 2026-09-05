@@ -2,6 +2,7 @@
 
 import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query'
 import {PendingComment} from '@/lib/types/comment'
+import {commentKeys} from '@/lib/comments/queryKeys'
 import {toast} from 'sonner'
 
 async function fetchPendingComments(): Promise<PendingComment[]> {
@@ -21,7 +22,7 @@ export default function PendingCommentsList() {
     error,
     refetch,
   } = useQuery<PendingComment[]>({
-    queryKey: ['admin', 'comments', 'pending'],
+    queryKey: commentKeys.pending,
     queryFn: fetchPendingComments,
     refetchInterval: 15000,
   })
@@ -36,13 +37,30 @@ export default function PendingCommentsList() {
       }
       return response.json()
     },
+    onMutate: async (commentId: string) => {
+      await queryClient.cancelQueries({queryKey: commentKeys.pending})
+      const previousPending = queryClient.getQueryData<PendingComment[]>(commentKeys.pending)
+
+      if (previousPending) {
+        queryClient.setQueryData<PendingComment[]>(
+          commentKeys.pending,
+          previousPending.filter((c) => c.id !== commentId)
+        )
+      }
+      return {previousPending}
+    },
+    onError: (err, _commentId, context) => {
+      if (context?.previousPending) {
+        queryClient.setQueryData(commentKeys.pending, context.previousPending)
+      }
+      toast.error(err instanceof Error ? err.message : 'Error approving comment')
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['admin', 'comments', 'pending']})
-      queryClient.invalidateQueries({queryKey: ['comments']})
       toast.success('Comment approved')
     },
-    onError: (err) => {
-      toast.error(err instanceof Error ? err.message : 'Error approving comment')
+    onSettled: () => {
+      queryClient.invalidateQueries({queryKey: commentKeys.pending})
+      queryClient.invalidateQueries({queryKey: commentKeys.all})
     },
   })
 
@@ -56,12 +74,29 @@ export default function PendingCommentsList() {
       }
       return response.json()
     },
+    onMutate: async (commentId: string) => {
+      await queryClient.cancelQueries({queryKey: commentKeys.pending})
+      const previousPending = queryClient.getQueryData<PendingComment[]>(commentKeys.pending)
+
+      if (previousPending) {
+        queryClient.setQueryData<PendingComment[]>(
+          commentKeys.pending,
+          previousPending.filter((c) => c.id !== commentId)
+        )
+      }
+      return {previousPending}
+    },
+    onError: (err, _commentId, context) => {
+      if (context?.previousPending) {
+        queryClient.setQueryData(commentKeys.pending, context.previousPending)
+      }
+      toast.error(err instanceof Error ? err.message : 'Error rejecting comment')
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries({queryKey: ['admin', 'comments', 'pending']})
       toast.success('Comment rejected')
     },
-    onError: (err) => {
-      toast.error(err instanceof Error ? err.message : 'Error rejecting comment')
+    onSettled: () => {
+      queryClient.invalidateQueries({queryKey: commentKeys.pending})
     },
   })
 
@@ -76,7 +111,9 @@ export default function PendingCommentsList() {
   if (error) {
     return (
       <div className="py-8 text-center">
-        <p className="text-red-600">Error: {error instanceof Error ? error.message : 'An error occurred'}</p>
+        <p className="text-red-600">
+          Error: {error instanceof Error ? error.message : 'An error occurred'}
+        </p>
         <button
           onClick={() => refetch()}
           className="mt-2 rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
@@ -131,4 +168,3 @@ export default function PendingCommentsList() {
     </div>
   )
 }
-

@@ -5,8 +5,8 @@ export interface Comment {
   userId: string
   parentId?: string
   isApproved: boolean
-  createdAt: Date
-  updatedAt: Date
+  createdAt: Date | string
+  updatedAt: Date | string
   user?: {
     id: string
     name: string
@@ -34,7 +34,7 @@ export interface PendingComment {
   id: string
   content: string
   blogSlug: string
-  createdAt: Date
+  createdAt: Date | string
   user: {
     name: string
     email: string

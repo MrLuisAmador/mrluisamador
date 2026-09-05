@@ -2,6 +2,7 @@
 
 import {useQuery} from '@tanstack/react-query'
 import {Comment} from '@/lib/types/comment'
+import {commentKeys} from '@/lib/comments/queryKeys'
 import CommentItem from './CommentItem'
 
 interface CommentsListProps {
@@ -24,7 +25,7 @@ export default function CommentsList({blogSlug, currentUserId}: CommentsListProp
     error,
     refetch,
   } = useQuery({
-    queryKey: ['comments', blogSlug],
+    queryKey: commentKeys.byBlog(blogSlug),
     queryFn: () => fetchComments(blogSlug),
   })
 
@@ -46,7 +47,8 @@ export default function CommentsList({blogSlug, currentUserId}: CommentsListProp
     return (
       <div className="mt-8 rounded-lg border border-red-200 bg-red-50 p-4">
         <p className="text-red-600">
-          Error loading comments: {error instanceof Error ? error.message : 'Failed to fetch comments'}
+          Error loading comments:{' '}
+          {error instanceof Error ? error.message : 'Failed to fetch comments'}
         </p>
         <button
           onClick={() => refetch()}
@@ -67,14 +69,9 @@ export default function CommentsList({blogSlug, currentUserId}: CommentsListProp
         </p>
       ) : (
         comments.map((comment) => (
-          <CommentItem
-            key={comment.id}
-            comment={comment}
-            currentUserId={currentUserId}
-          />
+          <CommentItem key={comment.id} comment={comment} currentUserId={currentUserId} />
         ))
       )}
     </div>
   )
 }
-
