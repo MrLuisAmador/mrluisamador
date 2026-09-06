@@ -22,7 +22,7 @@ const adminEnvSchema = z.object({
   ADMIN_EMAILS: z.string().optional(),
 })
 
-export type RequiredEnv = z.infer<typeof requiredEnvSchema>
+type RequiredEnv = z.infer<typeof requiredEnvSchema>
 type SmtpEnv = z.infer<typeof smtpEnvSchema>
 type RecaptchaEnv = z.infer<typeof recaptchaEnvSchema>
 type AdminEnv = {
