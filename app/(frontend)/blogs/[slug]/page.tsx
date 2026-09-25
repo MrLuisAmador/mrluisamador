@@ -5,7 +5,7 @@ import config from '@/payload.config'
 import PayloadRichText from '@/components/blog/PayloadRichText'
 import GoogleAd from '@/components/google/google-adsense'
 import CommentSection from '@/components/comments/CommentSection'
-import {Suspense} from 'react'
+import {Suspense, ViewTransition} from 'react'
 import {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 import {QueryClient, HydrationBoundary, dehydrate} from '@tanstack/react-query'
@@ -152,13 +152,15 @@ async function BlogContent({slug: blogSlug}: {slug: string}) {
 
       <div className="mx-auto max-w-4xl bg-white px-5 pt-14 xl:rounded xl:py-16 xl:shadow-sm xl:shadow-black">
         {coverImage && (
-          <Image
-            src={coverImage.url || ''}
-            width={coverImage.width || 896}
-            height={coverImage.height || 800}
-            alt={coverImage.alt || post.title}
-            className="pb-16"
-          />
+          <ViewTransition name={`blog-cover-${blogSlug}`} share="morph">
+            <Image
+              src={coverImage.url || ''}
+              width={coverImage.width || 896}
+              height={coverImage.height || 800}
+              alt={coverImage.alt || post.title}
+              className="pb-16"
+            />
+          </ViewTransition>
         )}
         <div className="my-8">
           <GoogleAd adSlot="6232399682" />
@@ -204,8 +206,16 @@ const Blog = async (props: Props) => {
 
   return (
     <article className="py-16">
-      <Suspense fallback={<BlogSkeleton />}>
-        <BlogContent slug={slug} />
+      <Suspense
+        fallback={
+          <ViewTransition exit="slide-down">
+            <BlogSkeleton />
+          </ViewTransition>
+        }
+      >
+        <ViewTransition enter="slide-up" default="none">
+          <BlogContent slug={slug} />
+        </ViewTransition>
       </Suspense>
     </article>
   )

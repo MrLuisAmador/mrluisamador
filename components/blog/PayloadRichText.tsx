@@ -10,12 +10,19 @@ type LexicalNode = {
   style?: string
   tag?: string
   url?: string
-  value?: {
+  fields?: {
     url?: string
-    alt?: string
-    width?: number
-    height?: number
-  } | unknown
+    newTab?: boolean
+    [key: string]: unknown
+  }
+  value?:
+    | {
+        url?: string
+        alt?: string
+        width?: number
+        height?: number
+      }
+    | unknown
   [key: string]: unknown
 }
 
@@ -37,6 +44,8 @@ const applyTextFormatting = (text: string, format: number) => {
   return element
 }
 
+const INLINE_TYPES = new Set(['text', 'linebreak', 'link', 'autolink', 'tab'])
+
 const renderLexicalNode = (node: LexicalNode, index: number): React.ReactNode => {
   let element: React.ReactNode = null
 
@@ -49,10 +58,25 @@ const renderLexicalNode = (node: LexicalNode, index: number): React.ReactNode =>
       case 'root':
         element = <div key="node-root">{children}</div>
         break
-      case 'paragraph':
-        element = <p className="mb-4">{children}</p>
+      case 'paragraph': {
+        const hasBlockChildren = node.children?.some((child) => !INLINE_TYPES.has(child.type))
+        const isEmpty =
+          !node.children ||
+          node.children.length === 0 ||
+          (node.children.length === 1 && node.children[0].type === 'text' && !node.children[0].text)
+
+        const content = isEmpty ? <br /> : children
+
+        // Use <div> instead of <p> if paragraph contains block elements (e.g. upload images)
+        // to prevent invalid HTML nesting (<p> cannot contain <div>) and hydration mismatches.
+        if (hasBlockChildren) {
+          element = <div className="mb-4">{content}</div>
+        } else {
+          element = <p className="mb-4">{content}</p>
+        }
         break
-      case 'heading':
+      }
+      case 'heading': {
         const Tag = (node.tag || 'h1') as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
         const headingClasses = {
           h1: 'text-4xl font-bold mb-6 font-title-font',
@@ -62,25 +86,46 @@ const renderLexicalNode = (node: LexicalNode, index: number): React.ReactNode =>
           h5: 'text-lg font-bold mb-2 font-title-font',
           h6: 'text-base font-bold mb-2 font-title-font',
         }
-        element = <Tag className={headingClasses[node.tag as keyof typeof headingClasses] || ''}>{children}</Tag>
+        element = (
+          <Tag className={headingClasses[node.tag as keyof typeof headingClasses] || ''}>
+            {children}
+          </Tag>
+        )
         break
-      case 'list':
+      }
+      case 'list': {
         const ListTag = node.tag === 'ol' ? 'ol' : 'ul'
-        const listClass = node.tag === 'ol' ? 'list-decimal ml-6 mb-4 space-y-1' : 'list-disc ml-6 mb-4 space-y-1'
+        const listClass =
+          node.tag === 'ol' ? 'list-decimal ml-6 mb-4 space-y-1' : 'list-disc ml-6 mb-4 space-y-1'
         element = <ListTag className={listClass}>{children}</ListTag>
         break
+      }
       case 'listitem':
         element = <li>{children}</li>
         break
       case 'link':
+      case 'autolink': {
+        const fields = node.fields as {url?: string; newTab?: boolean} | undefined
+        const href = fields?.url || node.url || '#'
+        const isNewTab = fields?.newTab ?? true
         element = (
-          <a href={node.url} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+          <a
+            href={href}
+            target={isNewTab ? '_blank' : undefined}
+            rel={isNewTab ? 'noopener noreferrer' : undefined}
+            className="text-blue-600 hover:underline"
+          >
             {children}
           </a>
         )
         break
+      }
       case 'quote':
-        element = <blockquote className="border-l-4 border-gray-300 pl-4 italic mb-4 text-gray-700">{children}</blockquote>
+        element = (
+          <blockquote className="mb-4 border-l-4 border-gray-300 pl-4 text-gray-700 italic">
+            {children}
+          </blockquote>
+        )
         break
       case 'horizontalrule':
         element = <hr className="my-8 border-t border-gray-200" />
@@ -88,8 +133,12 @@ const renderLexicalNode = (node: LexicalNode, index: number): React.ReactNode =>
       case 'linebreak':
         element = <br />
         break
-      case 'upload':
-        const media = node.value as { url?: string; alt?: string; width?: number; height?: number } | undefined
+      case 'tab':
+        element = <span className="inline-block w-8">&nbsp;</span>
+        break
+      case 'upload': {
+        const media = node.value as
+          {url?: string; alt?: string; width?: number; height?: number} | undefined
         if (!media || typeof media === 'string' || !media.url) {
           element = null
         } else {
@@ -102,30 +151,27 @@ const renderLexicalNode = (node: LexicalNode, index: number): React.ReactNode =>
                 height={media.height || 600}
                 className="rounded-lg shadow-sm"
               />
-              {media.alt && (
-                <span className="mt-2 text-sm text-gray-500 italic">{media.alt}</span>
-              )}
+              {media.alt && <span className="mt-2 text-sm text-gray-500 italic">{media.alt}</span>}
             </div>
           )
         }
         break
+      }
       default:
         if (children && children.length > 0) {
-          element = <div>{children}</div>
+          element = <span className="lexical-fallback">{children}</span>
         } else {
           element = null
         }
     }
   }
 
+  if (element === null) return null
   return <React.Fragment key={`${node.type}-${index}`}>{element}</React.Fragment>
 }
 
-export default function PayloadRichText({ content, className }: Props) {
+export default function PayloadRichText({content, className}: Props) {
   if (!content || !content.root) return null
-
-  // Forced version check for user
-  console.log('PayloadRichText Rendering v3 (explicit-node-keys)')
 
   return (
     <div className={`payload-richtext ${className || ''}`}>

@@ -3,7 +3,7 @@ import {Metadata} from 'next'
 import Image from 'next/image'
 import {getPayload} from 'payload'
 import config from '@/payload.config'
-import {Suspense} from 'react'
+import {Suspense, ViewTransition} from 'react'
 import {Blog as PayloadBlog} from '@/payload-types'
 
 export const metadata: Metadata = {
@@ -39,8 +39,8 @@ async function BlogsList() {
     console.error('Error fetching blogs from Payload:', error)
     return (
       <div className="py-20 text-center">
-        <p className="mb-4 text-on-surface">Unable to load blogs at the moment.</p>
-        <p className="text-sm text-on-secondary-container">
+        <p className="text-on-surface mb-4">Unable to load blogs at the moment.</p>
+        <p className="text-on-secondary-container text-sm">
           Please check back later or contact support if the issue persists.
         </p>
       </div>
@@ -48,11 +48,7 @@ async function BlogsList() {
   }
 
   if (blogs.length === 0) {
-    return (
-      <div className="py-20 text-center text-on-secondary-container">
-        No blogs found.
-      </div>
-    )
+    return <div className="text-on-secondary-container py-20 text-center">No blogs found.</div>
   }
 
   const featuredBlog = blogs[0]
@@ -61,25 +57,29 @@ async function BlogsList() {
   return (
     <div className="space-y-12">
       {/* Featured Blog Post */}
-      <article className="grid md:grid-cols-2 gap-8 items-center bg-white p-6 md:p-10 rounded-xl card-shadow border border-border-subtle group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-        <div className="relative aspect-video overflow-hidden rounded-lg bg-surface-container">
-          {featuredBlog.coverImage && typeof featuredBlog.coverImage === 'object' && featuredBlog.coverImage.url ? (
-            <Image
-              src={featuredBlog.coverImage.url}
-              alt={featuredBlog.coverImage.alt || featuredBlog.title}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-500"
-              priority
-            />
+      <article className="card-shadow border-border-subtle group grid items-center gap-8 rounded-xl border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg md:grid-cols-2 md:p-10">
+        <div className="bg-surface-container relative aspect-video overflow-hidden rounded-lg">
+          {featuredBlog.coverImage &&
+          typeof featuredBlog.coverImage === 'object' &&
+          featuredBlog.coverImage.url ? (
+            <ViewTransition name={`blog-cover-${featuredBlog.slug}`} share="morph">
+              <Image
+                src={featuredBlog.coverImage.url}
+                alt={featuredBlog.coverImage.alt || featuredBlog.title}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                priority
+              />
+            </ViewTransition>
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-surface-container-high">
+            <div className="bg-surface-container-high flex h-full w-full items-center justify-center">
               <span className="material-symbols-outlined text-outline-variant text-4xl">image</span>
             </div>
           )}
         </div>
         <div className="flex flex-col justify-center">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="bg-surface-container-high px-3 py-1 rounded-full text-[10px] font-bold tracking-widest text-on-surface uppercase">
+          <div className="mb-4 flex items-center gap-3">
+            <span className="bg-surface-container-high text-on-surface rounded-full px-3 py-1 text-[10px] font-bold tracking-widest uppercase">
               {featuredBlog.category || 'Engineering'}
             </span>
             <span className="text-label-sm font-label-sm text-on-secondary-container">
@@ -87,48 +87,54 @@ async function BlogsList() {
             </span>
           </div>
           <Link href={`/blogs/${featuredBlog.slug}`}>
-            <h2 className="text-headline-md font-headline-md mb-4 group-hover:text-primary transition-colors cursor-pointer">
+            <h2 className="text-headline-md font-headline-md group-hover:text-primary mb-4 cursor-pointer transition-colors">
               {featuredBlog.title}
             </h2>
           </Link>
           <p className="text-body-md font-body-md text-on-secondary-container mb-8 line-clamp-3">
             {featuredBlog.excerpt}
           </p>
-          <Link 
-            className="flex items-center gap-2 text-primary font-button text-button group/link" 
+          <Link
+            className="text-primary font-button text-button group/link flex items-center gap-2"
             href={`/blogs/${featuredBlog.slug}`}
           >
             Read More
-            <span className="material-symbols-outlined group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+            <span className="material-symbols-outlined transition-transform group-hover/link:translate-x-1">
+              arrow_forward
+            </span>
           </Link>
         </div>
       </article>
 
       {/* Grid for other posts */}
       {otherBlogs.length > 0 && (
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {otherBlogs.map((blog) => (
-            <article 
-              key={blog.id} 
-              className="bg-white flex flex-col h-full rounded-xl card-shadow border border-border-subtle overflow-hidden group transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            <article
+              key={blog.id}
+              className="card-shadow border-border-subtle group flex h-full flex-col overflow-hidden rounded-xl border bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="relative h-48 overflow-hidden bg-surface-container">
+              <div className="bg-surface-container relative h-48 overflow-hidden">
                 {blog.coverImage && typeof blog.coverImage === 'object' && blog.coverImage.url ? (
-                  <Image
-                    src={blog.coverImage.url}
-                    alt={blog.coverImage.alt || blog.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                  <ViewTransition name={`blog-cover-${blog.slug}`} share="morph">
+                    <Image
+                      src={blog.coverImage.url}
+                      alt={blog.coverImage.alt || blog.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </ViewTransition>
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-surface-container-high">
-                    <span className="material-symbols-outlined text-outline-variant text-4xl">image</span>
+                  <div className="bg-surface-container-high flex h-full w-full items-center justify-center">
+                    <span className="material-symbols-outlined text-outline-variant text-4xl">
+                      image
+                    </span>
                   </div>
                 )}
               </div>
-              <div className="p-6 flex-grow flex flex-col">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="bg-surface-container-high px-3 py-1 rounded-full text-[10px] font-bold tracking-widest text-on-surface uppercase">
+              <div className="flex flex-grow flex-col p-6">
+                <div className="mb-4 flex items-center gap-3">
+                  <span className="bg-surface-container-high text-on-surface rounded-full px-3 py-1 text-[10px] font-bold tracking-widest uppercase">
                     {blog.category || 'Strategy'}
                   </span>
                   <span className="text-label-sm font-label-sm text-on-secondary-container opacity-60">
@@ -136,7 +142,7 @@ async function BlogsList() {
                   </span>
                 </div>
                 <Link href={`/blogs/${blog.slug}`}>
-                  <h3 className="text-headline-md font-headline-md text-xl mb-3 group-hover:text-primary transition-colors cursor-pointer line-clamp-2">
+                  <h3 className="text-headline-md font-headline-md group-hover:text-primary mb-3 line-clamp-2 cursor-pointer text-xl transition-colors">
                     {blog.title}
                   </h3>
                 </Link>
@@ -144,12 +150,14 @@ async function BlogsList() {
                   {blog.excerpt}
                 </p>
                 <div className="mt-auto">
-                  <Link 
-                    className="flex items-center gap-2 text-primary font-button text-button group/link" 
+                  <Link
+                    className="text-primary font-button text-button group/link flex items-center gap-2"
                     href={`/blogs/${blog.slug}`}
                   >
                     Read More
-                    <span className="material-symbols-outlined group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+                    <span className="material-symbols-outlined transition-transform group-hover/link:translate-x-1">
+                      arrow_forward
+                    </span>
                   </Link>
                 </div>
               </div>
@@ -165,30 +173,33 @@ function BlogsListSkeleton() {
   return (
     <div className="space-y-12">
       {/* Featured Skeleton */}
-      <div className="grid md:grid-cols-2 gap-8 items-center bg-white p-10 rounded-xl card-shadow border border-border-subtle animate-pulse">
-        <div className="aspect-video rounded-lg bg-surface-container"></div>
+      <div className="card-shadow border-border-subtle grid animate-pulse items-center gap-8 rounded-xl border bg-white p-10 md:grid-cols-2">
+        <div className="bg-surface-container aspect-video rounded-lg"></div>
         <div className="space-y-4">
-          <div className="h-6 w-32 rounded-full bg-surface-container-high"></div>
-          <div className="h-10 w-full bg-surface-container-high"></div>
-          <div className="h-4 w-3/4 bg-surface-container-high"></div>
-          <div className="h-4 w-5/6 bg-surface-container-high"></div>
-          <div className="h-10 w-32 bg-surface-container-high"></div>
+          <div className="bg-surface-container-high h-6 w-32 rounded-full"></div>
+          <div className="bg-surface-container-high h-10 w-full"></div>
+          <div className="bg-surface-container-high h-4 w-3/4"></div>
+          <div className="bg-surface-container-high h-4 w-5/6"></div>
+          <div className="bg-surface-container-high h-10 w-32"></div>
         </div>
       </div>
 
       {/* Grid Skeleton */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {[...Array(3)].map((_, i) => (
-          <div key={i} className="bg-white rounded-xl card-shadow border border-border-subtle overflow-hidden animate-pulse">
-            <div className="h-48 bg-surface-container"></div>
-            <div className="p-6 space-y-4">
-              <div className="h-6 w-24 rounded-full bg-surface-container-high"></div>
-              <div className="h-8 w-full bg-surface-container-high"></div>
+          <div
+            key={i}
+            className="card-shadow border-border-subtle animate-pulse overflow-hidden rounded-xl border bg-white"
+          >
+            <div className="bg-surface-container h-48"></div>
+            <div className="space-y-4 p-6">
+              <div className="bg-surface-container-high h-6 w-24 rounded-full"></div>
+              <div className="bg-surface-container-high h-8 w-full"></div>
               <div className="space-y-2">
-                <div className="h-4 w-full bg-surface-container-high"></div>
-                <div className="h-4 w-5/6 bg-surface-container-high"></div>
+                <div className="bg-surface-container-high h-4 w-full"></div>
+                <div className="bg-surface-container-high h-4 w-5/6"></div>
               </div>
-              <div className="h-4 w-24 bg-surface-container-high pt-4"></div>
+              <div className="bg-surface-container-high h-4 w-24 pt-4"></div>
             </div>
           </div>
         ))}
@@ -200,31 +211,40 @@ function BlogsListSkeleton() {
 export default function Blogs() {
   return (
     <div className="bg-surface min-h-screen">
-      <main className="pt-24 pb-section-gap-lg max-w-300 mx-auto px-margin-mobile md:px-gutter">
+      <main className="pb-section-gap-lg px-margin-mobile md:px-gutter mx-auto max-w-300 pt-24">
         {/* Header Section */}
-        <header className="max-w-3xl mb-16 animate-fade-in-up">
-          <span className="text-label-sm font-label-sm text-primary uppercase tracking-[0.2em] mb-4 block">
+        <header className="animate-fade-in-up mb-16 max-w-3xl">
+          <span className="text-label-sm font-label-sm text-primary mb-4 block tracking-[0.2em] uppercase">
             Insights & Thoughts
           </span>
           <h1 className="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface mb-6">
             Writing on Web Engineering & Strategy.
           </h1>
           <p className="text-body-lg font-body-lg text-on-secondary-container">
-            A collection of technical deep-dives, architectural comparisons, and personal experiences building for the modern web.
+            A collection of technical deep-dives, architectural comparisons, and personal
+            experiences building for the modern web.
           </p>
         </header>
 
-        <Suspense fallback={<BlogsListSkeleton />}>
-          <BlogsList />
+        <Suspense
+          fallback={
+            <ViewTransition exit="slide-down">
+              <BlogsListSkeleton />
+            </ViewTransition>
+          }
+        >
+          <ViewTransition enter="slide-up" default="none">
+            <BlogsList />
+          </ViewTransition>
         </Suspense>
 
         {/* Pagination placeholder (subtle) */}
-        <div className="mt-20 flex justify-center items-center gap-4">
-          <button className="w-10 h-10 rounded-full flex items-center justify-center border border-border-subtle hover:bg-surface-container-high transition-colors text-on-secondary-container opacity-50 cursor-not-allowed">
+        <div className="mt-20 flex items-center justify-center gap-4">
+          <button className="border-border-subtle hover:bg-surface-container-high text-on-secondary-container flex h-10 w-10 cursor-not-allowed items-center justify-center rounded-full border opacity-50 transition-colors">
             <span className="material-symbols-outlined">chevron_left</span>
           </button>
           <span className="text-label-sm font-label-sm text-on-surface">Page 1 of 1</span>
-          <button className="w-10 h-10 rounded-full flex items-center justify-center border border-border-subtle hover:bg-surface-container-high transition-colors text-on-secondary-container opacity-50 cursor-not-allowed">
+          <button className="border-border-subtle hover:bg-surface-container-high text-on-secondary-container flex h-10 w-10 cursor-not-allowed items-center justify-center rounded-full border opacity-50 transition-colors">
             <span className="material-symbols-outlined">chevron_right</span>
           </button>
         </div>

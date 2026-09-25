@@ -1,47 +1,55 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, {useState, startTransition, ViewTransition} from 'react'
 import ProjectCard from './ProjectCard'
-import { Project as PayloadProject } from '@/payload-types'
+import {Project as PayloadProject} from '@/payload-types'
 
 interface ProjectListProps {
   projects: PayloadProject[]
 }
 
-export default function ProjectList({ projects }: ProjectListProps) {
+export default function ProjectList({projects}: ProjectListProps) {
   const [activeFilter, setActiveFilter] = useState('All')
-  
+
   // Normalize filters by trimming whitespace and handling potential missing values
-  const filters = ['All', ...new Set(projects.map((p) => p.filter?.trim() || 'Other').filter(Boolean))]
-  
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
-    : projects.filter((p) => (p.filter?.trim() || 'Other') === activeFilter)
+  const filters = [
+    'All',
+    ...new Set(projects.map((p) => p.filter?.trim() || 'Other').filter(Boolean)),
+  ]
+
+  const filteredProjects =
+    activeFilter === 'All'
+      ? projects
+      : projects.filter((p) => (p.filter?.trim() || 'Other') === activeFilter)
 
   return (
     <>
       {/* Filter Section */}
-      <section className="max-w-300 mx-auto px-margin-mobile md:px-gutter mb-12">
-        <div className="flex flex-wrap gap-3 items-center">
+      <section className="px-margin-mobile md:px-gutter mx-auto mb-12 max-w-300">
+        <div className="flex flex-wrap items-center gap-3">
           {filters.map((filter) => (
             <button
               key={filter}
-              className={`px-6 py-2 rounded-full text-label-sm font-label-sm transition-all duration-200 cursor-pointer ${
+              className={`text-label-sm font-label-sm cursor-pointer rounded-full px-6 py-2 transition-all duration-200 ${
                 activeFilter === filter
                   ? 'bg-primary text-on-primary shadow-md'
-                  : 'bg-white border border-border-subtle text-on-secondary-container hover:bg-surface-container-low'
+                  : 'border-border-subtle text-on-secondary-container hover:bg-surface-container-low border bg-white'
               }`}
-              onClick={() => setActiveFilter(filter)}
+              onClick={() => {
+                startTransition(() => {
+                  setActiveFilter(filter)
+                })
+              }}
             >
               {filter === 'All' ? 'All Projects' : filter}
             </button>
           ))}
         </div>
       </section>
-      
+
       {/* Grid Section */}
-      <section className="max-w-300 mx-auto px-margin-mobile md:px-gutter">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+      <section className="px-margin-mobile md:px-gutter mx-auto max-w-300">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
           {filteredProjects.map((project, index) => {
             // Bento layout logic
             // Desktop (lg): Cycle 8-4, 6-6
@@ -50,7 +58,7 @@ export default function ProjectList({ projects }: ProjectListProps) {
             const patternIndex = index % 4
             let colSpan = 'lg:col-span-6 md:col-span-6'
             let aspect = 'aspect-3/2'
-            
+
             if (patternIndex === 0) {
               colSpan = 'lg:col-span-8 md:col-span-6'
               aspect = 'lg:aspect-video aspect-3/2'
@@ -60,17 +68,17 @@ export default function ProjectList({ projects }: ProjectListProps) {
             }
 
             return (
-              <ProjectCard
-                key={project.id}
-                index={index}
-                title={project.title}
-                filter={project.filter}
-                url={project.url}
-                image={project.image}
-                description={project.description ?? undefined}
-                colSpan={colSpan}
-                aspect={aspect}
-              />
+              <ViewTransition key={project.id}>
+                <ProjectCard
+                  title={project.title}
+                  filter={project.filter}
+                  url={project.url}
+                  image={project.image}
+                  description={project.description ?? undefined}
+                  colSpan={colSpan}
+                  aspect={aspect}
+                />
+              </ViewTransition>
             )
           })}
         </div>
