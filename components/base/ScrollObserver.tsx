@@ -26,11 +26,11 @@ export function ScrollObserver() {
     // 2. Intersection Observer for scroll-driven animations
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -50px 0px',
     }
-    
+
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('opacity-100', 'translate-y-0')
           entry.target.classList.remove('opacity-0', 'translate-y-12')
@@ -38,15 +38,17 @@ export function ScrollObserver() {
       })
     }, observerOptions)
 
-    const elementsToAnimate = document.querySelectorAll('section:not(:first-of-type) h2, section:not(:first-of-type) p, .animate-on-scroll, section:not(:first-of-type) .grid > div')
-    elementsToAnimate.forEach(el => {
+    const elementsToAnimate = document.querySelectorAll(
+      'section:not(:first-of-type) h2, section:not(:first-of-type) p, .animate-on-scroll, section:not(:first-of-type) .grid > div'
+    )
+    elementsToAnimate.forEach((el) => {
       el.classList.add('opacity-0', 'translate-y-12', 'transition-all', 'duration-1000', 'ease-out')
       observer.observe(el)
     })
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      elementsToAnimate.forEach(el => {
+      elementsToAnimate.forEach((el) => {
         try {
           observer.unobserve(el)
         } catch {

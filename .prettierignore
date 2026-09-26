@@ -27,3 +27,9 @@ better-auth_migrations/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Media assets
+public/media/
+
+
+

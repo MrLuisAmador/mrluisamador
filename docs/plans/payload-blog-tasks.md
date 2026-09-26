@@ -1,12 +1,14 @@
 # Implementation Plan: PayloadCMS Blog
 
 ## Plan
+
 1. **Rich Text Component:** Create `components/blog/PayloadRichText.tsx` to render Payload's Lexical data.
 2. **Blog List Page:** Update `app/(frontend)/blogs/page.tsx` to fetch posts from Payload and render them using the existing card style.
 3. **Blog Post Page:** Update `app/(frontend)/blogs/[slug]/page.tsx` to fetch a single post from Payload and render its full content using the new `RichText` component.
 4. **Metadata:** Ensure `generateMetadata` correctly pulls from Payload's fields (title, excerpt, cover image).
 
 ## Tasks
+
 - [x] Task: Create `components/blog/PayloadRichText.tsx`
   - Acceptance: Correctly renders basic Lexical nodes (paragraphs, headings, lists).
   - Verify: Component exists and compiles.

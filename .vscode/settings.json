@@ -17,5 +17,6 @@
     "**/app/**/default.jsx": "${dirname(1)}/${dirname} - default.jsx",
     "**/app/**/route.ts": "${dirname(1)}/${dirname} - route.ts",
     "**/app/**/route.js": "${dirname(1)}/${dirname} - route.js"
-  }
+  },
+  "css.lint.unknownAtRules": "ignore"
 }

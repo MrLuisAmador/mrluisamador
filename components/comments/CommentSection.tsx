@@ -17,11 +17,7 @@ export default function CommentSection({blogSlug}: CommentSectionProps) {
     <div className="mt-8">
       <h3 className="mb-6 text-2xl font-semibold text-gray-800">Comments</h3>
 
-      {isAuthenticated ? (
-        <CommentForm blogSlug={blogSlug} />
-      ) : (
-        <LoginPrompt />
-      )}
+      {isAuthenticated ? <CommentForm blogSlug={blogSlug} /> : <LoginPrompt />}
 
       <Suspense fallback={<CommentsSkeleton />}>
         <CommentsList blogSlug={blogSlug} currentUserId={user?.id} />
@@ -36,7 +32,7 @@ function CommentsSkeleton() {
       {[...Array(3)].map((_, i) => (
         <div key={i} className="animate-pulse">
           <div className="flex items-start space-x-3">
-            <div className="h-8 w-8 rounded-full bg-gray-200"></div>
+            <div className="size-8 rounded-full bg-gray-200"></div>
             <div className="flex-1 space-y-2">
               <div className="h-4 w-1/4 rounded bg-gray-200"></div>
               <div className="space-y-2">

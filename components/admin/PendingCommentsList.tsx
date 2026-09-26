@@ -103,7 +103,7 @@ export default function PendingCommentsList() {
   if (isLoading) {
     return (
       <div className="py-8 text-center">
-        <div className="mx-auto h-8 w-8 animate-spin rounded-full border-b-2 border-blue-600"></div>
+        <div className="mx-auto size-8 animate-spin rounded-full border-b-2 border-blue-600"></div>
       </div>
     )
   }

@@ -5,7 +5,7 @@ import {buildConfig} from 'payload'
 import {Media} from './collections/Media'
 import {Blogs} from './collections/Blogs'
 import {Projects} from './collections/Projects'
-import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
+import {vercelBlobStorage} from '@payloadcms/storage-vercel-blob'
 
 export default buildConfig({
   plugins: [

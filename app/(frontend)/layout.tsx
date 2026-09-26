@@ -56,16 +56,13 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
 
   return (
     <html lang="en" className={cn(newsreader.variable, inter.variable)}>
-      <head>
-      </head>
+      <head></head>
       {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
-      <body className="bg-surface text-on-surface font-body-md overflow-x-hidden antialiased">
+      <body className="overflow-x-hidden bg-surface font-body-md text-on-surface antialiased">
         <QueryProvider>
-          <div className="flex flex-col min-h-screen">
+          <div className="flex min-h-screen flex-col">
             <Nav />
-            <main className="flex-1 w-full pt-20">
-              {children}
-            </main>
+            <main className="w-full flex-1 pt-20">{children}</main>
             <Footer />
           </div>
           <Analytics />

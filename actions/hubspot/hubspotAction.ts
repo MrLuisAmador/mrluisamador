@@ -18,10 +18,7 @@ function getErrorMessage(error: unknown): string {
   return error instanceof Error ? error.message : 'An unknown error occurred'
 }
 
-export async function hubspotAction(
-  _prevState: FormState,
-  formData: FormData
-): Promise<FormState> {
+export async function hubspotAction(_prevState: FormState, formData: FormData): Promise<FormState> {
   try {
     const formDataObj = Object.fromEntries(formData.entries())
     const result = ContactFormSchema.safeParse(formDataObj)

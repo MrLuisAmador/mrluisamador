@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Media } from '@/payload-types'
+import {Media} from '@/payload-types'
 
 interface ProjectCardProps {
   title: string
@@ -14,14 +14,14 @@ interface ProjectCardProps {
   index?: number
 }
 
-export default function ProjectCard({ 
-  title, 
-  filter, 
-  url, 
-  image, 
+export default function ProjectCard({
+  title,
+  filter,
+  url,
+  image,
   description,
   colSpan = 'md:col-span-6',
-  aspect = 'aspect-3/2'
+  aspect = 'aspect-3/2',
 }: ProjectCardProps) {
   // Enhanced image URL resolution
   let imageUrl = ''
@@ -40,9 +40,7 @@ export default function ProjectCard({
   }
 
   return (
-    <div 
-      className={`${colSpan} group cursor-pointer`}
-    >
+    <div className={`${colSpan} group cursor-pointer`}>
       <Link
         className="block h-full"
         target="_blank"
@@ -50,7 +48,7 @@ export default function ProjectCard({
         href={url}
         aria-label={title}
       >
-        <div className="bg-white rounded-xl overflow-hidden card-shadow border border-border-subtle transition-all duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col h-full">
+        <div className="flex h-full flex-col overflow-hidden rounded-xl border border-border-subtle bg-white card-shadow transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
           <div className={`relative ${aspect} w-full overflow-hidden bg-surface-container`}>
             {imageUrl ? (
               <Image
@@ -62,28 +60,30 @@ export default function ProjectCard({
                 priority={colSpan.includes('lg:col-span-8')}
               />
             ) : (
-              <div className="bg-surface-container-high w-full h-full flex items-center justify-center">
-                <span className="material-symbols-outlined text-outline-variant text-4xl">image</span>
+              <div className="flex size-full items-center justify-center bg-surface-container-high">
+                <span className="material-symbols-outlined text-4xl text-outline-variant">
+                  image
+                </span>
               </div>
             )}
           </div>
-          
-          <div className="p-8 flex flex-col flex-grow">
-            <div className="flex justify-between items-start mb-4">
-              <span className="bg-surface-container-high text-on-surface-variant text-[10px] font-bold tracking-widest px-3 py-1 rounded-full uppercase">
+
+          <div className="flex grow flex-col p-8">
+            <div className="mb-4 flex items-start justify-between">
+              <span className="rounded-full bg-surface-container-high px-3 py-1 text-[10px] font-bold tracking-widest text-on-surface-variant uppercase">
                 {filter}
               </span>
-              <span className="material-symbols-outlined text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+              <span className="material-symbols-outlined text-primary transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
                 arrow_outward
               </span>
             </div>
-            
-            <h3 className="text-headline-md font-headline-md mb-2 group-hover:text-primary transition-colors line-clamp-2">
+
+            <h3 className="mb-2 line-clamp-2 text-headline-md font-headline-md transition-colors group-hover:text-primary">
               {title}
             </h3>
-            
+
             {description && (
-              <p className="text-body-md font-body-md text-on-secondary-container line-clamp-3">
+              <p className="line-clamp-3 text-body-md font-body-md text-on-secondary-container">
                 {description}
               </p>
             )}

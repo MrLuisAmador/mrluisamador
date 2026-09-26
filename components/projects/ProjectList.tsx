@@ -25,15 +25,15 @@ export default function ProjectList({projects}: ProjectListProps) {
   return (
     <>
       {/* Filter Section */}
-      <section className="px-margin-mobile md:px-gutter mx-auto mb-12 max-w-300">
+      <section className="mx-auto mb-12 max-w-container-max px-margin-mobile md:px-gutter">
         <div className="flex flex-wrap items-center gap-3">
           {filters.map((filter) => (
             <button
               key={filter}
-              className={`text-label-sm font-label-sm cursor-pointer rounded-full px-6 py-2 transition-all duration-200 ${
+              className={`cursor-pointer rounded-full px-6 py-2 text-label-sm font-label-sm transition-all duration-200 ${
                 activeFilter === filter
                   ? 'bg-primary text-on-primary shadow-md'
-                  : 'border-border-subtle text-on-secondary-container hover:bg-surface-container-low border bg-white'
+                  : 'border border-border-subtle bg-white text-on-secondary-container hover:bg-surface-container-low'
               }`}
               onClick={() => {
                 startTransition(() => {
@@ -48,7 +48,7 @@ export default function ProjectList({projects}: ProjectListProps) {
       </section>
 
       {/* Grid Section */}
-      <section className="px-margin-mobile md:px-gutter mx-auto max-w-300">
+      <section className="mx-auto max-w-container-max px-margin-mobile md:px-gutter">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-12">
           {filteredProjects.map((project, index) => {
             // Bento layout logic

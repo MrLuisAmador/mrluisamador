@@ -71,49 +71,61 @@ const SendEmail = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8" id="contact-form">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div className="relative">
-          <label className="text-label-sm font-label-sm text-on-secondary-container uppercase block mb-2">Name</label>
-          <input 
+          <label className="mb-2 block text-label-sm font-label-sm text-on-secondary-container uppercase">
+            Name
+          </label>
+          <input
             type="text"
             name="name"
             placeholder="John Doe"
-            className={`w-full bg-surface-container-low border-0 border-b py-3 px-4 rounded-t-md focus:outline-none focus:border-primary transition-all duration-200 placeholder:text-outline-variant ${
+            className={`w-full rounded-t-md border-0 border-b bg-surface-container-low px-4 py-3 transition-all duration-200 placeholder:text-outline-variant focus:border-primary focus:outline-none ${
               state.errors?.name ? 'border-red-500' : 'border-border-subtle'
             }`}
           />
           {state.errors?.name?.map((error: string, i: number) => (
-            <p key={i} className="pt-1 text-xs text-red-500">{error}</p>
+            <p key={i} className="pt-1 text-xs text-red-500">
+              {error}
+            </p>
           ))}
         </div>
         <div className="relative">
-          <label className="text-label-sm font-label-sm text-on-secondary-container uppercase block mb-2">Email</label>
-          <input 
+          <label className="mb-2 block text-label-sm font-label-sm text-on-secondary-container uppercase">
+            Email
+          </label>
+          <input
             type="email"
             name="email"
             placeholder="john@example.com"
-            className={`w-full bg-surface-container-low border-0 border-b py-3 px-4 rounded-t-md focus:outline-none focus:border-primary transition-all duration-200 placeholder:text-outline-variant ${
+            className={`w-full rounded-t-md border-0 border-b bg-surface-container-low px-4 py-3 transition-all duration-200 placeholder:text-outline-variant focus:border-primary focus:outline-none ${
               state.errors?.email ? 'border-red-500' : 'border-border-subtle'
             }`}
           />
           {state.errors?.email?.map((error: string, i: number) => (
-            <p key={i} className="pt-1 text-xs text-red-500">{error}</p>
+            <p key={i} className="pt-1 text-xs text-red-500">
+              {error}
+            </p>
           ))}
         </div>
       </div>
 
       <div className="relative">
-        <label className="text-label-sm font-label-sm text-on-secondary-container uppercase block mb-2">Message</label>
-        <textarea 
+        <label className="mb-2 block text-label-sm font-label-sm text-on-secondary-container uppercase">
+          Message
+        </label>
+        <textarea
           name="message"
           rows={4}
           placeholder="Tell me about your project..."
-          className={`w-full bg-surface-container-low border-0 border-b py-3 px-4 rounded-t-md focus:outline-none focus:border-primary transition-all duration-200 placeholder:text-outline-variant resize-none ${
+          className={`w-full resize-none rounded-t-md border-0 border-b bg-surface-container-low px-4 py-3 transition-all duration-200 placeholder:text-outline-variant focus:border-primary focus:outline-none ${
             state.errors?.message ? 'border-red-500' : 'border-border-subtle'
           }`}
         />
         {state.errors?.message?.map((error: string, i: number) => (
-          <p key={i} className="pt-1 text-xs text-red-500">{error}</p>
+          <p key={i} className="pt-1 text-xs text-red-500">
+            {error}
+          </p>
         ))}
       </div>
 
@@ -125,10 +137,10 @@ const SendEmail = () => {
       ))}
 
       <div className="pt-4">
-        <button 
+        <button
           type="submit"
           disabled={isPending}
-          className="w-full md:w-auto cursor-pointer px-10 h-12 bg-primary text-on-primary font-button rounded-lg hover:opacity-90 transition-all duration-200 transform hover:-translate-y-1 shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex h-12 w-full transform cursor-pointer items-center justify-center gap-2 rounded-lg bg-primary px-10 font-button text-on-primary shadow-md transition-all duration-200 hover:-translate-y-1 hover:opacity-90 hover:shadow-lg active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 md:w-auto"
         >
           {isPending ? (
             <>
