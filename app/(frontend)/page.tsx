@@ -31,13 +31,12 @@ export default function Home() {
                 Luis Amador
               </h1>
               <h2 className="text-headline-md font-headline-md leading-relaxed italic opacity-90">
-                Why you should hire me?
+                Why you should hire me
               </h2>
             </div>
             <p className="max-w-xl text-body-lg font-body-lg leading-relaxed text-white/80">
-              I bridge the gap between complex engineering and elegant design, delivering high
-              performance digital experiences tailored to your unique business goals with precision
-              and passion.
+              I bridge the gap between complex engineering and elegant design, crafting high-impact
+              digital experiences tailored to business goals.
             </p>
             <div className="flex flex-wrap gap-6 pt-4">
               <Link
@@ -86,8 +85,8 @@ export default function Home() {
               Senior Frontend Engineering & Strategy
             </h2>
             <p className="mt-8 font-body-lg text-text-muted">
-              Engineering robust systems that don&apos;t just scale, they thrive under pressure. My
-              approach combines technical depth with business first architectural decisions.
+              Engineering resilient web systems built to perform under load. I combine deep
+              technical expertise with business-first architectural decisions.
             </p>
           </div>
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-12">
@@ -97,11 +96,11 @@ export default function Home() {
                   account_tree
                 </span>
               </div>
-              <h3 className="mb-4 font-headline-md text-2xl">Enterprise React & Next.js</h3>
+              <h3 className="mb-4 font-headline-md text-2xl">Enterprise Web Engineering</h3>
               <p className="font-body-md leading-relaxed text-text-muted">
-                10+ years of experience delivering high performance web applications across
-                E-commerce and Healthcare using React, Next.js, and TypeScript with modular
-                components.
+                10+ years delivering high-performance web applications across e-commerce and
+                healthcare, built on a deep foundation in web standards, clean architecture, and
+                modern component systems.
               </p>
             </div>
 
@@ -109,11 +108,11 @@ export default function Home() {
               <div className="mb-8 flex size-16 items-center justify-center rounded-xl bg-primary/5">
                 <span className="material-symbols-outlined text-4xl text-primary">smart_toy</span>
               </div>
-              <h3 className="mb-4 font-headline-md text-2xl">AI-Accelerated Development</h3>
+              <h3 className="mb-4 font-headline-md text-2xl">AI Agentic Engineering</h3>
               <p className="font-body-md leading-relaxed text-text-muted">
-                Developing software using agentic AI, AI managers, and advanced coding assistants. I
-                leverage these workflows to drastically accelerate the development lifecycle and
-                deliver robust code efficiently.
+                Building software with autonomous agents through context engineering and spec-driven
+                development, turning structured technical specifications into reliable,
+                production-ready code.
               </p>
             </div>
 
@@ -123,10 +122,10 @@ export default function Home() {
                   dynamic_feed
                 </span>
               </div>
-              <h3 className="mb-4 font-headline-md text-2xl">Architecture & Testing</h3>
+              <h3 className="mb-4 font-headline-md text-2xl">System Architecture & Testing</h3>
               <p className="font-body-md leading-relaxed text-text-muted">
-                Leading architectural shifts with React Server Components, Drizzle ORM, and
-                comprehensive testing suites using Jest, Cypress, and Playwright for robust
+                Building scalable web applications with clean separation of concerns, type-safe API
+                integrations, and rigorous end-to-end testing pipelines built for production
                 reliability.
               </p>
             </div>
@@ -139,12 +138,12 @@ export default function Home() {
           <div className="flex flex-col items-center justify-between gap-24 lg:flex-row">
             <div className="space-y-10 lg:w-1/2">
               <h2 className="font-display-lg text-[48px] leading-tight">
-                Expert craftsmanship for the modern web.
+                Engineering interfaces with uncompromising quality.
               </h2>
               <p className="font-body-lg leading-relaxed text-on-surface-variant">
-                With years of experience in both rapid prototyping and enterprise-grade software
-                development, I deliver bespoke digital solutions that don&apos;t just work, they
-                excel in the marketplace.
+                From rapid prototypes to enterprise-scale systems, I specialize in translating
+                complex product requirements into fast, accessible, and pixel-perfect web
+                experiences.
               </p>
               <div className="pt-4">
                 <div className="space-y-2">
@@ -158,19 +157,14 @@ export default function Home() {
               </div>
             </div>
             <div className="w-full lg:w-1/2">
-              <div className="relative aspect-4/3 overflow-hidden rounded-3xl shadow-2xl">
+              <div className="relative aspect-video overflow-hidden rounded-3xl shadow-2xl">
                 <Image
-                  alt="Modern clean workspace with laptop"
+                  alt="PoolDrops mobile application showcase"
                   className="size-full object-cover"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv9J6a_YaqXCdPE8uZJ2s2rKp7W8fhY-Kwz7GmB1f_LymX-VjC9vXup449PxOD4DIokxoHVzW2IczJh18h6Q2jDS-HjDR8DUM_5rRbmK1tUXOz9LEY61MiW30USxRu6T8-4o7YeNtuki9Lu_YAlEksiTk38OEy3NB0tF-1EAuhO1vTUsaMl-zNBxDTARWRRWMKcAYW8fzU01SDen2E0HIw_KpH-8uHxMipGnplen3ne-CTpeX5WDIuEex_Nw9Wp0wCnyXSXSwiUPI"
-                  width={1200}
-                  height={900}
+                  src="/media/poolDrops-mobile-app.png"
+                  width={3000}
+                  height={1656}
                 />
-                <div className="absolute inset-0 flex items-end bg-linear-to-t from-black/70 via-black/20 to-transparent p-12">
-                  <span className="font-headline-md text-2xl leading-relaxed text-white italic">
-                    &quot;Precision in every single line of code, elegance in every pixel.&quot;
-                  </span>
-                </div>
               </div>
             </div>
           </div>

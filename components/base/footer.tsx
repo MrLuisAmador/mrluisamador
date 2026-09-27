@@ -14,7 +14,7 @@ export default function Footer() {
             width={40}
             height={40}
           />
-          <span className="text-label-sm font-label-sm text-white/60">
+          <span className="font-label-sm text-xs text-white/60">
             © {year} Luis Amador. All rights reserved.
           </span>
         </div>
