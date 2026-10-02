@@ -8,6 +8,7 @@ import {cn} from '@/lib/utils'
 import {QueryProvider} from '@/components/providers/QueryProvider'
 
 import {Newsreader, Inter} from 'next/font/google'
+import Script from 'next/script'
 import 'material-symbols/outlined.css'
 import '../../styles/global.css'
 
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
   },
   other: {
     'Content-Security-Policy':
-      "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com; object-src 'none'; base-uri 'self'; form-action 'self';",
+      "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://analytics.ahrefs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https: http:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com https://analytics.ahrefs.com; frame-src 'self' https://googleads.g.doubleclick.net https://tpc.googlesyndication.com; object-src 'none'; base-uri 'self'; form-action 'self';",
   },
 }
 
@@ -68,6 +69,12 @@ export default function HomeLayout({children}: {children: React.ReactNode}) {
           <Analytics />
           <Toaster />
         </QueryProvider>
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="eFTYI3O88kbt1YqvNb9zfA"
+          async
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
