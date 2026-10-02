@@ -162,8 +162,9 @@ export default function Home() {
                   alt="PoolDrops mobile application showcase"
                   className="size-full object-cover"
                   src="/media/poolDrops-mobile-app.png"
-                  width={3000}
-                  height={1656}
+                  width={1200}
+                  height={662}
+                  sizes="(max-width: 1024px) 100vw, 600px"
                 />
               </div>
             </div>

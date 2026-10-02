@@ -67,6 +67,7 @@ async function BlogsList() {
                 src={featuredBlog.coverImage.url}
                 alt={featuredBlog.coverImage.alt || featuredBlog.title}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 priority
               />
@@ -121,6 +122,7 @@ async function BlogsList() {
                       src={blog.coverImage.url}
                       alt={blog.coverImage.alt || blog.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   </ViewTransition>

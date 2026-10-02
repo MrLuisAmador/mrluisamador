@@ -39,6 +39,12 @@ export default function ProjectCard({
     imageAlt = image.alt || title
   }
 
+  const imageSizes = colSpan.includes('col-span-8')
+    ? '(max-width: 768px) 100vw, (max-width: 1200px) 67vw, 800px'
+    : colSpan.includes('col-span-4')
+      ? '(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px'
+      : '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px'
+
   return (
     <div className={`${colSpan} group cursor-pointer`}>
       <Link
@@ -55,7 +61,7 @@ export default function ProjectCard({
                 src={imageUrl}
                 alt={imageAlt}
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                sizes={imageSizes}
                 className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
                 priority={colSpan.includes('lg:col-span-8')}
               />
